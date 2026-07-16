@@ -57,7 +57,7 @@ function AlbumDetail() {
       <Section className="bg-white">
         <div className="container-x">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {a.photos.map((src, idx) => (
+            {a.photos.map((src: string, idx: number) => (
               <button key={idx} onClick={() => setOpen(idx)} className="group relative aspect-square overflow-hidden rounded-2xl">
                 <img src={src} alt={`Foto ${idx + 1} de ${a.title}`} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
               </button>
