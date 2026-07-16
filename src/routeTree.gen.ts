@@ -9,29 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as QuemSomosRouteRouteImport } from './routes/quem-somos/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as QuemSomosIndexRouteImport } from './routes/quem-somos/index'
 
-const QuemSomosRouteRoute = QuemSomosRouteRouteImport.update({
-  id: '/quem-somos',
-  path: '/quem-somos',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const QuemSomosIndexRoute = QuemSomosIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => QuemSomosRouteRoute,
+  id: '/quem-somos/',
+  path: '/quem-somos/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/quem-somos': typeof QuemSomosRouteRouteWithChildren
   '/quem-somos/': typeof QuemSomosIndexRoute
 }
 export interface FileRoutesByTo {
@@ -41,31 +34,23 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/quem-somos': typeof QuemSomosRouteRouteWithChildren
   '/quem-somos/': typeof QuemSomosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/quem-somos' | '/quem-somos/'
+  fullPaths: '/' | '/quem-somos/'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/quem-somos'
-  id: '__root__' | '/' | '/quem-somos' | '/quem-somos/'
+  id: '__root__' | '/' | '/quem-somos/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  QuemSomosRouteRoute: typeof QuemSomosRouteRouteWithChildren
+  QuemSomosIndexRoute: typeof QuemSomosIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/quem-somos': {
-      id: '/quem-somos'
-      path: '/quem-somos'
-      fullPath: '/quem-somos'
-      preLoaderRoute: typeof QuemSomosRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -75,29 +60,17 @@ declare module '@tanstack/react-router' {
     }
     '/quem-somos/': {
       id: '/quem-somos/'
-      path: '/'
+      path: '/quem-somos'
       fullPath: '/quem-somos/'
       preLoaderRoute: typeof QuemSomosIndexRouteImport
-      parentRoute: typeof QuemSomosRouteRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface QuemSomosRouteRouteChildren {
-  QuemSomosIndexRoute: typeof QuemSomosIndexRoute
-}
-
-const QuemSomosRouteRouteChildren: QuemSomosRouteRouteChildren = {
-  QuemSomosIndexRoute: QuemSomosIndexRoute,
-}
-
-const QuemSomosRouteRouteWithChildren = QuemSomosRouteRoute._addFileChildren(
-  QuemSomosRouteRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  QuemSomosRouteRoute: QuemSomosRouteRouteWithChildren,
+  QuemSomosIndexRoute: QuemSomosIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
