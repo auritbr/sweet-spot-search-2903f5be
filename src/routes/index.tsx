@@ -37,26 +37,22 @@ function HeroCarousel() {
   const [paused, setPaused] = useState(false);
   const [opened, setOpened] = useState(false);
   const [showCurtain, setShowCurtain] = useState(true);
+  const reducedMotion = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
   useEffect(() => {
-    if (typeof sessionStorage !== "undefined" && sessionStorage.getItem("curtainShown")) {
-      setShowCurtain(false);
-      setOpened(true);
-      return;
-    }
-    const t = setTimeout(() => {
-      setOpened(true);
-      if (typeof sessionStorage !== "undefined") sessionStorage.setItem("curtainShown", "1");
-      setTimeout(() => setShowCurtain(false), 2200);
-    }, 250);
-    return () => clearTimeout(t);
-  }, []);
+    const openDelay = 200;
+    const duration = reducedMotion ? 350 : 1600;
+    const t1 = setTimeout(() => setOpened(true), openDelay);
+    const t2 = setTimeout(() => setShowCurtain(false), openDelay + duration + 100);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, [reducedMotion]);
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || showCurtain) return;
     const t = setInterval(() => setI((v) => (v + 1) % slides.length), 6500);
     return () => clearInterval(t);
-  }, [paused]);
+  }, [paused, showCurtain]);
+
 
   const go = (n: number) => setI((n + slides.length) % slides.length);
   const s = slides[i];
