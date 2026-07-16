@@ -59,7 +59,7 @@ function ProjectDetail() {
             </div>
             <div>
               <h2 className="font-display font-black text-2xl text-brand-ink">Objetivos específicos</h2>
-              <ul className="mt-2 space-y-2 list-disc pl-6 text-brand-gray">{p.specifics.map((s) => <li key={s}>{s}</li>)}</ul>
+              <ul className="mt-2 space-y-2 list-disc pl-6 text-brand-gray">{p.specifics.map((s: string) => <li key={s}>{s}</li>)}</ul>
             </div>
             <div>
               <h2 className="font-display font-black text-2xl text-brand-ink">Metodologia</h2>
