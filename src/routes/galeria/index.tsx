@@ -56,8 +56,7 @@ function Galeria() {
   return (
     <>
       <PageHero
-        title=""
-        split={{ first: "Nossa", second: "Galeria", secondColor: "#08B9E6" }}
+        title="Galeria"
         image="https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=1920&q=80"
         breadcrumb={[{ label: "Início", to: "/" }, { label: "Galeria" }]}
         accent="cyan"
