@@ -206,19 +206,22 @@ function QuemSomos() {
       </Section>
 
       {/* Chamada final */}
-      <section className="relative py-16 md:py-20 overflow-hidden bg-white">
-        <ArcThick color="#FFB400" className="absolute -top-4 left-8 w-32 opacity-80" from={200} to={340} />
-        <HatchedCircle size={140} color="#08B9E6" className="absolute -bottom-10 -right-10 opacity-30" />
-        <div className="container-x text-center max-w-2xl mx-auto">
-          <h2 className="text-brand-ink" style={{ fontSize: "clamp(1.6rem, 2.4vw, 2.2rem)", lineHeight: 1.2, fontWeight: 700 }}>
-            Faça parte da nossa história
+      <section className="relative py-14 md:py-20 overflow-hidden" style={{ backgroundColor: "#00384C" }}>
+        <QuarterCircle corner="tr" color="#ED1C24" className="absolute -top-2 -right-2 w-28 md:w-40 opacity-90" />
+        <ArcThick color="#FFB400" className="absolute -left-4 top-10 w-28 opacity-90" from={200} to={340} />
+        <HatchedCircle size={140} color="#08B9E6" className="absolute -left-16 bottom-0 opacity-25" />
+        <Triangle color="#FFB400" size={44} className="absolute top-8 right-24 hidden md:block" rotate={20} />
+        <div className="container-x text-center max-w-2xl mx-auto relative">
+          <h2 className="text-white" style={{ fontSize: "clamp(1.6rem, 2.4vw, 2.2rem)", lineHeight: 1.2, fontWeight: 700 }}>
+            Vamos construir novas histórias por meio da cultura?
           </h2>
-          <p className="mt-4 text-brand-gray" style={{ lineHeight: 1.7 }}>
-            Participe das oficinas, acompanhe as apresentações ou apoie o Ponto de Cultura. A cultura se sustenta com muitas mãos.
+          <BrushStroke color="#FFB400" className="mx-auto mt-5 w-28" />
+          <p className="mt-4 text-white/90" style={{ lineHeight: 1.7 }}>
+            Conheça nossos projetos, acompanhe nossas ações ou entre em contato para saber como participar.
           </p>
-          <div className="mt-6 flex flex-wrap gap-3 justify-center">
-            <Link to="/projetos" className="px-6 py-3 rounded-full bg-brand-red text-white text-sm" style={{ fontWeight: 600 }}>Ver projetos</Link>
-            <Link to="/contato" className="px-6 py-3 rounded-full border-2 border-brand-ink text-brand-ink text-sm hover:bg-brand-soft" style={{ fontWeight: 600 }}>Entre em contato</Link>
+          <div className="mt-7 flex flex-wrap gap-3 justify-center">
+            <Link to="/projetos" className="px-6 py-3 rounded-full bg-brand-gold text-brand-petrol text-sm hover:bg-white transition" style={{ fontWeight: 700 }}>Conheça os projetos</Link>
+            <Link to="/contato" className="px-6 py-3 rounded-full border-2 border-white text-white text-sm hover:bg-white/10 transition" style={{ fontWeight: 600 }}>Entre em contato</Link>
           </div>
         </div>
       </section>
