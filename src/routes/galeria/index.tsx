@@ -73,23 +73,35 @@ function Galeria() {
           <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
             <div>
               <p className="uppercase tracking-[0.22em] text-brand-red text-xs" style={{ fontWeight: 600 }}>Álbuns</p>
-              <h2 className="text-brand-ink mt-1" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.5rem)", lineHeight: 1.15, fontWeight: 700 }}>Selecione o ano</h2>
               <BrushStroke color="#FFB400" className="mt-3 w-24" />
             </div>
             {/* Desktop tabs */}
-            <div className="hidden md:flex gap-2 flex-wrap">
-              {years.map((y) => (
-                <button key={y} onClick={() => { setYear(y); closeAlbum(); }}
-                  className={`px-4 py-2 rounded-full text-sm transition ${y === year ? "bg-brand-red text-white" : "bg-brand-soft text-brand-ink hover:bg-brand-gold/30"}`}
-                  style={{ fontWeight: 600 }}>{y}</button>
-              ))}
+            <div role="tablist" aria-label="Selecionar ano" className="hidden md:flex gap-2 flex-wrap">
+              {years.map((y) => {
+                const active = y === year;
+                return (
+                  <button key={y} role="tab" aria-selected={active} onClick={() => { setYear(y); closeAlbum(); }}
+                    className={`px-4 py-2 rounded-full text-sm transition ${active ? "bg-brand-red text-white shadow" : "bg-brand-soft text-brand-ink hover:bg-brand-gold/30"}`}
+                    style={{ fontWeight: 600 }}>{y}</button>
+                );
+              })}
             </div>
-            {/* Mobile dropdown */}
-            <select className="md:hidden w-full rounded-full border border-black/10 px-4 py-3 bg-white text-sm" value={year}
-              onChange={(e) => { setYear(Number(e.target.value)); closeAlbum(); }}>
-              {years.map((y) => <option key={y} value={y}>{y}</option>)}
-            </select>
+            {/* Mobile: horizontal scroll of chips */}
+            <div className="md:hidden w-full -mx-1 overflow-x-auto">
+              <div role="tablist" aria-label="Selecionar ano" className="flex gap-2 px-1 pb-1 min-w-max">
+                <label htmlFor="year-select" className="sr-only">Selecione o ano</label>
+                {years.map((y) => {
+                  const active = y === year;
+                  return (
+                    <button key={y} id={y === years[0] ? "year-select" : undefined} role="tab" aria-selected={active} onClick={() => { setYear(y); closeAlbum(); }}
+                      className={`shrink-0 px-4 py-2 rounded-full text-sm transition ${active ? "bg-brand-red text-white" : "bg-brand-soft text-brand-ink"}`}
+                      style={{ fontWeight: 600 }}>{y}</button>
+                  );
+                })}
+              </div>
+            </div>
           </div>
+
 
           {/* Album area: transforms into gallery viewer */}
           {!activeAlbum ? (

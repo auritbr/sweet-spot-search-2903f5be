@@ -7,7 +7,7 @@ const nav = [
   {
     label: "Quem Somos", to: "/quem-somos",
     children: [
-      { label: "Nossa História", to: "/quem-somos/nossa-historia" },
+      { label: "Quem Somos", to: "/quem-somos" },
       { label: "Equipe", to: "/equipe" },
       { label: "Transparência", to: "/transparencia" },
     ],

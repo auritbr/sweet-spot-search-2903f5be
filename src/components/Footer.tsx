@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { site, partners } from "@/data/site";
+import { site } from "@/data/site";
 import { QuarterCircle, ArcThick, HatchedCircle } from "./Shapes";
 
 export function Footer() {
@@ -13,17 +13,7 @@ export function Footer() {
       <HatchedCircle size={200} color="#08B9E6" className="absolute -right-16 bottom-0 opacity-25" />
 
       <div className="container-x pt-28 pb-12 relative">
-        {/* Parceiros */}
-        <div className="mb-12">
-          <p className="text-brand-gold text-xs uppercase tracking-[0.3em] font-bold mb-4">Parceiros e apoiadores</p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 items-center">
-            {partners.map((p) => (
-              <div key={p} className="text-white/70 hover:text-white transition text-xs font-semibold border border-white/15 rounded-xl py-4 px-2 text-center">
-                {p}
-              </div>
-            ))}
-          </div>
-        </div>
+
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
@@ -41,8 +31,7 @@ export function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Quem Somos</h3>
             <ul className="space-y-2 text-sm text-white/80">
-              <li><Link to="/quem-somos" className="hover:text-brand-gold">Sobre</Link></li>
-              <li><Link to="/quem-somos/nossa-historia" className="hover:text-brand-gold">Nossa História</Link></li>
+              <li><Link to="/quem-somos" className="hover:text-brand-gold">Quem Somos</Link></li>
               <li><Link to="/equipe" className="hover:text-brand-gold">Equipe</Link></li>
               <li><Link to="/transparencia" className="hover:text-brand-gold">Transparência</Link></li>
             </ul>
