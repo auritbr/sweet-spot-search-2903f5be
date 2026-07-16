@@ -12,8 +12,8 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
 
-  --font-display: "Archivo Black", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -106,11 +106,11 @@ html.a11y-pause *, html.a11y-pause *::before, html.a11y-pause *::after {
     font-family: var(--font-display);
     color: var(--brand-ink);
     letter-spacing: -0.01em;
-    font-weight: 400;
+    font-weight: 700;
   }
   h4, h5, h6 {
-    font-family: var(--font-sans);
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-weight: 600;
     color: var(--brand-ink);
   }
   :focus-visible {

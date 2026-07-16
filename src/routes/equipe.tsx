@@ -24,18 +24,18 @@ function Equipe() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   return (
     <>
-      <section className="relative bg-brand-soft py-32 md:py-40 overflow-hidden">
-        <HatchedCircle size={140} color="#08B9E6" className="absolute top-10 left-10 opacity-70" />
-        <ArcThick color="#ED1C24" className="absolute bottom-10 right-10 w-48" from={200} to={340} />
-        <Triangle color="#FFB400" size={70} className="absolute top-20 right-24 hidden md:block" rotate={20} />
-        <Triangle color="#08B9E6" size={50} className="absolute bottom-20 left-24 hidden md:block" rotate={-15} />
-        <div className="container-x text-center pt-16 relative">
-          <p className="uppercase tracking-[0.3em] text-brand-red font-bold text-xs mb-4">Time</p>
-          <h1 className="font-display uppercase leading-[0.95]" style={{ fontSize: "clamp(2.6rem, 8vw, 6rem)", color: "#FF7A00" }}>
+      <section className="relative bg-brand-soft py-20 md:py-24 overflow-hidden">
+        <HatchedCircle size={100} color="#08B9E6" className="absolute top-10 left-10 opacity-50" />
+        <ArcThick color="#ED1C24" className="absolute bottom-10 right-10 w-32 opacity-80" from={200} to={340} />
+        <Triangle color="#FFB400" size={54} className="absolute top-20 right-24 hidden md:block" rotate={20} />
+        <Triangle color="#08B9E6" size={40} className="absolute bottom-20 left-24 hidden md:block" rotate={-15} />
+        <div className="container-x text-center pt-12 relative">
+          <p className="uppercase tracking-[0.22em] text-brand-red text-xs mb-3" style={{ fontWeight: 600 }}>Time</p>
+          <h1 style={{ fontSize: "clamp(2rem, 3.3vw, 3.5rem)", lineHeight: 1.1, fontWeight: 700, color: "#00384C" }}>
             Nossa Equipe
           </h1>
-          <BrushStroke color="#FFB400" className="mx-auto mt-6 w-48" />
-          <p className="mt-6 text-lg text-brand-gray max-w-2xl mx-auto">
+          <BrushStroke color="#FFB400" className="mx-auto mt-5 w-36" />
+          <p className="mt-5 text-brand-gray max-w-2xl mx-auto" style={{ fontSize: "clamp(1rem, 1.2vw, 1.1rem)", lineHeight: 1.6 }}>
             Um time multidisciplinar que sustenta a formação, a criação e a circulação cultural.
           </p>
         </div>
@@ -51,27 +51,31 @@ function Equipe() {
               return (
                 <article
                   key={m.name}
-                  className="group relative overflow-hidden aspect-[4/5] cursor-pointer"
+                  className="group relative overflow-hidden aspect-[4/5] cursor-pointer rounded-2xl"
                   style={{ backgroundColor: color, color: textColor }}
                   onClick={() => setOpenIdx(isOpen ? null : i)}
                 >
-                  {/* Decorative shapes per card */}
-                  {i % 3 === 0 && <ArcThick color={i % 2 ? "#FFB400" : "#08B9E6"} className="absolute -top-4 -right-4 w-32 opacity-90" from={200} to={340} />}
-                  {i % 3 === 1 && <HatchedCircle size={120} color={i % 2 ? "#FFB400" : "#FFFFFF"} className="absolute -bottom-6 -left-6 opacity-40" />}
-                  {i % 3 === 2 && <Triangle color={i % 2 ? "#FFB400" : "#ED1C24"} size={70} className="absolute top-4 right-4" rotate={20} />}
+                  {i % 3 === 0 && <ArcThick color={i % 2 ? "#FFB400" : "#08B9E6"} className="absolute -top-4 -right-4 w-24 opacity-80 z-10" from={200} to={340} />}
+                  {i % 3 === 1 && <HatchedCircle size={90} color={i % 2 ? "#FFB400" : "#FFFFFF"} className="absolute -bottom-6 -left-6 opacity-30 z-10" />}
+                  {i % 3 === 2 && <Triangle color={i % 2 ? "#FFB400" : "#ED1C24"} size={54} className="absolute top-4 right-4 z-10" rotate={20} />}
 
                   <img
                     src={m.image}
                     alt={m.name}
                     loading="lazy"
-                    className="absolute inset-x-0 bottom-0 w-full h-[80%] object-cover object-top mix-blend-multiply opacity-90 group-hover:scale-105 transition duration-500"
+                    className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition duration-500"
+                    style={{ filter: "brightness(1.05) saturate(1.02)" }}
                   />
-                  <div className="absolute inset-x-0 bottom-0 p-5 z-10" style={{ background: `linear-gradient(to top, ${color} 20%, transparent)` }}>
-                    <h3 className="font-display uppercase text-xl leading-tight">{m.name}</h3>
-                    <p className="text-sm opacity-90 mt-1">{m.role}</p>
-                    {isOpen && <p className="mt-2 text-sm opacity-95">{m.bio}</p>}
+                  {/* subtle color wash */}
+                  <div className="absolute inset-0 pointer-events-none" style={{ backgroundColor: color, opacity: 0.18 }} />
+                  {/* bottom gradient only */}
+                  <div className="absolute inset-x-0 bottom-0 p-4 z-10" style={{ background: `linear-gradient(to top, ${color} 0%, ${color}D9 45%, transparent 100%)`, paddingTop: "3rem" }}>
+                    <h3 style={{ fontSize: "clamp(1rem, 1.3vw, 1.15rem)", lineHeight: 1.2, fontWeight: 700, color: textColor }}>{m.name}</h3>
+                    <p className="text-xs opacity-95 mt-1">{m.role}</p>
+                    {isOpen && <p className="mt-2 text-xs opacity-95">{m.bio}</p>}
                     <button
-                      className="mt-3 inline-block text-xs font-bold uppercase tracking-wider underline underline-offset-4"
+                      className="mt-2 inline-block text-[11px] uppercase tracking-widest underline underline-offset-4 opacity-0 group-hover:opacity-100 transition"
+                      style={{ fontWeight: 600 }}
                       aria-expanded={isOpen}
                     >
                       {isOpen ? "Fechar" : "Conheça"}

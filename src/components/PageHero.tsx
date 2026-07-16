@@ -14,31 +14,28 @@ export function PageHero({
   title: string; subtitle?: string; image: string;
   breadcrumb?: { label: string; to?: string }[];
   accent?: Accent; brush?: string;
-  /** Optional 2-part title: e.g. NOSSA + GALERIA */
   split?: { first: string; second: string; secondColor?: string };
 }) {
   return (
-    <section className="relative isolate w-full" style={{ minHeight: "min(85vh, 780px)" }}>
+    <section className="relative isolate w-full" style={{ minHeight: "min(58vh, 520px)" }}>
       <div className="absolute inset-0 -z-10">
         <img src={image} alt="" loading="eager" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-brand-ink/45" />
+        <div className="absolute inset-0 bg-brand-ink/50" />
       </div>
 
-      {/* Geometric marks */}
-      <QuarterCircle corner="tr" color={accentHex.petrol} className="absolute -top-4 -right-4 w-56 md:w-80 h-56 md:h-80 opacity-95" />
-      <ArcThick color={accentHex[accent]} className="absolute left-4 top-16 w-40 md:w-64 opacity-90" from={210} to={340} />
-      <DiamondsCluster color={accentHex.cyan} className="absolute right-16 bottom-32 hidden md:block" size={80} />
-      <div className="pointer-events-none absolute -bottom-1 inset-x-0 h-16 md:h-24 bg-white [clip-path:ellipse(90%_100%_at_50%_100%)]" aria-hidden />
+      <QuarterCircle corner="tr" color={accentHex.petrol} className="absolute -top-4 -right-4 w-32 md:w-52 h-32 md:h-52 opacity-90" />
+      <ArcThick color={accentHex[accent]} className="absolute left-4 top-24 w-24 md:w-40 opacity-90" from={210} to={340} />
+      <DiamondsCluster color={accentHex.cyan} className="absolute right-10 bottom-24 hidden md:block" size={54} />
+      <div className="pointer-events-none absolute -bottom-1 inset-x-0 h-12 md:h-16 bg-white [clip-path:ellipse(90%_100%_at_50%_100%)]" aria-hidden />
 
-      <div className="container-x flex flex-col justify-center items-center text-center min-h-[min(85vh,780px)] pt-32 pb-24 relative">
-        {/* Hatched circle behind title */}
+      <div className="container-x flex flex-col justify-center items-center text-center min-h-[min(58vh,520px)] pt-28 pb-16 relative">
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-          <HatchedCircle size={420} color={accentHex[accent]} className="opacity-70 max-w-[70vw]" />
+          <HatchedCircle size={280} color={accentHex[accent]} className="opacity-50 max-w-[60vw]" />
         </div>
 
         <h1
-          className="relative font-display text-white leading-[0.95] uppercase"
-          style={{ fontSize: "clamp(2.5rem, 8vw, 6.5rem)", textShadow: "0 4px 24px rgba(0,0,0,.35)" }}
+          className="relative text-white"
+          style={{ fontSize: "clamp(2.2rem, 4vw, 4.2rem)", lineHeight: 1.02, fontWeight: 700, textShadow: "0 4px 20px rgba(0,0,0,.35)" }}
         >
           {split ? (
             <>
@@ -48,16 +45,16 @@ export function PageHero({
           ) : title}
         </h1>
 
-        <BrushStroke color={brush} className="mt-6 w-52" />
+        <BrushStroke color={brush} className="mt-5 w-40" />
 
         {subtitle && (
-          <p className="relative mt-6 text-white/95 text-lg md:text-xl font-medium max-w-2xl">
+          <p className="relative mt-5 text-white/95 max-w-2xl" style={{ fontSize: "clamp(1rem, 1.2vw, 1.15rem)", lineHeight: 1.6 }}>
             {subtitle}
           </p>
         )}
 
         {breadcrumb && (
-          <nav aria-label="Breadcrumb" className="relative mt-8 text-sm text-white/90">
+          <nav aria-label="Breadcrumb" className="relative mt-6 text-sm text-white/90">
             <ol className="flex flex-wrap gap-2 items-center justify-center">
               {breadcrumb.map((b, i) => (
                 <li key={i} className="flex items-center gap-2">
@@ -74,18 +71,18 @@ export function PageHero({
 }
 
 export function Section({ children, className = "", id }: { children: ReactNode; className?: string; id?: string }) {
-  return <section id={id} className={`py-16 md:py-24 relative ${className}`}>{children}</section>;
+  return <section id={id} className={`py-12 md:py-16 relative ${className}`}>{children}</section>;
 }
 
 export function SectionTitle({ eyebrow, title, text, invert, align = "left" }: { eyebrow?: string; title: string; text?: string; invert?: boolean; align?: "left" | "center" }) {
   return (
-    <div className={`max-w-3xl mb-12 ${invert ? "text-white" : ""} ${align === "center" ? "mx-auto text-center" : ""}`}>
-      {eyebrow && <p className={`text-xs font-bold uppercase tracking-[0.3em] mb-3 ${invert ? "text-brand-gold" : "text-brand-red"}`}>{eyebrow}</p>}
-      <h2 className={`font-display uppercase leading-[1.02] ${invert ? "text-white" : "text-brand-ink"}`}
-          style={{ fontSize: "clamp(1.9rem, 4.5vw, 3.5rem)" }}>
+    <div className={`max-w-3xl mb-8 ${invert ? "text-white" : ""} ${align === "center" ? "mx-auto text-center" : ""}`}>
+      {eyebrow && <p className={`text-xs font-semibold uppercase tracking-[0.22em] mb-3 ${invert ? "text-brand-gold" : "text-brand-red"}`}>{eyebrow}</p>}
+      <h2 className={`${invert ? "text-white" : "text-brand-ink"}`}
+          style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.15, fontWeight: 700 }}>
         {title}
       </h2>
-      {text && <p className={`mt-4 text-lg ${invert ? "text-white/90" : "text-brand-gray"}`}>{text}</p>}
+      {text && <p className={`mt-4 ${invert ? "text-white/90" : "text-brand-gray"}`} style={{ fontSize: "clamp(1rem, 1.2vw, 1.15rem)", lineHeight: 1.7 }}>{text}</p>}
     </div>
   );
 }

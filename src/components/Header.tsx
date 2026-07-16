@@ -55,8 +55,8 @@ export function Header() {
       </a>
       <div className="container-x flex items-center justify-between h-16 md:h-20">
         <Link to="/" className={`flex items-center gap-3 ${textColor}`}>
-          <span className="relative inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-red text-white font-display uppercase text-lg">C</span>
-          <span className="font-display uppercase text-lg md:text-xl leading-none">{site.short}</span>
+          <span className="relative inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-red text-white" style={{ fontWeight: 700 }}>C</span>
+          <span style={{ fontSize: "1rem", fontWeight: 700, letterSpacing: "-0.01em" }}>{site.short}</span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1" aria-label="Menu principal">
@@ -64,7 +64,8 @@ export function Header() {
             <div key={item.to} className="relative group">
               <Link
                 to={item.to}
-                className={`px-3 py-2 text-sm font-semibold rounded-md hover:bg-black/5 ${textColor} ${solid ? "hover:text-brand-red" : "hover:text-brand-gold"}`}
+                className={`px-3 py-2 rounded-md hover:bg-black/5 ${textColor} ${solid ? "hover:text-brand-red" : "hover:text-brand-gold"}`}
+                style={{ fontSize: "0.95rem", fontWeight: 500 }}
                 activeProps={{ className: "text-brand-red" }}
                 activeOptions={{ exact: item.to === "/" }}
               >
@@ -74,7 +75,7 @@ export function Header() {
                 <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition">
                   <div className="min-w-60 bg-white rounded-2xl shadow-xl border border-black/5 p-2">
                     {item.children.map((c) => (
-                      <Link key={c.to} to={c.to} className="block px-3 py-2.5 rounded-lg text-sm font-medium text-brand-ink hover:bg-brand-soft">
+                      <Link key={c.to} to={c.to} className="block px-3 py-2.5 rounded-lg text-sm text-brand-ink hover:bg-brand-soft" style={{ fontWeight: 500 }}>
                         {c.label}
                       </Link>
                     ))}
@@ -83,7 +84,7 @@ export function Header() {
               )}
             </div>
           ))}
-          <Link to="/contato" className="ml-2 inline-flex items-center px-5 py-2.5 rounded-full bg-brand-red text-white font-semibold text-sm uppercase tracking-wider hover:bg-brand-red/90 transition">
+          <Link to="/contato" className="ml-2 inline-flex items-center px-5 py-2 rounded-full bg-brand-red text-white text-sm hover:bg-brand-red/90 transition" style={{ fontWeight: 600 }}>
             Apoie
           </Link>
         </nav>
