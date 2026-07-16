@@ -123,7 +123,7 @@ function ProjectDetail() {
           <div>
             <SectionTitle eyebrow="Objetivos específicos" title="Como avançamos" />
             <ul className="space-y-2 text-brand-gray" style={{ lineHeight: 1.6 }}>
-              {p.specifics.map((s) => (
+              {p.specifics.map((s: string) => (
                 <li key={s} className="flex gap-3">
                   <span className="mt-2 w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
                   <span>{s}</span>
@@ -139,7 +139,7 @@ function ProjectDetail() {
         <div className="container-x">
           <SectionTitle eyebrow="Programação" title="Atividades" />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {p.activities.map((a, i) => (
+            {p.activities.map((a: string, i: number) => (
               <div key={a} className="rounded-2xl border border-black/5 p-5">
                 <p className="text-[10px] uppercase tracking-widest text-brand-red" style={{ fontWeight: 700 }}>Atividade {i + 1}</p>
                 <h3 className="mt-1 text-brand-ink" style={{ fontSize: "clamp(1.05rem, 1.4vw, 1.2rem)", lineHeight: 1.25, fontWeight: 600 }}>{a}</h3>
@@ -196,7 +196,7 @@ function ProjectDetail() {
           <h2 className="text-white" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.5rem)", lineHeight: 1.15, fontWeight: 700 }}>Resultados e impacto</h2>
           <BrushStroke color="#ED1C24" className="mt-4 w-32" />
           <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6">
-            {p.results.concat(["território atendido"]).slice(0, 4).map((r, i) => (
+            {p.results.concat(["território atendido"]).slice(0, 4).map((r: string, i: number) => (
               <div key={i} className="border-l-2 border-brand-gold pl-4">
                 <p className="text-brand-gold" style={{ fontSize: "clamp(1.6rem, 2.4vw, 2.4rem)", fontWeight: 700, lineHeight: 1 }}>{r.match(/\d[\d.]*/)?.[0] ?? "+"}</p>
                 <p className="text-white/85 text-sm mt-2">{r.replace(/^\d[\d.]*\s?/, "")}</p>
@@ -211,7 +211,7 @@ function ProjectDetail() {
         <div className="container-x">
           <SectionTitle eyebrow="Realização" title="Equipe do projeto" />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {p.team.map((role, i) => (
+            {p.team.map((role: string, i: number) => (
               <div key={role} className="rounded-2xl border border-black/5 p-4 text-center">
                 <div className="w-14 h-14 rounded-full mx-auto bg-brand-soft flex items-center justify-center text-brand-red" style={{ fontWeight: 700 }}>{["A", "B", "C", "D", "E"][i % 5]}</div>
                 <p className="mt-3 text-sm text-brand-ink" style={{ fontWeight: 600 }}>{role}</p>
