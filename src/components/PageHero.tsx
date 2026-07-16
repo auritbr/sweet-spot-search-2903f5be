@@ -2,9 +2,10 @@ import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { HatchedCircle, ArcThick, BrushStroke, DiamondsCluster, QuarterCircle } from "./Shapes";
 
-type Accent = "cyan" | "gold" | "red" | "petrol" | "orange" | "lime";
-const accentHex: Record<Accent, string> = {
+type Accent = "cyan" | "gold" | "red" | "petrol" | "orange" | "lime" | "brand-cyan" | "brand-gold" | "brand-red" | "brand-petrol" | "brand-orange" | "brand-lime";
+const accentHex: Record<string, string> = {
   cyan: "#08B9E6", gold: "#FFB400", red: "#ED1C24", petrol: "#00384C", orange: "#FF7A00", lime: "#B8DC4B",
+  "brand-cyan": "#08B9E6", "brand-gold": "#FFB400", "brand-red": "#ED1C24", "brand-petrol": "#00384C", "brand-orange": "#FF7A00", "brand-lime": "#B8DC4B",
 };
 
 export function PageHero({
