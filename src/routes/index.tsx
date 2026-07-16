@@ -277,8 +277,7 @@ function GalleryPreview() {
         <div className="absolute inset-0 flex items-center justify-center text-center px-4">
           <div>
             <h2 className="text-white" style={{ fontSize: "clamp(2rem, 3.3vw, 3.2rem)", lineHeight: 1.05, fontWeight: 700 }}>
-              <span className="block">Nossa</span>
-              <span className="block text-brand-cyan">Galeria</span>
+              Galeria
             </h2>
             <BrushStroke color="#FFB400" className="mx-auto mt-4 w-32" />
           </div>
