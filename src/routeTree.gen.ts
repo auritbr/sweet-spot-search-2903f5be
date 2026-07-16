@@ -17,7 +17,6 @@ import { Route as QuemSomosIndexRouteImport } from './routes/quem-somos/index'
 import { Route as ProjetosIndexRouteImport } from './routes/projetos/index'
 import { Route as NoticiasIndexRouteImport } from './routes/noticias/index'
 import { Route as GaleriaIndexRouteImport } from './routes/galeria/index'
-import { Route as QuemSomosNossaHistoriaRouteImport } from './routes/quem-somos/nossa-historia'
 import { Route as ProjetosSlugRouteImport } from './routes/projetos/$slug'
 import { Route as NoticiasSlugRouteImport } from './routes/noticias/$slug'
 import { Route as GaleriaSlugRouteImport } from './routes/galeria/$slug'
@@ -62,11 +61,6 @@ const GaleriaIndexRoute = GaleriaIndexRouteImport.update({
   path: '/galeria/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const QuemSomosNossaHistoriaRoute = QuemSomosNossaHistoriaRouteImport.update({
-  id: '/quem-somos/nossa-historia',
-  path: '/quem-somos/nossa-historia',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ProjetosSlugRoute = ProjetosSlugRouteImport.update({
   id: '/projetos/$slug',
   path: '/projetos/$slug',
@@ -91,7 +85,6 @@ export interface FileRoutesByFullPath {
   '/galeria/$slug': typeof GaleriaSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/projetos/$slug': typeof ProjetosSlugRoute
-  '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
   '/galeria/': typeof GaleriaIndexRoute
   '/noticias/': typeof NoticiasIndexRoute
   '/projetos/': typeof ProjetosIndexRoute
@@ -105,7 +98,6 @@ export interface FileRoutesByTo {
   '/galeria/$slug': typeof GaleriaSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/projetos/$slug': typeof ProjetosSlugRoute
-  '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
   '/galeria': typeof GaleriaIndexRoute
   '/noticias': typeof NoticiasIndexRoute
   '/projetos': typeof ProjetosIndexRoute
@@ -120,7 +112,6 @@ export interface FileRoutesById {
   '/galeria/$slug': typeof GaleriaSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/projetos/$slug': typeof ProjetosSlugRoute
-  '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
   '/galeria/': typeof GaleriaIndexRoute
   '/noticias/': typeof NoticiasIndexRoute
   '/projetos/': typeof ProjetosIndexRoute
@@ -136,7 +127,6 @@ export interface FileRouteTypes {
     | '/galeria/$slug'
     | '/noticias/$slug'
     | '/projetos/$slug'
-    | '/quem-somos/nossa-historia'
     | '/galeria/'
     | '/noticias/'
     | '/projetos/'
@@ -150,7 +140,6 @@ export interface FileRouteTypes {
     | '/galeria/$slug'
     | '/noticias/$slug'
     | '/projetos/$slug'
-    | '/quem-somos/nossa-historia'
     | '/galeria'
     | '/noticias'
     | '/projetos'
@@ -164,7 +153,6 @@ export interface FileRouteTypes {
     | '/galeria/$slug'
     | '/noticias/$slug'
     | '/projetos/$slug'
-    | '/quem-somos/nossa-historia'
     | '/galeria/'
     | '/noticias/'
     | '/projetos/'
@@ -179,7 +167,6 @@ export interface RootRouteChildren {
   GaleriaSlugRoute: typeof GaleriaSlugRoute
   NoticiasSlugRoute: typeof NoticiasSlugRoute
   ProjetosSlugRoute: typeof ProjetosSlugRoute
-  QuemSomosNossaHistoriaRoute: typeof QuemSomosNossaHistoriaRoute
   GaleriaIndexRoute: typeof GaleriaIndexRoute
   NoticiasIndexRoute: typeof NoticiasIndexRoute
   ProjetosIndexRoute: typeof ProjetosIndexRoute
@@ -244,13 +231,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GaleriaIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/quem-somos/nossa-historia': {
-      id: '/quem-somos/nossa-historia'
-      path: '/quem-somos/nossa-historia'
-      fullPath: '/quem-somos/nossa-historia'
-      preLoaderRoute: typeof QuemSomosNossaHistoriaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/projetos/$slug': {
       id: '/projetos/$slug'
       path: '/projetos/$slug'
@@ -283,7 +263,6 @@ const rootRouteChildren: RootRouteChildren = {
   GaleriaSlugRoute: GaleriaSlugRoute,
   NoticiasSlugRoute: NoticiasSlugRoute,
   ProjetosSlugRoute: ProjetosSlugRoute,
-  QuemSomosNossaHistoriaRoute: QuemSomosNossaHistoriaRoute,
   GaleriaIndexRoute: GaleriaIndexRoute,
   NoticiasIndexRoute: NoticiasIndexRoute,
   ProjetosIndexRoute: ProjetosIndexRoute,
