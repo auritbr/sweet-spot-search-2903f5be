@@ -1,15 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { PageHero, Section } from "@/components/PageHero";
+import { HatchedCircle, ArcThick, BrushStroke, Triangle, QuarterCircle } from "@/components/Shapes";
 import { site } from "@/data/site";
 
 export const Route = createFileRoute("/contato")({
   head: () => ({
     meta: [
       { title: "Contato — Cena Viva" },
-      { name: "description", content: "Fale com o Ponto de Cultura Cena Viva. Formulário, telefone, endereço e WhatsApp." },
+      { name: "description", content: "Fale com o Ponto de Cultura Cena Viva: endereço, telefone, formulário e redes sociais." },
       { property: "og:title", content: "Contato — Cena Viva" },
-      { property: "og:description", content: "Fale conosco." },
+      { property: "og:description", content: "Fale com o Ponto de Cultura." },
       { property: "og:url", content: "/contato" },
     ],
     links: [{ rel: "canonical", href: "/contato" }],
@@ -18,102 +18,86 @@ export const Route = createFileRoute("/contato")({
 });
 
 function Contato() {
-  const [form, setForm] = useState({ nome: "", email: "", telefone: "", assunto: "", motivo: "Informações gerais", mensagem: "", consent: false });
-  const [errors, setErrors] = useState<Record<string, string>>({});
   const [sent, setSent] = useState(false);
-
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const err: Record<string, string> = {};
-    if (!form.nome.trim()) err.nome = "Informe seu nome";
-    if (!/^\S+@\S+\.\S+$/.test(form.email)) err.email = "E-mail inválido";
-    if (!form.mensagem.trim() || form.mensagem.length < 10) err.mensagem = "Escreva uma mensagem com pelo menos 10 caracteres";
-    if (!form.consent) err.consent = "É necessário aceitar a política de privacidade";
-    setErrors(err);
-    if (Object.keys(err).length === 0) setSent(true);
-  };
-
   return (
     <>
-      <PageHero
-        title="Fale com a gente"
-        subtitle="Queremos ouvir você. Envie sua mensagem, tire dúvidas ou proponha parcerias."
-        image="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1920&q=80"
-        breadcrumb={[{ label: "Início", to: "/" }, { label: "Contato" }]}
-      />
-
-      <Section className="bg-white">
-        <div className="container-x grid md:grid-cols-2 gap-10">
+      <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28" style={{ backgroundColor: "#00384C" }}>
+        <QuarterCircle corner="tr" color="#ED1C24" className="absolute -top-2 -right-2 w-48 md:w-72 opacity-95" />
+        <ArcThick color="#FFB400" className="absolute -left-4 top-40 w-56 opacity-90" from={200} to={340} />
+        <HatchedCircle size={260} color="#08B9E6" className="absolute -left-16 bottom-0 opacity-30" />
+        <Triangle color="#FFB400" size={80} className="absolute top-20 right-32 hidden md:block" rotate={20} />
+        <div className="container-x grid lg:grid-cols-2 gap-12 items-start relative text-white">
           <div>
-            <h2 className="font-display font-black text-3xl text-brand-ink">Envie sua mensagem</h2>
-            {sent ? (
-              <div className="mt-6 p-6 rounded-2xl bg-brand-lime/30 border-2 border-brand-lime">
-                <p className="font-display font-black text-brand-ink">Mensagem enviada com sucesso!</p>
-                <p className="mt-2 text-brand-gray text-sm">Retornaremos em breve. Obrigado pelo contato.</p>
-              </div>
-            ) : (
-              <form onSubmit={submit} className="mt-6 space-y-4" noValidate>
-                <Field label="Nome" error={errors.nome}>
-                  <input value={form.nome} onChange={(e) => setForm({ ...form, nome: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-brand-ink/20" />
-                </Field>
-                <Field label="E-mail" error={errors.email}>
-                  <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-brand-ink/20" />
-                </Field>
-                <Field label="Telefone">
-                  <input value={form.telefone} onChange={(e) => setForm({ ...form, telefone: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-brand-ink/20" />
-                </Field>
-                <Field label="Assunto">
-                  <input value={form.assunto} onChange={(e) => setForm({ ...form, assunto: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-brand-ink/20" />
-                </Field>
-                <Field label="Motivo do contato">
-                  <select value={form.motivo} onChange={(e) => setForm({ ...form, motivo: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-brand-ink/20">
-                    {["Informações gerais", "Participar de projeto", "Parcerias", "Imprensa", "Apoio e doações", "Visitas", "Outros"].map((m) => <option key={m}>{m}</option>)}
-                  </select>
-                </Field>
-                <Field label="Mensagem" error={errors.mensagem}>
-                  <textarea rows={5} value={form.mensagem} onChange={(e) => setForm({ ...form, mensagem: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-brand-ink/20" />
-                </Field>
-                <label className="flex items-start gap-3 text-sm">
-                  <input type="checkbox" checked={form.consent} onChange={(e) => setForm({ ...form, consent: e.target.checked })} className="mt-1" />
-                  <span>Li e concordo com a <a href="#" className="text-brand-red underline">Política de Privacidade</a>.</span>
-                </label>
-                {errors.consent && <p className="text-brand-red text-sm">{errors.consent}</p>}
-                <button type="submit" className="px-6 py-3 rounded-full bg-brand-red text-white font-bold">Enviar mensagem</button>
-              </form>
-            )}
-          </div>
-
-          <div className="space-y-6">
-            <InfoCard title="Endereço" text={site.address} color="brand-red" />
-            <InfoCard title="Telefone / WhatsApp" text={`${site.phone} · WhatsApp: ${site.whatsapp}`} color="brand-cyan" />
-            <InfoCard title="E-mail" text={site.email} color="brand-gold" />
-            <InfoCard title="Horário de atendimento" text={site.hours} color="brand-orange" />
-            <InfoCard title="Acessibilidade" text="Espaço com rampa de acesso, sanitário acessível e sinalização visual." color="brand-lime" />
-            <div className="rounded-2xl overflow-hidden aspect-video">
-              <iframe title="Mapa" src="https://www.google.com/maps?q=São+Paulo&output=embed" className="w-full h-full border-0" loading="lazy" />
+            <p className="uppercase tracking-[0.3em] text-brand-gold font-bold text-xs mb-4">Fale conosco</p>
+            <h1 className="font-display uppercase leading-[0.95]" style={{ fontSize: "clamp(2.4rem, 7vw, 5.5rem)" }}>CONTATO</h1>
+            <BrushStroke color="#ED1C24" className="mt-5 w-48" />
+            <p className="mt-6 text-white/90 text-lg max-w-lg">
+              Quer participar, apoiar, propor uma parceria ou saber mais sobre nossos projetos? Estamos por aqui.
+            </p>
+            <div className="mt-8 grid gap-5 max-w-md">
+              <ContactRow label="Endereço" value={site.address} />
+              <ContactRow label="Telefone" value={site.phone} />
+              <ContactRow label="E-mail" value={site.email} />
+              <ContactRow label="Horário" value={site.hours} />
+            </div>
+            <div className="mt-8 flex gap-3">
+              <a href={site.social.instagram} className="px-5 py-2.5 rounded-full bg-white/10 border border-white/30 text-white text-sm font-semibold hover:bg-white/20">Instagram</a>
+              <a href={site.social.facebook} className="px-5 py-2.5 rounded-full bg-white/10 border border-white/30 text-white text-sm font-semibold hover:bg-white/20">Facebook</a>
+              <a href={site.social.youtube} className="px-5 py-2.5 rounded-full bg-white/10 border border-white/30 text-white text-sm font-semibold hover:bg-white/20">YouTube</a>
             </div>
           </div>
+
+          <div className="relative bg-white text-brand-ink rounded-3xl p-6 md:p-10 shadow-xl">
+            <h2 className="font-display uppercase text-2xl md:text-3xl">Envie sua mensagem</h2>
+            <BrushStroke color="#FFB400" className="mt-3 w-24" />
+            {sent ? (
+              <p className="mt-8 p-4 rounded-2xl bg-brand-lime/40 text-brand-ink font-semibold">Mensagem enviada com sucesso. Em breve retornamos!</p>
+            ) : (
+              <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="mt-6 grid gap-4">
+                <Field label="Nome completo" name="nome" />
+                <Field label="E-mail" name="email" type="email" />
+                <Field label="Telefone" name="tel" />
+                <Field label="Assunto" name="assunto" />
+                <div>
+                  <label className="block text-sm font-semibold mb-2">Mensagem</label>
+                  <textarea name="msg" required rows={5} className="w-full rounded-xl border border-black/10 px-4 py-3 bg-brand-soft focus:bg-white outline-none" />
+                </div>
+                <button type="submit" className="mt-2 justify-self-start px-7 py-3.5 rounded-full bg-brand-gold text-brand-ink font-bold uppercase tracking-wider text-sm hover:bg-brand-red hover:text-white transition">Enviar mensagem</button>
+              </form>
+            )}
+            <HatchedCircle size={110} color="#08B9E6" className="absolute -top-8 -right-6 opacity-60 -z-0" />
+          </div>
         </div>
-      </Section>
+      </section>
+
+      <section className="relative">
+        <div className="aspect-[16/6] w-full bg-brand-soft">
+          <iframe
+            title="Mapa"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-46.65%2C-23.56%2C-46.63%2C-23.55&layer=mapnik"
+            className="w-full h-full border-0"
+            loading="lazy"
+          />
+        </div>
+      </section>
     </>
   );
 }
 
-function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
+function ContactRow({ label, value }: { label: string; value: string }) {
   return (
-    <div>
-      <label className="block text-sm font-semibold text-brand-ink mb-1">{label}</label>
-      {children}
-      {error && <p className="mt-1 text-brand-red text-sm">{error}</p>}
+    <div className="border-l-4 border-brand-gold pl-4">
+      <p className="text-xs uppercase tracking-widest text-brand-gold font-bold">{label}</p>
+      <p className="text-white/95">{value}</p>
     </div>
   );
 }
 
-function InfoCard({ title, text, color }: { title: string; text: string; color: string }) {
+function Field({ label, name, type = "text" }: { label: string; name: string; type?: string }) {
   return (
-    <div className="p-5 rounded-2xl border-l-4 bg-brand-soft" style={{ borderColor: `var(--${color})` }}>
-      <p className="text-xs uppercase tracking-widest font-bold" style={{ color: `var(--${color})` }}>{title}</p>
-      <p className="mt-1 text-brand-ink">{text}</p>
+    <div>
+      <label htmlFor={name} className="block text-sm font-semibold mb-2">{label}</label>
+      <input id={name} name={name} type={type} required className="w-full rounded-xl border border-black/10 px-4 py-3 bg-brand-soft focus:bg-white outline-none" />
     </div>
   );
 }

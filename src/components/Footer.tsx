@@ -1,22 +1,24 @@
 import { Link } from "@tanstack/react-router";
 import { site, partners } from "@/data/site";
+import { QuarterCircle, ArcThick, HatchedCircle } from "./Shapes";
 
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative mt-24 text-white" style={{ backgroundColor: "var(--brand-petrol)" }}>
-      {/* curved top */}
-      <svg className="block w-full -mt-px" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style={{ height: 60, transform: "translateY(-59px)", color: "var(--brand-petrol)" }}>
-        <path fill="currentColor" d="M0,80 C240,0 480,0 720,40 C960,80 1200,80 1440,20 L1440,80 L0,80 Z"/>
-      </svg>
+    <footer className="relative mt-24 text-white overflow-hidden" style={{ backgroundColor: "#00384C" }}>
+      {/* Curved geometric transition */}
+      <div className="absolute -top-1 inset-x-0 h-16 bg-white [clip-path:ellipse(90%_100%_at_50%_0%)]" aria-hidden />
+      <QuarterCircle corner="tr" color="#ED1C24" className="absolute top-0 right-0 w-40 md:w-56 opacity-95" />
+      <ArcThick color="#FFB400" className="absolute left-4 top-24 w-40 opacity-90" from={200} to={340} />
+      <HatchedCircle size={200} color="#08B9E6" className="absolute -right-16 bottom-0 opacity-25" />
 
-      <div className="container-x pt-4 pb-12 -mt-8">
+      <div className="container-x pt-28 pb-12 relative">
         {/* Parceiros */}
         <div className="mb-12">
-          <p className="text-white/70 text-sm uppercase tracking-widest mb-4">Parceiros e apoiadores</p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 items-center">
+          <p className="text-brand-gold text-xs uppercase tracking-[0.3em] font-bold mb-4">Parceiros e apoiadores</p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 items-center">
             {partners.map((p) => (
-              <div key={p} className="text-white/60 hover:text-white transition text-xs font-semibold border border-white/10 rounded-lg py-4 px-2 text-center">
+              <div key={p} className="text-white/70 hover:text-white transition text-xs font-semibold border border-white/15 rounded-xl py-4 px-2 text-center">
                 {p}
               </div>
             ))}
@@ -25,18 +27,16 @@ export function Footer() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
-            <div className="flex items-center gap-2 font-display font-black text-2xl">
-              <span className="relative inline-block">
-                <span className="absolute -inset-1 bg-brand-red rounded-full -z-10" />
-                <span className="text-white px-2">C</span>
-              </span>
-              <span>{site.short}</span>
+            <div className="flex items-center gap-3">
+              <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-red text-white font-display uppercase text-lg">C</span>
+              <span className="font-display uppercase text-xl">{site.short}</span>
             </div>
             <p className="mt-4 text-white/80 text-sm leading-relaxed">
               Ponto de Cultura dedicado ao teatro e às artes cênicas, promovendo formação, criação e participação cultural.
             </p>
-            <p className="mt-4 text-xs text-white/60">Reconhecido como Ponto de Cultura</p>
+            <p className="mt-4 text-xs text-brand-gold uppercase tracking-widest font-bold">Reconhecido como Ponto de Cultura</p>
           </div>
+
 
           <div>
             <h3 className="text-white font-semibold mb-4">Quem Somos</h3>

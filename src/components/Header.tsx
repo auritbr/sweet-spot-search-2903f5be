@@ -54,12 +54,9 @@ export function Header() {
         Pular para o conteúdo
       </a>
       <div className="container-x flex items-center justify-between h-16 md:h-20">
-        <Link to="/" className={`flex items-center gap-2 font-display font-black text-xl md:text-2xl ${textColor}`}>
-          <span className="relative inline-block">
-            <span className="absolute -inset-1 bg-brand-red rounded-full -z-10 opacity-90" />
-            <span className="text-white px-2">C</span>
-          </span>
-          <span>{site.short}</span>
+        <Link to="/" className={`flex items-center gap-3 ${textColor}`}>
+          <span className="relative inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-red text-white font-display uppercase text-lg">C</span>
+          <span className="font-display uppercase text-lg md:text-xl leading-none">{site.short}</span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1" aria-label="Menu principal">
@@ -75,9 +72,9 @@ export function Header() {
               </Link>
               {item.children && (
                 <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition">
-                  <div className="min-w-56 bg-white rounded-xl shadow-lg border border-black/5 p-2">
+                  <div className="min-w-60 bg-white rounded-2xl shadow-xl border border-black/5 p-2">
                     {item.children.map((c) => (
-                      <Link key={c.to} to={c.to} className="block px-3 py-2 rounded-md text-sm text-brand-ink hover:bg-brand-soft">
+                      <Link key={c.to} to={c.to} className="block px-3 py-2.5 rounded-lg text-sm font-medium text-brand-ink hover:bg-brand-soft">
                         {c.label}
                       </Link>
                     ))}
@@ -86,7 +83,7 @@ export function Header() {
               )}
             </div>
           ))}
-          <Link to="/contato" className="ml-2 inline-flex items-center px-5 py-2.5 rounded-full bg-brand-red text-white font-semibold text-sm hover:bg-brand-red/90 transition">
+          <Link to="/contato" className="ml-2 inline-flex items-center px-5 py-2.5 rounded-full bg-brand-red text-white font-semibold text-sm uppercase tracking-wider hover:bg-brand-red/90 transition">
             Apoie
           </Link>
         </nav>
@@ -127,7 +124,7 @@ export function Header() {
                 )}
               </div>
             ))}
-            <Link to="/contato" className="block text-center mt-3 px-5 py-3 rounded-full bg-brand-red text-white font-semibold">
+            <Link to="/contato" className="block text-center mt-3 px-5 py-3 rounded-full bg-brand-red text-white font-semibold uppercase tracking-wider text-sm">
               Apoie
             </Link>
           </div>
