@@ -31,14 +31,25 @@ const PAGE_SIZE = 9;
 
 function Noticias() {
   const categories = useMemo(() => ["Todas", ...Array.from(new Set(news.map((n) => n.category)))], []);
-  const years = useMemo(() => ["Todos", ...Array.from(new Set(news.map((n) => new Date(n.date).getFullYear()))).sort((a, b) => Number(b) - Number(a)).map(String)], []);
   const [cat, setCat] = useState("Todas");
-  const [year, setYear] = useState("Todos");
+  const [query, setQuery] = useState("");
+  const [debounced, setDebounced] = useState("");
   const [page, setPage] = useState(1);
 
-  const filtered = news.filter((n) => (cat === "Todas" || n.category === cat) && (year === "Todos" || String(new Date(n.date).getFullYear()) === year));
+  useEffect(() => {
+    const t = setTimeout(() => { setDebounced(query.trim().toLowerCase()); setPage(1); }, 200);
+    return () => clearTimeout(t);
+  }, [query]);
+
+  const filtered = news.filter((n) => {
+    if (cat !== "Todas" && n.category !== cat) return false;
+    if (!debounced) return true;
+    const hay = `${n.title} ${n.excerpt} ${n.body ?? ""} ${n.category}`.toLowerCase();
+    return hay.includes(debounced);
+  });
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const paged = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const clearAll = () => { setQuery(""); setCat("Todas"); };
 
   return (
     <>
@@ -53,12 +64,23 @@ function Noticias() {
 
       <Section className="bg-white">
         <div className="container-x">
-          <div className="flex flex-wrap gap-4 items-center mb-8">
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-xs uppercase tracking-widest text-brand-gray" style={{ fontWeight: 600 }}>Ano:</span>
-              {years.map((y) => (
-                <button key={y} onClick={() => { setYear(y); setPage(1); }} className={`px-3 py-1.5 rounded-full text-xs ${year === y ? "bg-brand-ink text-white" : "bg-brand-soft text-brand-ink hover:bg-brand-gold/30"}`} style={{ fontWeight: 600 }}>{y}</button>
-              ))}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+            <div className="relative w-full md:max-w-sm">
+              <label htmlFor="news-search" className="sr-only">Pesquisar notícias</label>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-brand-gray" aria-hidden>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+              </span>
+              <input
+                id="news-search"
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Pesquisar notícias"
+                className="w-full pl-9 pr-10 py-2.5 rounded-full bg-brand-soft border border-black/10 text-sm outline-none focus:border-brand-red focus:bg-white"
+              />
+              {query && (
+                <button type="button" onClick={() => setQuery("")} aria-label="Limpar pesquisa" className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full text-brand-gray hover:bg-black/5 flex items-center justify-center">✕</button>
+              )}
             </div>
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-xs uppercase tracking-widest text-brand-gray" style={{ fontWeight: 600 }}>Categoria:</span>
@@ -69,7 +91,11 @@ function Noticias() {
           </div>
 
           {paged.length === 0 ? (
-            <p className="text-brand-gray py-10 text-center">Nenhuma notícia encontrada.</p>
+            <div className="text-center py-16">
+              <h3 className="text-brand-ink" style={{ fontSize: "1.35rem", fontWeight: 700 }}>Nenhuma notícia encontrada</h3>
+              <p className="mt-2 text-brand-gray">Tente utilizar outros termos ou selecionar outra categoria.</p>
+              <button onClick={clearAll} className="mt-5 inline-flex px-6 py-2.5 rounded-full bg-brand-red text-white text-sm" style={{ fontWeight: 600 }}>Limpar pesquisa</button>
+            </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {paged.map((n) => (
