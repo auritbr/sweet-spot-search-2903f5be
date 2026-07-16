@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { site, partners } from "@/data/site";
+import { site } from "@/data/site";
 import { QuarterCircle, ArcThick, HatchedCircle } from "./Shapes";
 
 export function Footer() {
