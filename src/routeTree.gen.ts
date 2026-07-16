@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TransparenciaRouteImport } from './routes/transparencia'
 import { Route as EquipeRouteImport } from './routes/equipe'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as QuemSomosIndexRouteImport } from './routes/quem-somos/index'
 import { Route as QuemSomosNossaHistoriaRouteImport } from './routes/quem-somos/nossa-historia'
 
+const TransparenciaRoute = TransparenciaRouteImport.update({
+  id: '/transparencia',
+  path: '/transparencia',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EquipeRoute = EquipeRouteImport.update({
   id: '/equipe',
   path: '/equipe',
@@ -38,12 +44,14 @@ const QuemSomosNossaHistoriaRoute = QuemSomosNossaHistoriaRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/equipe': typeof EquipeRoute
+  '/transparencia': typeof TransparenciaRoute
   '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
   '/quem-somos/': typeof QuemSomosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/equipe': typeof EquipeRoute
+  '/transparencia': typeof TransparenciaRoute
   '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
   '/quem-somos': typeof QuemSomosIndexRoute
 }
@@ -51,18 +59,30 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/equipe': typeof EquipeRoute
+  '/transparencia': typeof TransparenciaRoute
   '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
   '/quem-somos/': typeof QuemSomosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/equipe' | '/quem-somos/nossa-historia' | '/quem-somos/'
+  fullPaths:
+    | '/'
+    | '/equipe'
+    | '/transparencia'
+    | '/quem-somos/nossa-historia'
+    | '/quem-somos/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/equipe' | '/quem-somos/nossa-historia' | '/quem-somos'
+  to:
+    | '/'
+    | '/equipe'
+    | '/transparencia'
+    | '/quem-somos/nossa-historia'
+    | '/quem-somos'
   id:
     | '__root__'
     | '/'
     | '/equipe'
+    | '/transparencia'
     | '/quem-somos/nossa-historia'
     | '/quem-somos/'
   fileRoutesById: FileRoutesById
@@ -70,12 +90,20 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EquipeRoute: typeof EquipeRoute
+  TransparenciaRoute: typeof TransparenciaRoute
   QuemSomosNossaHistoriaRoute: typeof QuemSomosNossaHistoriaRoute
   QuemSomosIndexRoute: typeof QuemSomosIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/transparencia': {
+      id: '/transparencia'
+      path: '/transparencia'
+      fullPath: '/transparencia'
+      preLoaderRoute: typeof TransparenciaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/equipe': {
       id: '/equipe'
       path: '/equipe'
@@ -110,6 +138,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EquipeRoute: EquipeRoute,
+  TransparenciaRoute: TransparenciaRoute,
   QuemSomosNossaHistoriaRoute: QuemSomosNossaHistoriaRoute,
   QuemSomosIndexRoute: QuemSomosIndexRoute,
 }
