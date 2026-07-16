@@ -88,7 +88,7 @@ function Galeria() {
             {/* Mobile: horizontal scroll of chips */}
             <div className="md:hidden w-full -mx-1 overflow-x-auto">
               <div role="tablist" aria-label="Selecionar ano" className="flex gap-2 px-1 pb-1 min-w-max">
-                <label htmlFor="year-select" className="sr-only">Selecione o ano</label>
+                <span className="sr-only">Ano</span>
                 {years.map((y) => {
                   const active = y === year;
                   return (
