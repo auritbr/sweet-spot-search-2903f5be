@@ -70,16 +70,6 @@ function Contato() {
         </div>
       </section>
 
-      <section className="relative">
-        <div className="aspect-[16/6] w-full bg-brand-soft">
-          <iframe
-            title="Mapa"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=-46.65%2C-23.56%2C-46.63%2C-23.55&layer=mapnik"
-            className="w-full h-full border-0"
-            loading="lazy"
-          />
-        </div>
-      </section>
     </>
   );
 }
