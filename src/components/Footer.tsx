@@ -31,8 +31,7 @@ export function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Quem Somos</h3>
             <ul className="space-y-2 text-sm text-white/80">
-              <li><Link to="/quem-somos" className="hover:text-brand-gold">Sobre</Link></li>
-              <li><Link to="/quem-somos/nossa-historia" className="hover:text-brand-gold">Nossa História</Link></li>
+              <li><Link to="/quem-somos" className="hover:text-brand-gold">Quem Somos</Link></li>
               <li><Link to="/equipe" className="hover:text-brand-gold">Equipe</Link></li>
               <li><Link to="/transparencia" className="hover:text-brand-gold">Transparência</Link></li>
             </ul>
