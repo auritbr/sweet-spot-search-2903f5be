@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { PageHero, Section } from "@/components/PageHero";
 import { BrushStroke } from "@/components/Shapes";
 import { news } from "@/data/site";
