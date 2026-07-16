@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
 import { PageHero, Section } from "@/components/PageHero";
-import { HatchedCircle, BrushStroke, ArcThick, Triangle } from "@/components/Shapes";
+import { BrushStroke } from "@/components/Shapes";
 import { news } from "@/data/site";
 
 export const Route = createFileRoute("/noticias/")({
@@ -26,12 +27,23 @@ const catColors: Record<string, string> = {
   "Institucional": "#00384C",
 };
 
+const PAGE_SIZE = 9;
+
 function Noticias() {
-  const [main, ...rest] = news;
+  const categories = useMemo(() => ["Todas", ...Array.from(new Set(news.map((n) => n.category)))], []);
+  const years = useMemo(() => ["Todos", ...Array.from(new Set(news.map((n) => new Date(n.date).getFullYear()))).sort((a, b) => Number(b) - Number(a)).map(String)], []);
+  const [cat, setCat] = useState("Todas");
+  const [year, setYear] = useState("Todos");
+  const [page, setPage] = useState(1);
+
+  const filtered = news.filter((n) => (cat === "Todas" || n.category === cat) && (year === "Todos" || String(new Date(n.date).getFullYear()) === year));
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const paged = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
   return (
     <>
       <PageHero
-        title="NOTÍCIAS"
+        title="Notícias"
         subtitle="Acompanhe as ações, encontros e novidades do Ponto de Cultura."
         image="https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1920&q=80"
         breadcrumb={[{ label: "Início", to: "/" }, { label: "Notícias" }]}
@@ -39,47 +51,57 @@ function Noticias() {
         brush="#08B9E6"
       />
 
-      <Section className="bg-white overflow-hidden">
+      <Section className="bg-white">
         <div className="container-x">
-          <Link to="/noticias/$slug" params={{ slug: main.slug }} className="group grid md:grid-cols-2 gap-8 items-center">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
-              <img src={main.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition duration-700" loading="lazy" />
-              <span className="absolute top-4 left-4 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-white" style={{ backgroundColor: catColors[main.category] ?? "#ED1C24" }}>{main.category}</span>
+          <div className="flex flex-wrap gap-4 items-center mb-8">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-xs uppercase tracking-widest text-brand-gray" style={{ fontWeight: 600 }}>Ano:</span>
+              {years.map((y) => (
+                <button key={y} onClick={() => { setYear(y); setPage(1); }} className={`px-3 py-1.5 rounded-full text-xs ${year === y ? "bg-brand-ink text-white" : "bg-brand-soft text-brand-ink hover:bg-brand-gold/30"}`} style={{ fontWeight: 600 }}>{y}</button>
+              ))}
             </div>
-            <div>
-              <time className="text-sm text-brand-gray">{new Date(main.date).toLocaleDateString("pt-BR")}</time>
-              <h2 className="mt-3 font-display uppercase leading-[1] text-brand-ink group-hover:text-brand-red transition" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>{main.title}</h2>
-              <BrushStroke color="#FFB400" className="mt-5 w-32" />
-              <p className="mt-6 text-lg text-brand-gray">{main.excerpt}</p>
-              <span className="mt-6 inline-block px-6 py-3 rounded-full bg-brand-red text-white font-semibold uppercase tracking-wider text-sm">Leia mais</span>
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-xs uppercase tracking-widest text-brand-gray" style={{ fontWeight: 600 }}>Categoria:</span>
+              {categories.map((c) => (
+                <button key={c} onClick={() => { setCat(c); setPage(1); }} className={`px-3 py-1.5 rounded-full text-xs ${cat === c ? "bg-brand-red text-white" : "bg-brand-soft text-brand-ink hover:bg-brand-gold/30"}`} style={{ fontWeight: 600 }}>{c}</button>
+              ))}
             </div>
-          </Link>
-        </div>
-      </Section>
+          </div>
 
-      <Section className="bg-brand-soft overflow-hidden relative">
-        <HatchedCircle size={200} color="#08B9E6" className="absolute -top-16 -left-16 opacity-40" />
-        <Triangle color="#ED1C24" size={80} className="absolute bottom-10 right-10 hidden md:block" rotate={-15} />
-        <div className="container-x">
-          <h3 className="font-display uppercase text-brand-ink mb-8" style={{ fontSize: "clamp(1.6rem, 3vw, 2.4rem)" }}>Mais notícias</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            {rest.map((n) => (
-              <article key={n.slug} className="group bg-white rounded-3xl overflow-hidden relative">
-                <div className="h-2" style={{ backgroundColor: catColors[n.category] ?? "#ED1C24" }} />
-                <div className="aspect-video overflow-hidden">
-                  <img src={n.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
-                </div>
-                <div className="p-6">
-                  <span className="text-xs font-bold uppercase tracking-wider" style={{ color: catColors[n.category] ?? "#ED1C24" }}>{n.category}</span>
-                  <h4 className="mt-2 font-display uppercase text-lg text-brand-ink leading-tight">{n.title}</h4>
-                  <p className="mt-2 text-sm text-brand-gray">{n.excerpt}</p>
-                  <div className="mt-4 flex items-center justify-between">
-                    <time className="text-xs text-brand-gray">{new Date(n.date).toLocaleDateString("pt-BR")}</time>
-                    <Link to="/noticias/$slug" params={{ slug: n.slug }} className="text-sm font-semibold text-brand-red uppercase tracking-wider">Ler →</Link>
+          {paged.length === 0 ? (
+            <p className="text-brand-gray py-10 text-center">Nenhuma notícia encontrada.</p>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {paged.map((n) => (
+                <article key={n.slug} className="group bg-white rounded-2xl overflow-hidden border border-black/5 hover:shadow-lg transition flex flex-col">
+                  <div className="aspect-video overflow-hidden">
+                    <img src={n.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
                   </div>
-                </div>
-              </article>
-            ))}
+                  <div className="p-5 flex-1 flex flex-col">
+                    <div className="flex items-center gap-2 text-xs">
+                      <span className="uppercase tracking-widest" style={{ color: catColors[n.category] ?? "#ED1C24", fontWeight: 600 }}>{n.category}</span>
+                      <span className="text-brand-gray">·</span>
+                      <time className="text-brand-gray">{new Date(n.date).toLocaleDateString("pt-BR")}</time>
+                    </div>
+                    <h3 className="mt-2 text-brand-ink" style={{ fontSize: "clamp(1.05rem, 1.35vw, 1.2rem)", lineHeight: 1.25, fontWeight: 600, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{n.title}</h3>
+                    <p className="mt-2 text-sm text-brand-gray flex-1" style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{n.excerpt}</p>
+                    <Link to="/noticias/$slug" params={{ slug: n.slug }} className="mt-4 inline-flex items-center text-brand-red text-sm" style={{ fontWeight: 600 }}>Leia mais →</Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+
+          {totalPages > 1 && (
+            <div className="flex justify-center gap-2 mt-10">
+              {Array.from({ length: totalPages }).map((_, i) => (
+                <button key={i} onClick={() => setPage(i + 1)} className={`w-9 h-9 rounded-full text-sm ${page === i + 1 ? "bg-brand-red text-white" : "bg-brand-soft text-brand-ink hover:bg-brand-gold/30"}`} style={{ fontWeight: 600 }}>{i + 1}</button>
+              ))}
+            </div>
+          )}
+
+          <div className="mt-8">
+            <BrushStroke color="#FFB400" className="w-32" />
           </div>
         </div>
       </Section>
