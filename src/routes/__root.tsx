@@ -89,12 +89,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <body>
         {children}
         {/* VLibras */}
-        <div vw="true" className="enabled" suppressHydrationWarning>
-          <div vw-access-button="true" className="active"></div>
-          <div vw-plugin-wrapper="true">
-            <div className="vw-plugin-top-wrapper"></div>
-          </div>
-        </div>
+        <div dangerouslySetInnerHTML={{ __html: `<div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>` }} />
         <script dangerouslySetInnerHTML={{ __html: `window.addEventListener('load',function(){try{new window.VLibras.Widget('https://vlibras.gov.br/app');}catch(e){}});` }} />
         <Scripts />
       </body>
