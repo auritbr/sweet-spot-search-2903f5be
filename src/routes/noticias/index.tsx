@@ -1,89 +1,86 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
 import { PageHero, Section } from "@/components/PageHero";
+import { HatchedCircle, BrushStroke, ArcThick, Triangle } from "@/components/Shapes";
 import { news } from "@/data/site";
 
 export const Route = createFileRoute("/noticias/")({
   head: () => ({
     meta: [
       { title: "Notícias — Cena Viva" },
-      { name: "description", content: "Fique por dentro das ações culturais, oficinas e apresentações." },
+      { name: "description", content: "Últimas notícias, oficinas, espetáculos e ações culturais do Ponto de Cultura Cena Viva." },
       { property: "og:title", content: "Notícias — Cena Viva" },
-      { property: "og:description", content: "Acompanhe as nossas novidades." },
+      { property: "og:description", content: "Últimas notícias do Ponto de Cultura." },
       { property: "og:url", content: "/noticias" },
     ],
     links: [{ rel: "canonical", href: "/noticias" }],
   }),
-  component: NewsList,
+  component: Noticias,
 });
 
-const cats = ["Todos", "Institucional", "Oficinas", "Apresentações", "Projetos", "Formação", "Comunidade", "Parcerias"];
+const catColors: Record<string, string> = {
+  "Apresentações": "#ED1C24",
+  "Oficinas": "#08B9E6",
+  "Parcerias": "#FFB400",
+  "Comunidade": "#FF7A00",
+  "Formação": "#B8DC4B",
+  "Institucional": "#00384C",
+};
 
-function NewsList() {
-  const [q, setQ] = useState("");
-  const [c, setC] = useState("Todos");
-  const [year, setYear] = useState<number | "all">("all");
-  const years = useMemo(() => Array.from(new Set(news.map((n) => new Date(n.date).getFullYear()))), []);
-
-  const filtered = news.filter((n) => {
-    if (c !== "Todos" && n.category !== c) return false;
-    if (year !== "all" && new Date(n.date).getFullYear() !== year) return false;
-    if (q && !(n.title + n.excerpt).toLowerCase().includes(q.toLowerCase())) return false;
-    return true;
-  });
-
-  const main = filtered[0];
-  const rest = filtered.slice(1);
-
+function Noticias() {
+  const [main, ...rest] = news;
   return (
     <>
       <PageHero
-        title="Notícias"
-        subtitle="Ações, apresentações, parcerias e histórias construídas ao longo da nossa trajetória."
-        image="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80"
+        title="NOTÍCIAS"
+        subtitle="Acompanhe as ações, encontros e novidades do Ponto de Cultura."
+        image="https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1920&q=80"
         breadcrumb={[{ label: "Início", to: "/" }, { label: "Notícias" }]}
-        accent="brand-orange"
+        accent="gold"
+        brush="#08B9E6"
       />
 
-      <Section className="bg-white">
+      <Section className="bg-white overflow-hidden">
         <div className="container-x">
-          <div className="flex flex-wrap gap-3 mb-8">
-            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar notícias..." className="flex-1 min-w-64 px-4 py-2 rounded-full border border-brand-ink/20" />
-            <select value={c} onChange={(e) => setC(e.target.value)} className="px-4 py-2 rounded-full border border-brand-ink/20">
-              {cats.map((x) => <option key={x}>{x}</option>)}
-            </select>
-            <select value={year} onChange={(e) => setYear(e.target.value === "all" ? "all" : Number(e.target.value))} className="px-4 py-2 rounded-full border border-brand-ink/20">
-              <option value="all">Todos os anos</option>
-              {years.map((y) => <option key={y}>{y}</option>)}
-            </select>
-          </div>
+          <Link to="/noticias/$slug" params={{ slug: main.slug }} className="group grid md:grid-cols-2 gap-8 items-center">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
+              <img src={main.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition duration-700" loading="lazy" />
+              <span className="absolute top-4 left-4 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-white" style={{ backgroundColor: catColors[main.category] ?? "#ED1C24" }}>{main.category}</span>
+            </div>
+            <div>
+              <time className="text-sm text-brand-gray">{new Date(main.date).toLocaleDateString("pt-BR")}</time>
+              <h2 className="mt-3 font-display uppercase leading-[1] text-brand-ink group-hover:text-brand-red transition" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>{main.title}</h2>
+              <BrushStroke color="#FFB400" className="mt-5 w-32" />
+              <p className="mt-6 text-lg text-brand-gray">{main.excerpt}</p>
+              <span className="mt-6 inline-block px-6 py-3 rounded-full bg-brand-red text-white font-semibold uppercase tracking-wider text-sm">Leia mais</span>
+            </div>
+          </Link>
+        </div>
+      </Section>
 
-          {main && (
-            <Link to="/noticias/$slug" params={{ slug: main.slug }} className="grid md:grid-cols-2 gap-6 rounded-3xl overflow-hidden bg-brand-soft mb-10 hover:shadow-lg transition">
-              <img src={main.image} alt="" className="aspect-video md:aspect-auto md:h-full w-full object-cover" />
-              <div className="p-8 flex flex-col justify-center">
-                <p className="text-brand-red font-bold uppercase text-xs">{main.category} · {new Date(main.date).toLocaleDateString("pt-BR")}</p>
-                <h2 className="mt-3 font-display font-black text-3xl text-brand-ink">{main.title}</h2>
-                <p className="mt-3 text-brand-gray">{main.excerpt}</p>
-                <span className="mt-4 font-semibold text-brand-red">Leia mais →</span>
-              </div>
-            </Link>
-          )}
-
+      <Section className="bg-brand-soft overflow-hidden relative">
+        <HatchedCircle size={200} color="#08B9E6" className="absolute -top-16 -left-16 opacity-40" />
+        <Triangle color="#ED1C24" size={80} className="absolute bottom-10 right-10 hidden md:block" rotate={-15} />
+        <div className="container-x">
+          <h3 className="font-display uppercase text-brand-ink mb-8" style={{ fontSize: "clamp(1.6rem, 3vw, 2.4rem)" }}>Mais notícias</h3>
           <div className="grid md:grid-cols-3 gap-6">
             {rest.map((n) => (
-              <article key={n.slug} className="rounded-2xl overflow-hidden bg-white border border-brand-ink/10 hover:shadow-lg transition">
-                <img src={n.image} alt="" className="aspect-video w-full object-cover" loading="lazy" />
-                <div className="p-5">
-                  <p className="text-brand-red font-bold uppercase text-xs">{n.category} · {new Date(n.date).toLocaleDateString("pt-BR")}</p>
-                  <h3 className="mt-2 font-display font-black text-lg text-brand-ink">{n.title}</h3>
+              <article key={n.slug} className="group bg-white rounded-3xl overflow-hidden relative">
+                <div className="h-2" style={{ backgroundColor: catColors[n.category] ?? "#ED1C24" }} />
+                <div className="aspect-video overflow-hidden">
+                  <img src={n.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
+                </div>
+                <div className="p-6">
+                  <span className="text-xs font-bold uppercase tracking-wider" style={{ color: catColors[n.category] ?? "#ED1C24" }}>{n.category}</span>
+                  <h4 className="mt-2 font-display uppercase text-lg text-brand-ink leading-tight">{n.title}</h4>
                   <p className="mt-2 text-sm text-brand-gray">{n.excerpt}</p>
-                  <Link to="/noticias/$slug" params={{ slug: n.slug }} className="mt-3 inline-block font-semibold text-brand-red">Leia mais →</Link>
+                  <div className="mt-4 flex items-center justify-between">
+                    <time className="text-xs text-brand-gray">{new Date(n.date).toLocaleDateString("pt-BR")}</time>
+                    <Link to="/noticias/$slug" params={{ slug: n.slug }} className="text-sm font-semibold text-brand-red uppercase tracking-wider">Ler →</Link>
+                  </div>
                 </div>
               </article>
             ))}
           </div>
-          {filtered.length === 0 && <p className="text-brand-gray text-center py-10">Nenhuma notícia encontrada.</p>}
         </div>
       </Section>
     </>

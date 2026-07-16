@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { slides, indicators, projects, news, albums, site } from "@/data/site";
 import { Section, SectionTitle } from "@/components/PageHero";
+import { HatchedCircle, ArcThick, BrushStroke, DiamondsCluster, QuarterCircle, Triangle } from "@/components/Shapes";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,8 +24,7 @@ function Home() {
       <HeroCarousel />
       <IntroSection />
       <IndicatorsSection />
-      <ProjectsPreview />
-      <MethodologySection />
+      <ProjectsBands />
       <NewsPreview />
       <GalleryPreview />
       <SupportCTA />
@@ -36,9 +36,19 @@ function HeroCarousel() {
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
   const [opened, setOpened] = useState(false);
+  const [showCurtain, setShowCurtain] = useState(true);
 
   useEffect(() => {
-    const t = setTimeout(() => setOpened(true), 200);
+    if (typeof sessionStorage !== "undefined" && sessionStorage.getItem("curtainShown")) {
+      setShowCurtain(false);
+      setOpened(true);
+      return;
+    }
+    const t = setTimeout(() => {
+      setOpened(true);
+      if (typeof sessionStorage !== "undefined") sessionStorage.setItem("curtainShown", "1");
+      setTimeout(() => setShowCurtain(false), 2200);
+    }, 250);
     return () => clearTimeout(t);
   }, []);
 
@@ -48,62 +58,56 @@ function HeroCarousel() {
     return () => clearInterval(t);
   }, [paused]);
 
-  useEffect(() => {
-    let x0 = 0;
-    const el = document.getElementById("hero-carousel");
-    if (!el) return;
-    const s = (e: TouchEvent) => (x0 = e.touches[0].clientX);
-    const en = (e: TouchEvent) => {
-      const dx = e.changedTouches[0].clientX - x0;
-      if (Math.abs(dx) > 40) setI((v) => (dx < 0 ? (v + 1) % slides.length : (v - 1 + slides.length) % slides.length));
-    };
-    el.addEventListener("touchstart", s); el.addEventListener("touchend", en);
-    return () => { el.removeEventListener("touchstart", s); el.removeEventListener("touchend", en); };
-  }, []);
-
   const go = (n: number) => setI((n + slides.length) % slides.length);
   const s = slides[i];
 
   return (
     <section
-      id="hero-carousel"
-      className="relative h-[100dvh] min-h-[560px] w-full overflow-hidden"
+      className="relative h-[100dvh] min-h-[600px] w-full overflow-hidden"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       aria-roledescription="carrossel"
-      aria-label="Destaques"
     >
       {slides.map((sl, idx) => (
         <div key={idx} className={`absolute inset-0 transition-opacity duration-1000 ${idx === i ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
           <img src={sl.image} alt="" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/60 via-brand-ink/40 to-brand-ink/80" />
+          <div className="absolute inset-0 bg-brand-ink/50" />
         </div>
       ))}
 
-      {/* Theater curtains */}
-      <div className={`pointer-events-none absolute inset-y-0 left-0 w-1/2 z-20 bg-gradient-to-r from-[#7a0d10] via-[#c81e24] to-[#7a0d10] shadow-2xl ${opened ? "animate-curtain-left" : ""}`}
-        style={{ backgroundImage: "repeating-linear-gradient(90deg, rgba(0,0,0,.35) 0 2px, transparent 2px 24px), linear-gradient(90deg,#7a0d10,#c81e24,#7a0d10)" }}
-        aria-hidden="true"
-      />
-      <div className={`pointer-events-none absolute inset-y-0 right-0 w-1/2 z-20 shadow-2xl ${opened ? "animate-curtain-right" : ""}`}
-        style={{ backgroundImage: "repeating-linear-gradient(90deg, rgba(0,0,0,.35) 0 2px, transparent 2px 24px), linear-gradient(90deg,#7a0d10,#c81e24,#7a0d10)" }}
-        aria-hidden="true"
-      />
+      {showCurtain && (
+        <>
+          <div className={`pointer-events-none absolute inset-y-0 left-0 w-1/2 z-20 shadow-2xl ${opened ? "animate-curtain-left" : ""}`}
+            style={{ backgroundImage: "repeating-linear-gradient(90deg, rgba(0,0,0,.45) 0 3px, transparent 3px 30px), linear-gradient(90deg,#5c0709,#a51218 40%,#c81e24 55%,#7a0d10 90%)" }}
+            aria-hidden="true"
+          />
+          <div className={`pointer-events-none absolute inset-y-0 right-0 w-1/2 z-20 shadow-2xl ${opened ? "animate-curtain-right" : ""}`}
+            style={{ backgroundImage: "repeating-linear-gradient(90deg, rgba(0,0,0,.45) 0 3px, transparent 3px 30px), linear-gradient(90deg,#7a0d10,#c81e24 45%,#a51218 60%,#5c0709)" }}
+            aria-hidden="true"
+          />
+        </>
+      )}
 
-      {/* geometric marks */}
-      <div className="absolute right-8 top-32 w-40 h-40 rounded-full border-4 border-brand-gold/70 z-10 animate-float-slow" aria-hidden="true" />
-      <div className="absolute left-10 bottom-32 w-24 h-24 hatched-circle text-brand-cyan opacity-80 z-10" aria-hidden="true" />
+      {/* Composition shapes */}
+      <QuarterCircle corner="tr" color="#00384C" className="absolute -top-4 -right-4 w-64 md:w-96 z-10" />
+      <ArcThick color="#FFB400" className="absolute left-8 top-24 w-48 md:w-72 z-10" from={200} to={340} />
+      <div className="absolute bottom-24 right-16 z-10 hidden md:block"><DiamondsCluster color="#08B9E6" size={80} /></div>
 
-      <div className="relative z-10 h-full container-x flex flex-col justify-center pt-16">
-        <div className="max-w-3xl text-white animate-fade-up" key={i}>
-          <p className="uppercase tracking-widest text-brand-gold font-bold text-sm mb-3">Ponto de Cultura</p>
-          <h1 className="font-display font-black text-4xl md:text-7xl leading-[1.02] drop-shadow">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none">
+        <HatchedCircle size={520} color="#ED1C24" className="opacity-60 max-w-[80vw]" />
+      </div>
+
+      <div className="relative z-10 h-full container-x flex flex-col justify-center items-center text-center pt-16">
+        <div className="max-w-4xl text-white animate-fade-up" key={i}>
+          <p className="uppercase tracking-[0.3em] text-brand-gold font-bold text-xs md:text-sm mb-4">Ponto de Cultura</p>
+          <h1 className="font-display uppercase leading-[0.95]" style={{ fontSize: "clamp(2.4rem, 8vw, 6.5rem)", textShadow: "0 6px 30px rgba(0,0,0,.4)" }}>
             {s.title}
           </h1>
-          <p className="mt-5 text-lg md:text-xl text-white/95 max-w-2xl">{s.text}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <BrushStroke color="#FFB400" className="mx-auto mt-6 w-56" />
+          <p className="mt-6 text-lg md:text-xl text-white/95 font-medium max-w-2xl mx-auto">{s.text}</p>
+          <div className="mt-8 flex flex-wrap gap-3 justify-center">
             {s.buttons.map((b, k) => (
-              <Link key={k} to={b.to} className={`px-6 py-3 rounded-full font-semibold ${k === 0 ? "bg-brand-red text-white hover:bg-brand-red/90" : "bg-white/95 text-brand-ink hover:bg-white"} transition`}>
+              <Link key={k} to={b.to} className={`px-7 py-3.5 rounded-full font-semibold text-sm md:text-base uppercase tracking-wider ${k === 0 ? "bg-brand-red text-white hover:bg-brand-red/90" : "bg-white text-brand-ink hover:bg-brand-gold"} transition`}>
                 {b.label}
               </Link>
             ))}
@@ -111,43 +115,46 @@ function HeroCarousel() {
         </div>
       </div>
 
-      {/* controls */}
-      <button aria-label="Slide anterior" onClick={() => go(i - 1)} className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/20 backdrop-blur text-white items-center justify-center hover:bg-white/40">‹</button>
-      <button aria-label="Próximo slide" onClick={() => go(i + 1)} className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/20 backdrop-blur text-white items-center justify-center hover:bg-white/40">›</button>
+      <button aria-label="Slide anterior" onClick={() => go(i - 1)} className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-brand-petrol/60 backdrop-blur text-white items-center justify-center hover:bg-brand-petrol">‹</button>
+      <button aria-label="Próximo slide" onClick={() => go(i + 1)} className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-brand-petrol/60 backdrop-blur text-white items-center justify-center hover:bg-brand-petrol">›</button>
 
-      <div className="absolute bottom-6 inset-x-0 z-30 flex justify-center gap-2">
+      <div className="absolute bottom-8 inset-x-0 z-30 flex justify-center gap-2">
         {slides.map((_, idx) => (
-          <button key={idx} onClick={() => go(idx)} aria-label={`Ir para slide ${idx + 1}`}
-            className={`h-2 rounded-full transition-all ${idx === i ? "w-10 bg-brand-gold" : "w-2 bg-white/60"}`} />
+          <button key={idx} onClick={() => go(idx)} aria-label={`Slide ${idx + 1}`}
+            className={`h-2 rounded-full transition-all ${idx === i ? "w-12 bg-brand-gold" : "w-2 bg-white/60"}`} />
         ))}
       </div>
+
+      <div className="pointer-events-none absolute -bottom-1 inset-x-0 h-16 md:h-24 bg-white [clip-path:ellipse(90%_100%_at_50%_100%)] z-20" aria-hidden />
     </section>
   );
 }
 
 function IntroSection() {
   return (
-    <Section className="bg-white">
-      <div className="container-x grid md:grid-cols-2 gap-12 items-center">
+    <Section className="bg-white overflow-hidden">
+      <div className="container-x grid md:grid-cols-2 gap-16 items-center">
         <div className="relative">
-          <div className="aspect-square w-full max-w-md mx-auto rounded-full overflow-hidden ring-8 ring-brand-gold/20">
-            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80" alt="Grupo de participantes em oficina teatral" className="w-full h-full object-cover" loading="lazy" />
+          <div className="aspect-square w-full max-w-md mx-auto rounded-full overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80" alt="Grupo em oficina teatral" className="w-full h-full object-cover" loading="lazy" />
           </div>
-          <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-brand-red -z-0" aria-hidden="true" />
-          <div className="absolute -bottom-4 -right-2 w-32 h-32 hatched-circle text-brand-cyan opacity-80" aria-hidden="true" />
-          <div className="absolute top-1/2 -right-8 w-16 h-16 rounded-tr-full bg-brand-lime" aria-hidden="true" />
+          <ArcThick color="#00384C" className="absolute -top-6 -left-6 w-40" from={100} to={260} />
+          <ArcThick color="#ED1C24" className="absolute -bottom-4 -right-4 w-36" from={300} to={80} />
+          <HatchedCircle size={110} color="#08B9E6" className="absolute -bottom-8 left-8 opacity-70" />
+          <Triangle color="#FFB400" size={60} className="absolute top-8 -right-4" rotate={20} />
         </div>
-        <div>
-          <p className="uppercase tracking-widest text-brand-red font-bold text-sm mb-3">Nossa essência</p>
-          <h2 className="font-display text-3xl md:text-5xl font-black text-brand-ink leading-tight">
-            Cultura, expressão e <span className="brush-underline">transformação</span> social
+        <div className="relative">
+          <p className="uppercase tracking-[0.3em] text-brand-red font-bold text-xs mb-4">Nossa essência</p>
+          <h2 className="font-display uppercase leading-[1] text-brand-ink" style={{ fontSize: "clamp(2rem, 4.5vw, 3.6rem)" }}>
+            Cultura, expressão<br/>e transformação social
           </h2>
-          <p className="mt-5 text-lg text-brand-gray leading-relaxed">
-            Somos um Ponto de Cultura dedicado ao teatro e às artes cênicas. Desenvolvemos ações que aproximam pessoas, territórios e diferentes formas de expressão, criando oportunidades de formação, convivência, criatividade e participação cultural.
+          <BrushStroke color="#FFB400" className="mt-6 w-40" />
+          <p className="mt-6 text-lg text-brand-gray leading-relaxed">
+            Somos um Ponto de Cultura dedicado ao teatro e às artes cênicas. Criamos oportunidades de formação, convivência e participação cultural com crianças, jovens e comunidades.
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link to="/quem-somos/nossa-historia" className="px-5 py-3 rounded-full bg-brand-ink text-white font-semibold hover:bg-brand-petrol">Conheça nossa história</Link>
-            <Link to="/equipe" className="px-5 py-3 rounded-full border-2 border-brand-ink text-brand-ink font-semibold hover:bg-brand-soft">Nossa equipe</Link>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link to="/quem-somos" className="px-6 py-3 rounded-full bg-brand-red text-white font-semibold uppercase tracking-wider text-sm hover:bg-brand-red/90">Quem somos</Link>
+            <Link to="/equipe" className="px-6 py-3 rounded-full border-2 border-brand-ink text-brand-ink font-semibold uppercase tracking-wider text-sm hover:bg-brand-soft">Nossa equipe</Link>
           </div>
         </div>
       </div>
@@ -157,106 +164,114 @@ function IntroSection() {
 
 function IndicatorsSection() {
   return (
-    <Section className="relative overflow-hidden" >
-      <div className="absolute inset-0 -z-10" style={{ backgroundColor: "var(--brand-petrol)" }} />
-      <div className="absolute -left-20 -top-20 w-96 h-96 rounded-full border-8 border-brand-red/40 -z-0" aria-hidden />
-      <div className="absolute -right-16 bottom-0 w-72 h-72 hatched-circle text-brand-gold opacity-30 -z-0" aria-hidden />
-      <div className="container-x relative">
-        <SectionTitle invert eyebrow="Impacto" title="Números que contam nossa trajetória" />
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+    <section className="relative py-20 md:py-28 overflow-hidden" style={{ backgroundColor: "#00384C" }}>
+      <QuarterCircle corner="tl" color="#ED1C24" className="absolute -top-2 -left-2 w-40 md:w-56 opacity-90" />
+      <HatchedCircle size={280} color="#FFB400" className="absolute -right-16 bottom-0 opacity-25" />
+      <DiamondsCluster color="#08B9E6" className="absolute top-10 right-24 opacity-60" size={70} />
+      <div className="container-x relative text-white">
+        <p className="uppercase tracking-[0.3em] text-brand-gold font-bold text-xs mb-3">Impacto</p>
+        <h2 className="font-display uppercase leading-[1] text-white max-w-3xl" style={{ fontSize: "clamp(1.9rem, 4vw, 3.2rem)" }}>
+          Números que contam<br/>nossa trajetória
+        </h2>
+        <BrushStroke color="#ED1C24" className="mt-6 w-40" />
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
           {indicators.map((n, i) => (
-            <div key={i} className="text-white">
-              <p className="font-display text-5xl md:text-6xl font-black text-brand-gold">{n.value}</p>
-              <p className="mt-2 text-white/85">{n.label}</p>
-              <div className="mt-4 w-12 h-1 bg-brand-red rounded-full" />
+            <div key={i} className={`${i > 0 ? "md:border-l md:border-white/20 md:pl-6" : ""}`}>
+              <p className="font-display text-5xl md:text-7xl text-brand-gold leading-none">{n.value}</p>
+              <p className="mt-3 text-white/85 text-sm md:text-base">{n.label}</p>
             </div>
           ))}
         </div>
       </div>
-    </Section>
+    </section>
   );
 }
 
-function ProjectsPreview() {
-  return (
-    <Section className="bg-brand-soft">
-      <div className="container-x">
-        <SectionTitle eyebrow="Projetos" title="Projetos que colocam histórias em movimento" text="Conheça algumas das iniciativas desenvolvidas pelo Ponto de Cultura." />
-        <div className="grid md:grid-cols-3 gap-6">
-          {projects.map((p) => (
-            <article key={p.slug} className="group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow flex flex-col">
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img src={p.image} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-                <span className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold text-white`} style={{ backgroundColor: `var(--${p.color})` }}>{p.category}</span>
-              </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="font-display text-2xl font-black text-brand-ink">{p.name}</h3>
-                <p className="mt-2 text-brand-gray">{p.short}</p>
-                <p className="mt-3 text-sm text-brand-gray"><strong>Público:</strong> {p.audience}</p>
-                <Link to="/projetos/$slug" params={{ slug: p.slug }} className="mt-auto pt-5 inline-flex items-center gap-2 font-semibold" style={{ color: `var(--${p.color})` }}>
-                  Conheça o projeto →
-                </Link>
-              </div>
-              <span className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full opacity-20" style={{ backgroundColor: `var(--${p.color})` }} aria-hidden />
-            </article>
-          ))}
-        </div>
-        <div className="mt-8">
-          <Link to="/projetos" className="inline-flex px-6 py-3 rounded-full bg-brand-ink text-white font-semibold">Ver todos os projetos</Link>
-        </div>
-      </div>
-    </Section>
-  );
-}
-
-function MethodologySection() {
-  const blocks = [
-    { key: "Formação", text: "Trilhas formativas em teatro, corpo e voz, com foco na convivência e no desenvolvimento humano.", color: "brand-cyan" },
-    { key: "Criação", text: "Processos de criação coletiva, valorizando diferentes vozes, culturas e territórios.", color: "brand-red" },
-    { key: "Apresentação", text: "Compartilhamento das produções com a comunidade em espaços culturais e públicos.", color: "brand-gold" },
+function ProjectsBands() {
+  const bandColors = [
+    { bg: "#ED1C24", text: "#ffffff", pill: "#FF7A00", accent: "#FFB400", arc: "#00384C" },
+    { bg: "#08B9E6", text: "#ffffff", pill: "#ED1C24", accent: "#FFB400", arc: "#00384C" },
+    { bg: "#FFB400", text: "#00384C", pill: "#ED1C24", accent: "#00384C", arc: "#ED1C24" },
   ];
   return (
-    <Section className="bg-white">
-      <div className="container-x">
-        <SectionTitle eyebrow="Como fazemos" title="Uma metodologia em três atos" />
-        <div className="grid md:grid-cols-3 gap-6">
-          {blocks.map((b) => (
-            <div key={b.key} className="relative p-8 rounded-3xl border-2 border-brand-ink/10 hover:border-brand-ink/30 transition">
-              <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-white font-display font-black text-2xl mb-4" style={{ backgroundColor: `var(--${b.color})` }}>
-                {b.key[0]}
-              </div>
-              <h3 className="font-display text-2xl font-black text-brand-ink">{b.key}</h3>
-              <p className="mt-3 text-brand-gray">{b.text}</p>
-              <div className="absolute top-4 right-4 w-10 h-10 rounded-full hatched-circle text-brand-ink/40" aria-hidden />
-            </div>
-          ))}
-        </div>
+    <section className="bg-white">
+      <div className="container-x py-16 md:py-20 text-center">
+        <p className="uppercase tracking-[0.3em] text-brand-red font-bold text-xs mb-3">Projetos</p>
+        <h2 className="font-display uppercase leading-[1] text-brand-ink mx-auto" style={{ fontSize: "clamp(1.9rem, 4.5vw, 3.4rem)" }}>Nossos projetos</h2>
+        <BrushStroke color="#FFB400" className="mx-auto mt-5 w-40" />
       </div>
-    </Section>
+      {projects.map((p, idx) => {
+        const c = bandColors[idx % bandColors.length];
+        const reverse = idx % 2 === 1;
+        return (
+          <div key={p.slug} className="relative overflow-hidden" style={{ backgroundColor: c.bg, color: c.text }}>
+            <QuarterCircle corner={reverse ? "br" : "bl"} color={c.arc} className="absolute -bottom-4 -left-4 w-48 md:w-64 opacity-90" />
+            <ArcThick color={c.accent} className="absolute top-6 right-8 w-40 md:w-56 opacity-90" from={200} to={340} />
+            <HatchedCircle size={260} color={c.accent} className="absolute -right-16 -bottom-8 opacity-30" />
+            <div className={`container-x py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center ${reverse ? "md:[&>*:first-child]:order-2" : ""}`}>
+              <div>
+                <p className="uppercase tracking-[0.3em] font-bold text-xs mb-3 opacity-90">{p.category}</p>
+                <h3 className="font-display uppercase leading-[1]" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>{p.name}</h3>
+                <p className="mt-5 text-lg opacity-95 max-w-lg">{p.short}</p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  <span className="px-4 py-2 rounded-full text-sm font-semibold" style={{ backgroundColor: c.pill, color: "#fff" }}>{p.audience}</span>
+                  <span className="px-4 py-2 rounded-full text-sm font-semibold" style={{ backgroundColor: c.pill, color: "#fff" }}>{p.period}</span>
+                </div>
+                <Link to="/projetos/$slug" params={{ slug: p.slug }} className="mt-8 inline-flex px-6 py-3 rounded-full bg-white text-brand-ink font-semibold uppercase tracking-wider text-sm hover:bg-brand-gold">
+                  Conheça o projeto
+                </Link>
+              </div>
+              <div className="relative">
+                <div className="aspect-[4/5] rounded-3xl overflow-hidden max-w-md mx-auto">
+                  <img src={p.image} alt={p.name} className="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <DiamondsCluster color={c.accent} className="absolute -top-6 -right-2" size={60} />
+                <Triangle color={c.pill} size={70} className="absolute -bottom-6 left-6" rotate={-15} />
+              </div>
+            </div>
+          </div>
+        );
+      })}
+      <div className="text-center py-10 bg-white">
+        <Link to="/projetos" className="inline-flex px-8 py-4 rounded-full bg-brand-ink text-white font-semibold uppercase tracking-wider text-sm hover:bg-brand-red">Ver todos os projetos</Link>
+      </div>
+    </section>
   );
 }
 
 function NewsPreview() {
-  const items = news.slice(0, 3);
+  const [main, ...rest] = news.slice(0, 3);
   return (
-    <Section className="bg-brand-soft">
+    <Section className="bg-brand-soft overflow-hidden">
       <div className="container-x">
-        <div className="flex flex-wrap items-end justify-between gap-4">
+        <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
           <SectionTitle eyebrow="Novidades" title="Últimas notícias" />
-          <Link to="/noticias" className="mb-4 text-brand-red font-semibold">Ver todas →</Link>
+          <Link to="/noticias" className="mb-4 text-brand-red font-semibold uppercase tracking-wider text-sm">Ver todas →</Link>
         </div>
-        <div className="grid md:grid-cols-3 gap-6">
-          {items.map((n) => (
-            <article key={n.slug} className="bg-white rounded-2xl overflow-hidden hover:shadow-lg transition">
-              <div className="aspect-video overflow-hidden"><img src={n.image} alt="" className="w-full h-full object-cover" loading="lazy" /></div>
-              <div className="p-6">
-                <div className="flex items-center gap-3 text-xs text-brand-gray"><span className="px-2 py-1 rounded-full bg-brand-red/10 text-brand-red font-bold">{n.category}</span><time>{new Date(n.date).toLocaleDateString("pt-BR")}</time></div>
-                <h3 className="mt-3 font-display font-black text-xl text-brand-ink">{n.title}</h3>
-                <p className="mt-2 text-brand-gray text-sm">{n.excerpt}</p>
-                <Link to="/noticias/$slug" params={{ slug: n.slug }} className="mt-4 inline-block font-semibold text-brand-red">Leia mais →</Link>
-              </div>
-            </article>
-          ))}
+        <div className="grid md:grid-cols-2 gap-8">
+          <Link to="/noticias/$slug" params={{ slug: main.slug }} className="group block">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
+              <img src={main.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition duration-700" loading="lazy" />
+              <span className="absolute top-4 left-4 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-red text-white">{main.category}</span>
+            </div>
+            <time className="mt-4 block text-sm text-brand-gray">{new Date(main.date).toLocaleDateString("pt-BR")}</time>
+            <h3 className="mt-2 font-display uppercase text-2xl md:text-3xl leading-tight text-brand-ink group-hover:text-brand-red transition">{main.title}</h3>
+            <p className="mt-3 text-brand-gray">{main.excerpt}</p>
+          </Link>
+          <div className="space-y-6">
+            {rest.map((n) => (
+              <Link key={n.slug} to="/noticias/$slug" params={{ slug: n.slug }} className="group flex gap-4">
+                <div className="relative w-32 md:w-40 aspect-square overflow-hidden rounded-2xl shrink-0">
+                  <img src={n.image} alt="" className="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <div className="min-w-0">
+                  <span className="text-xs font-bold uppercase tracking-wider text-brand-red">{n.category}</span>
+                  <h4 className="mt-1 font-display uppercase text-lg md:text-xl leading-tight text-brand-ink group-hover:text-brand-red transition">{n.title}</h4>
+                  <time className="mt-2 block text-xs text-brand-gray">{new Date(n.date).toLocaleDateString("pt-BR")}</time>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </Section>
@@ -264,42 +279,61 @@ function NewsPreview() {
 }
 
 function GalleryPreview() {
-  const items = albums.slice(0, 6);
+  const items = albums.slice(0, 4);
   return (
-    <Section className="bg-white">
-      <div className="container-x">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <SectionTitle eyebrow="Registros" title="Prévia da galeria" text="Momentos das oficinas, apresentações e encontros." />
-          <Link to="/galeria" className="mb-4 text-brand-red font-semibold">Acessar galeria →</Link>
+    <section className="relative bg-white overflow-hidden">
+      <div className="relative aspect-[16/9] md:aspect-[21/9] w-full">
+        <img src="https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=1920&q=80" alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-brand-ink/50" />
+        <div className="absolute inset-0 flex items-center justify-center text-center px-4">
+          <div>
+            <h2 className="font-display uppercase text-white leading-[0.95]" style={{ fontSize: "clamp(2.2rem, 6vw, 5rem)" }}>
+              <span className="block">Nossa</span>
+              <span className="block text-brand-cyan">Galeria</span>
+            </h2>
+            <BrushStroke color="#FFB400" className="mx-auto mt-5 w-40" />
+          </div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {items.map((a, idx) => (
-            <Link key={a.slug} to="/galeria/$slug" params={{ slug: a.slug }} className={`group relative overflow-hidden rounded-2xl ${idx === 0 ? "md:col-span-2 md:row-span-2 aspect-square" : "aspect-[4/3]"}`}>
+        <QuarterCircle corner="tr" color="#ED1C24" className="absolute -top-2 -right-2 w-40 md:w-56" />
+      </div>
+      <div className="container-x py-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {items.map((a) => (
+            <Link key={a.slug} to="/galeria/$slug" params={{ slug: a.slug }} className="group relative aspect-square overflow-hidden rounded-2xl">
               <img src={a.cover} alt={a.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/80 to-transparent" />
-              <div className="absolute bottom-4 left-4 text-white">
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/85 to-transparent" />
+              <div className="absolute bottom-3 left-3 right-3 text-white">
                 <p className="text-xs uppercase tracking-widest text-brand-gold">{a.year}</p>
-                <p className="font-display font-black text-lg">{a.title}</p>
+                <p className="font-display uppercase text-sm md:text-base leading-tight">{a.title}</p>
               </div>
             </Link>
           ))}
         </div>
+        <div className="mt-8 text-center">
+          <Link to="/galeria" className="inline-flex px-8 py-4 rounded-full bg-brand-ink text-white font-semibold uppercase tracking-wider text-sm hover:bg-brand-red">Ver galeria completa</Link>
+        </div>
       </div>
-    </Section>
+    </section>
   );
 }
 
 function SupportCTA() {
   return (
-    <section className="relative py-20 md:py-28 overflow-hidden" style={{ backgroundColor: "var(--brand-red)" }}>
-      <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full border-8 border-white/20" aria-hidden />
-      <div className="absolute -left-16 bottom-0 w-72 h-72 hatched-circle text-brand-gold opacity-40" aria-hidden />
+    <section className="relative py-20 md:py-28 overflow-hidden" style={{ backgroundColor: "#ED1C24" }}>
+      <QuarterCircle corner="tr" color="#00384C" className="absolute -top-2 -right-2 w-48 md:w-72 opacity-90" />
+      <ArcThick color="#FFB400" className="absolute -left-6 top-10 w-56 opacity-90" from={200} to={340} />
+      <HatchedCircle size={280} color="#FFB400" className="absolute -left-16 bottom-0 opacity-30" />
+      <DiamondsCluster color="#FFB400" className="absolute top-16 right-32 hidden md:block" size={70} />
       <div className="container-x relative text-white text-center max-w-3xl mx-auto">
-        <h2 className="font-display text-3xl md:text-5xl font-black">Ajude a manter a cultura em movimento</h2>
-        <p className="mt-4 text-lg text-white/90">Seu apoio contribui para a continuidade das oficinas, apresentações e ações culturais realizadas com a comunidade.</p>
+        <p className="uppercase tracking-[0.3em] text-brand-gold font-bold text-xs mb-4">Apoie</p>
+        <h2 className="font-display uppercase leading-[1] text-white" style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}>
+          Ajude a manter a cultura em movimento
+        </h2>
+        <BrushStroke color="#FFB400" className="mx-auto mt-6 w-40" />
+        <p className="mt-6 text-lg text-white/95">Seu apoio contribui para a continuidade das oficinas, apresentações e ações culturais.</p>
         <div className="mt-8 flex flex-wrap gap-3 justify-center">
-          <a href={`https://wa.me/${site.whatsapp}`} className="px-6 py-3 rounded-full bg-white text-brand-red font-bold hover:bg-brand-gold hover:text-brand-ink transition">Quero apoiar</a>
-          <Link to="/contato" className="px-6 py-3 rounded-full border-2 border-white text-white font-bold hover:bg-white hover:text-brand-red transition">Entre em contato</Link>
+          <a href={`https://wa.me/${site.whatsapp}`} className="px-7 py-3.5 rounded-full bg-brand-gold text-brand-ink font-bold uppercase tracking-wider text-sm hover:bg-white">Quero apoiar</a>
+          <Link to="/contato" className="px-7 py-3.5 rounded-full border-2 border-white text-white font-bold uppercase tracking-wider text-sm hover:bg-white hover:text-brand-red">Entre em contato</Link>
         </div>
       </div>
     </section>

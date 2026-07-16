@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { PageHero, Section, SectionTitle } from "@/components/PageHero";
+import { PageHero, Section } from "@/components/PageHero";
+import { HatchedCircle, ArcThick, BrushStroke, Triangle, QuarterCircle } from "@/components/Shapes";
 import { timeline } from "@/data/site";
 
 export const Route = createFileRoute("/quem-somos/")({
@@ -16,75 +17,116 @@ export const Route = createFileRoute("/quem-somos/")({
   component: QuemSomos,
 });
 
+const mvv = [
+  {
+    key: "Missão",
+    text: "Promover formação, acesso à cultura e desenvolvimento humano por meio do teatro e das artes cênicas.",
+    ill: <MissionIll />,
+  },
+  {
+    key: "Visão",
+    text: "Ser referência em formação cultural, criação artística e participação comunitária no território.",
+    ill: <VisionIll />,
+  },
+  {
+    key: "Valores",
+    text: "Respeito, diversidade, ética, criatividade, transparência, inclusão, cooperação e compromisso social.",
+    ill: <ValuesIll />,
+  },
+];
+
 function QuemSomos() {
   return (
     <>
       <PageHero
-        title="Quem Somos"
-        subtitle="Um Ponto de Cultura dedicado à formação teatral e à transformação social."
+        title="QUEM SOMOS"
         image="https://images.unsplash.com/photo-1519683384663-1de1a1e3f6a7?auto=format&fit=crop&w=1920&q=80"
         breadcrumb={[{ label: "Início", to: "/" }, { label: "Quem Somos" }]}
+        accent="cyan"
+        brush="#FFB400"
       />
 
-      <Section className="bg-white">
-        <div className="container-x grid md:grid-cols-2 gap-12">
-          <div>
-            <SectionTitle eyebrow="Institucional" title="Uma organização a serviço da cultura" />
-            <p className="text-lg text-brand-gray leading-relaxed">
-              Somos uma organização cultural criada para promover o encontro entre pessoas e o universo do teatro. Atuamos em territórios diversos, oferecendo formação, criação e circulação de espetáculos com foco na democratização do acesso à cultura.
-            </p>
-            <p className="mt-4 text-brand-gray leading-relaxed">
-              Reconhecidos como Ponto de Cultura, sustentamos um trabalho contínuo com crianças, jovens, adultos, educadores e coletivos culturais, sempre com atenção à diversidade, à acessibilidade e ao compromisso social.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            {["Território", "Formação", "Criação", "Comunidade"].map((k, i) => (
-              <div key={k} className="p-6 rounded-2xl text-white font-display font-black text-xl" style={{ backgroundColor: ["var(--brand-red)","var(--brand-cyan)","var(--brand-gold)","var(--brand-petrol)"][i] }}>
-                {k}
-              </div>
-            ))}
-          </div>
+      <section className="relative bg-white py-24 md:py-32 overflow-hidden">
+        <HatchedCircle size={220} color="#08B9E6" className="absolute -top-20 -left-16 opacity-60" />
+        <ArcThick color="#ED1C24" className="absolute -bottom-8 -right-8 w-64" from={100} to={260} />
+        <Triangle color="#FFB400" size={80} className="absolute top-24 right-16 hidden md:block" rotate={30} />
+        <div className="container-x max-w-3xl text-center">
+          <p className="text-lg text-brand-gray leading-relaxed">
+            O Ponto de Cultura nasceu do encontro entre artistas, educadores e moradores que acreditam no teatro como instrumento de formação, expressão e transformação social.
+          </p>
+          <p className="mt-8 font-display uppercase text-brand-red leading-tight" style={{ fontSize: "clamp(1.4rem, 2.4vw, 2rem)" }}>
+            Por meio de oficinas, espetáculos e ações culturais, ampliamos o acesso à arte e fortalecemos histórias que já existem no território.
+          </p>
+          <BrushStroke color="#FFB400" className="mx-auto mt-6 w-32" />
+          <p className="mt-10 text-lg text-brand-gray leading-relaxed">
+            Nossa atuação aproxima crianças, jovens, famílias, artistas e comunidade em processos de criação, aprendizagem e participação cultural.
+          </p>
         </div>
-      </Section>
+      </section>
 
-      <Section className="bg-brand-soft">
+      <section className="bg-white py-8 md:py-16">
+        <div className="container-x grid md:grid-cols-3 gap-6">
+          {mvv.map((m) => (
+            <article key={m.key} className="relative overflow-hidden rounded-3xl bg-brand-red text-white p-8 md:p-10 min-h-[480px] flex flex-col">
+              <QuarterCircle corner="tr" color="#00384C" className="absolute -top-2 -right-2 w-20 opacity-90" />
+              <div className="mb-8 flex justify-center">{m.ill}</div>
+              <h3 className="font-display uppercase text-brand-gold text-4xl">{m.key}</h3>
+              <BrushStroke color="#FFB400" className="mt-4 w-24" />
+              <p className="mt-6 text-white/95 leading-relaxed">{m.text}</p>
+              <HatchedCircle size={140} color="#FFB400" className="absolute -bottom-10 -right-6 opacity-25" />
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <Section className="bg-brand-soft overflow-hidden">
         <div className="container-x">
-          <SectionTitle eyebrow="Trajetória" title="Nossa linha do tempo" />
-          <ol className="relative border-l-2 border-brand-red/30 pl-8 space-y-8">
+          <p className="uppercase tracking-[0.3em] text-brand-red font-bold text-xs mb-3">Trajetória</p>
+          <h2 className="font-display uppercase leading-[1] text-brand-ink" style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)" }}>Nossa linha do tempo</h2>
+          <BrushStroke color="#FFB400" className="mt-5 w-40" />
+          <ol className="mt-12 relative border-l-4 border-brand-red/40 pl-8 space-y-10">
             {timeline.map((t) => (
               <li key={t.year} className="relative">
-                <span className="absolute -left-[42px] top-1 w-6 h-6 rounded-full bg-brand-red ring-4 ring-white" />
-                <p className="font-display font-black text-brand-red text-2xl">{t.year}</p>
-                <h3 className="font-display font-black text-xl text-brand-ink">{t.title}</h3>
-                <p className="text-brand-gray">{t.text}</p>
+                <span className="absolute -left-[46px] top-1 w-8 h-8 rounded-full bg-brand-red ring-4 ring-brand-soft" />
+                <p className="font-display text-brand-red text-4xl">{t.year}</p>
+                <h3 className="font-display uppercase text-xl text-brand-ink mt-1">{t.title}</h3>
+                <p className="text-brand-gray mt-1">{t.text}</p>
               </li>
             ))}
           </ol>
-          <div className="mt-8">
-            <Link to="/quem-somos/nossa-historia" className="inline-flex px-6 py-3 rounded-full bg-brand-ink text-white font-semibold">Ver nossa história completa</Link>
-          </div>
-        </div>
-      </Section>
-
-      <Section className="bg-white">
-        <div className="container-x">
-          <SectionTitle eyebrow="Diretrizes" title="Missão, Visão e Valores" />
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { title: "Missão", text: "Promover formação, acesso à cultura e desenvolvimento humano por meio do teatro e das artes cênicas.", color: "var(--brand-red)" },
-              { title: "Visão", text: "Ser referência em formação cultural, criação artística e participação comunitária.", color: "var(--brand-cyan)" },
-              { title: "Valores", text: "Respeito, diversidade, ética, criatividade, transparência, inclusão, cooperação e compromisso social.", color: "var(--brand-gold)" },
-            ].map((c) => (
-              <div key={c.title} className="relative p-8 rounded-3xl text-white overflow-hidden" style={{ backgroundColor: c.color }}>
-                <div className="absolute -right-8 -bottom-8 w-40 h-40 rounded-full border-8 border-white/25" aria-hidden />
-                <div className="absolute right-6 top-6 w-16 h-16 hatched-circle text-white/30" aria-hidden />
-                <h3 className="font-display font-black text-2xl relative">{c.title}</h3>
-                <p className="mt-3 relative">{c.text}</p>
-              </div>
-            ))}
+          <div className="mt-10">
+            <Link to="/quem-somos/nossa-historia" className="inline-flex px-7 py-3.5 rounded-full bg-brand-ink text-white font-semibold uppercase tracking-wider text-sm">Ver nossa história completa</Link>
           </div>
         </div>
       </Section>
     </>
+  );
+}
+
+function MissionIll() {
+  return (
+    <svg width="140" height="120" viewBox="0 0 140 120" aria-hidden>
+      <path d="M10 100 L70 20 L130 100 Z" fill="#FFB400" />
+      <circle cx="70" cy="70" r="18" fill="#08B9E6" />
+      <path d="M0 110 H140" stroke="#00384C" strokeWidth="6" />
+    </svg>
+  );
+}
+function VisionIll() {
+  return (
+    <svg width="140" height="120" viewBox="0 0 140 120" aria-hidden>
+      <ellipse cx="70" cy="60" rx="60" ry="35" fill="#FFB400" />
+      <circle cx="70" cy="60" r="22" fill="#00384C" />
+      <circle cx="70" cy="60" r="10" fill="#08B9E6" />
+      <circle cx="76" cy="54" r="4" fill="#fff" />
+    </svg>
+  );
+}
+function ValuesIll() {
+  return (
+    <svg width="140" height="120" viewBox="0 0 140 120" aria-hidden>
+      <polygon points="70,10 82,44 118,44 88,64 100,100 70,78 40,100 52,64 22,44 58,44" fill="#FFB400" />
+      <path d="M20 110 Q70 80 120 110 L120 120 L20 120 Z" fill="#08B9E6" />
+    </svg>
   );
 }
