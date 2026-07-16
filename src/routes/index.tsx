@@ -37,26 +37,22 @@ function HeroCarousel() {
   const [paused, setPaused] = useState(false);
   const [opened, setOpened] = useState(false);
   const [showCurtain, setShowCurtain] = useState(true);
+  const reducedMotion = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
   useEffect(() => {
-    if (typeof sessionStorage !== "undefined" && sessionStorage.getItem("curtainShown")) {
-      setShowCurtain(false);
-      setOpened(true);
-      return;
-    }
-    const t = setTimeout(() => {
-      setOpened(true);
-      if (typeof sessionStorage !== "undefined") sessionStorage.setItem("curtainShown", "1");
-      setTimeout(() => setShowCurtain(false), 2200);
-    }, 250);
-    return () => clearTimeout(t);
-  }, []);
+    const openDelay = 200;
+    const duration = reducedMotion ? 350 : 1600;
+    const t1 = setTimeout(() => setOpened(true), openDelay);
+    const t2 = setTimeout(() => setShowCurtain(false), openDelay + duration + 100);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, [reducedMotion]);
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || showCurtain) return;
     const t = setInterval(() => setI((v) => (v + 1) % slides.length), 6500);
     return () => clearInterval(t);
-  }, [paused]);
+  }, [paused, showCurtain]);
+
 
   const go = (n: number) => setI((n + slides.length) % slides.length);
   const s = slides[i];
@@ -281,8 +277,7 @@ function GalleryPreview() {
         <div className="absolute inset-0 flex items-center justify-center text-center px-4">
           <div>
             <h2 className="text-white" style={{ fontSize: "clamp(2rem, 3.3vw, 3.2rem)", lineHeight: 1.05, fontWeight: 700 }}>
-              <span className="block">Nossa</span>
-              <span className="block text-brand-cyan">Galeria</span>
+              Galeria
             </h2>
             <BrushStroke color="#FFB400" className="mx-auto mt-4 w-32" />
           </div>

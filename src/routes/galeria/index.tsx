@@ -7,9 +7,9 @@ import { albums } from "@/data/site";
 export const Route = createFileRoute("/galeria/")({
   head: () => ({
     meta: [
-      { title: "Nossa Galeria — Cena Viva" },
+      { title: "Galeria — Cena Viva" },
       { name: "description", content: "Fotografias das oficinas, apresentações e encontros do Ponto de Cultura Cena Viva." },
-      { property: "og:title", content: "Nossa Galeria — Cena Viva" },
+      { property: "og:title", content: "Galeria — Cena Viva" },
       { property: "og:description", content: "Registros das nossas atividades." },
       { property: "og:url", content: "/galeria" },
     ],
@@ -56,8 +56,7 @@ function Galeria() {
   return (
     <>
       <PageHero
-        title=""
-        split={{ first: "Nossa", second: "Galeria", secondColor: "#08B9E6" }}
+        title="Galeria"
         image="https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=1920&q=80"
         breadcrumb={[{ label: "Início", to: "/" }, { label: "Galeria" }]}
         accent="cyan"
@@ -89,7 +88,7 @@ function Galeria() {
             {/* Mobile: horizontal scroll of chips */}
             <div className="md:hidden w-full -mx-1 overflow-x-auto">
               <div role="tablist" aria-label="Selecionar ano" className="flex gap-2 px-1 pb-1 min-w-max">
-                <label htmlFor="year-select" className="sr-only">Selecione o ano</label>
+                <span className="sr-only">Ano</span>
                 {years.map((y) => {
                   const active = y === year;
                   return (
