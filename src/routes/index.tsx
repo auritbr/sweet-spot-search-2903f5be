@@ -1,17 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { slides, indicators, projects, news, albums, site } from "@/data/site";
+import { slides, albums } from "@/data/site";
 import { Section, SectionTitle } from "@/components/PageHero";
+import { AgendaCard } from "@/components/AgendaCard";
+import { upcomingEvents } from "@/data/agenda";
 import { HatchedCircle, ArcThick, BrushStroke, DiamondsCluster, QuarterCircle, Triangle } from "@/components/Shapes";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Cena Viva — Ponto de Cultura de Teatro e Artes Cênicas" },
-      { name: "description", content: "Formação, criação e circulação cultural em diálogo com a comunidade." },
-      { property: "og:title", content: "Cena Viva — Ponto de Cultura" },
-      { property: "og:description", content: "Formação, criação e circulação cultural." },
+      { title: "Associação Maggu | Cultura, Formação e Território" },
+      { name: "description", content: "Conheça a Associação Maggu e suas iniciativas em cultura, formação, audiovisual, leitura, infância, esporte, sustentabilidade e desenvolvimento no Benedito Bentes, em Maceió." },
+      { property: "og:title", content: "Associação Maggu | Cultura, Formação e Território" },
+      { property: "og:description", content: "Conheça a Associação Maggu e suas iniciativas em cultura, formação, audiovisual, leitura, infância, esporte, sustentabilidade e desenvolvimento no Benedito Bentes, em Maceió." },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
@@ -23,11 +27,12 @@ function Home() {
     <>
       <HeroCarousel />
       <IntroSection />
-      <IndicatorsSection />
-      <ProjectsBands />
-      <NewsPreview />
-      <GalleryPreview />
-      <SupportCTA />
+      <EcosystemSection />
+      <ProjectHighlights />
+      <AgendaSection />
+      <MemorySection />
+      <TransparencySection />
+      <FinalCTA />
     </>
   );
 }
@@ -52,7 +57,6 @@ function HeroCarousel() {
     const t = setInterval(() => setI((v) => (v + 1) % slides.length), 6500);
     return () => clearInterval(t);
   }, [paused, showCurtain]);
-
 
   const go = (n: number) => setI((n + slides.length) % slides.length);
   const s = slides[i];
@@ -94,13 +98,13 @@ function HeroCarousel() {
       </div>
 
       <div className="relative z-10 h-full container-x flex flex-col justify-center items-center text-center pt-16">
-        <div className="max-w-3xl text-white animate-fade-up" key={i}>
-          <p className="uppercase tracking-[0.22em] text-brand-gold font-semibold text-xs mb-4">Ponto de Cultura</p>
-          <h1 style={{ fontSize: "clamp(2.2rem, 4vw, 4.2rem)", lineHeight: 1.02, fontWeight: 700, textShadow: "0 4px 24px rgba(0,0,0,.4)" }} className="text-white">
+        <div className="max-w-2xl text-white animate-fade-up" key={i}>
+          <p className="uppercase tracking-[0.22em] text-brand-gold font-semibold text-xs mb-4">Associação Maggu</p>
+          <h1 style={{ fontSize: "clamp(1.9rem, 3.4vw, 3.4rem)", lineHeight: 1.08, fontWeight: 700, textShadow: "0 4px 24px rgba(0,0,0,.4)" }} className="text-white">
             {s.title}
           </h1>
-          <BrushStroke color="#FFB400" className="mx-auto mt-5 w-44" />
-          <p className="mt-5 text-white/95 max-w-2xl mx-auto" style={{ fontSize: "clamp(1rem, 1.2vw, 1.15rem)", lineHeight: 1.6 }}>{s.text}</p>
+          <BrushStroke color="#FFB400" className="mx-auto mt-5 w-40" />
+          <p className="mt-5 mx-auto text-white/95" style={{ fontSize: "clamp(0.98rem, 1.1vw, 1.1rem)", lineHeight: 1.65, maxWidth: "58ch" }}>{s.text}</p>
           <div className="mt-7 flex flex-wrap gap-3 justify-center">
             {s.buttons.map((b, k) => (
               <Link key={k} to={b.to} className={`px-6 py-3 rounded-full text-sm ${k === 0 ? "bg-brand-red text-white hover:bg-brand-red/90" : "bg-white text-brand-ink hover:bg-brand-gold"} transition`} style={{ fontWeight: 600 }}>
@@ -129,137 +133,172 @@ function HeroCarousel() {
 function IntroSection() {
   return (
     <Section className="bg-white overflow-hidden">
-      <div className="container-x grid md:grid-cols-2 gap-12 items-center">
+      <div className="container-x grid gap-12 md:grid-cols-[1.05fr_.95fr] items-center">
         <div className="relative">
-          <div className="aspect-square w-full max-w-sm mx-auto rounded-full overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80" alt="Grupo em oficina teatral" className="w-full h-full object-cover" loading="lazy" />
-          </div>
-          <ArcThick color="#00384C" className="absolute -top-6 -left-6 w-32" from={100} to={260} />
-          <ArcThick color="#ED1C24" className="absolute -bottom-4 -right-4 w-28" from={300} to={80} />
-          <HatchedCircle size={90} color="#08B9E6" className="absolute -bottom-6 left-8 opacity-60" />
-          <Triangle color="#FFB400" size={48} className="absolute top-8 -right-2" rotate={20} />
-        </div>
-        <div className="relative">
-          <p className="uppercase tracking-[0.22em] text-brand-red font-semibold text-xs mb-3">Nossa essência</p>
-          <h2 className="text-brand-ink" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.15, fontWeight: 700 }}>
-            Cultura, expressão e transformação social
+          <p className="uppercase tracking-[0.22em] text-brand-red font-semibold text-xs mb-3">Associação Maggu</p>
+          <h2 className="text-brand-ink" style={{ fontSize: "clamp(1.7rem, 2.6vw, 2.6rem)", lineHeight: 1.15, fontWeight: 700 }}>
+            Muitas frentes. Um mesmo compromisso com o território.
           </h2>
           <BrushStroke color="#FFB400" className="mt-5 w-32" />
-          <p className="mt-5 text-brand-gray" style={{ fontSize: "clamp(1rem, 1.2vw, 1.15rem)", lineHeight: 1.7, maxWidth: "62ch" }}>
-            Somos um Ponto de Cultura dedicado ao teatro e às artes cênicas. Criamos oportunidades de formação, convivência e participação cultural com crianças, jovens e comunidades.
-          </p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <Link to="/quem-somos" className="px-6 py-2.5 rounded-full bg-brand-red text-white text-sm hover:bg-brand-red/90" style={{ fontWeight: 600 }}>Quem somos</Link>
-            <Link to="/equipe" className="px-6 py-2.5 rounded-full border-2 border-brand-ink text-brand-ink text-sm hover:bg-brand-soft" style={{ fontWeight: 600 }}>Nossa equipe</Link>
+          <div className="mt-5 space-y-4 text-brand-gray" style={{ lineHeight: 1.7, maxWidth: "62ch" }}>
+            <p>A Associação Maggu é uma organização da sociedade civil que transforma experiências culturais em formação, criação, memória, convivência e oportunidades.</p>
+            <p>Sua atuação reúne iniciativas diferentes, mas conectadas por uma mesma compreensão: cultura é direito, expressão, pertencimento e possibilidade de futuro.</p>
           </div>
+          <Link to="/quem-somos" hash="nossa-historia" className="mt-7 inline-flex rounded-full bg-brand-red px-6 py-3 text-sm text-white transition hover:bg-brand-petrol" style={{ fontWeight: 600 }}>
+            Conheça nossa história
+          </Link>
+        </div>
+        <div className="relative mx-auto w-full max-w-md">
+          <div className="aspect-[4/5] overflow-hidden rounded-t-[46%] rounded-b-md">
+            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80" alt="Participantes reunidos em atividade cultural" className="h-full w-full object-cover" loading="lazy" />
+          </div>
+          <ArcThick color="#00384C" className="absolute -top-6 -left-6 w-28" from={100} to={260} />
+          <HatchedCircle size={96} color="#08B9E6" className="absolute -bottom-6 right-2 opacity-60" />
+          <Triangle color="#FFB400" size={44} className="absolute top-10 -right-2" rotate={20} />
         </div>
       </div>
     </Section>
   );
 }
 
-function IndicatorsSection() {
-  return (
-    <section className="relative py-14 md:py-20 overflow-hidden" style={{ backgroundColor: "#00384C" }}>
-      <QuarterCircle corner="tl" color="#ED1C24" className="absolute -top-2 -left-2 w-28 md:w-40 opacity-90" />
-      <HatchedCircle size={180} color="#FFB400" className="absolute -right-16 bottom-0 opacity-20" />
-      <DiamondsCluster color="#08B9E6" className="absolute top-8 right-24 opacity-60" size={54} />
-      <div className="container-x relative text-white">
-        <p className="uppercase tracking-[0.22em] text-brand-gold font-semibold text-xs mb-3">Impacto</p>
-        <h2 className="text-white max-w-3xl" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.15, fontWeight: 700 }}>
-          Números que contam nossa trajetória
-        </h2>
-        <BrushStroke color="#ED1C24" className="mt-5 w-32" />
-        <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
-          {indicators.map((n, i) => (
-            <div key={i} className={`${i > 0 ? "md:border-l md:border-white/20 md:pl-6" : ""}`}>
-              <p className="text-brand-gold leading-none" style={{ fontSize: "clamp(2.2rem, 3vw, 3rem)", fontWeight: 700 }}>{n.value}</p>
-              <p className="mt-2 text-white/85 text-sm">{n.label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+const axesSummary = [
+  { title: "Arte, Cultura & Formação", phrase: "Criar, experimentar, aprender e apresentar.", className: "bg-brand-red text-white", shape: "circle" },
+  { title: "Audiovisual & Comunicação", phrase: "Ver, ouvir, conversar e comunicar.", className: "bg-brand-cyan text-brand-petrol", shape: "arc" },
+  { title: "Livro, Leitura & Memória", phrase: "Ler, lembrar e pertencer.", className: "bg-brand-gold text-brand-petrol", shape: "diamond" },
+  { title: "Infância, Cidadania & Território", phrase: "Brincar, conviver e participar.", className: "bg-brand-orange text-brand-petrol", shape: "arc" },
+  { title: "Esporte, Bem-estar & Inclusão", phrase: "Mover, aprender e conviver.", className: "bg-brand-petrol text-white", shape: "circle" },
+  { title: "Sustentabilidade & Desenvolvimento", phrase: "Criar também é cuidar.", className: "bg-brand-lime text-brand-petrol", shape: "diamond" },
+];
 
-function ProjectsBands() {
-  const bandColors = [
-    { bg: "#ED1C24", text: "#ffffff", pill: "#FF7A00", accent: "#FFB400", arc: "#00384C" },
-    { bg: "#08B9E6", text: "#ffffff", pill: "#ED1C24", accent: "#FFB400", arc: "#00384C" },
-    { bg: "#FFB400", text: "#00384C", pill: "#ED1C24", accent: "#00384C", arc: "#ED1C24" },
-  ];
-  return (
-    <section className="bg-white">
-      <div className="container-x py-12 md:py-14 text-center">
-        <p className="uppercase tracking-[0.22em] text-brand-red font-semibold text-xs mb-3">Projetos</p>
-        <h2 className="text-brand-ink mx-auto" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.15, fontWeight: 700 }}>Nossos projetos</h2>
-        <BrushStroke color="#FFB400" className="mx-auto mt-4 w-32" />
-      </div>
-      {projects.map((p, idx) => {
-        const c = bandColors[idx % bandColors.length];
-        const reverse = idx % 2 === 1;
-        return (
-          <div key={p.slug} className="relative overflow-hidden" style={{ backgroundColor: c.bg, color: c.text }}>
-            <QuarterCircle corner={reverse ? "br" : "bl"} color={c.arc} className="absolute -bottom-4 -left-4 w-36 md:w-48 opacity-90" />
-            <ArcThick color={c.accent} className="absolute top-6 right-8 w-28 md:w-40 opacity-90" from={200} to={340} />
-            <HatchedCircle size={200} color={c.accent} className="absolute -right-16 -bottom-8 opacity-25" />
-            <div className={`container-x py-12 md:py-16 grid md:grid-cols-2 gap-10 items-center ${reverse ? "md:[&>*:first-child]:order-2" : ""}`}>
-              <div>
-                <p className="uppercase tracking-[0.22em] font-semibold text-xs mb-3 opacity-90">{p.category}</p>
-                <h3 style={{ fontSize: "clamp(1.5rem, 2.3vw, 2.2rem)", lineHeight: 1.15, fontWeight: 700, color: "inherit" }}>{p.name}</h3>
-                <p className="mt-4 opacity-95" style={{ fontSize: "clamp(1rem, 1.2vw, 1.1rem)", lineHeight: 1.6, maxWidth: "56ch" }}>{p.short}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  <span className="px-4 py-1.5 rounded-full text-xs" style={{ backgroundColor: c.pill, color: "#fff", fontWeight: 600 }}>{p.audience}</span>
-                  <span className="px-4 py-1.5 rounded-full text-xs" style={{ backgroundColor: c.pill, color: "#fff", fontWeight: 600 }}>{p.period}</span>
-                </div>
-                <Link to="/projetos/$slug" params={{ slug: p.slug }} className="mt-6 inline-flex px-6 py-2.5 rounded-full bg-white text-brand-ink text-sm hover:bg-brand-gold" style={{ fontWeight: 600 }}>
-                  Conheça o projeto
-                </Link>
-              </div>
-              <div className="relative">
-                <div className="aspect-[4/5] rounded-3xl overflow-hidden max-w-sm mx-auto">
-                  <img src={p.image} alt={p.name} className="w-full h-full object-cover" loading="lazy" />
-                </div>
-                <DiamondsCluster color={c.accent} className="absolute -top-4 -right-2" size={48} />
-                <Triangle color={c.pill} size={54} className="absolute -bottom-4 left-6" rotate={-15} />
-              </div>
-            </div>
-          </div>
-        );
-      })}
-      <div className="text-center py-10 bg-white">
-        <Link to="/projetos" className="inline-flex px-7 py-3 rounded-full bg-brand-ink text-white text-sm hover:bg-brand-red" style={{ fontWeight: 600 }}>Ver todos os projetos</Link>
-      </div>
-    </section>
-  );
-}
-
-function NewsPreview() {
-  const items = news.slice(0, 3);
+function EcosystemSection() {
   return (
     <Section className="bg-brand-soft overflow-hidden">
       <div className="container-x">
-        <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
-          <SectionTitle eyebrow="Novidades" title="Últimas notícias" />
-          <Link to="/noticias" className="mb-4 text-brand-red text-sm" style={{ fontWeight: 600 }}>Ver todas →</Link>
+        <div className="grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:items-end">
+          <SectionTitle eyebrow="Ecossistema Maggu" title="Conheça o Ecossistema Maggu" />
+          <div className="mb-8 space-y-4 text-brand-gray" style={{ lineHeight: 1.7 }}>
+            <p>Teatro conversa com educação. Cinema também é formação. Livro é memória. Brincar é direito. Esporte cria convivência. Comunicação fortalece participação. Sustentabilidade também pode nascer da criação.</p>
+            <p>Por isso, as iniciativas da Associação são organizadas em diferentes eixos que se conectam entre si.</p>
+          </div>
         </div>
-        <div className="grid md:grid-cols-3 gap-6">
-          {items.map((n) => (
-            <Link key={n.slug} to="/noticias/$slug" params={{ slug: n.slug }} className="group block rounded-2xl overflow-hidden bg-white hover:shadow-lg transition">
-              <div className="aspect-video overflow-hidden">
-                <img src={n.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {axesSummary.map((axis) => (
+            <li key={axis.title} className={`relative overflow-hidden rounded-md p-6 ${axis.className}`}>
+              <span className="absolute -right-6 -top-6 opacity-30" aria-hidden="true">
+                {axis.shape === "circle" ? (
+                  <HatchedCircle size={96} color="#FFFFFF" />
+                ) : axis.shape === "arc" ? (
+                  <ArcThick color="#FFFFFF" className="w-24" from={120} to={280} />
+                ) : (
+                  <DiamondsCluster color="#FFFFFF" size={44} />
+                )}
+              </span>
+              <h3 className="relative text-lg leading-snug text-inherit">{axis.title}</h3>
+              <p className="relative mt-2 text-sm opacity-90">{axis.phrase}</p>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-9">
+          <Link to="/ecossistema" className="inline-flex rounded-full bg-brand-petrol px-7 py-3 text-sm font-bold text-white transition hover:bg-brand-red">Explorar o Ecossistema</Link>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+// Fácil de trocar futuramente por conteúdo vindo de um CMS.
+const featuredProjects = [
+  {
+    name: "Teatro Escola Maggu",
+    text: "Um espaço de formação, criação e produção cultural no Benedito Bentes.",
+    image: "https://images.unsplash.com/photo-1518834107812-67b0b7c58434?auto=format&fit=crop&w=1000&q=80",
+    accent: "#ED1C24",
+  },
+  {
+    name: "Cineclube Teatro Maggu",
+    text: "Cinema como espaço de encontro, formação, repertório e participação.",
+    image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1000&q=80",
+    accent: "#08B9E6",
+  },
+  {
+    name: "Jardim Literário Maggu",
+    text: "Leitura, circulação de livros e construção de memória comunitária.",
+    image: "https://images.unsplash.com/photo-1526243741027-444d633d7365?auto=format&fit=crop&w=1000&q=80",
+    accent: "#FFB400",
+  },
+];
+
+function ProjectHighlights() {
+  return (
+    <Section className="bg-white">
+      <div className="container-x">
+        <SectionTitle eyebrow="Projetos" title="Projetos e iniciativas em destaque" />
+        <div className="grid gap-6 md:grid-cols-3">
+          {featuredProjects.map((p) => (
+            <article key={p.name} className="overflow-hidden rounded-md border border-brand-petrol/10 bg-white">
+              <div className="aspect-[16/10] overflow-hidden bg-brand-soft">
+                <img src={p.image} alt="" className="h-full w-full object-cover" loading="lazy" />
               </div>
-              <div className="p-5">
-                <div className="flex items-center gap-2 text-xs">
-                  <span className="text-brand-red uppercase tracking-widest" style={{ fontWeight: 600 }}>{n.category}</span>
-                  <span className="text-brand-gray">·</span>
-                  <time className="text-brand-gray">{new Date(n.date).toLocaleDateString("pt-BR")}</time>
-                </div>
-                <h3 className="mt-2 text-brand-ink group-hover:text-brand-red transition" style={{ fontSize: "clamp(1.05rem, 1.4vw, 1.25rem)", lineHeight: 1.25, fontWeight: 600 }}>{n.title}</h3>
-                <p className="mt-2 text-sm text-brand-gray" style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{n.excerpt}</p>
+              <div className="border-t-4 p-6" style={{ borderColor: p.accent }}>
+                <h3 className="text-xl leading-snug text-brand-ink">{p.name}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-brand-gray">{p.text}</p>
               </div>
-            </Link>
+            </article>
+          ))}
+        </div>
+        <div className="mt-9">
+          <Link to="/projetos" className="inline-flex rounded-full bg-brand-red px-7 py-3 text-sm font-bold text-white transition hover:bg-brand-petrol">Conheça todos os projetos</Link>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+function AgendaSection() {
+  const events = upcomingEvents(3);
+  return (
+    <Section className="bg-brand-soft overflow-hidden">
+      <div className="container-x">
+        <SectionTitle
+          eyebrow="Agenda"
+          title="Acontecendo agora"
+          text="Cursos, sessões, oficinas, apresentações, encontros e outras atividades do Ecossistema Maggu."
+        />
+        {events.length ? (
+          <div className="space-y-4">
+            {events.map((e) => <AgendaCard key={e.slug} event={e} />)}
+          </div>
+        ) : (
+          <p className="max-w-2xl border-l-4 border-brand-red bg-white p-6 leading-relaxed text-brand-gray">
+            Novas atividades serão anunciadas em breve. Enquanto isso, conheça nossas iniciativas.
+          </p>
+        )}
+        <div className="mt-9 flex flex-wrap gap-3">
+          <Link to="/agenda" className="inline-flex rounded-full bg-brand-petrol px-7 py-3 text-sm font-bold text-white transition hover:bg-brand-red">Ver Agenda</Link>
+          <Link to="/projetos" className="inline-flex rounded-full border-2 border-brand-petrol px-7 py-3 text-sm font-bold text-brand-petrol transition hover:bg-white">Conheça os projetos</Link>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+function MemorySection() {
+  const items = albums.slice(0, 3);
+  return (
+    <Section className="bg-white overflow-hidden">
+      <div className="container-x grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-center">
+        <div>
+          <SectionTitle eyebrow="Memória" title="Memória em movimento" />
+          <p className="text-brand-gray" style={{ lineHeight: 1.7, maxWidth: "56ch" }}>
+            Nossa história também vive em fotografias, cartazes, vídeos, programas, documentos, bastidores e nas pessoas que fizeram parte de cada processo.
+          </p>
+          <Link to="/galeria" className="mt-7 inline-flex rounded-full border-2 border-brand-petrol px-6 py-3 text-sm font-bold text-brand-petrol transition hover:bg-brand-soft">Conheça nossa galeria</Link>
+        </div>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+          {items.map((a, idx) => (
+            <div key={a.slug} className={`overflow-hidden rounded-md ${idx === 0 ? "col-span-2 sm:col-span-1 aspect-[4/3] sm:aspect-[3/4]" : "aspect-square"}`}>
+              <img src={a.cover} alt={a.title} className="h-full w-full object-cover" loading="lazy" />
+            </div>
           ))}
         </div>
       </div>
@@ -267,61 +306,42 @@ function NewsPreview() {
   );
 }
 
-function GalleryPreview() {
-  const items = albums.slice(0, 4);
+function TransparencySection() {
   return (
-    <section className="relative bg-white overflow-hidden">
-      <div className="relative aspect-[21/9] max-h-[420px] w-full">
-        <img src="https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=1920&q=80" alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-brand-ink/55" />
-        <div className="absolute inset-0 flex items-center justify-center text-center px-4">
-          <div>
-            <h2 className="text-white" style={{ fontSize: "clamp(2rem, 3.3vw, 3.2rem)", lineHeight: 1.05, fontWeight: 700 }}>
-              Galeria
-            </h2>
-            <BrushStroke color="#FFB400" className="mx-auto mt-4 w-32" />
-          </div>
+    <Section className="bg-brand-soft">
+      <div className="container-x md:flex md:items-center md:justify-between md:gap-10">
+        <div className="max-w-2xl border-l-4 border-brand-red pl-6">
+          <h2 className="text-brand-ink" style={{ fontSize: "clamp(1.5rem, 2.2vw, 2.1rem)", lineHeight: 1.2, fontWeight: 700 }}>
+            Transparência também faz parte da nossa cultura.
+          </h2>
+          <p className="mt-4 text-brand-gray" style={{ lineHeight: 1.7 }}>
+            Governança, documentos, políticas e informações institucionais reunidos para fortalecer responsabilidade, confiança e acesso público.
+          </p>
         </div>
-        <QuarterCircle corner="tr" color="#ED1C24" className="absolute -top-2 -right-2 w-28 md:w-40" />
+        <Link to="/transparencia" className="mt-6 inline-flex shrink-0 rounded-full bg-brand-petrol px-7 py-3 text-sm font-bold text-white transition hover:bg-brand-red md:mt-0">Acessar Transparência</Link>
       </div>
-      <div className="container-x py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {items.map((a) => (
-            <Link key={a.slug} to="/galeria" className="group relative aspect-square overflow-hidden rounded-2xl">
-              <img src={a.cover} alt={a.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/80 to-transparent" />
-              <div className="absolute bottom-3 left-3 right-3 text-white">
-                <p className="text-xs uppercase tracking-widest text-brand-gold">{a.year}</p>
-                <p className="text-sm" style={{ fontWeight: 600 }}>{a.title}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-        <div className="mt-8 text-center">
-          <Link to="/galeria" className="inline-flex px-7 py-3 rounded-full bg-brand-ink text-white text-sm hover:bg-brand-red" style={{ fontWeight: 600 }}>Ver galeria completa</Link>
-        </div>
-      </div>
-    </section>
+    </Section>
   );
 }
 
-function SupportCTA() {
+function FinalCTA() {
   return (
-    <section className="relative py-14 md:py-20 overflow-hidden" style={{ backgroundColor: "#ED1C24" }}>
-      <QuarterCircle corner="tr" color="#00384C" className="absolute -top-2 -right-2 w-32 md:w-52 opacity-90" />
+    <section className="relative overflow-hidden py-16 md:py-20" style={{ backgroundColor: "#00384C" }}>
+      <QuarterCircle corner="tr" color="#ED1C24" className="absolute -top-2 -right-2 w-32 md:w-52 opacity-90" />
       <ArcThick color="#FFB400" className="absolute -left-6 top-10 w-40 opacity-90" from={200} to={340} />
-      <HatchedCircle size={200} color="#FFB400" className="absolute -left-16 bottom-0 opacity-25" />
+      <HatchedCircle size={200} color="#08B9E6" className="absolute -left-16 bottom-0 opacity-20" />
       <DiamondsCluster color="#FFB400" className="absolute top-16 right-32 hidden md:block" size={54} />
-      <div className="container-x relative text-white text-center max-w-3xl mx-auto">
-        <p className="uppercase tracking-[0.22em] text-brand-gold font-semibold text-xs mb-3">Apoie</p>
-        <h2 className="text-white" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.15, fontWeight: 700 }}>
-          Ajude a manter a cultura em movimento
+      <div className="container-x relative mx-auto max-w-3xl text-center text-white">
+        <h2 className="text-white" style={{ fontSize: "clamp(1.7rem, 2.6vw, 2.6rem)", lineHeight: 1.15, fontWeight: 700 }}>
+          Há muitas formas de fazer parte.
         </h2>
         <BrushStroke color="#FFB400" className="mx-auto mt-5 w-32" />
-        <p className="mt-5 text-white/95" style={{ fontSize: "clamp(1rem, 1.2vw, 1.1rem)", lineHeight: 1.6 }}>Seu apoio contribui para a continuidade das oficinas, apresentações e ações culturais.</p>
-        <div className="mt-7 flex flex-wrap gap-3 justify-center">
-          <a href={`https://wa.me/${site.whatsapp}`} className="px-7 py-3 rounded-full bg-brand-gold text-brand-ink text-sm hover:bg-white" style={{ fontWeight: 700 }}>Quero apoiar</a>
-          <Link to="/contato" className="px-7 py-3 rounded-full border-2 border-white text-white text-sm hover:bg-white hover:text-brand-red" style={{ fontWeight: 700 }}>Entre em contato</Link>
+        <p className="mt-5 leading-relaxed text-white/90">
+          Conheça uma atividade, acompanhe os projetos ou entre em contato com a Associação Maggu.
+        </p>
+        <div className="mt-7 flex flex-wrap justify-center gap-3">
+          <Link to="/agenda" className="rounded-full bg-brand-gold px-7 py-3 text-sm font-bold text-brand-petrol transition hover:bg-white">Ver Agenda</Link>
+          <Link to="/contato" className="rounded-full border-2 border-white px-7 py-3 text-sm font-semibold text-white transition hover:bg-white/10">Entre em contato</Link>
         </div>
       </div>
     </section>
