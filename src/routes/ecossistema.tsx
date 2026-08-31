@@ -68,7 +68,7 @@ function Ecossistema() {
             <SectionTitle eyebrow="A lógica do Ecossistema" title="Muitas frentes. Um mesmo compromisso com o território." />
             <div className="space-y-5 text-brand-gray leading-relaxed">
               <p>Teatro conversa com educação. Cinema também é formação. Livro é memória. Brincar é direito. Esporte cria convivência. Comunicação fortalece participação. Sustentabilidade também pode nascer da criação.</p>
-              <p>Por isso, as iniciativas da Associação Maggu são organizadas como um ecossistema: diferentes áreas de atuação que mantêm suas próprias características, mas compartilham relações, públicos, aprendizados e objetivos.</p>
+              <p>Por isso, organizamos as iniciativas da Associação como um ecossistema: áreas de atuação que mantêm suas próprias características, mas compartilham relações, públicos, aprendizados e objetivos.</p>
             </div>
           </div>
           <EcosystemDiagram />
