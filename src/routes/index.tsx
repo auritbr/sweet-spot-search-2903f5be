@@ -29,6 +29,7 @@ function Home() {
       <IntroSection />
       <EcosystemSection />
       <ProjectHighlights />
+      <CulturePointSection />
       <AgendaSection />
       <MemorySection />
       <TransparencySection />
@@ -137,12 +138,12 @@ function IntroSection() {
         <div className="relative">
           <p className="uppercase tracking-[0.22em] text-brand-red font-semibold text-xs mb-3">Associação Maggu</p>
           <h2 className="text-brand-ink" style={{ fontSize: "clamp(1.7rem, 2.6vw, 2.6rem)", lineHeight: 1.15, fontWeight: 700 }}>
-            Muitas frentes. Um mesmo compromisso com o território.
+            Cultura construída com o território.
           </h2>
           <BrushStroke color="#FFB400" className="mt-5 w-32" />
           <div className="mt-5 space-y-4 text-brand-gray" style={{ lineHeight: 1.7, maxWidth: "62ch" }}>
             <p>A Associação Maggu é uma organização da sociedade civil que transforma experiências culturais em formação, criação, memória, convivência e oportunidades.</p>
-            <p>Sua atuação reúne iniciativas diferentes, mas conectadas por uma mesma compreensão: cultura é direito, expressão, pertencimento e possibilidade de futuro.</p>
+            <p>Sua atuação reúne diferentes iniciativas conectadas pelo compromisso de ampliar o acesso à cultura, fortalecer vínculos e criar novas possibilidades.</p>
           </div>
           <Link to="/quem-somos" hash="nossa-historia" className="mt-7 inline-flex rounded-full bg-brand-red px-6 py-3 text-sm text-white transition hover:bg-brand-petrol" style={{ fontWeight: 600 }}>
             Conheça nossa história
@@ -174,16 +175,14 @@ function EcosystemSection() {
   return (
     <Section className="bg-brand-soft overflow-hidden">
       <div className="container-x">
-        <div className="grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:items-end">
-          <SectionTitle eyebrow="Ecossistema Maggu" title="Conheça o Ecossistema Maggu" />
-          <div className="mb-8 space-y-4 text-brand-gray" style={{ lineHeight: 1.7 }}>
-            <p>Teatro conversa com educação. Cinema também é formação. Livro é memória. Brincar é direito. Esporte cria convivência. Comunicação fortalece participação. Sustentabilidade também pode nascer da criação.</p>
-            <p>Por isso, as iniciativas da Associação são organizadas em diferentes eixos que se conectam entre si.</p>
-          </div>
-        </div>
+        <SectionTitle
+          eyebrow="Ecossistema Maggu"
+          title="Diferentes áreas. Uma atuação conectada."
+          text="A atuação da Maggu está organizada em seis eixos que ajudam a compreender sua diversidade sem separar aquilo que, na prática, se conecta."
+        />
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {axesSummary.map((axis) => (
-            <li key={axis.title} className={`relative overflow-hidden rounded-md p-6 ${axis.className}`}>
+            <li key={axis.title} className={`relative min-h-36 overflow-hidden rounded-md p-5 ${axis.className}`}>
               <span className="absolute -right-6 -top-6 opacity-30" aria-hidden="true">
                 {axis.shape === "circle" ? (
                   <HatchedCircle size={96} color="#FFFFFF" />
@@ -216,7 +215,7 @@ const featuredProjects = [
   },
   {
     name: "Cineclube Teatro Maggu",
-    text: "Cinema como espaço de encontro, formação, repertório e participação.",
+    text: "Sessões, mostras e experiências formativas que aproximam diferentes públicos do cinema.",
     image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1000&q=80",
     accent: "#08B9E6",
   },
@@ -232,7 +231,7 @@ function ProjectHighlights() {
   return (
     <Section className="bg-white">
       <div className="container-x">
-        <SectionTitle eyebrow="Projetos" title="Projetos e iniciativas em destaque" />
+        <SectionTitle eyebrow="Projetos" title="Conheça algumas iniciativas da Maggu" />
         <div className="grid gap-6 md:grid-cols-3">
           {featuredProjects.map((p) => (
             <article key={p.name} className="overflow-hidden rounded-md border border-brand-petrol/10 bg-white">
@@ -251,6 +250,21 @@ function ProjectHighlights() {
         </div>
       </div>
     </Section>
+  );
+}
+
+function CulturePointSection() {
+  return (
+    <section aria-labelledby="culture-point-title" className="relative overflow-hidden border-y border-brand-petrol/10 bg-brand-soft py-10 md:py-12">
+      <HatchedCircle size={128} color="#FFB400" className="pointer-events-none absolute -bottom-16 -right-10 opacity-35" />
+      <div className="container-x relative">
+        <div className="max-w-3xl border-l-4 border-brand-petrol pl-5 md:pl-7">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Reconhecimento</p>
+          <h2 id="culture-point-title" className="mt-2 text-2xl text-brand-ink md:text-3xl">Ponto de Cultura</h2>
+          <p className="mt-2 leading-relaxed text-brand-gray">O Teatro Escola Maggu é certificado como Ponto de Cultura.</p>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -273,9 +287,11 @@ function AgendaSection() {
             Novas atividades serão anunciadas em breve. Enquanto isso, conheça nossas iniciativas.
           </p>
         )}
-        <div className="mt-9 flex flex-wrap gap-3">
+        <div className="mt-9 flex flex-wrap items-center gap-4">
           <Link to="/agenda" className="inline-flex rounded-full bg-brand-petrol px-7 py-3 text-sm font-bold text-white transition hover:bg-brand-red">Ver Agenda</Link>
-          <Link to="/projetos" className="inline-flex rounded-full border-2 border-brand-petrol px-7 py-3 text-sm font-bold text-brand-petrol transition hover:bg-white">Conheça os projetos</Link>
+          {!events.length && (
+            <Link to="/projetos" className="text-sm font-bold text-brand-petrol underline decoration-brand-red decoration-2 underline-offset-4 transition hover:text-brand-red">Conheça os projetos</Link>
+          )}
         </div>
       </div>
     </Section>
@@ -297,7 +313,7 @@ function MemorySection() {
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
           {items.map((a, idx) => (
             <div key={a.slug} className={`overflow-hidden rounded-md ${idx === 0 ? "col-span-2 sm:col-span-1 aspect-[4/3] sm:aspect-[3/4]" : "aspect-square"}`}>
-              <img src={a.cover} alt={a.title} className="h-full w-full object-cover" loading="lazy" />
+              <img src={a.cover} alt="Registro fotográfico da trajetória da Associação Maggu" className="h-full w-full object-cover" loading="lazy" />
             </div>
           ))}
         </div>
@@ -308,17 +324,17 @@ function MemorySection() {
 
 function TransparencySection() {
   return (
-    <Section className="bg-brand-soft">
+    <Section className="bg-brand-petrol">
       <div className="container-x md:flex md:items-center md:justify-between md:gap-10">
-        <div className="max-w-2xl border-l-4 border-brand-red pl-6">
-          <h2 className="text-brand-ink" style={{ fontSize: "clamp(1.5rem, 2.2vw, 2.1rem)", lineHeight: 1.2, fontWeight: 700 }}>
-            Transparência também faz parte da nossa cultura.
+        <div className="max-w-2xl border-l-4 border-brand-gold pl-6">
+          <h2 className="text-white" style={{ fontSize: "clamp(1.5rem, 2.2vw, 2.1rem)", lineHeight: 1.2, fontWeight: 700 }}>
+            Transparência e responsabilidade institucional
           </h2>
-          <p className="mt-4 text-brand-gray" style={{ lineHeight: 1.7 }}>
-            Governança, documentos, políticas e informações institucionais reunidos para fortalecer responsabilidade, confiança e acesso público.
+          <p className="mt-4 text-white/85" style={{ lineHeight: 1.7 }}>
+            Documentos, informações de governança, políticas e registros institucionais reunidos para facilitar o acesso público e fortalecer a responsabilidade da Associação.
           </p>
         </div>
-        <Link to="/transparencia" className="mt-6 inline-flex shrink-0 rounded-full bg-brand-petrol px-7 py-3 text-sm font-bold text-white transition hover:bg-brand-red md:mt-0">Acessar Transparência</Link>
+        <Link to="/transparencia" className="mt-6 inline-flex shrink-0 rounded-full bg-brand-gold px-7 py-3 text-sm font-bold text-brand-petrol transition hover:bg-white md:mt-0">Acessar Transparência</Link>
       </div>
     </Section>
   );
@@ -337,7 +353,7 @@ function FinalCTA() {
         </h2>
         <BrushStroke color="#FFB400" className="mx-auto mt-5 w-32" />
         <p className="mt-5 leading-relaxed text-white/90">
-          Conheça uma atividade, acompanhe os projetos ou entre em contato com a Associação Maggu.
+          Encontre uma atividade, conheça os projetos ou entre em contato com a Associação Maggu.
         </p>
         <div className="mt-7 flex flex-wrap justify-center gap-3">
           <Link to="/agenda" className="rounded-full bg-brand-gold px-7 py-3 text-sm font-bold text-brand-petrol transition hover:bg-white">Ver Agenda</Link>

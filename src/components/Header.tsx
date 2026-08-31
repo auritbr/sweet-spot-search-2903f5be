@@ -59,10 +59,11 @@ export function Header() {
             <div key={item.to} className="relative group">
               <Link
                 to={item.to}
-                className={`px-3 py-2 rounded-md hover:bg-black/5 ${textColor} ${solid ? "hover:text-brand-red" : "hover:text-brand-gold"}`}
+                className={`relative px-3 py-2 ${textColor} transition-colors duration-200 hover:text-brand-red after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:origin-left after:scale-x-0 after:bg-brand-red after:transition-transform after:duration-200 hover:after:scale-x-100`}
                 style={{ fontSize: "0.95rem", fontWeight: 500 }}
-                activeProps={{ className: "text-brand-red" }}
+                activeProps={{ className: "text-brand-red after:scale-x-100" }}
                 activeOptions={{ exact: item.to === "/" }}
+                aria-current={pathname === item.to ? "page" : undefined}
               >
                 {item.label}
               </Link>
@@ -70,7 +71,7 @@ export function Header() {
                 <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition">
                   <div className="min-w-60 bg-white rounded-2xl shadow-xl border border-black/5 p-2">
                     {item.children.map((c) => (
-                      <Link key={c.to} to={c.to} className="block px-3 py-2.5 rounded-lg text-sm text-brand-ink hover:bg-brand-soft" style={{ fontWeight: 500 }}>
+                      <Link key={c.to} to={c.to} className="block px-3 py-2.5 text-sm text-brand-ink transition-colors duration-200 hover:text-brand-red" activeProps={{ className: "text-brand-red" }} aria-current={pathname === c.to ? "page" : undefined} style={{ fontWeight: 500 }}>
                         {c.label}
                       </Link>
                     ))}
@@ -102,7 +103,7 @@ export function Header() {
             {nav.map((item) => (
               <div key={item.to}>
                 <div className="flex items-center">
-                  <Link to={item.to} className="flex-1 px-3 py-3 rounded-md font-semibold text-brand-ink hover:bg-brand-soft">
+                  <Link to={item.to} className="flex-1 px-3 py-3 font-semibold text-brand-ink transition-colors duration-200 hover:text-brand-red" activeProps={{ className: "text-brand-red" }} activeOptions={{ exact: item.to === "/" }} aria-current={pathname === item.to ? "page" : undefined}>
                     {item.label}
                   </Link>
                   {item.children && (
@@ -114,7 +115,7 @@ export function Header() {
                 {item.children && openSub === item.to && (
                   <div className="pl-4 py-1 space-y-1">
                     {item.children.map((c) => (
-                      <Link key={c.to} to={c.to} className="block px-3 py-2 rounded-md text-sm text-brand-gray hover:bg-brand-soft">{c.label}</Link>
+                      <Link key={c.to} to={c.to} className="block px-3 py-2 text-sm text-brand-gray transition-colors duration-200 hover:text-brand-red" activeProps={{ className: "text-brand-red" }} aria-current={pathname === c.to ? "page" : undefined}>{c.label}</Link>
                     ))}
                   </div>
                 )}
