@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TransparenciaRouteImport } from './routes/transparencia'
 import { Route as EquipeRouteImport } from './routes/equipe'
+import { Route as EcossistemaRouteImport } from './routes/ecossistema'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as QuemSomosIndexRouteImport } from './routes/quem-somos/index'
@@ -29,6 +30,11 @@ const TransparenciaRoute = TransparenciaRouteImport.update({
 const EquipeRoute = EquipeRouteImport.update({
   id: '/equipe',
   path: '/equipe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EcossistemaRoute = EcossistemaRouteImport.update({
+  id: '/ecossistema',
+  path: '/ecossistema',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContatoRoute = ContatoRouteImport.update({
@@ -80,6 +86,7 @@ const GaleriaSlugRoute = GaleriaSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
+  '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
   '/transparencia': typeof TransparenciaRoute
   '/galeria/$slug': typeof GaleriaSlugRoute
@@ -93,6 +100,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
+  '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
   '/transparencia': typeof TransparenciaRoute
   '/galeria/$slug': typeof GaleriaSlugRoute
@@ -107,6 +115,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
+  '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
   '/transparencia': typeof TransparenciaRoute
   '/galeria/$slug': typeof GaleriaSlugRoute
@@ -122,6 +131,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/contato'
+    | '/ecossistema'
     | '/equipe'
     | '/transparencia'
     | '/galeria/$slug'
@@ -135,6 +145,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/contato'
+    | '/ecossistema'
     | '/equipe'
     | '/transparencia'
     | '/galeria/$slug'
@@ -148,6 +159,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/contato'
+    | '/ecossistema'
     | '/equipe'
     | '/transparencia'
     | '/galeria/$slug'
@@ -162,6 +174,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContatoRoute: typeof ContatoRoute
+  EcossistemaRoute: typeof EcossistemaRoute
   EquipeRoute: typeof EquipeRoute
   TransparenciaRoute: typeof TransparenciaRoute
   GaleriaSlugRoute: typeof GaleriaSlugRoute
@@ -187,6 +200,13 @@ declare module '@tanstack/react-router' {
       path: '/equipe'
       fullPath: '/equipe'
       preLoaderRoute: typeof EquipeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ecossistema': {
+      id: '/ecossistema'
+      path: '/ecossistema'
+      fullPath: '/ecossistema'
+      preLoaderRoute: typeof EcossistemaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contato': {
@@ -258,6 +278,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContatoRoute: ContatoRoute,
+  EcossistemaRoute: EcossistemaRoute,
   EquipeRoute: EquipeRoute,
   TransparenciaRoute: TransparenciaRoute,
   GaleriaSlugRoute: GaleriaSlugRoute,
