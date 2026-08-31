@@ -257,11 +257,8 @@ function CulturePointSection() {
   return (
     <section aria-labelledby="culture-point-title" className="relative overflow-hidden border-y border-brand-petrol/10 bg-brand-soft py-10 md:py-12">
       <HatchedCircle size={128} color="#FFB400" className="pointer-events-none absolute -bottom-16 -right-10 opacity-35" />
-      <div className="container-x relative grid items-center gap-6 md:grid-cols-[auto_1fr] md:gap-10">
-        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-petrol text-brand-gold" aria-hidden="true">
-          <span className="text-3xl font-bold">M</span>
-        </div>
-        <div className="max-w-3xl">
+      <div className="container-x relative">
+        <div className="max-w-3xl border-l-4 border-brand-petrol pl-5 md:pl-7">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Reconhecimento</p>
           <h2 id="culture-point-title" className="mt-2 text-2xl text-brand-ink md:text-3xl">Ponto de Cultura</h2>
           <p className="mt-2 leading-relaxed text-brand-gray">O Teatro Escola Maggu é certificado como Ponto de Cultura.</p>
