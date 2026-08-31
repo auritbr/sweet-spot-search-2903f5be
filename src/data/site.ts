@@ -22,31 +22,25 @@ export const hero = {
 
 export const slides = [
   {
-    title: "A arte transforma histórias",
-    text: "Teatro, formação cultural e novas possibilidades para crianças, jovens e comunidades.",
+    title: "Cultura que nasce no território e transforma pessoas.",
+    text: "No Benedito Bentes, em Maceió, a Associação Maggu conecta arte, educação, memória, cinema, leitura, comunicação, esporte, sustentabilidade e cidadania para ampliar direitos, fortalecer vínculos e criar novas possibilidades.",
     image: "https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=1920&q=80",
     buttons: [
-      { label: "Conheça nosso trabalho", to: "/quem-somos" },
-      { label: "Veja os projetos", to: "/projetos" },
+      { label: "Conheça a Maggu", to: "/quem-somos" },
+      { label: "Conheça o Ecossistema", to: "/ecossistema" },
     ],
   },
   {
-    title: "Cultura que ocupa o território",
-    text: "Ações culturais construídas com participação, pertencimento e compromisso social.",
+    title: "Muitas frentes. Um mesmo compromisso com o território.",
+    text: "Arte, audiovisual, leitura, infância, esporte e sustentabilidade se organizam em eixos que se conectam no Ecossistema Maggu.",
     image: "https://images.unsplash.com/photo-1519683384663-1de1a1e3f6a7?auto=format&fit=crop&w=1920&q=80",
-    buttons: [{ label: "Quem somos", to: "/quem-somos" }],
+    buttons: [{ label: "Explorar o Ecossistema", to: "/ecossistema" }],
   },
   {
-    title: "O palco também é lugar de futuro",
-    text: "Oficinas, espetáculos e experiências que fortalecem talentos e ampliam horizontes.",
+    title: "A arte como instrumento de transformação social.",
+    text: "Formação, criação, convivência, memória e participação cultural construídas com a comunidade do Benedito Bentes.",
     image: "https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&w=1920&q=80",
     buttons: [{ label: "Conheça os projetos", to: "/projetos" }],
-  },
-  {
-    title: "Cada apresentação carrega uma história",
-    text: "Acompanhe nossas atividades, encontros, oficinas e realizações.",
-    image: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1920&q=80",
-    buttons: [{ label: "Ver notícias", to: "/noticias" }],
   },
 ];
 
