@@ -41,6 +41,7 @@ export function Footer() {
           <div>
             <h3 className="text-white text-sm uppercase tracking-[0.16em] font-semibold mb-4">Conteúdo</h3>
             <ul className="space-y-2 text-sm text-white/80">
+              <li><Link to="/agenda" className="hover:text-brand-gold">Agenda</Link></li>
               <li><Link to="/noticias" className="hover:text-brand-gold">Notícias</Link></li>
               <li><Link to="/galeria" className="hover:text-brand-gold">Galeria</Link></li>
             </ul>

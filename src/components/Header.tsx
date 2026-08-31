@@ -13,14 +13,8 @@ const nav = [
     ],
   },
   { label: "Ecossistema", to: "/ecossistema" },
-  {
-    label: "Projetos", to: "/projetos",
-    children: [
-      { label: "Palco Aberto", to: "/projetos/palco-aberto" },
-      { label: "Corpo, Voz e Movimento", to: "/projetos/corpo-voz-e-movimento" },
-      { label: "Cena no Território", to: "/projetos/cena-no-territorio" },
-    ],
-  },
+  { label: "Projetos", to: "/projetos" },
+  { label: "Agenda", to: "/agenda" },
   { label: "Notícias", to: "/noticias" },
   { label: "Galeria", to: "/galeria" },
   { label: "Contato", to: "/contato" },
