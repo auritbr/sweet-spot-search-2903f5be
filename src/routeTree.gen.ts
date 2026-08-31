@@ -15,6 +15,7 @@ import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as EquipeRouteImport } from './routes/equipe'
 import { Route as EcossistemaRouteImport } from './routes/ecossistema'
 import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as CanalDeDenunciasRouteImport } from './routes/canal-de-denuncias'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as QuemSomosIndexRouteImport } from './routes/quem-somos/index'
 import { Route as ProjetosIndexRouteImport } from './routes/projetos/index'
@@ -52,6 +53,11 @@ const EcossistemaRoute = EcossistemaRouteImport.update({
 const ContatoRoute = ContatoRouteImport.update({
   id: '/contato',
   path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CanalDeDenunciasRoute = CanalDeDenunciasRouteImport.update({
+  id: '/canal-de-denuncias',
+  path: '/canal-de-denuncias',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -97,6 +103,7 @@ const GaleriaSlugRoute = GaleriaSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/canal-de-denuncias': typeof CanalDeDenunciasRoute
   '/contato': typeof ContatoRoute
   '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
@@ -113,6 +120,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/canal-de-denuncias': typeof CanalDeDenunciasRoute
   '/contato': typeof ContatoRoute
   '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
@@ -130,6 +138,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/canal-de-denuncias': typeof CanalDeDenunciasRoute
   '/contato': typeof ContatoRoute
   '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
@@ -148,6 +157,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/canal-de-denuncias'
     | '/contato'
     | '/ecossistema'
     | '/equipe'
@@ -164,6 +174,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/canal-de-denuncias'
     | '/contato'
     | '/ecossistema'
     | '/equipe'
@@ -180,6 +191,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/canal-de-denuncias'
     | '/contato'
     | '/ecossistema'
     | '/equipe'
@@ -197,6 +209,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CanalDeDenunciasRoute: typeof CanalDeDenunciasRoute
   ContatoRoute: typeof ContatoRoute
   EcossistemaRoute: typeof EcossistemaRoute
   EquipeRoute: typeof EquipeRoute
@@ -254,6 +267,13 @@ declare module '@tanstack/react-router' {
       path: '/contato'
       fullPath: '/contato'
       preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/canal-de-denuncias': {
+      id: '/canal-de-denuncias'
+      path: '/canal-de-denuncias'
+      fullPath: '/canal-de-denuncias'
+      preLoaderRoute: typeof CanalDeDenunciasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -317,6 +337,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CanalDeDenunciasRoute: CanalDeDenunciasRoute,
   ContatoRoute: ContatoRoute,
   EcossistemaRoute: EcossistemaRoute,
   EquipeRoute: EquipeRoute,
