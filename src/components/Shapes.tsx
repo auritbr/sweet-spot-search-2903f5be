@@ -1,8 +1,9 @@
 /* Reusable SVG shape primitives for the visual system */
-import type { SVGProps } from "react";
+import { useId, type SVGProps } from "react";
 
 export function HatchedCircle({ size = 200, color = "#08B9E6", className = "" }: { size?: number; color?: string; className?: string }) {
-  const id = `hatch-${Math.random().toString(36).slice(2, 8)}`;
+  const reactId = useId();
+  const id = `hatch-${reactId.replaceAll(":", "")}`;
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" className={className} aria-hidden="true">
       <defs>
