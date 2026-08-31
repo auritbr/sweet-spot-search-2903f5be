@@ -19,19 +19,19 @@ export const Route = createFileRoute("/quem-somos/")({
 });
 
 const milestones = [
-  { year: "1999", title: "O início de uma trajetória", text: "Nasce a Companhia de Teatro Cortina, iniciando uma trajetória de criação, formação artística e mobilização cultural." },
-  { year: "2001", title: "A cultura amplia sua presença no território", text: "A Paixão de Cristo fortalece a relação com artistas, moradores e comunidade do Benedito Bentes." },
-  { year: "2025", title: "Nasce a Associação Sócio Cultural Maggu", text: "A trajetória construída ao longo dos anos ganha uma nova estrutura institucional com a formalização da Associação." },
-  { year: "2025", title: "Reconhecimento como Ponto de Cultura", text: "O Teatro Escola Maggu é certificado como Ponto de Cultura." },
-  { year: "2026", title: "Um ecossistema de iniciativas", text: "A Associação fortalece sua governança e organiza suas diferentes frentes de atuação como parte do Ecossistema Maggu." },
+  { year: "1999", title: "O início da trajetória", text: "Nasce a Companhia de Teatro Cortina, iniciando uma trajetória de criação, formação artística e mobilização cultural." },
+  { year: "2001", title: "A presença cultural se amplia", text: "A Paixão de Cristo fortalece a relação com artistas, moradores e comunidade do Benedito Bentes." },
+  { year: "2025", title: "A Associação é formalizada", text: "A trajetória construída ao longo dos anos ganha uma nova estrutura institucional com a formalização da Associação Sócio Cultural Maggu." },
+  { year: "2025", title: "Ponto de Cultura", text: "O Teatro Escola Maggu é certificado como Ponto de Cultura." },
+  { year: "2026", title: "Ecossistema Maggu", text: "A Associação fortalece sua governança e organiza suas diferentes iniciativas como parte do Ecossistema Maggu." },
 ];
 
 const process = [
-  { number: "01", title: "Escutar", text: "Compreender pessoas, contextos, necessidades, histórias e possibilidades presentes no território." },
-  { number: "02", title: "Formar", text: "Criar oportunidades de aprendizagem, experimentação e desenvolvimento por meio da cultura." },
-  { number: "03", title: "Criar", text: "Transformar experiências, ideias e repertórios em processos, obras, ações e novas formas de expressão." },
-  { number: "04", title: "Circular", text: "Compartilhar produções, conhecimentos e experiências com diferentes públicos e espaços." },
-  { number: "05", title: "Registrar", text: "Preservar processos, resultados e memórias para reconhecer trajetórias e fortalecer a continuidade." },
+  { number: "01", title: "Escutar", text: "Compreender pessoas, contextos, histórias e possibilidades presentes no território." },
+  { number: "02", title: "Formar", text: "Criar oportunidades de aprendizagem e desenvolvimento por meio da cultura." },
+  { number: "03", title: "Criar", text: "Transformar experiências e ideias em processos, ações e formas de expressão." },
+  { number: "04", title: "Circular", text: "Compartilhar produções, conhecimentos e experiências com diferentes públicos." },
+  { number: "05", title: "Registrar", text: "Preservar processos e memórias para fortalecer a continuidade." },
 ];
 
 function QuemSomos() {
@@ -39,7 +39,7 @@ function QuemSomos() {
     <>
       <PageHero
         title="Uma organização feita de arte, território e possibilidades."
-        subtitle="A Associação Maggu reúne uma trajetória cultural construída no Benedito Bentes e transforma essa experiência em formação, criação, memória, participação e novas oportunidades."
+        subtitle="A Associação Maggu organiza e amplia uma trajetória cultural construída no Benedito Bentes por meio da arte, da formação e da participação comunitária."
         image="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80"
         breadcrumb={[{ label: "Início", to: "/" }, { label: "Quem Somos" }]}
         accent="cyan"
@@ -53,7 +53,7 @@ function QuemSomos() {
             <div className="space-y-5 text-brand-gray leading-relaxed">
               <p>A Associação Sócio Cultural Maggu é uma organização da sociedade civil sediada no Benedito Bentes, em Maceió. Formalizada em 2025, ela organiza e amplia uma trajetória cultural construída ao longo de décadas por meio do teatro, da formação artística e da mobilização comunitária.</p>
               <p>Hoje, a Associação articula iniciativas de cultura, educação, audiovisual, leitura, memória, comunicação, infância, esporte, sustentabilidade e desenvolvimento comunitário.</p>
-              <p>São diferentes formas de atuação conectadas por um mesmo compromisso: ampliar o acesso à cultura, fortalecer vínculos, formar pessoas, preservar memórias e criar novas possibilidades.</p>
+              <p>Cada frente possui identidade própria, mas todas compartilham o compromisso de ampliar o acesso à cultura, fortalecer vínculos, formar pessoas, preservar memórias e criar oportunidades.</p>
             </div>
           </div>
           <div className="relative mx-auto w-full max-w-lg">
@@ -144,7 +144,7 @@ function QuemSomos() {
 
       <Section className="bg-brand-soft overflow-hidden">
         <div className="container-x">
-          <SectionTitle eyebrow="Forma de atuação" title="Como transformamos" text="A atuação da Maggu acontece por meio de um processo contínuo que conecta escuta, formação, criação, circulação e memória." />
+          <SectionTitle eyebrow="Forma de atuação" title="Como transformamos" text="A atuação da Maggu conecta diferentes etapas de um mesmo processo cultural." />
           <ol className="relative grid gap-5 md:grid-cols-5">
             <span className="absolute left-[8%] right-[8%] top-9 hidden h-px bg-brand-petrol/25 md:block" aria-hidden="true" />
             {process.map((item, index) => (

@@ -21,9 +21,11 @@ import { Route as QuemSomosIndexRouteImport } from './routes/quem-somos/index'
 import { Route as ProjetosIndexRouteImport } from './routes/projetos/index'
 import { Route as NoticiasIndexRouteImport } from './routes/noticias/index'
 import { Route as GaleriaIndexRouteImport } from './routes/galeria/index'
+import { Route as AgendaIndexRouteImport } from './routes/agenda/index'
 import { Route as ProjetosSlugRouteImport } from './routes/projetos/$slug'
 import { Route as NoticiasSlugRouteImport } from './routes/noticias/$slug'
 import { Route as GaleriaSlugRouteImport } from './routes/galeria/$slug'
+import { Route as AgendaSlugRouteImport } from './routes/agenda/$slug'
 
 const TransparenciaRoute = TransparenciaRouteImport.update({
   id: '/transparencia',
@@ -85,6 +87,11 @@ const GaleriaIndexRoute = GaleriaIndexRouteImport.update({
   path: '/galeria/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AgendaIndexRoute = AgendaIndexRouteImport.update({
+  id: '/agenda/',
+  path: '/agenda/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjetosSlugRoute = ProjetosSlugRouteImport.update({
   id: '/projetos/$slug',
   path: '/projetos/$slug',
@@ -100,6 +107,11 @@ const GaleriaSlugRoute = GaleriaSlugRouteImport.update({
   path: '/galeria/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AgendaSlugRoute = AgendaSlugRouteImport.update({
+  id: '/agenda/$slug',
+  path: '/agenda/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -110,9 +122,11 @@ export interface FileRoutesByFullPath {
   '/privacidade': typeof PrivacidadeRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/transparencia': typeof TransparenciaRoute
+  '/agenda/$slug': typeof AgendaSlugRoute
   '/galeria/$slug': typeof GaleriaSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/projetos/$slug': typeof ProjetosSlugRoute
+  '/agenda/': typeof AgendaIndexRoute
   '/galeria/': typeof GaleriaIndexRoute
   '/noticias/': typeof NoticiasIndexRoute
   '/projetos/': typeof ProjetosIndexRoute
@@ -127,9 +141,11 @@ export interface FileRoutesByTo {
   '/privacidade': typeof PrivacidadeRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/transparencia': typeof TransparenciaRoute
+  '/agenda/$slug': typeof AgendaSlugRoute
   '/galeria/$slug': typeof GaleriaSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/projetos/$slug': typeof ProjetosSlugRoute
+  '/agenda': typeof AgendaIndexRoute
   '/galeria': typeof GaleriaIndexRoute
   '/noticias': typeof NoticiasIndexRoute
   '/projetos': typeof ProjetosIndexRoute
@@ -145,9 +161,11 @@ export interface FileRoutesById {
   '/privacidade': typeof PrivacidadeRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/transparencia': typeof TransparenciaRoute
+  '/agenda/$slug': typeof AgendaSlugRoute
   '/galeria/$slug': typeof GaleriaSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/projetos/$slug': typeof ProjetosSlugRoute
+  '/agenda/': typeof AgendaIndexRoute
   '/galeria/': typeof GaleriaIndexRoute
   '/noticias/': typeof NoticiasIndexRoute
   '/projetos/': typeof ProjetosIndexRoute
@@ -164,9 +182,11 @@ export interface FileRouteTypes {
     | '/privacidade'
     | '/termos-de-uso'
     | '/transparencia'
+    | '/agenda/$slug'
     | '/galeria/$slug'
     | '/noticias/$slug'
     | '/projetos/$slug'
+    | '/agenda/'
     | '/galeria/'
     | '/noticias/'
     | '/projetos/'
@@ -181,9 +201,11 @@ export interface FileRouteTypes {
     | '/privacidade'
     | '/termos-de-uso'
     | '/transparencia'
+    | '/agenda/$slug'
     | '/galeria/$slug'
     | '/noticias/$slug'
     | '/projetos/$slug'
+    | '/agenda'
     | '/galeria'
     | '/noticias'
     | '/projetos'
@@ -198,9 +220,11 @@ export interface FileRouteTypes {
     | '/privacidade'
     | '/termos-de-uso'
     | '/transparencia'
+    | '/agenda/$slug'
     | '/galeria/$slug'
     | '/noticias/$slug'
     | '/projetos/$slug'
+    | '/agenda/'
     | '/galeria/'
     | '/noticias/'
     | '/projetos/'
@@ -216,9 +240,11 @@ export interface RootRouteChildren {
   PrivacidadeRoute: typeof PrivacidadeRoute
   TermosDeUsoRoute: typeof TermosDeUsoRoute
   TransparenciaRoute: typeof TransparenciaRoute
+  AgendaSlugRoute: typeof AgendaSlugRoute
   GaleriaSlugRoute: typeof GaleriaSlugRoute
   NoticiasSlugRoute: typeof NoticiasSlugRoute
   ProjetosSlugRoute: typeof ProjetosSlugRoute
+  AgendaIndexRoute: typeof AgendaIndexRoute
   GaleriaIndexRoute: typeof GaleriaIndexRoute
   NoticiasIndexRoute: typeof NoticiasIndexRoute
   ProjetosIndexRoute: typeof ProjetosIndexRoute
@@ -311,6 +337,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GaleriaIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/agenda/': {
+      id: '/agenda/'
+      path: '/agenda'
+      fullPath: '/agenda/'
+      preLoaderRoute: typeof AgendaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projetos/$slug': {
       id: '/projetos/$slug'
       path: '/projetos/$slug'
@@ -332,6 +365,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GaleriaSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/agenda/$slug': {
+      id: '/agenda/$slug'
+      path: '/agenda/$slug'
+      fullPath: '/agenda/$slug'
+      preLoaderRoute: typeof AgendaSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -344,9 +384,11 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacidadeRoute: PrivacidadeRoute,
   TermosDeUsoRoute: TermosDeUsoRoute,
   TransparenciaRoute: TransparenciaRoute,
+  AgendaSlugRoute: AgendaSlugRoute,
   GaleriaSlugRoute: GaleriaSlugRoute,
   NoticiasSlugRoute: NoticiasSlugRoute,
   ProjetosSlugRoute: ProjetosSlugRoute,
+  AgendaIndexRoute: AgendaIndexRoute,
   GaleriaIndexRoute: GaleriaIndexRoute,
   NoticiasIndexRoute: NoticiasIndexRoute,
   ProjetosIndexRoute: ProjetosIndexRoute,

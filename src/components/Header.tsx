@@ -13,14 +13,8 @@ const nav = [
     ],
   },
   { label: "Ecossistema", to: "/ecossistema" },
-  {
-    label: "Projetos", to: "/projetos",
-    children: [
-      { label: "Palco Aberto", to: "/projetos/palco-aberto" },
-      { label: "Corpo, Voz e Movimento", to: "/projetos/corpo-voz-e-movimento" },
-      { label: "Cena no Território", to: "/projetos/cena-no-territorio" },
-    ],
-  },
+  { label: "Projetos", to: "/projetos" },
+  { label: "Agenda", to: "/agenda" },
   { label: "Notícias", to: "/noticias" },
   { label: "Galeria", to: "/galeria" },
   { label: "Contato", to: "/contato" },
@@ -56,7 +50,7 @@ export function Header() {
       </a>
       <div className="container-x flex items-center justify-between h-16 md:h-20">
         <Link to="/" className={`flex items-center gap-3 ${textColor}`}>
-          <span className="relative inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-red text-white" style={{ fontWeight: 700 }}>C</span>
+          <span className="relative inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-red text-white" style={{ fontWeight: 700 }}>M</span>
           <span style={{ fontSize: "1rem", fontWeight: 700, letterSpacing: "-0.01em" }}>{site.short}</span>
         </Link>
 

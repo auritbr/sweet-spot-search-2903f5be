@@ -68,7 +68,7 @@ function Ecossistema() {
             <SectionTitle eyebrow="A lógica do Ecossistema" title="Muitas frentes. Um mesmo compromisso com o território." />
             <div className="space-y-5 text-brand-gray leading-relaxed">
               <p>Teatro conversa com educação. Cinema também é formação. Livro é memória. Brincar é direito. Esporte cria convivência. Comunicação fortalece participação. Sustentabilidade também pode nascer da criação.</p>
-              <p>Por isso, as iniciativas da Associação Maggu são organizadas como um ecossistema: diferentes áreas de atuação que mantêm suas próprias características, mas compartilham relações, públicos, aprendizados e objetivos.</p>
+              <p>Por isso, organizamos as iniciativas da Associação como um ecossistema: áreas de atuação que mantêm suas próprias características, mas compartilham relações, públicos, aprendizados e objetivos.</p>
             </div>
           </div>
           <EcosystemDiagram />
@@ -99,7 +99,7 @@ function Ecossistema() {
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-gold">Conexões</p>
             <h2 className="mt-3 text-2xl md:text-3xl text-white">Os eixos se encontram.</h2>
-            <p className="mt-4 leading-relaxed text-white/85">Uma mesma iniciativa pode envolver formação, criação, território, memória, comunicação e redes. Os eixos ajudam a organizar a descoberta, mas não separam aquilo que acontece de forma integrada na prática.</p>
+            <p className="mt-4 leading-relaxed text-white/85">Uma mesma iniciativa pode envolver diferentes dimensões da atuação da Maggu. Os eixos ajudam a organizar a descoberta sem separar aquilo que acontece de forma integrada.</p>
           </div>
           <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3" aria-label="Conceitos transversais">
             {["Formação", "Criação", "Território", "Memória", "Comunicação", "Redes"].map((item, index) => (

@@ -18,13 +18,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3">
-              <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-red text-white font-display uppercase text-lg">C</span>
+              <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-red text-white font-display uppercase text-lg">M</span>
               <span className="font-display uppercase text-xl">{site.short}</span>
             </div>
             <p className="mt-4 text-white/80 text-sm leading-relaxed">
-              Ponto de Cultura dedicado ao teatro e às artes cênicas, promovendo formação, criação e participação cultural.
+              Organização da sociedade civil sediada no Benedito Bentes, em Maceió, que articula cultura, formação, memória e participação comunitária.
             </p>
-            <p className="mt-4 text-xs text-brand-gold uppercase tracking-widest font-bold">Reconhecido como Ponto de Cultura</p>
           </div>
 
           <div>
@@ -41,6 +40,7 @@ export function Footer() {
           <div>
             <h3 className="text-white text-sm uppercase tracking-[0.16em] font-semibold mb-4">Conteúdo</h3>
             <ul className="space-y-2 text-sm text-white/80">
+              <li><Link to="/agenda" className="hover:text-brand-gold">Agenda</Link></li>
               <li><Link to="/noticias" className="hover:text-brand-gold">Notícias</Link></li>
               <li><Link to="/galeria" className="hover:text-brand-gold">Galeria</Link></li>
             </ul>
