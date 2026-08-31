@@ -24,7 +24,7 @@ export function PageHero({
       </div>
 
       <QuarterCircle corner="tr" color={accentHex.petrol} className="absolute -right-4 -top-4 h-28 w-28 opacity-90 md:h-44 md:w-44 xl:h-52 xl:w-52" />
-      <ArcThick color={accentHex[accent]} className="absolute -left-2 top-[30%] w-24 opacity-90 md:left-5 md:w-36 lg:w-40" from={210} to={340} />
+      <ArcThick color={accentHex[accent]} className="absolute -left-5 top-5 w-24 opacity-90 sm:-left-2 sm:top-[30%] md:left-5 md:w-36 lg:w-40" from={210} to={340} />
       <DiamondsCluster color={accentHex.cyan} className="absolute bottom-20 right-7 hidden opacity-90 md:block lg:right-12" size={54} />
       <div className="pointer-events-none absolute -bottom-1 inset-x-0 h-12 md:h-16 bg-white [clip-path:ellipse(90%_100%_at_50%_100%)]" aria-hidden />
 
