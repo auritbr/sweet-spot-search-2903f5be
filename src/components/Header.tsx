@@ -9,9 +9,9 @@ const nav = [
     children: [
       { label: "Quem Somos", to: "/quem-somos" },
       { label: "Equipe", to: "/equipe" },
-      { label: "Transparência", to: "/transparencia" },
     ],
   },
+  { label: "Ecossistema", to: "/ecossistema" },
   {
     label: "Projetos", to: "/projetos",
     children: [
@@ -22,6 +22,7 @@ const nav = [
   },
   { label: "Notícias", to: "/noticias" },
   { label: "Galeria", to: "/galeria" },
+  { label: "Transparência", to: "/transparencia" },
   { label: "Contato", to: "/contato" },
 ];
 

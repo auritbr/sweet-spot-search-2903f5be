@@ -41,9 +41,9 @@ export function Footer() {
             <h3 className="text-white font-semibold mb-4">Projetos</h3>
             <ul className="space-y-2 text-sm text-white/80">
               <li><Link to="/projetos" className="hover:text-brand-gold">Todos os projetos</Link></li>
-              <li><Link to="/projetos/palco-aberto" className="hover:text-brand-gold">Palco Aberto</Link></li>
-              <li><Link to="/projetos/corpo-voz-e-movimento" className="hover:text-brand-gold">Corpo, Voz e Movimento</Link></li>
-              <li><Link to="/projetos/cena-no-territorio" className="hover:text-brand-gold">Cena no Território</Link></li>
+              <li><Link to="/projetos/$slug" params={{ slug: "palco-aberto" }} className="hover:text-brand-gold">Palco Aberto</Link></li>
+              <li><Link to="/projetos/$slug" params={{ slug: "corpo-voz-e-movimento" }} className="hover:text-brand-gold">Corpo, Voz e Movimento</Link></li>
+              <li><Link to="/projetos/$slug" params={{ slug: "cena-no-territorio" }} className="hover:text-brand-gold">Cena no Território</Link></li>
               <li><Link to="/noticias" className="hover:text-brand-gold">Notícias</Link></li>
               <li><Link to="/galeria" className="hover:text-brand-gold">Galeria</Link></li>
             </ul>
