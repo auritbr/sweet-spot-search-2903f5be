@@ -2,8 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { slides, albums } from "@/data/site";
 import { Section, SectionTitle } from "@/components/PageHero";
-import { AgendaCard } from "@/components/AgendaCard";
-import { upcomingEvents } from "@/data/agenda";
+import { AgendaStatusBadge } from "@/components/AgendaCard";
+import { eventDayMonth, upcomingEvents } from "@/data/agenda";
 import { HatchedCircle, ArcThick, BrushStroke, DiamondsCluster, QuarterCircle, Triangle } from "@/components/Shapes";
 
 export const Route = createFileRoute("/")({
@@ -255,14 +255,14 @@ function ProjectHighlights() {
 
 function CulturePointSection() {
   return (
-    <section aria-labelledby="culture-point-title" className="relative overflow-hidden border-y border-brand-petrol/10 bg-brand-soft py-10 md:py-12">
-      <HatchedCircle size={128} color="#FFB400" className="pointer-events-none absolute -bottom-16 -right-10 opacity-35" />
-      <div className="container-x relative">
-        <div className="max-w-3xl border-l-4 border-brand-petrol pl-5 md:pl-7">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Reconhecimento</p>
-          <h2 id="culture-point-title" className="mt-2 text-2xl text-brand-ink md:text-3xl">Ponto de Cultura</h2>
-          <p className="mt-2 leading-relaxed text-brand-gray">O Teatro Escola Maggu é certificado como Ponto de Cultura.</p>
+    <section aria-labelledby="culture-point-title" className="relative overflow-hidden bg-white py-12 md:py-16">
+      <div className="container-x relative grid items-center gap-8 md:grid-cols-[1fr_auto] md:gap-16 lg:gap-24">
+        <div className="max-w-3xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Ponto de Cultura</p>
+          <h2 id="culture-point-title" className="mt-3 text-2xl text-brand-ink md:text-3xl">Cultura reconhecida no território.</h2>
+          <p className="mt-4 leading-relaxed text-brand-gray">O Teatro Escola Maggu é certificado como Ponto de Cultura, fortalecendo uma trajetória de atuação cultural construída no Benedito Bentes.</p>
         </div>
+        <HatchedCircle size={112} color="#FFB400" className="pointer-events-none hidden opacity-45 md:block" />
       </div>
     </section>
   );
@@ -271,28 +271,50 @@ function CulturePointSection() {
 function AgendaSection() {
   const events = upcomingEvents(3);
   return (
-    <Section className="bg-brand-soft overflow-hidden">
-      <div className="container-x">
-        <SectionTitle
-          eyebrow="Agenda"
-          title="Acontecendo agora"
-          text="Cursos, sessões, oficinas, apresentações, encontros e outras atividades do Ecossistema Maggu."
-        />
+    <Section className="overflow-hidden bg-white">
+      <div className="container-x grid gap-10 lg:grid-cols-[.78fr_1.22fr] lg:gap-16">
+        <div>
+          <SectionTitle
+            eyebrow="Agenda"
+            title="Acontecendo agora"
+            text="Cursos, sessões, oficinas, apresentações, encontros e outras atividades do Ecossistema Maggu."
+          />
+          <div className="flex flex-wrap items-center gap-4">
+            <Link to="/agenda" className="inline-flex rounded-full bg-brand-petrol px-7 py-3 text-sm font-bold text-white transition hover:bg-brand-red">Ver Agenda</Link>
+            {!events.length && (
+              <Link to="/projetos" className="text-sm font-bold text-brand-petrol underline decoration-brand-red decoration-2 underline-offset-4 transition hover:text-brand-red">Conheça os projetos</Link>
+            )}
+          </div>
+        </div>
         {events.length ? (
-          <div className="space-y-4">
-            {events.map((e) => <AgendaCard key={e.slug} event={e} />)}
+          <div className="border-t border-brand-petrol/15">
+            {events.map((event) => {
+              const { day, month } = eventDayMonth(event.date);
+              return (
+                <article key={event.slug} className="grid gap-4 border-b border-brand-petrol/15 py-6 sm:grid-cols-[4.5rem_1fr_auto] sm:items-center">
+                  <time dateTime={event.date} className="text-brand-red">
+                    <span className="block text-2xl font-bold leading-none">{day}</span>
+                    <span className="mt-1 block text-xs font-bold uppercase tracking-[0.18em]">{month}</span>
+                  </time>
+                  <div className="min-w-0">
+                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-red">{event.category}</p>
+                    <h3 className="mt-1 text-lg leading-snug text-brand-ink">{event.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-brand-gray">{[event.time, event.location, event.summary].filter(Boolean).join(" · ")}</p>
+                  </div>
+                  <div className="flex flex-col items-start gap-3 sm:items-end">
+                    <AgendaStatusBadge event={event} />
+                    <Link to="/agenda/$slug" params={{ slug: event.slug }} className="rounded-full border-2 border-brand-petrol px-5 py-2 text-sm font-bold text-brand-petrol transition hover:bg-brand-soft">Saiba mais</Link>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         ) : (
-          <p className="max-w-2xl border-l-4 border-brand-red bg-white p-6 leading-relaxed text-brand-gray">
-            Novas atividades serão anunciadas em breve. Enquanto isso, conheça nossas iniciativas.
-          </p>
+          <div className="max-w-2xl border-t border-brand-petrol/15 pt-6">
+            <h3 className="text-xl text-brand-ink">Novas atividades em breve</h3>
+            <p className="mt-3 leading-relaxed text-brand-gray">Acompanhe a Agenda para conhecer as próximas oficinas, apresentações, sessões e encontros.</p>
+          </div>
         )}
-        <div className="mt-9 flex flex-wrap items-center gap-4">
-          <Link to="/agenda" className="inline-flex rounded-full bg-brand-petrol px-7 py-3 text-sm font-bold text-white transition hover:bg-brand-red">Ver Agenda</Link>
-          {!events.length && (
-            <Link to="/projetos" className="text-sm font-bold text-brand-petrol underline decoration-brand-red decoration-2 underline-offset-4 transition hover:text-brand-red">Conheça os projetos</Link>
-          )}
-        </div>
       </div>
     </Section>
   );
@@ -324,19 +346,19 @@ function MemorySection() {
 
 function TransparencySection() {
   return (
-    <Section className="bg-brand-petrol">
-      <div className="container-x md:flex md:items-center md:justify-between md:gap-10">
-        <div className="max-w-2xl border-l-4 border-brand-gold pl-6">
-          <h2 className="text-white" style={{ fontSize: "clamp(1.5rem, 2.2vw, 2.1rem)", lineHeight: 1.2, fontWeight: 700 }}>
-            Transparência e responsabilidade institucional
-          </h2>
-          <p className="mt-4 text-white/85" style={{ lineHeight: 1.7 }}>
-            Documentos, informações de governança, políticas e registros institucionais reunidos para facilitar o acesso público e fortalecer a responsabilidade da Associação.
-          </p>
-        </div>
-        <Link to="/transparencia" className="mt-6 inline-flex shrink-0 rounded-full bg-brand-gold px-7 py-3 text-sm font-bold text-brand-petrol transition hover:bg-white md:mt-0">Acessar Transparência</Link>
+    <section className="relative overflow-hidden bg-white pb-24 pt-12 md:pb-32 md:pt-16">
+      <Triangle color="#FFB400" size={48} className="pointer-events-none absolute right-8 top-12 hidden opacity-70 md:block" rotate={18} />
+      <div className="container-x relative mx-auto max-w-3xl text-center">
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Transparência</p>
+        <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.5rem, 2.2vw, 2.1rem)", lineHeight: 1.2, fontWeight: 700 }}>
+          Informação acessível. Gestão responsável.
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-brand-gray" style={{ lineHeight: 1.7 }}>
+          Documentos, informações de governança, políticas e registros institucionais reunidos em um espaço próprio para facilitar o acesso público.
+        </p>
+        <Link to="/transparencia" className="mt-7 inline-flex rounded-full bg-brand-gold px-7 py-3 text-sm font-bold text-brand-petrol transition hover:bg-white">Acessar Transparência</Link>
       </div>
-    </Section>
+    </section>
   );
 }
 

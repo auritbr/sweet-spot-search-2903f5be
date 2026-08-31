@@ -111,11 +111,15 @@ function QuemSomos() {
             ))}
           </ol>
 
-          <aside className="mt-12 border-l-4 border-brand-red bg-white px-6 py-6 md:flex md:items-center md:gap-8 md:px-8" aria-labelledby="ponto-cultura-title">
-            <div className="min-w-0">
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-red">Reconhecimento</p>
-              <h2 id="ponto-cultura-title" className="mt-2 text-2xl text-brand-ink">Ponto de Cultura</h2>
-              <p className="mt-2 max-w-3xl leading-relaxed text-brand-gray">Em 2025, o Teatro Escola Maggu recebeu a certificação como Ponto de Cultura, reconhecendo sua atuação cultural no território.</p>
+          <aside className="relative mt-14 grid items-end gap-6 py-4 md:grid-cols-[1fr_auto] md:gap-12" aria-labelledby="ponto-cultura-title">
+            <div className="max-w-3xl">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-red">Ponto de Cultura</p>
+              <h2 id="ponto-cultura-title" className="mt-3 text-2xl text-brand-ink">Um reconhecimento que integra essa trajetória.</h2>
+              <p className="mt-4 leading-relaxed text-brand-gray">Em 2025, o Teatro Escola Maggu foi certificado como Ponto de Cultura, fortalecendo institucionalmente uma atuação cultural construída no território.</p>
+            </div>
+            <div className="relative pr-10 text-4xl font-bold text-brand-red md:text-5xl" aria-hidden="true">
+              2025
+              <BrushStroke color="#FFB400" className="absolute -bottom-3 left-0 w-24" />
             </div>
           </aside>
         </div>
@@ -141,8 +145,8 @@ function QuemSomos() {
       <Section className="overflow-hidden bg-white">
         <div className="container-x">
           <SectionTitle eyebrow="O que nos orienta" title="Missão e filosofia" text="Duas referências que orientam a atuação da Associação e conectam suas diferentes iniciativas." />
-          <div className="grid gap-0 overflow-hidden rounded-md lg:grid-cols-[1.12fr_.88fr]">
-            <article className="relative flex min-h-[320px] flex-col justify-end overflow-hidden bg-brand-petrol p-8 md:p-11">
+          <div className="space-y-10 lg:space-y-14">
+            <article className="relative flex min-h-[320px] max-w-5xl flex-col justify-end overflow-hidden bg-brand-petrol p-8 md:p-11">
               <QuarterCircle corner="tr" color="#ED1C24" className="absolute -right-2 -top-2 w-36 opacity-90" />
               <HatchedCircle size={160} color="#08B9E6" className="absolute -left-12 top-8 opacity-25" />
               <div className="relative max-w-2xl">
@@ -150,7 +154,7 @@ function QuemSomos() {
                 <h2 className="mt-4 text-2xl leading-snug text-white md:text-3xl">Transformar a exclusão cultural em obra-prima, antes que a criatividade seja uma relíquia do passado. Incluir, inspirar, criar.</h2>
               </div>
             </article>
-            <article className="relative flex min-h-[320px] flex-col justify-end overflow-hidden bg-brand-gold p-8 md:p-11">
+            <article className="relative ml-auto flex min-h-[280px] max-w-3xl flex-col justify-end overflow-hidden bg-brand-gold p-8 md:p-11">
               <ArcThick color="#ED1C24" className="absolute -right-8 -top-8 w-32" from={120} to={280} />
               <DiamondsCluster color="#00384C" className="absolute left-8 top-8 opacity-35" size={52} />
               <div className="relative">
@@ -181,22 +185,24 @@ function QuemSomos() {
 
       <Section className="bg-white">
         <div className="container-x grid items-start gap-10 lg:grid-cols-[.8fr_1.2fr]">
-          <SectionTitle eyebrow="Organização institucional" title="Uma estrutura para dar continuidade ao que construímos." text="A formalização da Associação fortalece a definição de responsabilidades, a organização institucional e a continuidade das iniciativas desenvolvidas." />
           <div>
-            <h3 className="mb-4 text-xl text-brand-ink">Diretoria</h3>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <article className="border-l-4 border-brand-red bg-brand-soft p-6 rounded-md">
-                <h4 className="text-lg text-brand-ink">Cristiano Alcides da Silva Paes</h4>
-                <p className="mt-3 text-xs font-bold uppercase tracking-[0.18em] text-brand-red">Diretor Geral</p>
-              </article>
-              <article className="border-l-4 border-brand-cyan bg-brand-soft p-6 rounded-md">
-                <h4 className="text-lg text-brand-ink">Rafaela da Silva Leite</h4>
-                <p className="mt-3 text-xs font-bold uppercase tracking-[0.18em] text-brand-red">Diretora Administrativo-Financeira</p>
-              </article>
-            </div>
+            <SectionTitle eyebrow="Organização institucional" title="Uma estrutura para dar continuidade ao que construímos." text="A formalização da Associação fortalece a definição de responsabilidades, a organização institucional e a continuidade das iniciativas desenvolvidas." />
             <div className="mt-6 flex flex-wrap gap-3">
               <Link to="/equipe" className="inline-flex rounded-full bg-brand-petrol px-6 py-2.5 text-sm font-bold text-white transition hover:bg-brand-red">Conheça nossa equipe</Link>
               <Link to="/transparencia" className="inline-flex rounded-full border-2 border-brand-petrol px-6 py-2.5 text-sm font-bold text-brand-petrol transition hover:bg-brand-soft">Acesse a Transparência</Link>
+            </div>
+          </div>
+          <div className="lg:pt-1">
+            <h3 className="text-xs font-bold uppercase tracking-[0.22em] text-brand-red">Diretoria</h3>
+            <div className="mt-5 divide-y divide-brand-petrol/20 border-y border-brand-petrol/20">
+              <div className="py-6">
+                <h4 className="text-lg text-brand-ink">Cristiano Alcides da Silva Paes</h4>
+                <p className="mt-2 text-sm text-brand-gray">Diretor Geral</p>
+              </div>
+              <div className="py-6">
+                <h4 className="text-lg text-brand-ink">Rafaela da Silva Leite</h4>
+                <p className="mt-2 text-sm text-brand-gray">Diretora Administrativo-Financeira</p>
+              </div>
             </div>
           </div>
         </div>

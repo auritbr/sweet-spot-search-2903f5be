@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Section } from "@/components/PageHero";
-import { AgendaCard, AgendaEmptyState } from "@/components/AgendaCard";
-import { ArcThick, BrushStroke, DiamondsCluster, HatchedCircle, QuarterCircle } from "@/components/Shapes";
-import { agendaCategories, isWithinPeriod, sortByDate, agendaEvents, type AgendaPeriod } from "@/data/agenda";
+import { Section, SectionTitle } from "@/components/PageHero";
+import { AgendaStatusBadge } from "@/components/AgendaCard";
+import { ArcThick, BrushStroke, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
+import { agendaCategories, eventDayMonth, isWithinPeriod, sortByDate, agendaEvents, type AgendaPeriod } from "@/data/agenda";
 
 export const Route = createFileRoute("/agenda/")({
   head: () => ({
@@ -39,55 +39,44 @@ function Agenda() {
 
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-brand-soft">
-        <QuarterCircle corner="tr" color="#ED1C24" className="absolute -right-3 -top-3 w-28 md:w-44" />
-        <ArcThick color="#FFB400" className="absolute left-4 bottom-6 w-24 md:w-36 opacity-90" from={210} to={340} />
-        <HatchedCircle size={180} color="#08B9E6" className="absolute -bottom-10 right-1/4 opacity-30 hidden md:block" />
-        <DiamondsCluster color="#08B9E6" className="absolute right-16 top-28 hidden lg:block" size={48} />
-        <div className="container-x relative grid gap-10 pb-14 pt-28 md:grid-cols-[1.1fr_.9fr] md:items-center md:pb-16 md:pt-32">
-          <div>
-            <nav aria-label="Breadcrumb" className="text-sm text-brand-gray">
-              <ol className="flex flex-wrap items-center gap-2">
-                <li><Link to="/" className="underline underline-offset-4 hover:text-brand-red">Início</Link></li>
-                <li aria-hidden="true">/</li>
-                <li className="font-semibold text-brand-ink">Agenda</li>
-              </ol>
-            </nav>
-            <h1 className="mt-4 text-brand-ink" style={{ fontSize: "clamp(2rem, 3.4vw, 3.2rem)", lineHeight: 1.08, fontWeight: 700 }}>
-              O que está acontecendo agora.
-            </h1>
-            <BrushStroke color="#ED1C24" className="mt-5 w-32" />
-            <p className="mt-5 max-w-2xl leading-relaxed text-brand-gray">
-              Encontre cursos, sessões de cinema, oficinas, apresentações, encontros, atividades esportivas e outras ações do Ecossistema Maggu.
-            </p>
-          </div>
-          <div className="relative mx-auto w-full max-w-md">
-            <div className="aspect-[4/3] overflow-hidden rounded-md">
-              <img
-                src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80"
-                alt="Encontro cultural com participantes reunidos"
-                className="h-full w-full object-cover"
-              />
-            </div>
-            <ArcThick color="#00384C" className="absolute -left-6 -top-5 w-24" from={100} to={260} />
-          </div>
+      <section className="relative overflow-hidden bg-brand-soft py-20 md:py-24">
+        <HatchedCircle size={100} color="#08B9E6" className="absolute left-10 top-10 opacity-50" />
+        <ArcThick color="#ED1C24" className="absolute bottom-10 right-10 w-32 opacity-80" from={200} to={340} />
+        <Triangle color="#FFB400" size={54} className="absolute right-24 top-20 hidden md:block" rotate={20} />
+        <Triangle color="#08B9E6" size={40} className="absolute bottom-20 left-24 hidden md:block" rotate={-15} />
+        <div className="container-x relative pt-12 text-center">
+          <h1 className="text-brand-ink" style={{ fontSize: "clamp(2rem, 3.3vw, 3.5rem)", lineHeight: 1.1, fontWeight: 700 }}>Agenda</h1>
+          <BrushStroke color="#FFB400" className="mx-auto mt-5 w-36" />
+          <p className="mx-auto mt-5 max-w-2xl text-brand-gray" style={{ fontSize: "clamp(1rem, 1.2vw, 1.1rem)", lineHeight: 1.6 }}>
+            Cursos, sessões de cinema, oficinas, apresentações, encontros, atividades esportivas e outras ações do Ecossistema Maggu.
+          </p>
         </div>
       </section>
 
-      <Section className="bg-white">
+      <Section className="overflow-hidden bg-white">
+        <div className="container-x grid items-center gap-10 lg:grid-cols-[1fr_.55fr] lg:gap-16">
+          <div className="max-w-3xl">
+            <SectionTitle eyebrow="Agenda Maggu" title="O que está acontecendo agora" text="A Agenda reúne atividades abertas, próximas programações e oportunidades de participação nas diferentes iniciativas da Associação." />
+            <p className="leading-relaxed text-brand-gray">Encontre oficinas, cursos, sessões, apresentações, encontros e outras ações organizadas por data.</p>
+          </div>
+          <HatchedCircle size={150} color="#08B9E6" className="mx-auto hidden opacity-35 lg:block" />
+        </div>
+      </Section>
+
+      <section className="bg-white pb-12 md:pb-16">
         <div className="container-x">
-          <div className="flex flex-col gap-5 border-b border-brand-petrol/10 pb-6">
+          <div className="flex flex-col gap-6 border-y border-brand-petrol/15 py-5">
             <div>
               <h2 className="sr-only">Filtros da agenda</h2>
-              <div role="group" aria-label="Filtrar por categoria" className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
+              <div role="group" aria-label="Filtrar por categoria" className="flex gap-6 overflow-x-auto">
                 {["Todos", ...agendaCategories].map((c) => (
                   <button
                     key={c}
                     type="button"
                     onClick={() => setCategory(c)}
                     aria-pressed={category === c}
-                    className={`shrink-0 rounded-full px-5 py-2.5 text-sm font-semibold transition ${
-                      category === c ? "bg-brand-red text-white" : "bg-brand-soft text-brand-petrol hover:bg-brand-gold/40"
+                    className={`shrink-0 border-b-2 px-0 py-2 text-sm font-semibold transition ${
+                      category === c ? "border-brand-red text-brand-red" : "border-transparent text-brand-petrol hover:text-brand-red"
                     }`}
                   >
                     {c}
@@ -95,17 +84,17 @@ function Agenda() {
                 ))}
               </div>
             </div>
-            <div role="group" aria-label="Filtrar por período" className="flex flex-wrap gap-2">
+            <div role="group" aria-label="Filtrar por período" className="flex flex-wrap gap-6">
               {periods.map((p) => (
                 <button
                   key={p.value}
                   type="button"
                   onClick={() => setPeriod(p.value)}
                   aria-pressed={period === p.value}
-                  className={`rounded-full border-2 px-5 py-2 text-sm font-semibold transition ${
+                  className={`border-b-2 px-0 py-2 text-sm font-semibold transition ${
                     period === p.value
-                      ? "border-brand-petrol bg-brand-petrol text-white"
-                      : "border-brand-petrol/25 text-brand-petrol hover:bg-brand-soft"
+                      ? "border-brand-petrol text-brand-petrol"
+                      : "border-transparent text-brand-gray hover:text-brand-petrol"
                   }`}
                 >
                   {p.label}
@@ -114,15 +103,49 @@ function Agenda() {
             </div>
           </div>
 
-          <div className="mt-8 space-y-4" aria-live="polite">
+          <div className="mt-8" aria-live="polite">
             {events.length ? (
-              events.map((e) => <AgendaCard key={e.slug} event={e} />)
+              <div className="border-t border-brand-petrol/15">
+                {events.map((event) => {
+                  const { day, month, weekday } = eventDayMonth(event.date);
+                  const closed = event.status === "inscricoes-encerradas";
+                  return (
+                    <article key={event.slug} className="grid gap-5 border-b border-brand-petrol/15 py-7 md:grid-cols-[6rem_1fr_auto] md:items-center md:gap-8">
+                      <time dateTime={event.date} className="text-brand-red">
+                        <span className="block text-3xl font-bold leading-none">{day}</span>
+                        <span className="mt-1 block text-xs font-bold uppercase tracking-[0.18em]">{month}</span>
+                        <span className="mt-2 block text-sm capitalize text-brand-gray">{weekday}{event.time ? ` · ${event.time}` : ""}</span>
+                      </time>
+                      <div className="min-w-0">
+                        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-red">{event.category}</p>
+                        <h3 className="mt-2 text-xl leading-snug text-brand-ink">{event.title}</h3>
+                        <p className="mt-2 text-sm leading-relaxed text-brand-gray">{[event.location, event.summary].filter(Boolean).join(" · ")}</p>
+                      </div>
+                      <div className="flex flex-col items-start gap-3 md:items-end">
+                        <AgendaStatusBadge event={event} />
+                        <div className="flex flex-wrap gap-2">
+                          <Link to="/agenda/$slug" params={{ slug: event.slug }} className="rounded-full border-2 border-brand-petrol px-5 py-2 text-sm font-bold text-brand-petrol transition hover:bg-brand-soft">Saiba mais</Link>
+                          {event.registrationUrl && !closed && <a href={event.registrationUrl} target="_blank" rel="noopener noreferrer" className="rounded-full bg-brand-red px-5 py-2 text-sm font-bold text-white transition hover:bg-brand-petrol">Inscreva-se</a>}
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
             ) : (
-              <AgendaEmptyState />
+              <div className="max-w-3xl py-6">
+                <h2 className="text-xl text-brand-ink">Novas atividades em breve</h2>
+                <p className="mt-3 leading-relaxed text-brand-gray">A Agenda será atualizada conforme novas oficinas, apresentações, sessões, encontros e outras atividades forem confirmadas.</p>
+                <p className="mt-3 leading-relaxed text-brand-gray">Enquanto isso, conheça as iniciativas que fazem parte do Ecossistema Maggu.</p>
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <Link to="/projetos" className="rounded-full bg-brand-red px-6 py-3 text-sm font-bold text-white transition hover:bg-brand-petrol">Conheça os projetos</Link>
+                  <Link to="/ecossistema" className="rounded-full border-2 border-brand-petrol px-6 py-3 text-sm font-bold text-brand-petrol transition hover:bg-brand-soft">Explore o Ecossistema</Link>
+                </div>
+              </div>
             )}
           </div>
         </div>
-      </Section>
+      </section>
 
       <section className="relative overflow-hidden bg-brand-petrol py-14 md:py-18">
         <QuarterCircle corner="br" color="#ED1C24" className="absolute -bottom-2 -right-2 w-32 opacity-90" />
