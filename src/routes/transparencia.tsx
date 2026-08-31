@@ -97,8 +97,28 @@ function Transparencia() {
               );
             })}
           </div>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
+            <Link to="/privacidade" className="group rounded-2xl border border-black/10 p-6 hover:bg-brand-soft/60 transition block">
+              <span className="inline-block w-10 h-1.5 rounded-full" style={{ backgroundColor: "#08B9E6" }} aria-hidden="true" />
+              <h2 className="mt-4 text-brand-ink" style={{ fontSize: "1.1rem", fontWeight: 700 }}>Privacidade e Proteção de Dados</h2>
+              <p className="mt-2 text-sm text-brand-gray" style={{ lineHeight: 1.7 }}>
+                Orientações sobre o tratamento de dados pessoais nos canais digitais da Associação.
+              </p>
+              <span className="mt-4 inline-block text-sm text-brand-red group-hover:underline" style={{ fontWeight: 600 }}>Acessar página</span>
+            </Link>
+            <Link to="/canal-de-denuncias" className="group rounded-2xl border border-black/10 p-6 hover:bg-brand-soft/60 transition block">
+              <span className="inline-block w-10 h-1.5 rounded-full" style={{ backgroundColor: "#FFB400" }} aria-hidden="true" />
+              <h2 className="mt-4 text-brand-ink" style={{ fontSize: "1.1rem", fontWeight: 700 }}>Canal de Denúncias e Relato Ético</h2>
+              <p className="mt-2 text-sm text-brand-gray" style={{ lineHeight: 1.7 }}>
+                Orientações para o encaminhamento responsável de situações relacionadas à integridade institucional.
+              </p>
+              <span className="mt-4 inline-block text-sm text-brand-red group-hover:underline" style={{ fontWeight: 600 }}>Acessar página</span>
+            </Link>
+          </div>
         </div>
       </section>
     </>
+
   );
 }
