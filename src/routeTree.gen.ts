@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TransparenciaRouteImport } from './routes/transparencia'
+import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as EquipeRouteImport } from './routes/equipe'
 import { Route as EcossistemaRouteImport } from './routes/ecossistema'
@@ -26,6 +27,11 @@ import { Route as GaleriaSlugRouteImport } from './routes/galeria/$slug'
 const TransparenciaRoute = TransparenciaRouteImport.update({
   id: '/transparencia',
   path: '/transparencia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
+  id: '/termos-de-uso',
+  path: '/termos-de-uso',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacidadeRoute = PrivacidadeRouteImport.update({
@@ -95,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/termos-de-uso': typeof TermosDeUsoRoute
   '/transparencia': typeof TransparenciaRoute
   '/galeria/$slug': typeof GaleriaSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
@@ -110,6 +117,7 @@ export interface FileRoutesByTo {
   '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/termos-de-uso': typeof TermosDeUsoRoute
   '/transparencia': typeof TransparenciaRoute
   '/galeria/$slug': typeof GaleriaSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
@@ -126,6 +134,7 @@ export interface FileRoutesById {
   '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/termos-de-uso': typeof TermosDeUsoRoute
   '/transparencia': typeof TransparenciaRoute
   '/galeria/$slug': typeof GaleriaSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
@@ -143,6 +152,7 @@ export interface FileRouteTypes {
     | '/ecossistema'
     | '/equipe'
     | '/privacidade'
+    | '/termos-de-uso'
     | '/transparencia'
     | '/galeria/$slug'
     | '/noticias/$slug'
@@ -158,6 +168,7 @@ export interface FileRouteTypes {
     | '/ecossistema'
     | '/equipe'
     | '/privacidade'
+    | '/termos-de-uso'
     | '/transparencia'
     | '/galeria/$slug'
     | '/noticias/$slug'
@@ -173,6 +184,7 @@ export interface FileRouteTypes {
     | '/ecossistema'
     | '/equipe'
     | '/privacidade'
+    | '/termos-de-uso'
     | '/transparencia'
     | '/galeria/$slug'
     | '/noticias/$slug'
@@ -189,6 +201,7 @@ export interface RootRouteChildren {
   EcossistemaRoute: typeof EcossistemaRoute
   EquipeRoute: typeof EquipeRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
+  TermosDeUsoRoute: typeof TermosDeUsoRoute
   TransparenciaRoute: typeof TransparenciaRoute
   GaleriaSlugRoute: typeof GaleriaSlugRoute
   NoticiasSlugRoute: typeof NoticiasSlugRoute
@@ -206,6 +219,13 @@ declare module '@tanstack/react-router' {
       path: '/transparencia'
       fullPath: '/transparencia'
       preLoaderRoute: typeof TransparenciaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/termos-de-uso': {
+      id: '/termos-de-uso'
+      path: '/termos-de-uso'
+      fullPath: '/termos-de-uso'
+      preLoaderRoute: typeof TermosDeUsoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacidade': {
@@ -301,6 +321,7 @@ const rootRouteChildren: RootRouteChildren = {
   EcossistemaRoute: EcossistemaRoute,
   EquipeRoute: EquipeRoute,
   PrivacidadeRoute: PrivacidadeRoute,
+  TermosDeUsoRoute: TermosDeUsoRoute,
   TransparenciaRoute: TransparenciaRoute,
   GaleriaSlugRoute: GaleriaSlugRoute,
   NoticiasSlugRoute: NoticiasSlugRoute,
