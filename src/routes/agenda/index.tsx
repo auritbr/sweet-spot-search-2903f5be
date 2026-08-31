@@ -64,7 +64,7 @@ function Agenda() {
           <div className="relative mx-auto w-full max-w-md">
             <div className="aspect-[4/3] overflow-hidden rounded-md">
               <img
-                src="https://images.unsplash.com/photo-1523207911345-32501502db22?auto=format&fit=crop&w=1200&q=80"
+                src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80"
                 alt="Encontro cultural com participantes reunidos"
                 className="h-full w-full object-cover"
               />
