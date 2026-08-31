@@ -1,8 +1,8 @@
 // Centralized demo content. Easy to edit.
 export const site = {
-  name: "Ponto de Cultura Cena Viva",
-  short: "Cena Viva",
-  tagline: "Teatro, formação e transformação social",
+  name: "Associação Sócio Cultural Maggu",
+  short: "Associação Maggu",
+  tagline: "Cultura, formação e território",
   phone: "(11) 4002-8922",
   whatsapp: "5511900000000",
   whatsappMsg: "Olá! Acessei o site do Ponto de Cultura e gostaria de mais informações.",
