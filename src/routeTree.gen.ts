@@ -10,9 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TransparenciaRouteImport } from './routes/transparencia'
+import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
+import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as EquipeRouteImport } from './routes/equipe'
 import { Route as EcossistemaRouteImport } from './routes/ecossistema'
 import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as CanalDeDenunciasRouteImport } from './routes/canal-de-denuncias'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as QuemSomosIndexRouteImport } from './routes/quem-somos/index'
 import { Route as ProjetosIndexRouteImport } from './routes/projetos/index'
@@ -25,6 +28,16 @@ import { Route as GaleriaSlugRouteImport } from './routes/galeria/$slug'
 const TransparenciaRoute = TransparenciaRouteImport.update({
   id: '/transparencia',
   path: '/transparencia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
+  id: '/termos-de-uso',
+  path: '/termos-de-uso',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacidadeRoute = PrivacidadeRouteImport.update({
+  id: '/privacidade',
+  path: '/privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EquipeRoute = EquipeRouteImport.update({
@@ -40,6 +53,11 @@ const EcossistemaRoute = EcossistemaRouteImport.update({
 const ContatoRoute = ContatoRouteImport.update({
   id: '/contato',
   path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CanalDeDenunciasRoute = CanalDeDenunciasRouteImport.update({
+  id: '/canal-de-denuncias',
+  path: '/canal-de-denuncias',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -85,9 +103,12 @@ const GaleriaSlugRoute = GaleriaSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/canal-de-denuncias': typeof CanalDeDenunciasRoute
   '/contato': typeof ContatoRoute
   '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/termos-de-uso': typeof TermosDeUsoRoute
   '/transparencia': typeof TransparenciaRoute
   '/galeria/$slug': typeof GaleriaSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
@@ -99,9 +120,12 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/canal-de-denuncias': typeof CanalDeDenunciasRoute
   '/contato': typeof ContatoRoute
   '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/termos-de-uso': typeof TermosDeUsoRoute
   '/transparencia': typeof TransparenciaRoute
   '/galeria/$slug': typeof GaleriaSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
@@ -114,9 +138,12 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/canal-de-denuncias': typeof CanalDeDenunciasRoute
   '/contato': typeof ContatoRoute
   '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/termos-de-uso': typeof TermosDeUsoRoute
   '/transparencia': typeof TransparenciaRoute
   '/galeria/$slug': typeof GaleriaSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
@@ -130,9 +157,12 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/canal-de-denuncias'
     | '/contato'
     | '/ecossistema'
     | '/equipe'
+    | '/privacidade'
+    | '/termos-de-uso'
     | '/transparencia'
     | '/galeria/$slug'
     | '/noticias/$slug'
@@ -144,9 +174,12 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/canal-de-denuncias'
     | '/contato'
     | '/ecossistema'
     | '/equipe'
+    | '/privacidade'
+    | '/termos-de-uso'
     | '/transparencia'
     | '/galeria/$slug'
     | '/noticias/$slug'
@@ -158,9 +191,12 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/canal-de-denuncias'
     | '/contato'
     | '/ecossistema'
     | '/equipe'
+    | '/privacidade'
+    | '/termos-de-uso'
     | '/transparencia'
     | '/galeria/$slug'
     | '/noticias/$slug'
@@ -173,9 +209,12 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CanalDeDenunciasRoute: typeof CanalDeDenunciasRoute
   ContatoRoute: typeof ContatoRoute
   EcossistemaRoute: typeof EcossistemaRoute
   EquipeRoute: typeof EquipeRoute
+  PrivacidadeRoute: typeof PrivacidadeRoute
+  TermosDeUsoRoute: typeof TermosDeUsoRoute
   TransparenciaRoute: typeof TransparenciaRoute
   GaleriaSlugRoute: typeof GaleriaSlugRoute
   NoticiasSlugRoute: typeof NoticiasSlugRoute
@@ -193,6 +232,20 @@ declare module '@tanstack/react-router' {
       path: '/transparencia'
       fullPath: '/transparencia'
       preLoaderRoute: typeof TransparenciaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/termos-de-uso': {
+      id: '/termos-de-uso'
+      path: '/termos-de-uso'
+      fullPath: '/termos-de-uso'
+      preLoaderRoute: typeof TermosDeUsoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacidade': {
+      id: '/privacidade'
+      path: '/privacidade'
+      fullPath: '/privacidade'
+      preLoaderRoute: typeof PrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/equipe': {
@@ -214,6 +267,13 @@ declare module '@tanstack/react-router' {
       path: '/contato'
       fullPath: '/contato'
       preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/canal-de-denuncias': {
+      id: '/canal-de-denuncias'
+      path: '/canal-de-denuncias'
+      fullPath: '/canal-de-denuncias'
+      preLoaderRoute: typeof CanalDeDenunciasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -277,9 +337,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CanalDeDenunciasRoute: CanalDeDenunciasRoute,
   ContatoRoute: ContatoRoute,
   EcossistemaRoute: EcossistemaRoute,
   EquipeRoute: EquipeRoute,
+  PrivacidadeRoute: PrivacidadeRoute,
+  TermosDeUsoRoute: TermosDeUsoRoute,
   TransparenciaRoute: TransparenciaRoute,
   GaleriaSlugRoute: GaleriaSlugRoute,
   NoticiasSlugRoute: NoticiasSlugRoute,
