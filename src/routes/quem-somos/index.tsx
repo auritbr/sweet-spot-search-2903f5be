@@ -27,11 +27,11 @@ const milestones = [
 ];
 
 const process = [
-  { number: "01", title: "Escutar", text: "Compreender pessoas, contextos, necessidades, histórias e possibilidades presentes no território." },
-  { number: "02", title: "Formar", text: "Criar oportunidades de aprendizagem, experimentação e desenvolvimento por meio da cultura." },
-  { number: "03", title: "Criar", text: "Transformar experiências, ideias e repertórios em processos, obras, ações e novas formas de expressão." },
-  { number: "04", title: "Circular", text: "Compartilhar produções, conhecimentos e experiências com diferentes públicos e espaços." },
-  { number: "05", title: "Registrar", text: "Preservar processos, resultados e memórias para reconhecer trajetórias e fortalecer a continuidade." },
+  { number: "01", title: "Escutar", text: "Compreender pessoas, contextos, histórias e possibilidades presentes no território." },
+  { number: "02", title: "Formar", text: "Criar oportunidades de aprendizagem e desenvolvimento por meio da cultura." },
+  { number: "03", title: "Criar", text: "Transformar experiências e ideias em processos, ações e formas de expressão." },
+  { number: "04", title: "Circular", text: "Compartilhar produções, conhecimentos e experiências com diferentes públicos." },
+  { number: "05", title: "Registrar", text: "Preservar processos e memórias para fortalecer a continuidade." },
 ];
 
 function QuemSomos() {

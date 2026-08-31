@@ -99,7 +99,7 @@ function Ecossistema() {
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-gold">Conexões</p>
             <h2 className="mt-3 text-2xl md:text-3xl text-white">Os eixos se encontram.</h2>
-            <p className="mt-4 leading-relaxed text-white/85">Uma mesma iniciativa pode envolver formação, criação, território, memória, comunicação e redes. Os eixos ajudam a organizar a descoberta, mas não separam aquilo que acontece de forma integrada na prática.</p>
+            <p className="mt-4 leading-relaxed text-white/85">Uma mesma iniciativa pode envolver diferentes dimensões da atuação da Maggu. Os eixos ajudam a organizar a descoberta sem separar aquilo que acontece de forma integrada.</p>
           </div>
           <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3" aria-label="Conceitos transversais">
             {["Formação", "Criação", "Território", "Memória", "Comunicação", "Redes"].map((item, index) => (
