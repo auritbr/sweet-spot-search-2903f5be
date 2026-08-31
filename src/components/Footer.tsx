@@ -75,9 +75,9 @@ export function Footer() {
 
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-white/70">
           <div className="flex flex-wrap gap-4">
-            <Link to="/transparencia" className="hover:text-brand-gold">Transparência</Link>
-            <a href="#" className="hover:text-brand-gold">Política de Privacidade</a>
-            <a href="#" className="hover:text-brand-gold">Política de Cookies</a>
+            <Link to="/privacidade" className="hover:text-brand-gold">Privacidade</Link>
+            <Link to="/termos-de-uso" className="hover:text-brand-gold">Termos de Uso</Link>
+            <Link to="/canal-de-denuncias" className="hover:text-brand-gold">Canal de Denúncias</Link>
           </div>
           <p>© {year} {site.name}. Todos os direitos reservados.</p>
         </div>
