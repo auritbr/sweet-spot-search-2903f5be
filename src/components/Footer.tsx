@@ -15,8 +15,8 @@ export function Footer() {
       <div className="container-x pt-28 pb-12 relative">
 
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+          <div className="lg:col-span-1">
             <div className="flex items-center gap-3">
               <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-red text-white font-display uppercase text-lg">C</span>
               <span className="font-display uppercase text-xl">{site.short}</span>
@@ -27,34 +27,41 @@ export function Footer() {
             <p className="mt-4 text-xs text-brand-gold uppercase tracking-widest font-bold">Reconhecido como Ponto de Cultura</p>
           </div>
 
-
           <div>
-            <h3 className="text-white font-semibold mb-4">Quem Somos</h3>
+            <h3 className="text-white text-sm uppercase tracking-[0.16em] font-semibold mb-4">Institucional</h3>
             <ul className="space-y-2 text-sm text-white/80">
               <li><Link to="/quem-somos" className="hover:text-brand-gold">Quem Somos</Link></li>
               <li><Link to="/equipe" className="hover:text-brand-gold">Equipe</Link></li>
+              <li><Link to="/ecossistema" className="hover:text-brand-gold">Ecossistema</Link></li>
+              <li><Link to="/projetos" className="hover:text-brand-gold">Projetos</Link></li>
               <li><Link to="/transparencia" className="hover:text-brand-gold">Transparência</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-white font-semibold mb-4">Projetos</h3>
+            <h3 className="text-white text-sm uppercase tracking-[0.16em] font-semibold mb-4">Conteúdo</h3>
             <ul className="space-y-2 text-sm text-white/80">
-              <li><Link to="/projetos" className="hover:text-brand-gold">Todos os projetos</Link></li>
-              <li><Link to="/projetos/$slug" params={{ slug: "palco-aberto" }} className="hover:text-brand-gold">Palco Aberto</Link></li>
-              <li><Link to="/projetos/$slug" params={{ slug: "corpo-voz-e-movimento" }} className="hover:text-brand-gold">Corpo, Voz e Movimento</Link></li>
-              <li><Link to="/projetos/$slug" params={{ slug: "cena-no-territorio" }} className="hover:text-brand-gold">Cena no Território</Link></li>
               <li><Link to="/noticias" className="hover:text-brand-gold">Notícias</Link></li>
               <li><Link to="/galeria" className="hover:text-brand-gold">Galeria</Link></li>
             </ul>
+            <h3 className="text-white text-sm uppercase tracking-[0.16em] font-semibold mt-8 mb-4">Legal e integridade</h3>
+            <ul className="space-y-2 text-sm text-white/80">
+              <li><Link to="/privacidade" className="hover:text-brand-gold">Privacidade</Link></li>
+              <li><Link to="/termos-de-uso" className="hover:text-brand-gold">Termos de Uso</Link></li>
+              <li><Link to="/canal-de-denuncias" className="hover:text-brand-gold">Canal de Denúncias</Link></li>
+            </ul>
           </div>
 
-          <div>
-            <h3 className="text-white font-semibold mb-4">Contato</h3>
+          <div className="lg:col-span-2">
+            <h3 className="text-white text-sm uppercase tracking-[0.16em] font-semibold mb-4">Contato</h3>
             <ul className="space-y-2 text-sm text-white/80">
-              <li>{site.address}</li>
-              <li><a href={`mailto:${site.email}`} className="hover:text-brand-gold">{site.email}</a></li>
+              <li><Link to="/contato" className="hover:text-brand-gold">Fale conosco</Link></li>
               <li>{site.phone}</li>
+              <li>
+                <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold">WhatsApp</a>
+              </li>
+              <li><a href={`mailto:${site.email}`} className="hover:text-brand-gold">{site.email}</a></li>
+              <li>{site.address}</li>
               <li>{site.hours}</li>
             </ul>
             <div className="mt-4 flex gap-3">
@@ -64,6 +71,7 @@ export function Footer() {
             </div>
           </div>
         </div>
+
 
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-white/70">
           <div className="flex flex-wrap gap-4">
