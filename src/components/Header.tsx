@@ -12,6 +12,7 @@ const nav = [
       { label: "Transparência", to: "/transparencia" },
     ],
   },
+  { label: "Ecossistema", to: "/ecossistema" },
   {
     label: "Projetos", to: "/projetos",
     children: [
