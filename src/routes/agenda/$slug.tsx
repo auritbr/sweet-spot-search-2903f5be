@@ -151,7 +151,7 @@ function EventoDetalhe() {
                   variant="outline"
                   onClick={action}
                   aria-label={label === "Instagram" ? "Instagram — copiar link da atividade" : label}
-                  className="justify-start rounded-full border-brand-petrol/15 bg-brand-soft/60 px-4 text-brand-petrol shadow-sm backdrop-blur-md hover:border-brand-petrol/25 hover:bg-background/80 sm:justify-center"
+                  className="justify-start rounded-full border-brand-petrol/15 bg-brand-soft/60 px-4 text-brand-petrol shadow-sm backdrop-blur-md hover:border-brand-petrol/40 hover:bg-brand-soft/90 hover:text-brand-petrol hover:shadow-md sm:justify-center"
                 >
                   <Icon aria-hidden="true" className="size-4 shrink-0" />
                   <span>{label}</span>
