@@ -192,7 +192,7 @@ function Ecossistema() {
 
       <section id="eixos" className="scroll-mt-24 overflow-hidden bg-brand-soft py-12 md:py-20">
         <div className="container-x">
-          <SectionTitle eyebrow="Seis eixos" title="Seis eixos para compreender uma atuação integrada." text="Cada eixo reúne iniciativas com características próprias e ajuda a compreender diferentes dimensões da atuação da Associação." />
+          <SectionTitle eyebrow="Seis eixos" title="Seis eixos para compreender uma atuação integrada." text="Cada eixo reúne iniciativas com características próprias e ajuda a compreender diferentes dimensões da atuação da Associação." align="center" />
           <div className="grid gap-5 lg:grid-cols-12">
             {axes.map((axis, index) => (
               <article key={axis.title} className={`relative flex min-h-[270px] flex-col justify-end overflow-hidden rounded-md p-7 md:min-h-[290px] md:p-9 ${axis.classes}`}>
