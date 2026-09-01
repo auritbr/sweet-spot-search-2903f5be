@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useRef, useState } from "react";
 import { PageHero, Section } from "@/components/PageHero";
 import { HatchedCircle, ArcThick, BrushStroke, Triangle } from "@/components/Shapes";
 import { projects } from "@/data/site";
@@ -8,22 +9,32 @@ export const Route = createFileRoute("/projetos/")({
     meta: [
       { title: "Nossos Projetos — Cena Viva" },
       { name: "description", content: "Conheça os projetos culturais e formativos do Ponto de Cultura Cena Viva." },
-      { property: "og:title", content: "Nossos Projetos — Cena Viva" },
-      { property: "og:description", content: "Formação, criação e circulação cultural." },
+      { property: "og:title", content: "Nossos Projetos — Associação Maggu" },
+      { property: "og:description", content: "Conheça as iniciativas que dão forma ao Ecossistema Maggu." },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "/projetos" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/projetos" }],
   }),
   component: Projetos,
 });
 
-const backgrounds = [
-  { bg: "#FFFFFF", text: "#00384C", muted: "#565656", pill: "#ED1C24", accents: ["#ED1C24", "#08B9E6"] },
-  { bg: "#F1F8FB", text: "#00384C", muted: "#4a5560", pill: "#00384C", accents: ["#FFB400", "#00384C"] },
-  { bg: "#FFFFFF", text: "#00384C", muted: "#565656", pill: "#FF7A00", accents: ["#FF7A00", "#ED1C24"] },
-];
+const PROJECTS_PER_PAGE = 3;
+const cardAccents = ["border-brand-red", "border-brand-cyan", "border-brand-gold"] as const;
 
 function Projetos() {
+  const [page, setPage] = useState(1);
+  const listStart = useRef<HTMLElement>(null);
+  const pageCount = Math.ceil(projects.length / PROJECTS_PER_PAGE);
+  const visibleProjects = projects.slice((page - 1) * PROJECTS_PER_PAGE, page * PROJECTS_PER_PAGE);
+
+  const selectPage = (nextPage: number) => {
+    if (nextPage < 1 || nextPage > pageCount || nextPage === page) return;
+    setPage(nextPage);
+    window.requestAnimationFrame(() => listStart.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
+  };
+
   return (
     <>
       <PageHero
@@ -63,66 +74,43 @@ function Projetos() {
         </div>
       </Section>
 
-      {/* Project sections */}
-      {projects.map((p, idx) => {
-        const c = backgrounds[idx % backgrounds.length];
-        const reverse = idx % 2 === 1;
-        return (
-          <section key={p.slug} className="relative overflow-hidden py-14 md:py-20" style={{ backgroundColor: c.bg, color: c.text }}>
-            <ArcThick color={c.accents[0]} className={`absolute ${reverse ? "-right-6 top-8" : "-left-6 top-8"} w-28 opacity-70`} from={200} to={340} />
-            <HatchedCircle size={140} color={c.accents[1]} className={`absolute ${reverse ? "-left-10 -bottom-10" : "-right-10 -bottom-10"} opacity-25`} />
+      <section ref={listStart} className="scroll-mt-24 overflow-hidden bg-brand-soft py-12 md:py-16" aria-labelledby="project-list-title">
+        <div className="container-x relative">
+          <div className="mx-auto mb-9 max-w-2xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Iniciativas</p>
+            <h2 id="project-list-title" className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.15, fontWeight: 700 }}>Projetos que dão forma ao Ecossistema Maggu</h2>
+          </div>
 
-            <div className={`container-x grid md:grid-cols-2 gap-10 items-center ${reverse ? "md:[&>*:first-child]:order-2" : ""}`}>
-              <div>
-                <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <span className="uppercase tracking-[0.22em] text-xs" style={{ color: c.pill, fontWeight: 600 }}>{p.category}</span>
-                  <span className="px-3 py-1 rounded-full text-white text-[10px] uppercase tracking-widest" style={{ backgroundColor: c.pill, fontWeight: 700 }}>{p.status}</span>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {visibleProjects.map((project, index) => (
+              <article key={project.slug} className={`flex min-h-full flex-col overflow-hidden rounded-md border-t-4 bg-background shadow-sm ${cardAccents[index % cardAccents.length]}`}>
+                <div className="aspect-[16/10] overflow-hidden bg-brand-soft">
+                  <img src={project.image} alt="" className="h-full w-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
                 </div>
-                <h3 style={{ fontSize: "clamp(1.5rem, 2.3vw, 2.2rem)", lineHeight: 1.15, fontWeight: 700, color: c.text }}>{p.name}</h3>
-                <p className="mt-4" style={{ color: c.muted, fontSize: "clamp(1rem, 1.2vw, 1.1rem)", lineHeight: 1.6, maxWidth: "56ch" }}>{p.short}</p>
-
-                <dl className="mt-5 grid grid-cols-2 gap-3 max-w-md">
-                  <InfoBit label="Público" value={p.audience} />
-                  <InfoBit label="Local" value={p.location} />
-                  <InfoBit label="Período" value={p.period} />
-                  <InfoBit label="Categoria" value={p.category} />
-                </dl>
-
-                <ul className="mt-5 space-y-1.5">
-                  {p.activities.slice(0, 3).map((a) => (
-                    <li key={a} className="flex gap-2 text-sm" style={{ color: c.muted }}>
-                      <span className="mt-2 w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: c.pill }} />
-                      <span>{a}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link to="/projetos/$slug" params={{ slug: p.slug }} className="mt-6 inline-flex px-6 py-2.5 rounded-full text-white text-sm hover:opacity-90" style={{ backgroundColor: c.pill, fontWeight: 600 }}>
-                  Conheça o projeto
-                </Link>
-              </div>
-
-              <div className="relative">
-                <div className="aspect-square w-full max-w-sm mx-auto rounded-full overflow-hidden">
-                  <img src={p.image} alt={p.name} className="w-full h-full object-cover" loading="lazy" />
+                <div className="flex flex-1 flex-col p-6">
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-red">{project.category}</p>
+                  <h3 className="mt-3 text-xl leading-snug text-brand-ink">{project.name}</h3>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-brand-gray">{project.short}</p>
+                  <Link to="/projetos/$slug" params={{ slug: project.slug }} className="mt-6 inline-flex w-fit rounded-full bg-brand-petrol px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-brand-red">
+                    Conhecer projeto
+                  </Link>
                 </div>
-                <ArcThick color={c.accents[0]} className="absolute -top-4 -left-4 w-28" from={100} to={260} />
-                <ArcThick color={c.accents[1]} className="absolute -bottom-4 -right-4 w-24" from={300} to={80} />
-                <Triangle color={c.pill} size={40} className="absolute top-6 -right-2" rotate={-15} />
-              </div>
-            </div>
-          </section>
-        );
-      })}
+              </article>
+            ))}
+          </div>
+
+          <nav aria-label="Paginação de projetos" className="mx-auto mt-10 flex w-fit max-w-full items-center gap-1.5 rounded-xl border border-background/80 bg-background/65 p-2 shadow-sm backdrop-blur-md">
+            <button type="button" onClick={() => selectPage(page - 1)} disabled={page === 1} className="rounded-lg px-3 py-2 text-sm font-semibold text-brand-petrol transition hover:bg-background disabled:cursor-not-allowed disabled:opacity-35" aria-label="Página anterior">Anterior</button>
+            {Array.from({ length: pageCount }, (_, index) => index + 1).map((pageNumber) => (
+              <button key={pageNumber} type="button" onClick={() => selectPage(pageNumber)} aria-current={pageNumber === page ? "page" : undefined} className={`flex size-9 items-center justify-center rounded-lg text-sm font-bold transition ${pageNumber === page ? "bg-brand-red text-primary-foreground" : "text-brand-petrol hover:bg-background"}`}>
+                {pageNumber}
+              </button>
+            ))}
+            <button type="button" onClick={() => selectPage(page + 1)} disabled={page === pageCount} className="rounded-lg px-3 py-2 text-sm font-semibold text-brand-petrol transition hover:bg-background disabled:cursor-not-allowed disabled:opacity-35" aria-label="Próxima página">Próximo</button>
+          </nav>
+          <p className="mt-3 text-center text-xs text-brand-gray" aria-live="polite">Página {page} de {pageCount}</p>
+        </div>
+      </section>
     </>
-  );
-}
-
-function InfoBit({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <dt className="text-[10px] uppercase tracking-widest text-brand-red" style={{ fontWeight: 700 }}>{label}</dt>
-      <dd className="text-sm text-brand-ink mt-0.5" style={{ fontWeight: 500 }}>{value}</dd>
-    </div>
   );
 }
