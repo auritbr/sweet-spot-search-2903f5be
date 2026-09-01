@@ -218,38 +218,40 @@ function Ecossistema() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-brand-petrol py-12 md:py-16">
-        <ArcThick color="#FFB400" className="absolute -left-8 -top-8 w-28 opacity-80" from={210} to={340} />
+      <section className="relative overflow-hidden bg-brand-petrol py-14 md:py-20">
+        <ArcThick color="#FFB400" className="absolute -left-8 -top-8 w-28 opacity-70" from={210} to={340} />
+        <HatchedCircle size={130} color="#08B9E6" className="absolute -bottom-10 -right-7 opacity-15" />
         <div className="container-x relative">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl text-primary-foreground md:text-3xl">Os eixos se conectam na prática.</h2>
             <p className="mx-auto mt-3 max-w-xl leading-relaxed text-primary-foreground/85">Uma mesma iniciativa pode reunir diferentes dimensões da atuação da Maggu.</p>
           </div>
-          <ol className="mx-auto mt-8 flex max-w-5xl flex-col items-center gap-7 sm:grid sm:grid-cols-3 sm:gap-x-12 sm:gap-y-8 lg:grid-cols-6 lg:gap-x-7 lg:gap-y-0" aria-label="Conceitos transversais conectados">
+          <ol className="mx-auto mt-10 flex max-w-6xl flex-col items-center sm:grid sm:grid-cols-3 sm:gap-x-8 sm:gap-y-12 lg:grid-cols-6 lg:gap-x-5 lg:gap-y-0" aria-label="Conceitos transversais conectados">
             {[
-              ["Formação", "border-brand-red/50 bg-brand-red/10", "bg-brand-red", "sm:col-start-1 sm:row-start-1 lg:col-auto lg:row-auto"],
-              ["Criação", "border-brand-gold/50 bg-brand-gold/10", "bg-brand-gold", "sm:col-start-2 sm:row-start-1 lg:col-auto lg:row-auto"],
-              ["Território", "border-brand-cyan/50 bg-brand-cyan/10", "bg-brand-cyan", "sm:col-start-3 sm:row-start-1 lg:col-auto lg:row-auto"],
-              ["Memória", "border-primary-foreground/35 bg-background/10", "bg-background", "sm:col-start-3 sm:row-start-2 lg:col-auto lg:row-auto"],
-              ["Comunicação", "border-brand-red/50 bg-brand-red/10", "bg-brand-red", "sm:col-start-2 sm:row-start-2 lg:col-auto lg:row-auto"],
-              ["Redes", "border-brand-cyan/50 bg-brand-cyan/10", "bg-brand-cyan", "sm:col-start-1 sm:row-start-2 lg:col-auto lg:row-auto"],
-            ].map(([item, classes, dot, position], index) => (
-              <li key={item} className={`relative w-full max-w-40 min-w-0 sm:max-w-none ${position}`}>
-                <div className={`flex min-h-11 items-center justify-center gap-2 rounded-lg border px-3 py-2 text-center text-sm font-bold text-primary-foreground shadow-sm backdrop-blur-md transition-transform duration-200 hover:-translate-y-0.5 hover:bg-background/15 ${classes}`}>
-                  <span className={`size-1.5 shrink-0 rounded-full ${dot}`} aria-hidden="true" />
-                  {item}
+              ["Formação", "bg-brand-red", "sm:col-start-1 sm:row-start-1 lg:col-auto lg:row-auto"],
+              ["Criação", "bg-brand-gold", "sm:col-start-2 sm:row-start-1 lg:col-auto lg:row-auto"],
+              ["Território", "bg-brand-cyan", "sm:col-start-3 sm:row-start-1 lg:col-auto lg:row-auto"],
+              ["Memória", "bg-brand-red", "sm:col-start-3 sm:row-start-2 lg:col-auto lg:row-auto"],
+              ["Comunicação", "bg-brand-gold", "sm:col-start-2 sm:row-start-2 lg:col-auto lg:row-auto"],
+              ["Redes", "bg-brand-cyan", "sm:col-start-1 sm:row-start-2 lg:col-auto lg:row-auto"],
+            ].map(([item, accent, position], index) => (
+              <li key={item} className={`relative w-full max-w-52 py-4 sm:max-w-none sm:py-0 ${position}`}>
+                <div className="relative flex min-h-28 flex-col items-center justify-center overflow-hidden rounded-2xl border border-primary-foreground/30 bg-background/95 px-4 py-5 text-center shadow-md backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                  <span className={`absolute inset-x-0 top-0 h-1.5 ${accent}`} aria-hidden="true" />
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-red">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="mt-2 text-base font-bold text-brand-petrol">{item}</span>
                 </div>
                 {index < 5 && (
-                  <span className={`absolute left-1/2 top-full flex h-7 -translate-x-1/2 items-center justify-center text-brand-gold sm:left-auto sm:top-1/2 sm:h-auto sm:-translate-y-1/2 sm:translate-x-0 ${index < 2 ? "sm:-right-8" : index === 2 ? "sm:-bottom-8 sm:right-1/2 sm:top-auto sm:translate-x-1/2 sm:translate-y-0" : "sm:-left-8 sm:right-auto"} lg:-right-6 lg:left-auto lg:top-1/2 lg:bottom-auto lg:translate-x-0 lg:-translate-y-1/2`} aria-hidden="true">
-                    <svg viewBox="0 0 22 10" className={`h-2.5 w-5 rotate-90 sm:rotate-0 ${index > 2 ? "sm:rotate-180 lg:rotate-0" : ""}`} fill="none">
-                      <path d="M1 5h18M15.5 1.5 19 5l-3.5 3.5" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+                  <span className={`absolute left-1/2 top-full z-10 flex h-8 -translate-x-1/2 items-center justify-center text-brand-gold sm:left-auto sm:top-1/2 sm:h-auto sm:-translate-y-1/2 sm:translate-x-0 ${index < 2 ? "sm:-right-6" : index === 2 ? "sm:-bottom-8 sm:right-1/2 sm:top-auto sm:translate-x-1/2 sm:translate-y-0" : "sm:-left-6 sm:right-auto"} lg:-right-4 lg:bottom-auto lg:left-auto lg:top-1/2 lg:translate-x-0 lg:-translate-y-1/2`} aria-hidden="true">
+                    <svg viewBox="0 0 24 12" className={`h-3 w-6 rotate-90 sm:rotate-0 ${index > 2 ? "sm:rotate-180 lg:rotate-0" : ""}`} fill="none">
+                      <path d="M1 6h20M17 2l4 4-4 4" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </span>
                 )}
               </li>
             ))}
           </ol>
-          <p className="mt-5 text-center text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/55">Conceitos transversais</p>
+          <p className="mt-7 text-center text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/60">Conceitos transversais</p>
         </div>
       </section>
 
