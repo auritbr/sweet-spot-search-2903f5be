@@ -98,23 +98,51 @@ function Transparencia() {
             })}
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2">
-            <Link to="/privacidade" className="group rounded-2xl border border-black/10 p-6 hover:bg-brand-soft/60 transition block">
-              <span className="inline-block w-10 h-1.5 rounded-full" style={{ backgroundColor: "#08B9E6" }} aria-hidden="true" />
-              <h2 className="mt-4 text-brand-ink" style={{ fontSize: "1.1rem", fontWeight: 700 }}>Privacidade e Proteção de Dados</h2>
-              <p className="mt-2 text-sm text-brand-gray" style={{ lineHeight: 1.7 }}>
-                Orientações sobre o tratamento de dados pessoais nos canais digitais da Associação.
-              </p>
-              <span className="mt-4 inline-block text-sm text-brand-red group-hover:underline" style={{ fontWeight: 600 }}>Acessar página</span>
-            </Link>
-            <Link to="/canal-de-denuncias" className="group rounded-2xl border border-black/10 p-6 hover:bg-brand-soft/60 transition block">
-              <span className="inline-block w-10 h-1.5 rounded-full" style={{ backgroundColor: "#FFB400" }} aria-hidden="true" />
-              <h2 className="mt-4 text-brand-ink" style={{ fontSize: "1.1rem", fontWeight: 700 }}>Canal de Denúncias e Relato Ético</h2>
-              <p className="mt-2 text-sm text-brand-gray" style={{ lineHeight: 1.7 }}>
-                Orientações para o encaminhamento responsável de situações relacionadas à integridade institucional.
-              </p>
-              <span className="mt-4 inline-block text-sm text-brand-red group-hover:underline" style={{ fontWeight: 600 }}>Acessar página</span>
-            </Link>
+          <div className="mt-14 space-y-14 md:space-y-20">
+            <article className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
+              <div className="relative mx-auto aspect-[5/4] w-full max-w-md overflow-hidden bg-brand-soft" aria-hidden="true">
+                <HatchedCircle size={210} color="#08B9E6" className="absolute -left-10 -top-8 opacity-70" />
+                <ArcThick color="#00384C" className="absolute -bottom-16 -right-12 w-56" from={185} to={325} />
+                <div className="absolute left-1/2 top-1/2 h-44 w-32 -translate-x-1/2 -translate-y-1/2 border-2 border-brand-petrol bg-background/80 p-4 backdrop-blur-sm">
+                  <span className="block h-2 w-16 bg-brand-red" />
+                  <span className="mt-5 block h-px w-full bg-brand-petrol/30" />
+                  <span className="mt-3 block h-px w-4/5 bg-brand-petrol/30" />
+                  <span className="mt-3 block h-px w-full bg-brand-petrol/30" />
+                  <span className="absolute bottom-4 right-4 size-8 rounded-full bg-brand-gold" />
+                </div>
+                <span className="absolute bottom-7 left-8 size-8 rotate-12 bg-brand-red" />
+              </div>
+              <div className="md:pr-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Privacidade</p>
+                <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.5rem, 2.4vw, 2.25rem)", lineHeight: 1.15, fontWeight: 700 }}>Privacidade e Proteção de Dados</h2>
+                <p className="mt-4 max-w-xl text-sm text-brand-gray" style={{ lineHeight: 1.7 }}>Orientações sobre o tratamento de dados pessoais nos canais digitais da Associação.</p>
+                <Link to="/privacidade" className="group mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-red transition-colors hover:text-brand-petrol">
+                  Acessar página <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </article>
+
+            <article className="grid items-center gap-8 border-t border-brand-petrol/10 pt-14 md:grid-cols-2 md:gap-14 md:pt-20">
+              <div className="order-2 md:order-1 md:pl-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Integridade</p>
+                <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.5rem, 2.4vw, 2.25rem)", lineHeight: 1.15, fontWeight: 700 }}>Canal de Denúncias e Relato Ético</h2>
+                <p className="mt-4 max-w-xl text-sm text-brand-gray" style={{ lineHeight: 1.7 }}>Orientações para o encaminhamento responsável de situações relacionadas à integridade institucional.</p>
+                <Link to="/canal-de-denuncias" className="group mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-red transition-colors hover:text-brand-petrol">
+                  Acessar página <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+                </Link>
+              </div>
+              <div className="relative order-1 mx-auto aspect-[5/4] w-full max-w-md overflow-hidden bg-brand-petrol md:order-2" aria-hidden="true">
+                <ArcThick color="#FFB400" className="absolute -left-12 -top-14 w-52" from={15} to={175} />
+                <HatchedCircle size={150} color="#ED1C24" className="absolute -bottom-10 -right-7 opacity-80" />
+                <div className="absolute left-1/2 top-1/2 flex size-36 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-primary-foreground/35 bg-background/10 backdrop-blur-sm">
+                  <span className="absolute size-20 rounded-full border-2 border-brand-cyan" />
+                  <span className="size-5 rounded-full bg-brand-gold" />
+                  <span className="absolute left-2 top-1/2 h-px w-7 bg-brand-cyan" />
+                  <span className="absolute right-2 top-1/2 h-px w-7 bg-brand-cyan" />
+                </div>
+                <span className="absolute right-8 top-8 size-9 rotate-45 border-2 border-brand-gold" />
+              </div>
+            </article>
           </div>
         </div>
       </section>

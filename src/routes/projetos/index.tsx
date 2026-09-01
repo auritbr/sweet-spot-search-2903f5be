@@ -77,16 +77,15 @@ function Projetos() {
             ))}
           </div>
 
-          <nav aria-label="Paginação de projetos" className="mx-auto mt-10 flex w-fit max-w-full items-center gap-1.5 rounded-xl border border-background/80 bg-background/65 p-2 shadow-sm backdrop-blur-md">
-            <Button type="button" variant="ghost" onClick={() => selectPage(page - 1)} disabled={page === 1} className="rounded-lg px-3 text-brand-petrol hover:bg-background hover:text-brand-petrol" aria-label="Página anterior"><ChevronLeft aria-hidden="true" /> <span className="hidden sm:inline">Anterior</span></Button>
+          <nav aria-label="Paginação de projetos" className="mx-auto mt-10 flex w-fit max-w-full items-center gap-1 rounded-full border border-brand-petrol/10 bg-background/55 px-2 py-1.5 shadow-sm backdrop-blur-md">
+            <Button type="button" variant="ghost" size="icon" onClick={() => selectPage(page - 1)} disabled={page === 1} className="size-8 rounded-full text-brand-petrol transition-colors hover:bg-brand-cyan/10 hover:text-brand-petrol disabled:opacity-30" aria-label="Página anterior"><ChevronLeft className="size-4" aria-hidden="true" /></Button>
             {Array.from({ length: pageCount }, (_, index) => index + 1).map((pageNumber) => (
-              <Button key={pageNumber} type="button" variant="ghost" size="icon" onClick={() => selectPage(pageNumber)} aria-current={pageNumber === page ? "page" : undefined} className={`rounded-lg text-sm font-bold ${pageNumber === page ? "bg-brand-red text-primary-foreground hover:bg-brand-red hover:text-primary-foreground" : "text-brand-petrol hover:bg-background hover:text-brand-petrol"}`}>
-                {pageNumber}
+              <Button key={pageNumber} type="button" variant="ghost" size="icon" onClick={() => selectPage(pageNumber)} aria-current={pageNumber === page ? "page" : undefined} aria-label={`Ir para a página ${pageNumber}`} className={`size-8 rounded-full text-xs font-bold transition-colors ${pageNumber === page ? "bg-brand-red text-primary-foreground hover:bg-brand-red hover:text-primary-foreground" : "text-brand-petrol hover:bg-brand-cyan/10 hover:text-brand-petrol"}`}>
+                {String(pageNumber).padStart(2, "0")}
               </Button>
             ))}
-            <Button type="button" variant="ghost" onClick={() => selectPage(page + 1)} disabled={page === pageCount} className="rounded-lg px-3 text-brand-petrol hover:bg-background hover:text-brand-petrol" aria-label="Próxima página"><span className="hidden sm:inline">Próximo</span> <ChevronRight aria-hidden="true" /></Button>
+            <Button type="button" variant="ghost" size="icon" onClick={() => selectPage(page + 1)} disabled={page === pageCount} className="size-8 rounded-full text-brand-petrol transition-colors hover:bg-brand-cyan/10 hover:text-brand-petrol disabled:opacity-30" aria-label="Próxima página"><ChevronRight className="size-4" aria-hidden="true" /></Button>
           </nav>
-          <p className="mt-3 text-center text-xs text-brand-gray" aria-live="polite">Página {page} de {pageCount}</p>
         </div>
       </section>
 
