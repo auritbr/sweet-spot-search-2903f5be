@@ -227,15 +227,15 @@ function Ecossistema() {
           </div>
           <ol className="mx-auto mt-9 grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:gap-7" aria-label="Conceitos transversais conectados">
             {[
-              ["Formação", "bg-brand-red text-primary-foreground"],
-              ["Criação", "bg-brand-gold text-brand-petrol"],
-              ["Território", "bg-brand-cyan text-brand-petrol"],
-              ["Memória", "bg-background text-brand-petrol"],
-              ["Comunicação", "bg-brand-orange text-brand-petrol"],
-              ["Redes", "bg-brand-lime text-brand-petrol"],
+              ["Formação", "bg-brand-red/25 border-brand-red/50 text-primary-foreground"],
+              ["Criação", "bg-brand-gold/25 border-brand-gold/50 text-primary-foreground"],
+              ["Território", "bg-brand-cyan/25 border-brand-cyan/50 text-primary-foreground"],
+              ["Memória", "bg-white/15 border-white/40 text-primary-foreground"],
+              ["Comunicação", "bg-brand-orange/25 border-brand-orange/50 text-primary-foreground"],
+              ["Redes", "bg-brand-lime/25 border-brand-lime/50 text-primary-foreground"],
             ].map(([item, classes], index) => (
               <li key={item} className="relative">
-                <div className={`flex min-h-20 items-center justify-center px-4 text-center text-sm font-bold ${classes}`}>{item}</div>
+                <div className={`flex min-h-20 items-center justify-center rounded-md border px-4 text-center text-sm font-bold backdrop-blur-md ${classes}`}>{item}</div>
                 {index < 5 && <span className="absolute left-1/2 top-full flex h-4 -translate-x-1/2 items-center text-xl text-brand-gold sm:left-full sm:top-1/2 sm:h-auto sm:w-4 sm:-translate-x-2 sm:-translate-y-1/2 lg:w-7 lg:translate-x-0 lg:justify-center" aria-hidden="true">→</span>}
               </li>
             ))}
