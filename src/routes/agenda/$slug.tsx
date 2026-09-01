@@ -136,7 +136,7 @@ function EventoDetalhe() {
           <section aria-labelledby="activity-description" className="mx-auto max-w-3xl">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-red">Conheça a programação</p>
             <h2 id="activity-description" className="mt-2 text-brand-ink" style={{ fontSize: "clamp(1.6rem, 2.5vw, 2.25rem)", fontWeight: 700 }}>Sobre esta atividade</h2>
-            <p className="mt-5 text-base leading-relaxed text-brand-gray md:text-lg">
+            <p className="mt-5 text-brand-gray" style={{ fontSize: "12px", lineHeight: 1.65 }}>
               {event.description ?? event.summary ?? "Mais informações sobre esta atividade serão divulgadas em breve."}
             </p>
           </section>
@@ -151,7 +151,7 @@ function EventoDetalhe() {
                   variant="outline"
                   onClick={action}
                   aria-label={label === "Instagram" ? "Instagram — copiar link da atividade" : label}
-                  className="justify-start rounded-full border-brand-petrol/15 bg-brand-soft/60 px-4 text-brand-petrol shadow-sm backdrop-blur-md hover:border-brand-petrol/25 hover:bg-background/80 sm:justify-center"
+                  className="justify-start rounded-full border-brand-petrol/15 bg-brand-soft/60 px-4 text-brand-petrol shadow-sm backdrop-blur-md hover:border-brand-petrol/40 hover:bg-brand-soft/90 hover:text-brand-petrol hover:shadow-md sm:justify-center"
                 >
                   <Icon aria-hidden="true" className="size-4 shrink-0" />
                   <span>{label}</span>
@@ -188,7 +188,6 @@ function EventoDetalhe() {
               {event.registrationUrl && !closed && (
                 <Button asChild className="rounded-full bg-brand-red px-6 text-primary-foreground shadow-none hover:bg-brand-petrol"><a href={event.registrationUrl} target="_blank" rel="noopener noreferrer">Inscreva-se</a></Button>
               )}
-              <Button asChild variant="outline" className="rounded-full border-brand-petrol px-6 text-brand-petrol shadow-none hover:bg-brand-soft"><Link to="/agenda">Voltar para a Agenda</Link></Button>
             </div>
           </div>
 
@@ -214,10 +213,14 @@ function EventoDetalhe() {
               <p className="mt-1">{event.contact ?? site.email}</p>
               <Link to="/contato" className="mt-3 inline-flex text-sm font-bold text-brand-petrol underline underline-offset-4 hover:text-brand-red">Fale com a Associação</Link>
             </div>
-          </aside>
+           </aside>
+           </div>
+
+          <div className="mt-10 flex">
+            <Button asChild variant="outline" className="rounded-full border-brand-petrol/20 bg-brand-soft/60 px-6 text-brand-petrol shadow-sm backdrop-blur-md hover:border-brand-petrol/40 hover:bg-brand-soft/90 hover:text-brand-petrol hover:shadow-md"><Link to="/agenda">Voltar para a Agenda</Link></Button>
           </div>
-        </div>
-      </Section>
+         </div>
+       </Section>
     </>
   );
 }
