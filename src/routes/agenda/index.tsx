@@ -222,8 +222,23 @@ function Agenda() {
 
               <fieldset className="min-w-0 text-center">
                 <legend className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-brand-gray">Período</legend>
-                <div className="flex flex-nowrap justify-center gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                  {views.map((item) => (
+                <div className="flex flex-wrap justify-center gap-2 pb-1">
+                  {views.slice(0, 2).map((item) => (
+                    <Button
+                      key={item.value}
+                      type="button"
+                      size="sm"
+                      variant="ghost"
+                      onClick={() => setView(item.value)}
+                      aria-pressed={view === item.value}
+                      className={`shrink-0 rounded-full border px-4 shadow-none backdrop-blur-md ${view === item.value ? "border-brand-petrol bg-brand-petrol text-primary-foreground hover:bg-brand-petrol/90 hover:text-primary-foreground" : "border-brand-petrol/10 bg-background/65 text-brand-petrol hover:bg-brand-soft/80 hover:text-brand-petrol"}`}
+                    >
+                      {item.label}
+                    </Button>
+                  ))}
+                </div>
+                <div className="mt-2 flex flex-wrap justify-center gap-2 pb-1">
+                  {views.slice(2).map((item) => (
                     <Button
                       key={item.value}
                       type="button"
