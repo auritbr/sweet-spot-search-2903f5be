@@ -213,10 +213,14 @@ function EventoDetalhe() {
               <p className="mt-1">{event.contact ?? site.email}</p>
               <Link to="/contato" className="mt-3 inline-flex text-sm font-bold text-brand-petrol underline underline-offset-4 hover:text-brand-red">Fale com a Associação</Link>
             </div>
-          </aside>
+           </aside>
+           </div>
+
+          <div className="mt-10 flex">
+            <Button asChild variant="outline" className="rounded-full border-brand-petrol/20 bg-brand-soft/60 px-6 text-brand-petrol shadow-sm backdrop-blur-md hover:border-brand-petrol/40 hover:bg-brand-soft/90 hover:text-brand-petrol hover:shadow-md"><Link to="/agenda">Voltar para a Agenda</Link></Button>
           </div>
-        </div>
-      </Section>
+         </div>
+       </Section>
     </>
   );
 }
