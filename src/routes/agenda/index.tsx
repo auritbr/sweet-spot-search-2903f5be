@@ -134,7 +134,7 @@ function Agenda() {
     }
 
     if (view === "proximos") {
-      const firstUpcoming = filteredEvents.find((event) => parseEventDate(event.date) >= atStartOfDay(new Date()));
+      const firstUpcoming = filteredEvents.find((event) => parseEventDate(event.date) >= cursor);
       const first = startOfWeek(firstUpcoming ? parseEventDate(firstUpcoming.date) : cursor);
       return Array.from({ length: 7 }, (_, index) => addDays(first, index));
     }
