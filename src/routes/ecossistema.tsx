@@ -225,7 +225,7 @@ function Ecossistema() {
             <h2 className="text-2xl text-primary-foreground md:text-3xl">Os eixos se conectam na prática.</h2>
             <p className="mx-auto mt-3 max-w-xl leading-relaxed text-primary-foreground/85">Uma mesma iniciativa pode reunir diferentes dimensões da atuação da Maggu.</p>
           </div>
-          <ol className="mx-auto mt-9 grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:gap-7" aria-label="Conceitos transversais conectados">
+          <ol className="mx-auto mt-10 grid max-w-5xl grid-cols-2 gap-x-9 gap-y-7 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-7 lg:gap-y-0" aria-label="Conceitos transversais conectados">
             {[
               ["Formação", "bg-brand-red/25 border-brand-red/50 text-primary-foreground"],
               ["Criação", "bg-brand-gold/25 border-brand-gold/50 text-primary-foreground"],
@@ -234,9 +234,11 @@ function Ecossistema() {
               ["Comunicação", "bg-brand-orange/25 border-brand-orange/50 text-primary-foreground"],
               ["Redes", "bg-brand-lime/25 border-brand-lime/50 text-primary-foreground"],
             ].map(([item, classes], index) => (
-              <li key={item} className="relative">
-                <div className={`flex min-h-20 items-center justify-center rounded-md border px-4 text-center text-sm font-bold backdrop-blur-md ${classes}`}>{item}</div>
-                {index < 5 && <span className="absolute left-1/2 top-full flex h-4 -translate-x-1/2 items-center text-xl text-brand-gold sm:left-full sm:top-1/2 sm:h-auto sm:w-4 sm:-translate-x-2 sm:-translate-y-1/2 lg:w-7 lg:translate-x-0 lg:justify-center" aria-hidden="true">→</span>}
+              <li key={item} className="relative min-w-0">
+                <div className={`flex min-h-14 items-center justify-center rounded-lg border px-3 py-3 text-center text-sm font-bold shadow-sm backdrop-blur-sm transition-transform duration-200 hover:-translate-y-0.5 ${classes}`}>{item}</div>
+                {index < 5 && (
+                  <span className={`absolute z-10 flex items-center justify-center text-lg font-light text-brand-gold ${index % 2 === 0 ? "-right-7 top-1/2 -translate-y-1/2" : "left-1/2 top-full h-7 -translate-x-1/2 rotate-90 sm:rotate-0 sm:-right-7 sm:left-auto sm:top-1/2 sm:h-auto sm:translate-x-0 sm:-translate-y-1/2 lg:-right-7"} ${index === 2 ? "sm:left-1/2 sm:right-auto sm:top-full sm:h-7 sm:-translate-x-1/2 sm:translate-y-0 sm:rotate-90 lg:-right-7 lg:left-auto lg:top-1/2 lg:h-auto lg:translate-x-0 lg:-translate-y-1/2 lg:rotate-0" : ""}`} aria-hidden="true">→</span>
+                )}
               </li>
             ))}
           </ol>
