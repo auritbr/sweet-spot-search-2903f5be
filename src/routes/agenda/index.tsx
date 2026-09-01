@@ -206,7 +206,7 @@ function Agenda() {
             <div className="flex flex-col items-center justify-center gap-5 lg:flex-row lg:gap-8">
               <fieldset className="min-w-0 text-center">
                 <legend className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-brand-gray">Categoria</legend>
-                <div className="flex max-w-full gap-2 overflow-x-auto pb-1">
+                <div className="flex max-w-full flex-wrap justify-center gap-2 pb-1">
                   {(["Todos", ...agendaCategories] as const).map((item) => (
                     <Button
                       key={item}
