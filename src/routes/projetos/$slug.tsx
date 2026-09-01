@@ -1,6 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { PageHero, Section } from "@/components/PageHero";
+import { ArrowLeft } from "lucide-react";
+import { Section } from "@/components/PageHero";
 import { ArcThick, BrushStroke, HatchedCircle, Triangle } from "@/components/Shapes";
+import { Button } from "@/components/ui/button";
 import { projects } from "@/data/site";
 
 export const Route = createFileRoute("/projetos/$slug")({
@@ -35,50 +37,36 @@ function ProjectDetail() {
   const { project } = Route.useLoaderData();
 
   return (
-    <>
-      <PageHero
-        title={project.title}
-        subtitle={project.category}
-        image={project.image}
-        accent={project.color}
-        breadcrumb={[{ label: "Início", to: "/" }, { label: "Projetos", to: "/projetos" }, { label: project.name }]}
-      />
-
-      <Section className="overflow-hidden bg-background">
-        <div className="container-x grid items-center gap-10 md:grid-cols-[.9fr_1.1fr] md:gap-14">
-          <div className="relative">
-            <div className="aspect-[4/3] overflow-hidden rounded-md">
-              <img src={project.image} alt={`Projeto ${project.name}`} className="h-full w-full object-cover" loading="lazy" />
-            </div>
-            <ArcThick color="#08B9E6" className="absolute -bottom-5 -left-5 w-24 opacity-80" from={210} to={340} />
-            <Triangle color="#FFB400" size={42} className="absolute -right-3 -top-4" rotate={18} />
-          </div>
-
-          <div>
+    <main className="overflow-hidden bg-background pt-20">
+      <Section className="relative bg-background">
+        <HatchedCircle size={180} color="#08B9E6" className="absolute -left-16 bottom-0 opacity-15" />
+        <div className="container-x">
+          <Link to="/projetos" className="mb-9 inline-flex items-center gap-2 text-sm font-semibold text-brand-petrol transition hover:text-brand-red"><ArrowLeft className="size-4" aria-hidden="true" /> Voltar aos projetos</Link>
+          <div className="grid items-center gap-12 md:grid-cols-[1.05fr_.95fr] md:gap-16">
+            <div className="relative z-10">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">{project.category}</p>
-            <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.15, fontWeight: 700 }}>{project.name}</h2>
+            <h1 className="mt-3 max-w-2xl text-brand-ink" style={{ fontSize: "clamp(2.1rem, 4vw, 4.4rem)", lineHeight: 1.05, fontWeight: 700 }}>{project.title}</h1>
             <BrushStroke color="#FFB400" className="mt-5 w-28" />
             <p className="mt-6 max-w-2xl leading-relaxed text-brand-gray">{project.description}</p>
             <div className="mt-7 flex flex-wrap gap-3">
               {project.ctas.map((cta, index) => (
-                <Link key={cta.label} to={cta.to} className={`rounded-full px-6 py-3 text-sm font-semibold transition ${index === 0 ? "bg-brand-red text-primary-foreground hover:bg-brand-petrol" : "border-2 border-brand-petrol text-brand-petrol hover:bg-brand-soft"}`}>
-                  {cta.label}
-                </Link>
+                <Button key={cta.label} asChild variant={index === 0 ? "default" : "outline"} className={`rounded-full px-6 shadow-none ${index === 0 ? "bg-brand-red text-primary-foreground hover:bg-brand-petrol" : "border-brand-petrol bg-transparent text-brand-petrol hover:bg-brand-soft hover:text-brand-petrol"}`}><Link to={cta.to}>{cta.label}</Link></Button>
               ))}
+            </div>
+            </div>
+            <div className="relative mx-auto w-full max-w-[480px]">
+              <div className="aspect-square overflow-hidden rounded-full bg-brand-soft">
+                <img src={project.image} alt={`Atividade do projeto ${project.name}`} className="h-full w-full object-cover" />
+              </div>
+              <ArcThick color="#00384C" className="absolute -left-7 -top-7 w-36" from={105} to={265} />
+              <ArcThick color="#ED1C24" className="absolute -bottom-4 -right-7 w-28" from={290} to={430} />
+              <HatchedCircle size={100} color="#08B9E6" className="absolute -bottom-7 left-4 opacity-65" />
+              <Triangle color="#FFB400" size={50} className="absolute right-3 top-3" rotate={18} />
             </div>
           </div>
         </div>
       </Section>
-
-      <section className="relative overflow-hidden bg-brand-petrol py-14 md:py-16">
-        <HatchedCircle size={150} color="#ED1C24" className="absolute -bottom-10 -right-8 opacity-30" />
-        <div className="container-x relative mx-auto max-w-2xl text-center">
-          <h2 className="text-2xl text-primary-foreground md:text-3xl">Conheça outras iniciativas da Maggu</h2>
-          <p className="mt-4 leading-relaxed text-primary-foreground/85">Explore os projetos que conectam cultura, formação e território.</p>
-          <Link to="/projetos" className="mt-6 inline-flex rounded-full bg-brand-gold px-6 py-3 text-sm font-bold text-brand-petrol transition hover:bg-background">Ver todos os projetos</Link>
-        </div>
-      </section>
-    </>
+    </main>
   );
 }
 

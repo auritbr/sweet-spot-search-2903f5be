@@ -1,14 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
 import { PageHero, Section } from "@/components/PageHero";
+import { Button } from "@/components/ui/button";
 import { HatchedCircle, ArcThick, BrushStroke, Triangle } from "@/components/Shapes";
 import { projects } from "@/data/site";
 
 export const Route = createFileRoute("/projetos/")({
   head: () => ({
     meta: [
-      { title: "Nossos Projetos — Cena Viva" },
-      { name: "description", content: "Conheça os projetos culturais e formativos do Ponto de Cultura Cena Viva." },
+      { title: "Nossos Projetos | Associação Maggu" },
+      { name: "description", content: "Conheça os nove projetos culturais, formativos e territoriais da Associação Maggu." },
       { property: "og:title", content: "Nossos Projetos — Associação Maggu" },
       { property: "og:description", content: "Conheça as iniciativas que dão forma ao Ecossistema Maggu." },
       { property: "og:type", content: "website" },
@@ -44,69 +46,58 @@ function Projetos() {
         brush="#08B9E6"
       />
 
-      {/* Intro */}
-      <Section className="bg-white overflow-hidden">
-        <div className="container-x grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative order-2 md:order-1">
-            <p className="uppercase tracking-[0.22em] text-brand-red text-xs mb-3" style={{ fontWeight: 600 }}>Programas</p>
-            <h2 className="text-brand-ink" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.15, fontWeight: 700 }}>
-              Arte que constrói pessoas e territórios
-            </h2>
-            <BrushStroke color="#FFB400" className="mt-5 w-32" />
-            <p className="mt-5 text-brand-gray" style={{ fontSize: "clamp(1rem, 1.2vw, 1.1rem)", lineHeight: 1.7, maxWidth: "62ch" }}>
-              Nossos projetos articulam formação, criação e apresentação, com atenção às demandas do território e à participação ativa das comunidades.
-            </p>
-            <p className="mt-4 text-brand-gray" style={{ lineHeight: 1.7, maxWidth: "62ch" }}>
-              Cada frente atende públicos específicos, com metodologias próprias e ações integradas às políticas culturais locais.
-            </p>
-          </div>
-          <div className="relative order-1 md:order-2">
-            <div className="aspect-square w-full max-w-sm mx-auto rounded-full overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1533158307587-828f0a76ef46?auto=format&fit=crop&w=1200&q=80" alt="Grupo em atividade" className="w-full h-full object-cover" loading="lazy" />
-            </div>
-            <ArcThick color="#00384C" className="absolute -top-6 -left-6 w-32" from={100} to={260} />
-            <ArcThick color="#ED1C24" className="absolute -bottom-4 -right-4 w-28" from={300} to={80} />
-            <HatchedCircle size={90} color="#08B9E6" className="absolute -bottom-6 left-4 opacity-60" />
-            <Triangle color="#FFB400" size={48} className="absolute top-4 -right-2" rotate={20} />
-          </div>
-        </div>
-      </Section>
-
-      <section ref={listStart} className="scroll-mt-24 overflow-hidden bg-brand-soft py-12 md:py-16" aria-labelledby="project-list-title">
+      <section ref={listStart} className="scroll-mt-24 overflow-hidden bg-background py-12 md:py-20" aria-labelledby="project-list-title">
         <div className="container-x relative">
           <div className="mx-auto mb-9 max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Iniciativas</p>
             <h2 id="project-list-title" className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.15, fontWeight: 700 }}>Projetos que dão forma ao Ecossistema Maggu</h2>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2">
-            {visibleProjects.map((project) => (
-              <article key={project.slug} className="group grid grid-cols-1 gap-0 overflow-hidden rounded-3xl bg-brand-soft sm:grid-cols-2">
-                <div className="aspect-[4/3] overflow-hidden sm:aspect-auto">
-                  <img src={project.image} alt={project.name} className="h-full w-full object-cover transition group-hover:scale-105" loading="lazy" />
+          <div className="divide-y divide-brand-petrol/15">
+            {visibleProjects.map((project, index) => (
+              <article key={project.slug} className="group relative grid items-center gap-9 py-12 first:pt-4 md:grid-cols-2 md:gap-14 md:py-16">
+                <div className={`relative z-10 ${index % 2 === 1 ? "md:order-2" : ""}`}>
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">{project.category}</p>
+                  <h3 className="mt-3 max-w-xl text-brand-ink" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.15, fontWeight: 700 }}>{project.name}</h3>
+                  <BrushStroke color="#FFB400" className="mt-5 w-24" />
+                  <p className="mt-5 max-w-xl leading-relaxed text-brand-gray">{project.short}</p>
+                  <Button asChild className="mt-6 rounded-full bg-brand-red px-6 text-primary-foreground shadow-none hover:bg-brand-petrol">
+                    <Link to="/projetos/$slug" params={{ slug: project.slug }}>Conheça o projeto <ChevronRight aria-hidden="true" /></Link>
+                  </Button>
                 </div>
-                <div className="flex flex-col p-6">
-                  <span className="inline-block self-start rounded-full bg-brand-red px-3 py-1 text-xs font-bold text-primary-foreground">{project.category}</span>
-                  <h3 className="mt-3 text-2xl font-black text-brand-ink">{project.name}</h3>
-                  <p className="mt-3 text-brand-gray">{project.short}</p>
-                  <Link to="/projetos/$slug" params={{ slug: project.slug }} className="mt-auto inline-flex pt-4 font-semibold text-brand-red transition hover:text-brand-petrol">
-                    Conheça →
-                  </Link>
+                <div className={`relative mx-auto w-full max-w-[390px] ${index % 2 === 1 ? "md:order-1" : ""}`}>
+                  <div className="aspect-square overflow-hidden rounded-full bg-brand-soft">
+                    <img src={project.image} alt={`Atividade do projeto ${project.name}`} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.035]" loading="lazy" />
+                  </div>
+                  <ArcThick color={index % 2 === 0 ? "#00384C" : "#ED1C24"} className="absolute -left-6 -top-5 w-28 transition-transform duration-500 group-hover:-rotate-6" from={105} to={265} />
+                  <HatchedCircle size={82} color="#08B9E6" className="absolute -bottom-4 left-0 opacity-65" />
+                  <Triangle color="#FFB400" size={42} className="absolute right-1 top-2" rotate={18 + index * 8} />
                 </div>
               </article>
             ))}
           </div>
 
           <nav aria-label="Paginação de projetos" className="mx-auto mt-10 flex w-fit max-w-full items-center gap-1.5 rounded-xl border border-background/80 bg-background/65 p-2 shadow-sm backdrop-blur-md">
-            <button type="button" onClick={() => selectPage(page - 1)} disabled={page === 1} className="rounded-lg px-3 py-2 text-sm font-semibold text-brand-petrol transition hover:bg-background disabled:cursor-not-allowed disabled:opacity-35" aria-label="Página anterior">Anterior</button>
+            <Button type="button" variant="ghost" onClick={() => selectPage(page - 1)} disabled={page === 1} className="rounded-lg px-3 text-brand-petrol hover:bg-background hover:text-brand-petrol" aria-label="Página anterior"><ChevronLeft aria-hidden="true" /> <span className="hidden sm:inline">Anterior</span></Button>
             {Array.from({ length: pageCount }, (_, index) => index + 1).map((pageNumber) => (
-              <button key={pageNumber} type="button" onClick={() => selectPage(pageNumber)} aria-current={pageNumber === page ? "page" : undefined} className={`flex size-9 items-center justify-center rounded-lg text-sm font-bold transition ${pageNumber === page ? "bg-brand-red text-primary-foreground" : "text-brand-petrol hover:bg-background"}`}>
+              <Button key={pageNumber} type="button" variant="ghost" size="icon" onClick={() => selectPage(pageNumber)} aria-current={pageNumber === page ? "page" : undefined} className={`rounded-lg text-sm font-bold ${pageNumber === page ? "bg-brand-red text-primary-foreground hover:bg-brand-red hover:text-primary-foreground" : "text-brand-petrol hover:bg-background hover:text-brand-petrol"}`}>
                 {pageNumber}
-              </button>
+              </Button>
             ))}
-            <button type="button" onClick={() => selectPage(page + 1)} disabled={page === pageCount} className="rounded-lg px-3 py-2 text-sm font-semibold text-brand-petrol transition hover:bg-background disabled:cursor-not-allowed disabled:opacity-35" aria-label="Próxima página">Próximo</button>
+            <Button type="button" variant="ghost" onClick={() => selectPage(page + 1)} disabled={page === pageCount} className="rounded-lg px-3 text-brand-petrol hover:bg-background hover:text-brand-petrol" aria-label="Próxima página"><span className="hidden sm:inline">Próximo</span> <ChevronRight aria-hidden="true" /></Button>
           </nav>
           <p className="mt-3 text-center text-xs text-brand-gray" aria-live="polite">Página {page} de {pageCount}</p>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-brand-petrol py-14 md:py-16">
+        <HatchedCircle size={150} color="#08B9E6" className="absolute -bottom-10 -right-8 opacity-25" />
+        <div className="container-x relative mx-auto max-w-2xl text-center">
+          <h2 className="text-2xl text-primary-foreground md:text-3xl">Cultura, formação e território em movimento.</h2>
+          <p className="mt-4 leading-relaxed text-primary-foreground/85">Acompanhe as próximas atividades dos projetos da Associação Maggu.</p>
+          <Button asChild className="mt-6 rounded-full bg-brand-gold px-6 font-bold text-brand-petrol shadow-none hover:bg-background hover:text-brand-petrol">
+            <Link to="/agenda">Ver agenda <ChevronRight aria-hidden="true" /></Link>
+          </Button>
         </div>
       </section>
     </>
