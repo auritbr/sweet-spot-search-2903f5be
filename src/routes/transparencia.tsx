@@ -101,12 +101,12 @@ function Transparencia() {
           <div className="mt-14 grid gap-8 md:grid-cols-2 md:gap-10">
             {/* Card 1 — Privacidade */}
             <article className="relative flex min-h-[300px] flex-col justify-between overflow-hidden rounded-3xl bg-brand-soft p-8 md:p-10">
-              <ArcThick color="#00384C" className="pointer-events-none absolute -left-20 -top-20 w-56 opacity-15" from={200} to={340} />
+              <ArcThick color="#00384C" className="pointer-events-none absolute -left-24 -top-20 w-56 opacity-15" from={200} to={340} />
               <HatchedCircle size={130} color="#08B9E6" className="pointer-events-none absolute -right-6 -top-8 opacity-25" />
               <QuarterCircle color="#FFB400" size={92} corner="br" className="pointer-events-none absolute bottom-0 right-0 opacity-40" />
-              <span className="pointer-events-none absolute left-8 bottom-12 size-4 rotate-45 border-2 border-brand-red" aria-hidden="true" />
-              <span className="pointer-events-none absolute right-12 top-28 h-px w-16 bg-brand-petrol/25" aria-hidden="true" />
-              <span className="pointer-events-none absolute left-12 top-24 h-2 w-10 rounded-full bg-brand-red/70" aria-hidden="true" />
+              <span className="pointer-events-none absolute left-4 bottom-4 size-4 rotate-45 border-2 border-brand-red" aria-hidden="true" />
+              <span className="pointer-events-none absolute right-10 top-4 h-px w-16 bg-brand-petrol/25" aria-hidden="true" />
+              <span className="pointer-events-none absolute right-8 bottom-24 h-2 w-10 rounded-full bg-brand-red/70" aria-hidden="true" />
               <div className="relative z-10">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Privacidade</p>
                 <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.5rem, 2.4vw, 2.1rem)", lineHeight: 1.15, fontWeight: 700 }}>Privacidade e Proteção de Dados</h2>
@@ -119,13 +119,13 @@ function Transparencia() {
 
             {/* Card 2 — Integridade */}
             <article className="relative flex min-h-[300px] flex-col justify-between overflow-hidden rounded-3xl bg-brand-soft p-8 md:p-10">
-              <QuarterCircle color="#00384C" size={120} corner="tl" className="pointer-events-none absolute left-0 top-0 opacity-10" />
-              <span className="pointer-events-none absolute right-10 top-10 size-28 rounded-full border-2 border-brand-cyan/40" aria-hidden="true" />
-              <span className="pointer-events-none absolute right-16 top-16 size-16 rounded-full border border-brand-gold/60" aria-hidden="true" />
-              <Triangle color="#ED1C24" size={40} className="pointer-events-none absolute bottom-8 left-8 opacity-70" rotate={18} />
-              <BrushStroke color="#FFB400" width={120} className="pointer-events-none absolute bottom-12 right-10 opacity-50" />
-              <span className="pointer-events-none absolute left-10 bottom-24 h-px w-20 bg-brand-petrol/25" aria-hidden="true" />
-              <span className="pointer-events-none absolute right-12 bottom-24 size-4 rotate-45 border-2 border-brand-petrol/40" aria-hidden="true" />
+              <QuarterCircle color="#00384C" size={70} corner="tr" className="pointer-events-none absolute right-0 top-0 opacity-10" />
+              <span className="pointer-events-none absolute -right-6 -bottom-6 size-24 rounded-full border-2 border-brand-cyan/40" aria-hidden="true" />
+              <span className="pointer-events-none absolute -right-2 -bottom-2 size-16 rounded-full border border-brand-gold/60" aria-hidden="true" />
+              <Triangle color="#ED1C24" size={40} className="pointer-events-none absolute top-4 right-24 opacity-70" rotate={18} />
+              <BrushStroke color="#FFB400" width={120} className="pointer-events-none absolute bottom-2 left-8 opacity-50" />
+              <span className="pointer-events-none absolute left-12 bottom-[88px] h-px w-20 bg-brand-petrol/25" aria-hidden="true" />
+              <span className="pointer-events-none absolute bottom-4 right-24 size-4 rotate-45 border-2 border-brand-petrol/40" aria-hidden="true" />
               <div className="relative z-10">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Integridade</p>
                 <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.5rem, 2.4vw, 2.1rem)", lineHeight: 1.15, fontWeight: 700 }}>Canal de Denúncias e Relato Ético</h2>
