@@ -226,32 +226,27 @@ function Ecossistema() {
             <h2 className="text-2xl text-primary-foreground md:text-3xl">Os eixos se conectam na prática.</h2>
             <p className="mx-auto mt-3 max-w-xl leading-relaxed text-primary-foreground/85">Uma mesma iniciativa pode reunir diferentes dimensões da atuação da Maggu.</p>
           </div>
-          <ol className="mx-auto mt-10 flex max-w-6xl flex-col items-center sm:grid sm:grid-cols-3 sm:gap-x-8 sm:gap-y-12 lg:grid-cols-6 lg:gap-x-5 lg:gap-y-0" aria-label="Conceitos transversais conectados">
-            {[
-              ["Formação", "bg-brand-red", "sm:col-start-1 sm:row-start-1 lg:col-auto lg:row-auto"],
-              ["Criação", "bg-brand-gold", "sm:col-start-2 sm:row-start-1 lg:col-auto lg:row-auto"],
-              ["Território", "bg-brand-cyan", "sm:col-start-3 sm:row-start-1 lg:col-auto lg:row-auto"],
-              ["Memória", "bg-brand-red", "sm:col-start-3 sm:row-start-2 lg:col-auto lg:row-auto"],
-              ["Comunicação", "bg-brand-gold", "sm:col-start-2 sm:row-start-2 lg:col-auto lg:row-auto"],
-              ["Redes", "bg-brand-cyan", "sm:col-start-1 sm:row-start-2 lg:col-auto lg:row-auto"],
-            ].map(([item, accent, position], index) => (
-              <li key={item} className={`relative w-full max-w-52 py-4 sm:max-w-none sm:py-0 ${position}`}>
-                <div className="relative flex min-h-28 flex-col items-center justify-center overflow-hidden rounded-2xl border border-primary-foreground/30 bg-background/95 px-4 py-5 text-center shadow-md backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
-                  <span className={`absolute inset-x-0 top-0 h-1.5 ${accent}`} aria-hidden="true" />
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-red">{String(index + 1).padStart(2, "0")}</span>
-                  <span className="mt-2 text-base font-bold text-brand-petrol">{item}</span>
-                </div>
-                {index < 5 && (
-                  <span className={`absolute left-1/2 top-full z-10 flex h-8 -translate-x-1/2 items-center justify-center text-brand-gold sm:left-auto sm:top-1/2 sm:h-auto sm:-translate-y-1/2 sm:translate-x-0 ${index < 2 ? "sm:-right-6" : index === 2 ? "sm:-bottom-8 sm:right-1/2 sm:top-auto sm:translate-x-1/2 sm:translate-y-0" : "sm:-left-6 sm:right-auto"} lg:-right-4 lg:bottom-auto lg:left-auto lg:top-1/2 lg:translate-x-0 lg:-translate-y-1/2`} aria-hidden="true">
-                    <svg viewBox="0 0 24 12" className={`h-3 w-6 rotate-90 sm:rotate-0 ${index > 2 ? "sm:rotate-180 lg:rotate-0" : ""}`} fill="none">
-                      <path d="M1 6h20M17 2l4 4-4 4" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+          <div className="mx-auto mt-10 max-w-6xl rounded-md border border-primary-foreground/15 bg-background/5 px-5 py-7 backdrop-blur-sm md:px-8 md:py-8">
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/65">Conceitos transversais</p>
+            <ol className="relative mx-auto mt-7 grid max-w-sm gap-0 pl-2 md:max-w-none md:grid-cols-6 md:pl-0" aria-label="Conceitos transversais conectados">
+              <span className="absolute bottom-6 left-[1.9rem] top-6 w-px bg-brand-cyan/70 md:bottom-auto md:left-[8.33%] md:right-[8.33%] md:top-6 md:h-px md:w-auto" aria-hidden="true" />
+              {[
+                ["Formação", "bg-brand-red text-primary-foreground"],
+                ["Criação", "bg-brand-gold text-brand-petrol"],
+                ["Território", "bg-brand-cyan text-brand-petrol"],
+                ["Memória", "bg-brand-red text-primary-foreground"],
+                ["Comunicação", "bg-brand-gold text-brand-petrol"],
+                ["Redes", "bg-brand-cyan text-brand-petrol"],
+              ].map(([item, accent], index) => (
+                <li key={item} className="group relative z-10 flex min-h-20 items-center gap-4 md:min-h-0 md:flex-col md:gap-3 md:text-center">
+                  <span className={`flex size-11 shrink-0 items-center justify-center rounded-full border border-primary-foreground/35 text-[10px] font-bold shadow-sm ring-4 ring-brand-petrol transition-transform duration-300 group-hover:scale-105 ${accent}`}>
+                    {String(index + 1).padStart(2, "0")}
                   </span>
-                )}
-              </li>
-            ))}
-          </ol>
-          <p className="mt-7 text-center text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/60">Conceitos transversais</p>
+                  <span className="rounded-full border border-primary-foreground/15 bg-background/10 px-3 py-1.5 text-sm font-semibold text-primary-foreground backdrop-blur-sm">{item}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
 
