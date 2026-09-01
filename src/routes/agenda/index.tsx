@@ -220,9 +220,9 @@ function Agenda() {
 
               <div className="hidden h-12 w-px bg-brand-petrol/10 lg:block" aria-hidden="true" />
 
-              <fieldset className="text-center">
+              <fieldset className="min-w-0 text-center">
                 <legend className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-brand-gray">Período</legend>
-                <div className="flex flex-wrap justify-center gap-2">
+                <div className="flex flex-nowrap justify-center gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                   {views.map((item) => (
                     <Button
                       key={item.value}
@@ -231,7 +231,7 @@ function Agenda() {
                       variant="ghost"
                       onClick={() => setView(item.value)}
                       aria-pressed={view === item.value}
-                      className={`rounded-full border px-4 shadow-none backdrop-blur-md ${view === item.value ? "border-brand-petrol bg-brand-petrol text-primary-foreground hover:bg-brand-petrol/90 hover:text-primary-foreground" : "border-brand-petrol/10 bg-background/65 text-brand-petrol hover:bg-brand-soft/80 hover:text-brand-petrol"}`}
+                      className={`shrink-0 rounded-full border px-4 shadow-none backdrop-blur-md ${view === item.value ? "border-brand-petrol bg-brand-petrol text-primary-foreground hover:bg-brand-petrol/90 hover:text-primary-foreground" : "border-brand-petrol/10 bg-background/65 text-brand-petrol hover:bg-brand-soft/80 hover:text-brand-petrol"}`}
                     >
                       {item.label}
                     </Button>
