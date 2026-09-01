@@ -119,17 +119,7 @@ function EventoDetalhe() {
             </Link>
           </div>
 
-          <nav aria-label="Breadcrumb" className="mt-5 text-sm text-brand-gray">
-            <ol className="flex flex-wrap items-center justify-center gap-2">
-              <li><Link to="/" className="underline underline-offset-4 hover:text-brand-red">Início</Link></li>
-              <li aria-hidden="true">/</li>
-              <li><Link to="/agenda" className="underline underline-offset-4 hover:text-brand-red">Agenda</Link></li>
-              <li aria-hidden="true">/</li>
-              <li className="font-semibold text-brand-ink">{event.title}</li>
-            </ol>
-          </nav>
-
-          <p className="mt-5 text-xs font-bold uppercase tracking-[0.2em] text-brand-red">{event.category}</p>
+          <p className="mt-8 text-xs font-bold uppercase tracking-[0.2em] text-brand-red">{event.category}</p>
           <h1 className="mx-auto mt-3 max-w-3xl text-brand-ink" style={{ fontSize: "clamp(1.9rem, 3.2vw, 3rem)", lineHeight: 1.1, fontWeight: 700 }}>{event.title}</h1>
           <BrushStroke color="#ED1C24" className="mx-auto mt-5 w-28" />
 
@@ -162,7 +152,7 @@ function EventoDetalhe() {
             <section aria-labelledby="activity-description">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-red">Conheça a programação</p>
               <h2 id="activity-description" className="mt-2 text-brand-ink" style={{ fontSize: "clamp(1.6rem, 2.5vw, 2.25rem)", fontWeight: 700 }}>Sobre esta atividade</h2>
-              <p className="mt-5 text-brand-gray" style={{ fontSize: "12px", lineHeight: 1.65 }}>
+              <p className="mt-5 text-brand-gray" style={{ fontSize: "14px", lineHeight: 1.7 }}>
                 {event.description ?? event.summary ?? "Mais informações sobre esta atividade serão divulgadas em breve."}
               </p>
             </section>
