@@ -136,7 +136,7 @@ function EventoDetalhe() {
           <section aria-labelledby="activity-description" className="mx-auto max-w-3xl">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-red">Conheça a programação</p>
             <h2 id="activity-description" className="mt-2 text-brand-ink" style={{ fontSize: "clamp(1.6rem, 2.5vw, 2.25rem)", fontWeight: 700 }}>Sobre esta atividade</h2>
-            <p className="mt-5 text-base leading-relaxed text-brand-gray md:text-lg">
+            <p className="mt-5 text-brand-gray" style={{ fontSize: "12px", lineHeight: 1.65 }}>
               {event.description ?? event.summary ?? "Mais informações sobre esta atividade serão divulgadas em breve."}
             </p>
           </section>
