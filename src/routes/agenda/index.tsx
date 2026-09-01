@@ -1,17 +1,25 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ChevronLeft, ChevronRight, Clock3, MapPin } from "lucide-react";
 import { useMemo, useState } from "react";
-import { Section, SectionTitle } from "@/components/PageHero";
-import { AgendaStatusBadge } from "@/components/AgendaCard";
-import { ArcThick, BrushStroke, DiamondsCluster, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
-import { agendaCategories, eventDayMonth, isWithinPeriod, sortByDate, agendaEvents, type AgendaPeriod } from "@/data/agenda";
+import { ArcThick, BrushStroke, DiamondsCluster, HatchedCircle, Triangle } from "@/components/Shapes";
+import { Button } from "@/components/ui/button";
+import {
+  agendaCategories,
+  agendaEvents,
+  agendaStatusLabels,
+  parseEventDate,
+  sortByDate,
+  type AgendaCategory,
+  type AgendaEvent,
+} from "@/data/agenda";
 
 export const Route = createFileRoute("/agenda/")({
   head: () => ({
     meta: [
       { title: "Agenda | Associação Maggu" },
-      { name: "description", content: "Confira cursos, oficinas, sessões, apresentações, encontros e atividades do Ecossistema Maggu." },
+      { name: "description", content: "Acompanhe cursos, oficinas, sessões, apresentações, encontros e outras atividades do Ecossistema Maggu." },
       { property: "og:title", content: "Agenda | Associação Maggu" },
-      { property: "og:description", content: "Confira cursos, oficinas, sessões, apresentações, encontros e atividades do Ecossistema Maggu." },
+      { property: "og:description", content: "Acompanhe a programação cultural, formativa e comunitária da Associação Maggu." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/agenda" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -21,193 +29,292 @@ export const Route = createFileRoute("/agenda/")({
   component: Agenda,
 });
 
-const periods: { value: AgendaPeriod; label: string }[] = [
-  { value: "proximos", label: "Próximos" },
-  { value: "semana", label: "Esta semana" },
-  { value: "mes", label: "Este mês" },
+type CalendarView = "semana" | "mes" | "proximos";
+
+const views: { value: CalendarView; label: string }[] = [
+  { value: "semana", label: "Semana" },
+  { value: "mes", label: "Mês" },
+  { value: "proximos", label: "Próximos eventos" },
 ];
 
-const categoryStyles: Record<string, string> = {
-  Todos: "bg-brand-petrol text-primary-foreground",
-  Teatro: "bg-brand-red text-primary-foreground",
-  Cinema: "bg-brand-cyan text-brand-petrol",
-  Formação: "bg-brand-gold text-brand-petrol",
-  Literatura: "bg-brand-lime text-brand-petrol",
-  Esporte: "bg-brand-orange text-brand-petrol",
-  Comunidade: "bg-brand-petrol text-primary-foreground",
-  Sustentabilidade: "bg-brand-lime text-brand-petrol",
+const weekdays = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+
+const categoryStyle: Record<AgendaCategory, { bar: string; surface: string; text: string }> = {
+  Teatro: { bar: "bg-brand-red", surface: "bg-brand-red/8", text: "text-brand-red" },
+  Cinema: { bar: "bg-brand-cyan", surface: "bg-brand-cyan/10", text: "text-brand-petrol" },
+  Formação: { bar: "bg-brand-gold", surface: "bg-brand-gold/12", text: "text-brand-petrol" },
+  Literatura: { bar: "bg-brand-lime", surface: "bg-brand-lime/15", text: "text-brand-petrol" },
+  Esporte: { bar: "bg-brand-orange", surface: "bg-brand-orange/10", text: "text-brand-petrol" },
+  Comunidade: { bar: "bg-brand-petrol", surface: "bg-brand-petrol/8", text: "text-brand-petrol" },
+  Sustentabilidade: { bar: "bg-brand-lime", surface: "bg-brand-lime/15", text: "text-brand-petrol" },
 };
 
-function Agenda() {
-  const [category, setCategory] = useState<string>("Todos");
-  const [period, setPeriod] = useState<AgendaPeriod>("proximos");
+function atStartOfDay(date: Date) {
+  const value = new Date(date);
+  value.setHours(0, 0, 0, 0);
+  return value;
+}
 
-  const events = useMemo(() => {
-    return sortByDate(agendaEvents).filter(
-      (e) => isWithinPeriod(e, period) && (category === "Todos" || e.category === category),
-    );
-  }, [category, period]);
+function addDays(date: Date, amount: number) {
+  const value = new Date(date);
+  value.setDate(value.getDate() + amount);
+  return value;
+}
+
+function startOfWeek(date: Date) {
+  return addDays(atStartOfDay(date), -date.getDay());
+}
+
+function startOfMonth(date: Date) {
+  return new Date(date.getFullYear(), date.getMonth(), 1);
+}
+
+function endOfMonth(date: Date) {
+  return new Date(date.getFullYear(), date.getMonth() + 1, 0);
+}
+
+function sameDay(first: Date, second: Date) {
+  return first.getFullYear() === second.getFullYear()
+    && first.getMonth() === second.getMonth()
+    && first.getDate() === second.getDate();
+}
+
+function dateKey(date: Date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+
+function CalendarEvent({ event }: { event: AgendaEvent }) {
+  const style = categoryStyle[event.category];
+  return (
+    <Link
+      to="/agenda/$slug"
+      params={{ slug: event.slug }}
+      className={`group relative block overflow-hidden rounded-md border border-background/80 ${style.surface} p-3 transition hover:-translate-y-0.5 hover:border-brand-petrol/20`}
+    >
+      <span className={`absolute inset-y-0 left-0 w-1 ${style.bar}`} aria-hidden="true" />
+      <p className={`pl-1 text-[10px] font-bold uppercase ${style.text}`}>{event.category}</p>
+      <h3 className="mt-1 pl-1 text-sm leading-snug text-brand-ink group-hover:text-brand-red">{event.title}</h3>
+      {event.time && (
+        <p className="mt-2 flex items-center gap-1.5 pl-1 text-[11px] font-semibold text-brand-gray">
+          <Clock3 aria-hidden="true" className="size-3" /> {event.time}
+        </p>
+      )}
+      {event.location && (
+        <p className="mt-1 flex items-start gap-1.5 pl-1 text-[11px] leading-snug text-brand-gray">
+          <MapPin aria-hidden="true" className="mt-0.5 size-3 shrink-0" /> {event.location}
+        </p>
+      )}
+      {event.summary && <p className="mt-2 line-clamp-2 pl-1 text-[11px] leading-relaxed text-brand-gray">{event.summary}</p>}
+      {event.status && (
+        <span className="mt-2 inline-flex rounded-full bg-background/75 px-2 py-1 text-[9px] font-bold uppercase text-brand-petrol">
+          {agendaStatusLabels[event.status]}
+        </span>
+      )}
+    </Link>
+  );
+}
+
+function Agenda() {
+  const [category, setCategory] = useState<"Todos" | AgendaCategory>("Todos");
+  const [view, setView] = useState<CalendarView>("semana");
+  const [cursor, setCursor] = useState(() => atStartOfDay(new Date()));
+
+  const filteredEvents = useMemo(
+    () => sortByDate(agendaEvents).filter((event) => category === "Todos" || event.category === category),
+    [category],
+  );
+
+  const calendarDays = useMemo(() => {
+    if (view === "mes") {
+      const first = startOfWeek(startOfMonth(cursor));
+      const last = addDays(startOfWeek(endOfMonth(cursor)), 6);
+      const days: Date[] = [];
+      for (let day = first; day <= last; day = addDays(day, 1)) days.push(day);
+      return days;
+    }
+
+    if (view === "proximos") {
+      const firstUpcoming = filteredEvents.find((event) => parseEventDate(event.date) >= cursor);
+      const first = startOfWeek(firstUpcoming ? parseEventDate(firstUpcoming.date) : cursor);
+      return Array.from({ length: 7 }, (_, index) => addDays(first, index));
+    }
+
+    const first = startOfWeek(cursor);
+    return Array.from({ length: 7 }, (_, index) => addDays(first, index));
+  }, [cursor, filteredEvents, view]);
+
+  const eventsByDay = useMemo(() => {
+    const grouped = new Map<string, AgendaEvent[]>();
+    filteredEvents.forEach((event) => {
+      const list = grouped.get(event.date) ?? [];
+      list.push(event);
+      grouped.set(event.date, list);
+    });
+    return grouped;
+  }, [filteredEvents]);
+
+  const visibleEvents = calendarDays.reduce((total, day) => total + (eventsByDay.get(dateKey(day))?.length ?? 0), 0);
+  const title = view === "mes"
+    ? cursor.toLocaleDateString("pt-BR", { month: "long", year: "numeric" })
+    : calendarDays[0].getMonth() === calendarDays[calendarDays.length - 1].getMonth()
+      ? calendarDays[0].toLocaleDateString("pt-BR", { month: "long", year: "numeric" })
+      : `${calendarDays[0].toLocaleDateString("pt-BR", { month: "short" })} — ${calendarDays[calendarDays.length - 1].toLocaleDateString("pt-BR", { month: "short", year: "numeric" })}`;
+
+  const movePeriod = (direction: -1 | 1) => {
+    if (view === "mes") {
+      setCursor((current) => new Date(current.getFullYear(), current.getMonth() + direction, 1));
+      return;
+    }
+    setCursor((current) => addDays(current, direction * 7));
+  };
 
   return (
     <>
-      <section className="relative isolate min-h-[500px] overflow-hidden bg-brand-petrol md:min-h-[560px]">
-        <QuarterCircle corner="tr" color="#ED1C24" className="absolute -right-2 -top-2 w-40 md:w-56" />
-        <HatchedCircle size={220} color="#08B9E6" className="absolute -bottom-16 -left-12 opacity-25" />
-        <ArcThick color="#FFB400" className="absolute left-7 top-32 w-28 opacity-90 md:left-16 md:w-36" from={200} to={340} />
-        <DiamondsCluster color="#08B9E6" className="absolute bottom-16 right-12 hidden opacity-80 md:block" size={54} />
-        <div className="container-x relative grid min-h-[500px] items-center gap-10 pb-14 pt-28 md:min-h-[560px] md:grid-cols-[1fr_.8fr] md:pb-16 md:pt-32">
-          <div className="max-w-2xl">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-gold">Programação cultural</p>
-            <h1 className="mt-4 text-primary-foreground" style={{ fontSize: "clamp(2rem, 3.3vw, 3.5rem)", lineHeight: 1.1, fontWeight: 700 }}>Agenda</h1>
-            <BrushStroke color="#FFB400" className="mt-5 w-36" />
-            <p className="mt-6 max-w-2xl text-primary-foreground/90" style={{ fontSize: "clamp(1rem, 1.2vw, 1.1rem)", lineHeight: 1.6 }}>
-              Cursos, sessões de cinema, oficinas, apresentações, encontros, atividades esportivas e outras ações do Ecossistema Maggu.
-            </p>
-          </div>
-          <div className="relative mx-auto hidden aspect-square w-full max-w-[310px] md:block" aria-hidden="true">
-            <div className="absolute inset-x-3 bottom-3 top-12 rotate-3 bg-brand-cyan" />
-            <div className="absolute inset-x-8 bottom-8 top-0 -rotate-3 bg-background p-6">
-              <div className="flex justify-between border-b-2 border-brand-petrol pb-4 text-xs font-bold uppercase tracking-[0.18em] text-brand-petrol"><span>Agenda</span><span>Maggu</span></div>
-              <div className="mt-6 grid grid-cols-3 gap-3">
-                {["01", "07", "14", "21", "28", "•"].map((day, index) => <span key={`${day}-${index}`} className={`flex aspect-square items-center justify-center text-sm font-bold ${index === 2 ? "bg-brand-red text-primary-foreground" : index === 4 ? "bg-brand-gold text-brand-petrol" : "border border-brand-petrol/20 text-brand-petrol"}`}>{day}</span>)}
-              </div>
-              <div className="mt-6 h-2 w-3/4 bg-brand-petrol/15" />
-              <div className="mt-3 h-2 w-1/2 bg-brand-petrol/15" />
-            </div>
-          </div>
+      <section className="relative overflow-hidden bg-brand-soft pb-16 pt-28 md:pb-20 md:pt-32">
+        <ArcThick color="#00384C" className="absolute -left-8 top-24 w-40 opacity-80 md:w-52" from={200} to={340} />
+        <HatchedCircle size={140} color="#08B9E6" className="absolute -right-12 -top-12 opacity-50" />
+        <Triangle color="#FFB400" size={54} className="absolute bottom-8 right-16 hidden md:block" rotate={20} />
+        <DiamondsCluster color="#ED1C24" className="absolute bottom-8 left-[18%] hidden opacity-70 lg:block" size={42} />
+        <div className="container-x relative text-center">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Programação</p>
+          <h1 className="text-brand-ink" style={{ fontSize: "clamp(2rem, 3.3vw, 3.5rem)", lineHeight: 1.1, fontWeight: 700 }}>Agenda</h1>
+          <BrushStroke color="#FFB400" className="mx-auto mt-4 w-32" />
+          <p className="mx-auto mt-5 max-w-2xl text-brand-gray" style={{ fontSize: "clamp(1rem, 1.2vw, 1.1rem)", lineHeight: 1.6 }}>
+            Acompanhe cursos, oficinas, sessões, apresentações, encontros e outras atividades do Ecossistema Maggu.
+          </p>
+          <Button asChild className="mt-7 rounded-full bg-brand-petrol px-6 text-primary-foreground shadow-none hover:bg-brand-red">
+            <a href="#programacao">Ver programação</a>
+          </Button>
         </div>
       </section>
 
-      <Section className="overflow-hidden bg-background">
-        <div className="container-x grid items-center gap-10 lg:grid-cols-[1fr_.7fr] lg:gap-16">
-          <div className="max-w-3xl">
-            <SectionTitle eyebrow="Agenda Maggu" title="O que está acontecendo agora" text="A Agenda reúne atividades abertas, próximas programações e oportunidades de participação nas diferentes iniciativas da Associação." />
-            <p className="leading-relaxed text-brand-gray">Encontre oficinas, cursos, sessões, apresentações, encontros e outras ações organizadas por data.</p>
-          </div>
-          <div className="relative mx-auto w-full max-w-sm bg-brand-gold p-7">
-            <Triangle color="#ED1C24" size={38} className="absolute -right-3 -top-3" rotate={18} />
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-red">Como acompanhar</p>
-            <div className="mt-5 grid grid-cols-[auto_1fr] items-center gap-5">
-              <div className="bg-brand-petrol px-4 py-3 text-center text-primary-foreground"><span className="block text-3xl font-bold leading-none">14</span><span className="mt-1 block text-[10px] font-bold uppercase">set</span></div>
-              <p className="text-sm leading-relaxed text-brand-petrol">Escolha uma categoria, filtre o período e acompanhe cada atividade pela data.</p>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      <section className="bg-brand-soft pb-12 pt-10 md:pb-16 md:pt-14">
+      <main id="programacao" className="relative overflow-hidden bg-background py-14 md:py-20">
+        <HatchedCircle size={180} color="#08B9E6" className="pointer-events-none absolute -right-24 top-72 opacity-10" />
         <div className="container-x">
-          <div className="flex flex-col gap-7">
-            <div>
-              <h2 className="sr-only">Filtros da agenda</h2>
-              <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-brand-red">Categorias</p>
-              <div role="group" aria-label="Filtrar por categoria" className="flex gap-2 overflow-x-auto pb-2">
-                {["Todos", ...agendaCategories].map((c) => (
-                  <button
-                    key={c}
-                    type="button"
-                    onClick={() => setCategory(c)}
-                    aria-pressed={category === c}
-                    className={`shrink-0 border-2 px-4 py-2 text-sm font-semibold transition ${
-                      category === c ? `${categoryStyles[c]} border-transparent` : "border-brand-petrol/20 bg-background text-brand-petrol hover:border-brand-red hover:text-brand-red"
-                    }`}
-                  >
-                    {c}
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div>
-              <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-brand-red">Período</p>
-              <div role="group" aria-label="Filtrar por período" className="flex flex-wrap gap-2">
-              {periods.map((p) => (
-                <button
-                  key={p.value}
-                  type="button"
-                  onClick={() => setPeriod(p.value)}
-                  aria-pressed={period === p.value}
-                  className={`border-2 px-4 py-2 text-sm font-semibold transition ${
-                    period === p.value
-                      ? "border-brand-petrol bg-brand-petrol text-primary-foreground"
-                      : "border-brand-petrol/20 bg-background text-brand-gray hover:border-brand-petrol hover:text-brand-petrol"
-                  }`}
-                >
-                  {p.label}
-                </button>
-              ))}
-              </div>
+          <header className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Agenda Maggu</p>
+            <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.15, fontWeight: 700 }}>
+              Acompanhe a programação
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-brand-gray">
+              Veja as atividades da Associação Maggu por categoria e período, de forma simples, visual e organizada.
+            </p>
+            <p className="mt-2 text-sm text-brand-gray">A agenda reúne ações culturais, formativas e comunitárias do Ecossistema Maggu.</p>
+          </header>
+
+          <div className="mx-auto mt-10 max-w-5xl rounded-lg border border-background/80 bg-background/70 p-3 shadow-[0_12px_40px_rgba(0,56,76,0.08)] backdrop-blur-xl md:p-4">
+            <div className="flex flex-col items-center justify-center gap-5 lg:flex-row lg:gap-8">
+              <fieldset className="min-w-0 text-center">
+                <legend className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-brand-gray">Categoria</legend>
+                <div className="flex max-w-full flex-wrap justify-center gap-2 pb-1">
+                  {(["Todos", ...agendaCategories] as const).map((item) => (
+                    <Button
+                      key={item}
+                      type="button"
+                      size="sm"
+                      variant="ghost"
+                      onClick={() => setCategory(item)}
+                      aria-pressed={category === item}
+                      className={`shrink-0 rounded-full border px-4 shadow-none backdrop-blur-md ${category === item ? "border-brand-red bg-brand-red text-primary-foreground hover:bg-brand-red/90 hover:text-primary-foreground" : "border-brand-petrol/10 bg-background/65 text-brand-petrol hover:bg-brand-soft/80 hover:text-brand-petrol"}`}
+                    >
+                      {item}
+                    </Button>
+                  ))}
+                </div>
+              </fieldset>
+
+              <div className="hidden h-12 w-px bg-brand-petrol/10 lg:block" aria-hidden="true" />
+
+              <fieldset className="text-center">
+                <legend className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-brand-gray">Período</legend>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {views.map((item) => (
+                    <Button
+                      key={item.value}
+                      type="button"
+                      size="sm"
+                      variant="ghost"
+                      onClick={() => setView(item.value)}
+                      aria-pressed={view === item.value}
+                      className={`rounded-full border px-4 shadow-none backdrop-blur-md ${view === item.value ? "border-brand-petrol bg-brand-petrol text-primary-foreground hover:bg-brand-petrol/90 hover:text-primary-foreground" : "border-brand-petrol/10 bg-background/65 text-brand-petrol hover:bg-brand-soft/80 hover:text-brand-petrol"}`}
+                    >
+                      {item.label}
+                    </Button>
+                  ))}
+                </div>
+              </fieldset>
             </div>
           </div>
 
-          <div className="mt-10" aria-live="polite">
-            {events.length ? (
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {events.map((event) => {
-                  const { day, month, weekday } = eventDayMonth(event.date);
-                  const closed = event.status === "inscricoes-encerradas";
-                  return (
-                    <article key={event.slug} className="relative flex min-h-[390px] flex-col overflow-hidden bg-background">
-                      <div className={`flex items-end justify-between px-6 py-5 ${categoryStyles[event.category]}`}>
-                        <time dateTime={event.date}>
-                          <span className="block text-4xl font-bold leading-none">{day}</span>
-                          <span className="mt-1 block text-xs font-bold uppercase tracking-[0.18em]">{month}</span>
-                        </time>
-                        <p className="text-xs font-bold uppercase tracking-[0.16em]">{event.category}</p>
-                      </div>
-                      <div className="flex flex-1 flex-col p-6">
-                        <p className="text-xs font-semibold capitalize text-brand-gray">{weekday}{event.time ? ` · ${event.time}` : ""}</p>
-                        <h3 className="mt-3 text-xl leading-snug text-brand-ink">{event.title}</h3>
-                        {event.summary && <p className="mt-3 text-sm leading-relaxed text-brand-gray">{event.summary}</p>}
-                        {event.location && <p className="mt-4 border-t border-brand-petrol/15 pt-4 text-sm font-semibold text-brand-petrol">{event.location}</p>}
-                        <div className="mt-auto flex flex-col items-start gap-4 pt-6">
-                        <AgendaStatusBadge event={event} />
-                        <div className="flex flex-wrap gap-2">
-                          <Link to="/agenda/$slug" params={{ slug: event.slug }} className="rounded-full border-2 border-brand-petrol px-5 py-2 text-sm font-bold text-brand-petrol transition hover:bg-brand-soft">Saiba mais</Link>
-                          {event.registrationUrl && !closed && <a href={event.registrationUrl} target="_blank" rel="noopener noreferrer" className="rounded-full bg-brand-red px-5 py-2 text-sm font-bold text-primary-foreground transition hover:bg-brand-petrol">Inscreva-se</a>}
-                        </div>
-                        </div>
-                      </div>
-                    </article>
-                  );
-                })}
+          <section aria-labelledby="calendar-title" className="mx-auto mt-8 max-w-7xl overflow-hidden rounded-lg border border-brand-petrol/10 bg-background">
+            <div className="flex flex-col gap-4 border-b border-brand-petrol/10 px-4 py-5 sm:flex-row sm:items-center sm:justify-between md:px-6">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-brand-red">{view === "mes" ? "Calendário mensal" : "Calendário semanal"}</p>
+                <h2 id="calendar-title" className="mt-1 capitalize text-brand-ink" style={{ fontSize: "clamp(1.35rem, 2vw, 1.8rem)", fontWeight: 700 }}>{title}</h2>
               </div>
-            ) : (
-              <div className="relative overflow-hidden bg-background px-7 py-10 md:grid md:grid-cols-[.8fr_1.2fr] md:items-center md:gap-12 md:px-12 md:py-12">
-                <div className="relative mx-auto mb-9 h-48 w-48 md:mb-0" aria-hidden="true">
-                  <div className="absolute inset-4 rotate-6 bg-brand-cyan" />
-                  <div className="absolute inset-4 -rotate-6 bg-brand-gold" />
-                  <div className="absolute inset-8 bg-brand-petrol p-5 text-primary-foreground">
-                    <div className="flex justify-between border-b border-primary-foreground/40 pb-3 text-[10px] font-bold uppercase"><span>Próxima</span><span>data</span></div>
-                    <span className="mt-4 block text-center text-6xl font-bold">+</span>
-                  </div>
-                </div>
-                <div className="relative max-w-2xl">
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-red">Programação em atualização</p>
-                  <h2 className="mt-3 text-2xl text-brand-ink">Novas atividades em breve</h2>
-                  <p className="mt-4 leading-relaxed text-brand-gray">A Agenda será atualizada conforme novas oficinas, apresentações, sessões, encontros e outras atividades forem confirmadas.</p>
-                  <p className="mt-3 leading-relaxed text-brand-gray">Enquanto isso, conheça as iniciativas que fazem parte do Ecossistema Maggu.</p>
-                  <div className="mt-7 flex flex-wrap gap-3">
-                  <Link to="/projetos" className="rounded-full bg-brand-red px-6 py-3 text-sm font-bold text-primary-foreground transition hover:bg-brand-petrol">Conheça os projetos</Link>
-                  <Link to="/ecossistema" className="rounded-full border-2 border-brand-petrol px-6 py-3 text-sm font-bold text-brand-petrol transition hover:bg-brand-soft">Explore o Ecossistema</Link>
-                  </div>
-                </div>
+              <div className="flex items-center gap-2">
+                <Button type="button" variant="outline" size="icon" aria-label="Período anterior" onClick={() => movePeriod(-1)} className="rounded-full border-brand-petrol/15 bg-background shadow-none hover:bg-brand-soft">
+                  <ChevronLeft aria-hidden="true" />
+                </Button>
+                <Button type="button" variant="outline" onClick={() => setCursor(atStartOfDay(new Date()))} className="rounded-full border-brand-petrol/15 bg-background px-5 text-brand-petrol shadow-none hover:bg-brand-soft">
+                  Hoje
+                </Button>
+                <Button type="button" variant="outline" size="icon" aria-label="Próximo período" onClick={() => movePeriod(1)} className="rounded-full border-brand-petrol/15 bg-background shadow-none hover:bg-brand-soft">
+                  <ChevronRight aria-hidden="true" />
+                </Button>
+              </div>
+            </div>
+
+            <div className="hidden grid-cols-7 border-b border-brand-petrol/10 bg-brand-soft/55 md:grid">
+              {weekdays.map((day) => <div key={day} className="px-3 py-3 text-center text-[10px] font-bold uppercase tracking-[0.12em] text-brand-gray">{day}</div>)}
+            </div>
+
+            <div className="grid md:grid-cols-7">
+              {calendarDays.map((day) => {
+                const dayEvents = eventsByDay.get(dateKey(day)) ?? [];
+                const isToday = sameDay(day, new Date());
+                const outsideMonth = view === "mes" && day.getMonth() !== cursor.getMonth();
+                return (
+                  <article key={dateKey(day)} className={`min-h-36 border-b border-brand-petrol/10 p-3 md:min-h-52 md:border-r ${outsideMonth ? "bg-brand-soft/35" : "bg-background"}`}>
+                    <div className="mb-3 flex items-center justify-between md:justify-end">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-brand-gray md:hidden">{weekdays[day.getDay()]}</p>
+                      <time dateTime={dateKey(day)} className={`flex size-8 items-center justify-center rounded-full text-sm font-bold ${isToday ? "bg-brand-red text-primary-foreground" : outsideMonth ? "text-brand-gray/50" : "text-brand-petrol"}`}>
+                        {day.getDate()}
+                      </time>
+                    </div>
+                    <div className="space-y-2">
+                      {dayEvents.map((event) => <CalendarEvent key={event.slug} event={event} />)}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+
+            {visibleEvents === 0 && (
+              <div className="flex flex-col items-center border-t border-brand-petrol/10 bg-brand-soft/35 px-6 py-9 text-center">
+                <span className="mb-4 h-1.5 w-14 rounded-full bg-brand-gold" aria-hidden="true" />
+                <h3 className="text-lg text-brand-ink">Nenhuma atividade neste período</h3>
+                <p className="mt-2 max-w-lg text-sm leading-relaxed text-brand-gray">A programação será atualizada conforme novas atividades forem confirmadas. Navegue pelos períodos ou escolha outra categoria.</p>
               </div>
             )}
-          </div>
+          </section>
         </div>
-      </section>
+      </main>
 
-      <section className="relative overflow-hidden bg-brand-petrol py-14 md:py-18">
-        <QuarterCircle corner="br" color="#ED1C24" className="absolute -bottom-2 -right-2 w-32 opacity-90" />
-        <HatchedCircle size={160} color="#08B9E6" className="absolute -left-12 top-0 opacity-20" />
-        <div className="container-x relative mx-auto max-w-3xl text-center text-primary-foreground">
-          <h2 className="text-2xl text-primary-foreground md:text-3xl">Quer saber mais sobre uma atividade?</h2>
-          <p className="mt-4 leading-relaxed text-primary-foreground/90">
-            Fale com a Associação ou conheça as iniciativas que originam a programação do Ecossistema Maggu.
+      <section className="relative overflow-hidden bg-brand-petrol py-14 md:py-16">
+        <ArcThick color="#08B9E6" className="absolute -left-10 top-5 w-32 opacity-40" from={200} to={340} />
+        <Triangle color="#ED1C24" size={64} className="absolute -bottom-3 right-8 opacity-90" rotate={18} />
+        <div className="container-x relative mx-auto max-w-3xl text-center">
+          <h2 className="text-primary-foreground" style={{ fontSize: "clamp(1.7rem, 2.7vw, 2.6rem)", lineHeight: 1.15, fontWeight: 700 }}>
+            Quer acompanhar mais de perto as ações da Maggu?
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-primary-foreground/90">
+            Conheça os projetos, explore o ecossistema ou entre em contato para saber mais sobre as atividades da Associação.
           </p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Link to="/projetos" className="rounded-full bg-brand-gold px-6 py-3 text-sm font-bold text-brand-petrol transition hover:bg-background">Conheça os projetos</Link>
-            <Link to="/contato" className="rounded-full border-2 border-primary-foreground px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-background/10">Entre em contato</Link>
+            <Button asChild className="rounded-full bg-brand-gold px-6 text-brand-petrol shadow-none hover:bg-background"><Link to="/projetos">Conheça os projetos</Link></Button>
+            <Button asChild variant="outline" className="rounded-full border-primary-foreground/55 bg-background/10 px-6 text-primary-foreground shadow-none backdrop-blur-md hover:bg-background/20 hover:text-primary-foreground"><Link to="/ecossistema">Explore o Ecossistema</Link></Button>
+            <Button asChild variant="ghost" className="rounded-full px-6 text-primary-foreground hover:bg-background/10 hover:text-primary-foreground"><Link to="/contato">Entre em contato</Link></Button>
           </div>
         </div>
       </section>
