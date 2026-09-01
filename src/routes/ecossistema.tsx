@@ -218,14 +218,14 @@ function Ecossistema() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-brand-petrol py-10 md:py-12">
+      <section className="relative overflow-hidden bg-brand-petrol py-12 md:py-16">
         <ArcThick color="#FFB400" className="absolute -left-8 -top-8 w-28 opacity-80" from={210} to={340} />
-        <div className="container-x relative grid items-center gap-6 lg:grid-cols-[.8fr_1.2fr]">
-          <div>
+        <div className="container-x relative">
+          <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl text-primary-foreground md:text-3xl">Os eixos se conectam na prática.</h2>
-            <p className="mt-3 max-w-xl leading-relaxed text-primary-foreground/85">Uma mesma iniciativa pode reunir diferentes dimensões da atuação da Maggu.</p>
+            <p className="mx-auto mt-3 max-w-xl leading-relaxed text-primary-foreground/85">Uma mesma iniciativa pode reunir diferentes dimensões da atuação da Maggu.</p>
           </div>
-          <ul className="relative flex flex-wrap gap-2.5 lg:justify-end" aria-label="Conceitos que conectam os eixos">
+          <ol className="mx-auto mt-9 grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:gap-7" aria-label="Conceitos transversais conectados">
             {[
               ["Formação", "bg-brand-red text-primary-foreground"],
               ["Criação", "bg-brand-gold text-brand-petrol"],
@@ -233,8 +233,14 @@ function Ecossistema() {
               ["Memória", "bg-background text-brand-petrol"],
               ["Comunicação", "bg-brand-orange text-brand-petrol"],
               ["Redes", "bg-brand-lime text-brand-petrol"],
-            ].map(([item, classes]) => <li key={item} className={`rounded-full px-4 py-2 text-sm font-bold ${classes}`}>{item}</li>)}
-          </ul>
+            ].map(([item, classes], index) => (
+              <li key={item} className="relative">
+                <div className={`flex min-h-20 items-center justify-center px-4 text-center text-sm font-bold ${classes}`}>{item}</div>
+                {index < 5 && <span className="absolute left-1/2 top-full flex h-4 -translate-x-1/2 items-center text-xl text-brand-gold sm:left-full sm:top-1/2 sm:h-auto sm:w-4 sm:-translate-x-2 sm:-translate-y-1/2 lg:w-7 lg:translate-x-0 lg:justify-center" aria-hidden="true">→</span>}
+              </li>
+            ))}
+          </ol>
+          <p className="mt-7 text-center text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/55">Conceitos transversais</p>
         </div>
       </section>
 
