@@ -225,24 +225,31 @@ function Ecossistema() {
             <h2 className="text-2xl text-primary-foreground md:text-3xl">Os eixos se conectam na prática.</h2>
             <p className="mx-auto mt-3 max-w-xl leading-relaxed text-primary-foreground/85">Uma mesma iniciativa pode reunir diferentes dimensões da atuação da Maggu.</p>
           </div>
-          <ol className="mx-auto mt-10 grid max-w-5xl grid-cols-2 gap-x-9 gap-y-7 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-7 lg:gap-y-0" aria-label="Conceitos transversais conectados">
+          <ol className="mx-auto mt-8 flex max-w-5xl flex-col items-center gap-7 sm:grid sm:grid-cols-3 sm:gap-x-12 sm:gap-y-8 lg:grid-cols-6 lg:gap-x-7 lg:gap-y-0" aria-label="Conceitos transversais conectados">
             {[
-              ["Formação", "bg-brand-red/25 border-brand-red/50 text-primary-foreground"],
-              ["Criação", "bg-brand-gold/25 border-brand-gold/50 text-primary-foreground"],
-              ["Território", "bg-brand-cyan/25 border-brand-cyan/50 text-primary-foreground"],
-              ["Memória", "bg-white/15 border-white/40 text-primary-foreground"],
-              ["Comunicação", "bg-brand-orange/25 border-brand-orange/50 text-primary-foreground"],
-              ["Redes", "bg-brand-lime/25 border-brand-lime/50 text-primary-foreground"],
-            ].map(([item, classes], index) => (
-              <li key={item} className="relative min-w-0">
-                <div className={`flex min-h-14 items-center justify-center rounded-lg border px-3 py-3 text-center text-sm font-bold shadow-sm backdrop-blur-sm transition-transform duration-200 hover:-translate-y-0.5 ${classes}`}>{item}</div>
+              ["Formação", "border-brand-red/50 bg-brand-red/10", "bg-brand-red", "sm:col-start-1 sm:row-start-1 lg:col-auto lg:row-auto"],
+              ["Criação", "border-brand-gold/50 bg-brand-gold/10", "bg-brand-gold", "sm:col-start-2 sm:row-start-1 lg:col-auto lg:row-auto"],
+              ["Território", "border-brand-cyan/50 bg-brand-cyan/10", "bg-brand-cyan", "sm:col-start-3 sm:row-start-1 lg:col-auto lg:row-auto"],
+              ["Memória", "border-primary-foreground/35 bg-background/10", "bg-background", "sm:col-start-3 sm:row-start-2 lg:col-auto lg:row-auto"],
+              ["Comunicação", "border-brand-red/50 bg-brand-red/10", "bg-brand-red", "sm:col-start-2 sm:row-start-2 lg:col-auto lg:row-auto"],
+              ["Redes", "border-brand-cyan/50 bg-brand-cyan/10", "bg-brand-cyan", "sm:col-start-1 sm:row-start-2 lg:col-auto lg:row-auto"],
+            ].map(([item, classes, dot, position], index) => (
+              <li key={item} className={`relative w-full max-w-40 min-w-0 sm:max-w-none ${position}`}>
+                <div className={`flex min-h-11 items-center justify-center gap-2 rounded-lg border px-3 py-2 text-center text-sm font-bold text-primary-foreground shadow-sm backdrop-blur-md transition-transform duration-200 hover:-translate-y-0.5 hover:bg-background/15 ${classes}`}>
+                  <span className={`size-1.5 shrink-0 rounded-full ${dot}`} aria-hidden="true" />
+                  {item}
+                </div>
                 {index < 5 && (
-                  <span className={`absolute z-10 flex items-center justify-center text-lg font-light text-brand-gold ${index % 2 === 0 ? "-right-7 top-1/2 -translate-y-1/2" : "left-1/2 top-full h-7 -translate-x-1/2 rotate-90 sm:rotate-0 sm:-right-7 sm:left-auto sm:top-1/2 sm:h-auto sm:translate-x-0 sm:-translate-y-1/2 lg:-right-7"} ${index === 2 ? "sm:left-1/2 sm:right-auto sm:top-full sm:h-7 sm:-translate-x-1/2 sm:translate-y-0 sm:rotate-90 lg:-right-7 lg:left-auto lg:top-1/2 lg:h-auto lg:translate-x-0 lg:-translate-y-1/2 lg:rotate-0" : ""}`} aria-hidden="true">→</span>
+                  <span className={`absolute left-1/2 top-full flex h-7 -translate-x-1/2 items-center justify-center text-brand-gold sm:left-auto sm:top-1/2 sm:h-auto sm:-translate-y-1/2 sm:translate-x-0 ${index < 2 ? "sm:-right-8" : index === 2 ? "sm:-bottom-8 sm:right-1/2 sm:top-auto sm:translate-x-1/2 sm:translate-y-0" : "sm:-left-8 sm:right-auto"} lg:-right-6 lg:left-auto lg:top-1/2 lg:bottom-auto lg:translate-x-0 lg:-translate-y-1/2`} aria-hidden="true">
+                    <svg viewBox="0 0 22 10" className={`h-2.5 w-5 rotate-90 sm:rotate-0 ${index > 2 ? "sm:rotate-180 lg:rotate-0" : ""}`} fill="none">
+                      <path d="M1 5h18M15.5 1.5 19 5l-3.5 3.5" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
                 )}
               </li>
             ))}
           </ol>
-          <p className="mt-7 text-center text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/55">Conceitos transversais</p>
+          <p className="mt-5 text-center text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/55">Conceitos transversais</p>
         </div>
       </section>
 

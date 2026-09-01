@@ -21,8 +21,6 @@ export const Route = createFileRoute("/projetos/")({
 });
 
 const PROJECTS_PER_PAGE = 3;
-const cardAccents = ["border-brand-red", "border-brand-cyan", "border-brand-gold"] as const;
-
 function Projetos() {
   const [page, setPage] = useState(1);
   const listStart = useRef<HTMLElement>(null);
@@ -81,18 +79,18 @@ function Projetos() {
             <h2 id="project-list-title" className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.15, fontWeight: 700 }}>Projetos que dão forma ao Ecossistema Maggu</h2>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {visibleProjects.map((project, index) => (
-              <article key={project.slug} className={`flex min-h-full flex-col overflow-hidden rounded-md border-t-4 bg-background shadow-sm ${cardAccents[index % cardAccents.length]}`}>
-                <div className="aspect-[16/10] overflow-hidden bg-brand-soft">
-                  <img src={project.image} alt="" className="h-full w-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
+          <div className="grid gap-8 md:grid-cols-2">
+            {visibleProjects.map((project) => (
+              <article key={project.slug} className="group grid grid-cols-1 gap-0 overflow-hidden rounded-3xl bg-brand-soft sm:grid-cols-2">
+                <div className="aspect-[4/3] overflow-hidden sm:aspect-auto">
+                  <img src={project.image} alt={project.name} className="h-full w-full object-cover transition group-hover:scale-105" loading="lazy" />
                 </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-red">{project.category}</p>
-                  <h3 className="mt-3 text-xl leading-snug text-brand-ink">{project.name}</h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-brand-gray">{project.short}</p>
-                  <Link to="/projetos/$slug" params={{ slug: project.slug }} className="mt-6 inline-flex w-fit rounded-full bg-brand-petrol px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-brand-red">
-                    Conhecer projeto
+                <div className="flex flex-col p-6">
+                  <span className="inline-block self-start rounded-full bg-brand-red px-3 py-1 text-xs font-bold text-primary-foreground">{project.category}</span>
+                  <h3 className="mt-3 text-2xl font-black text-brand-ink">{project.name}</h3>
+                  <p className="mt-3 text-brand-gray">{project.short}</p>
+                  <Link to="/projetos/$slug" params={{ slug: project.slug }} className="mt-auto inline-flex pt-4 font-semibold text-brand-red transition hover:text-brand-petrol">
+                    Conheça →
                   </Link>
                 </div>
               </article>
