@@ -139,13 +139,8 @@ function EventoDetalhe() {
             {event.location && <li className="flex items-center gap-2"><MapPin aria-hidden="true" className="size-4 text-brand-red" />{event.location}</li>}
           </ul>
 
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+          <div className="mt-5 flex justify-center">
             <AgendaStatusBadge event={event} />
-            {event.free === true ? (
-              <span className="text-sm font-semibold text-brand-petrol">Gratuito</span>
-            ) : event.price ? (
-              <span className="text-sm font-semibold text-brand-petrol">{event.price}</span>
-            ) : null}
           </div>
 
           {/* Ação principal — somente quando há link de inscrição e não está encerrada */}
