@@ -39,14 +39,14 @@ const views: { value: CalendarView; label: string }[] = [
 
 const weekdays = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
 
-const categoryStyle: Record<AgendaCategory, { bar: string; surface: string; text: string }> = {
-  Teatro: { bar: "bg-brand-red", surface: "bg-brand-red/8", text: "text-brand-red" },
-  Cinema: { bar: "bg-brand-cyan", surface: "bg-brand-cyan/10", text: "text-brand-petrol" },
-  Formação: { bar: "bg-brand-gold", surface: "bg-brand-gold/12", text: "text-brand-petrol" },
-  Literatura: { bar: "bg-brand-lime", surface: "bg-brand-lime/15", text: "text-brand-petrol" },
-  Esporte: { bar: "bg-brand-orange", surface: "bg-brand-orange/10", text: "text-brand-petrol" },
-  Comunidade: { bar: "bg-brand-petrol", surface: "bg-brand-petrol/8", text: "text-brand-petrol" },
-  Sustentabilidade: { bar: "bg-brand-lime", surface: "bg-brand-lime/15", text: "text-brand-petrol" },
+const categoryStyle: Record<AgendaCategory, { surface: string; text: string }> = {
+  Teatro: { surface: "bg-brand-red/8", text: "text-brand-red" },
+  Cinema: { surface: "bg-brand-cyan/10", text: "text-brand-petrol" },
+  Formação: { surface: "bg-brand-gold/12", text: "text-brand-petrol" },
+  Literatura: { surface: "bg-brand-lime/15", text: "text-brand-petrol" },
+  Esporte: { surface: "bg-brand-orange/10", text: "text-brand-petrol" },
+  Comunidade: { surface: "bg-brand-petrol/8", text: "text-brand-petrol" },
+  Sustentabilidade: { surface: "bg-brand-lime/15", text: "text-brand-petrol" },
 };
 
 function atStartOfDay(date: Date) {
@@ -89,24 +89,22 @@ function CalendarEvent({ event }: { event: AgendaEvent }) {
     <Link
       to="/agenda/$slug"
       params={{ slug: event.slug }}
-      className={`group relative block overflow-hidden rounded-md border border-background/80 ${style.surface} p-3 transition hover:-translate-y-0.5 hover:border-brand-petrol/20`}
+      className={`group block rounded-md border border-background/80 ${style.surface} p-3 shadow-sm backdrop-blur-md transition hover:-translate-y-0.5 hover:border-brand-petrol/15 hover:shadow-md`}
     >
-      <span className={`absolute inset-y-0 left-0 w-1 ${style.bar}`} aria-hidden="true" />
-      <p className={`pl-1 text-[10px] font-bold uppercase ${style.text}`}>{event.category}</p>
-      <h3 className="mt-1 pl-1 text-sm leading-snug text-brand-ink group-hover:text-brand-red">{event.title}</h3>
+      <p className={`text-[10px] font-bold uppercase ${style.text}`}>{event.category}</p>
+      <h3 className="mt-1 text-sm leading-snug text-brand-ink group-hover:text-brand-red">{event.title}</h3>
       {event.time && (
-        <p className="mt-2 flex items-center gap-1.5 pl-1 text-[11px] font-semibold text-brand-gray">
+        <p className="mt-2 flex items-center gap-1.5 text-[11px] font-semibold text-brand-gray">
           <Clock3 aria-hidden="true" className="size-3" /> {event.time}
         </p>
       )}
       {event.location && (
-        <p className="mt-1 flex items-start gap-1.5 pl-1 text-[11px] leading-snug text-brand-gray">
+        <p className="mt-1 flex items-start gap-1.5 text-[11px] leading-snug text-brand-gray">
           <MapPin aria-hidden="true" className="mt-0.5 size-3 shrink-0" /> {event.location}
         </p>
       )}
-      {event.summary && <p className="mt-2 line-clamp-2 pl-1 text-[11px] leading-relaxed text-brand-gray">{event.summary}</p>}
       {event.status && (
-        <span className="mt-2 inline-flex rounded-full bg-background/75 px-2 py-1 text-[9px] font-bold uppercase text-brand-petrol">
+        <span className="mt-2 inline-flex rounded-full border border-background/80 bg-background/70 px-2 py-1 text-[9px] font-bold uppercase text-brand-petrol backdrop-blur-sm">
           {agendaStatusLabels[event.status]}
         </span>
       )}
@@ -182,9 +180,6 @@ function Agenda() {
           <p className="mx-auto mt-5 max-w-2xl text-brand-gray" style={{ fontSize: "clamp(1rem, 1.2vw, 1.1rem)", lineHeight: 1.6 }}>
             Acompanhe cursos, oficinas, sessões, apresentações, encontros e outras atividades do Ecossistema Maggu.
           </p>
-          <Button asChild className="mt-7 rounded-full bg-brand-petrol px-6 text-primary-foreground shadow-none hover:bg-brand-red">
-            <a href="#programacao">Ver programação</a>
-          </Button>
         </div>
       </section>
 
