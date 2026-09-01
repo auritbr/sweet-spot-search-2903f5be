@@ -188,7 +188,6 @@ function EventoDetalhe() {
               {event.registrationUrl && !closed && (
                 <Button asChild className="rounded-full bg-brand-red px-6 text-primary-foreground shadow-none hover:bg-brand-petrol"><a href={event.registrationUrl} target="_blank" rel="noopener noreferrer">Inscreva-se</a></Button>
               )}
-              <Button asChild variant="outline" className="rounded-full border-brand-petrol px-6 text-brand-petrol shadow-none hover:bg-brand-soft"><Link to="/agenda">Voltar para a Agenda</Link></Button>
             </div>
           </div>
 
