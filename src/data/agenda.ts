@@ -62,8 +62,125 @@ export const agendaStatusLabels: Record<AgendaStatus, string> = {
   "em-breve": "Em breve",
 };
 
-/** Cadastre aqui as atividades reais. Vazio = estado vazio na Agenda e na Home. */
-export const agendaEvents: AgendaEvent[] = [];
+/**
+ * mock events for visual preview — replace with real client data later.
+ *
+ * Eventos fictícios de demonstração para visualizar a agenda funcionando.
+ * Não são conteúdo definitivo da Associação Maggu: substituí-los por dados
+ * reais validados. As datas foram posicionadas no período atual apenas para
+ * que apareçam no calendário semanal por padrão.
+ */
+const mockEvents: AgendaEvent[] = [
+  {
+    slug: "oficina-teatro-iniciantes",
+    title: "Oficina de Teatro para Iniciantes",
+    date: "2026-09-01",
+    time: "14h às 16h",
+    location: "Teatro Escola Maggu",
+    category: "Teatro",
+    free: true,
+    status: "inscricoes-abertas",
+    summary: "Encontro introdutório com exercícios de corpo, voz e improvisação.",
+    description:
+      "Encontro introdutório com exercícios de corpo, voz e improvisação voltado a quem está começando no teatro.",
+    accessibility: "Acesso livre, local com rampa e banheiro adaptado.",
+  },
+  {
+    slug: "cineclube-maggu",
+    title: "Sessão do Cineclube Maggu",
+    date: "2026-09-02",
+    time: "19h às 21h",
+    location: "Teatro Escola Maggu",
+    category: "Cinema",
+    free: true,
+    status: "inscricoes-abertas",
+    summary: "Exibição comentada de filme com roda de conversa ao final.",
+    description:
+      "Exibição comentada de filme com roda de conversa ao final, promovendo o diálogo sobre audiovisual e território.",
+  },
+  {
+    slug: "jardim-literario",
+    title: "Encontro do Jardim Literário",
+    date: "2026-09-03",
+    time: "15h às 17h",
+    location: "Espaço de Leitura Maggu",
+    category: "Literatura",
+    free: true,
+    status: "ultimas-vagas",
+    summary: "Mediação de leitura e circulação de livros com participantes da comunidade.",
+    description:
+      "Mediação de leitura e circulação de livros com participantes da comunidade, no espaço dedicado à literatura.",
+  },
+  {
+    slug: "aula-aberta-formacao-cultural",
+    title: "Aula Aberta de Formação Cultural",
+    date: "2026-09-04",
+    time: "09h às 11h",
+    location: "Associação Maggu",
+    category: "Formação",
+    free: true,
+    status: "inscricoes-abertas",
+    summary: "Atividade formativa voltada a jovens e participantes das ações culturais.",
+    description:
+      "Atividade formativa voltada a jovens e participantes das ações culturais do Ecossistema Maggu.",
+  },
+  {
+    slug: "vivencia-esportiva-comunidade",
+    title: "Vivência Esportiva na Comunidade",
+    date: "2026-09-04",
+    time: "16h às 18h",
+    location: "Quadra Comunitária",
+    category: "Esporte",
+    free: true,
+    status: "inscricoes-abertas",
+    summary: "Atividade coletiva com práticas esportivas e integração comunitária.",
+    description:
+      "Atividade coletiva com práticas esportivas e integração comunitária, aberta a todas as idades.",
+  },
+  {
+    slug: "roda-conversa-familias",
+    title: "Roda de Conversa com Famílias",
+    date: "2026-09-05",
+    time: "18h às 19h30",
+    location: "Associação Maggu",
+    category: "Comunidade",
+    free: true,
+    status: "inscricoes-abertas",
+    summary: "Conversa sobre participação, território e acompanhamento das iniciativas.",
+    description:
+      "Conversa sobre participação, território e acompanhamento das iniciativas com as famílias envolvidas.",
+  },
+  {
+    slug: "laboratorio-arte-sustentavel",
+    title: "Laboratório de Arte Sustentável",
+    date: "2026-09-06",
+    time: "14h às 17h",
+    location: "Espaço Multiuso Maggu",
+    category: "Sustentabilidade",
+    free: true,
+    status: "inscricoes-abertas",
+    summary: "Criação artística com materiais reaproveitáveis e reflexão ambiental.",
+    description:
+      "Criação artística com materiais reaproveitáveis e reflexão ambiental, articulando arte e sustentabilidade.",
+  },
+  {
+    slug: "apresentacao-encerramento",
+    title: "Apresentação de Encerramento",
+    date: "2026-09-07",
+    time: "19h30 às 21h",
+    location: "Teatro Escola Maggu",
+    category: "Teatro",
+    free: true,
+    status: "em-breve",
+    summary: "Mostra pública de encerramento das atividades do ciclo formativo.",
+    description:
+      "Mostra pública de encerramento das atividades do ciclo formativo, aberta à comunidade e convidados.",
+  },
+];
+
+/** Cadastre aqui as atividades reais. Vazio = estado vazio na Agenda e na Home.
+ *  Por enquanto exibe os eventos mock acima para visualização. */
+export const agendaEvents: AgendaEvent[] = mockEvents;
 
 const startOfToday = () => {
   const d = new Date();
