@@ -246,23 +246,17 @@ function Ecossistema() {
 
       <Section className="bg-background">
         <div className="container-x">
-          <SectionTitle eyebrow="Na prática" title="Conheça algumas iniciativas da Maggu" text="Cada eixo ganha forma por meio de projetos, programas, produções e ações desenvolvidos pela Associação." />
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {initiatives.map((initiative, index) => (
-              <article key={initiative.name} className={`group relative overflow-hidden rounded-md ${initiative.classes}`}>
-                <div className="aspect-[16/10] overflow-hidden bg-brand-soft">
-                  <img src={initiative.image} alt={`Registro relacionado à iniciativa ${initiative.name}`} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
-                </div>
-                <div className="relative flex min-h-[245px] flex-col p-6">
-                  {index % 2 === 0 ? <HatchedCircle size={90} color={initiative.accent} className="absolute -right-7 -top-7 opacity-25" /> : <ArcThick color={initiative.accent} className="absolute -right-5 -top-8 w-24 opacity-35" from={120} to={280} />}
-                  <p className="relative text-[11px] font-bold uppercase tracking-[0.18em] opacity-80">{initiative.axis}</p>
-                  <h3 className="relative mt-3 text-xl text-inherit">{initiative.name}</h3>
-                  <p className="relative mt-3 text-sm leading-relaxed opacity-90">{initiative.text}</p>
-                  <Link to="/projetos" aria-label={`Ver iniciativa ${initiative.name} na página de projetos`} className="relative mt-auto inline-flex w-fit pt-5 text-sm font-bold underline decoration-2 underline-offset-4 transition hover:opacity-70">Ver iniciativa</Link>
-                </div>
-              </article>
-            ))}
+          <div className="mx-auto max-w-[800px] text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Uma atuação integrada</p>
+            <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.15, fontWeight: 700 }}>Organizar não significa separar.</h2>
+            <div className="mt-5 space-y-4 leading-relaxed text-brand-gray" style={{ fontSize: "clamp(1rem, 1.2vw, 1.15rem)", lineHeight: 1.7 }}>
+              <p>Os eixos tornam mais fácil compreender a diversidade da Maggu, enquanto as conexões entre eles preservam aquilo que caracteriza sua atuação: diferentes linguagens, públicos e experiências compartilhando um mesmo território.</p>
+              <p>É assim que teatro pode dialogar com memória, audiovisual pode se tornar formação, esporte pode fortalecer convivência e sustentabilidade pode se transformar em processo criativo.</p>
+            </div>
           </div>
+          <p className="mx-auto mt-10 max-w-2xl text-center font-bold text-brand-petrol" style={{ fontSize: "clamp(1.25rem, 2vw, 1.6rem)", lineHeight: 1.3 }}>
+            “O território é o ponto de encontro entre essas diferentes formas de atuar.”
+          </p>
         </div>
       </Section>
 
@@ -271,14 +265,14 @@ function Ecossistema() {
         <Triangle color="#FFB400" size={54} className="absolute right-16 top-8 hidden md:block" rotate={18} />
         <DiamondsCluster color="#08B9E6" className="absolute bottom-8 left-16 opacity-60" size={54} />
         <div className="container-x relative mx-auto max-w-3xl text-center">
-          <h2 className="text-2xl text-primary-foreground md:text-3xl">Explore o Ecossistema na prática.</h2>
+          <h2 className="text-2xl text-primary-foreground md:text-3xl">Continue explorando o Ecossistema Maggu.</h2>
           <BrushStroke color="#FFB400" className="mx-auto mt-5 w-28" />
-          <p className="mt-5 leading-relaxed text-primary-foreground/90">Conheça os projetos e iniciativas da Associação ou consulte a Agenda para descobrir o que está acontecendo agora.</p>
+          <p className="mt-5 leading-relaxed text-primary-foreground/90">Conheça os projetos que dão forma a esses diferentes eixos ou consulte a Agenda para acompanhar as atividades que estão acontecendo.</p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             <Link to="/projetos" className="rounded-full bg-brand-gold px-6 py-3 text-sm font-bold text-brand-petrol transition hover:bg-background">Conheça os projetos</Link>
             <Link to="/agenda" className="rounded-full border-2 border-primary-foreground px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-background/10">Ver Agenda</Link>
           </div>
-          <Link to="/contato" className="mt-5 inline-flex text-sm font-semibold text-primary-foreground underline decoration-primary-foreground/50 underline-offset-4 transition hover:text-brand-gold">Entre em contato</Link>
+          <Link to="/contato" className="mt-5 inline-flex text-sm font-semibold text-primary-foreground/80 underline decoration-primary-foreground/40 underline-offset-4 transition hover:text-brand-gold">Entre em contato</Link>
         </div>
       </section>
     </>
