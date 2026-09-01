@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { ArcThick, HatchedCircle, BrushStroke, Triangle } from "@/components/Shapes";
+import { ArcThick, HatchedCircle, BrushStroke, QuarterCircle, Triangle } from "@/components/Shapes";
 import { documents } from "@/data/site";
 
 export const Route = createFileRoute("/transparencia")({
