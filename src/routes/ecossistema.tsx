@@ -170,8 +170,8 @@ function Ecossistema() {
         decoration="crescent"
       >
         <div className="flex flex-wrap gap-3">
-          <a href="#eixos" className="rounded-full bg-brand-gold px-6 py-3 text-sm font-bold text-brand-petrol transition hover:bg-background">Conheça os eixos</a>
-          <Link to="/projetos" className="rounded-full border-2 border-primary-foreground px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-background/10">Explorar projetos</Link>
+          <HeroButton to="/projetos">Explorar Projetos</HeroButton>
+          <HeroButton to="/agenda">Ver Agenda</HeroButton>
         </div>
       </PageHero>
 
