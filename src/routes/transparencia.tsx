@@ -98,40 +98,40 @@ function Transparencia() {
             })}
           </div>
 
-          <div className="mt-14 grid gap-8 md:grid-cols-2 md:gap-10">
+          <div className="mx-auto mt-12 grid max-w-[52rem] gap-6 md:grid-cols-2 md:gap-8">
             {/* Card 1 — Privacidade */}
-            <article className="relative flex min-h-[300px] flex-col justify-between overflow-hidden rounded-3xl bg-brand-soft p-8 md:p-10">
-              <ArcThick color="#00384C" className="pointer-events-none absolute -left-24 -top-20 w-56 opacity-15" from={200} to={340} />
-              <HatchedCircle size={130} color="#08B9E6" className="pointer-events-none absolute -right-6 -top-8 opacity-25" />
-              <QuarterCircle color="#FFB400" size={92} corner="br" className="pointer-events-none absolute bottom-0 right-0 opacity-40" />
-              <span className="pointer-events-none absolute left-4 bottom-4 size-4 rotate-45 border-2 border-brand-red" aria-hidden="true" />
-              <span className="pointer-events-none absolute right-10 top-4 h-px w-16 bg-brand-petrol/25" aria-hidden="true" />
-              <span className="pointer-events-none absolute right-8 bottom-24 h-2 w-10 rounded-full bg-brand-red/70" aria-hidden="true" />
+            <article className="relative flex min-h-[260px] flex-col justify-between overflow-hidden rounded-3xl bg-brand-soft p-7 md:p-8">
+              <ArcThick color="#00384C" className="pointer-events-none absolute -left-20 -top-16 w-48 opacity-15" from={200} to={340} />
+              <HatchedCircle size={108} color="#08B9E6" className="pointer-events-none absolute -right-7 -top-9 opacity-25" />
+              <QuarterCircle color="#FFB400" size={78} corner="br" className="pointer-events-none absolute bottom-0 right-0 opacity-40" />
+              <span className="pointer-events-none absolute left-4 bottom-4 size-3.5 rotate-45 border-2 border-brand-red" aria-hidden="true" />
+              <span className="pointer-events-none absolute right-9 top-4 h-px w-14 bg-brand-petrol/25" aria-hidden="true" />
+              <span className="pointer-events-none absolute right-7 bottom-20 h-1.5 w-9 rounded-full bg-brand-red/70" aria-hidden="true" />
               <div className="relative z-10">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Privacidade</p>
-                <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.5rem, 2.4vw, 2.1rem)", lineHeight: 1.15, fontWeight: 700 }}>Privacidade e Proteção de Dados</h2>
-                <p className="mt-4 max-w-md text-sm text-brand-gray" style={{ lineHeight: 1.7 }}>Orientações sobre o tratamento de dados pessoais nos canais digitais da Associação.</p>
+                 <h2 className="mt-2.5 text-brand-ink" style={{ fontSize: "clamp(1.4rem, 2.2vw, 1.9rem)", lineHeight: 1.15, fontWeight: 700 }}>Privacidade e Proteção de Dados</h2>
+                 <p className="mt-3 max-w-md text-sm text-brand-gray" style={{ lineHeight: 1.65 }}>Orientações sobre o tratamento de dados pessoais nos canais digitais da Associação.</p>
               </div>
-              <Link to="/privacidade" className="group relative z-10 mt-8 inline-flex w-fit items-center gap-2 text-sm font-semibold text-brand-red transition-colors hover:text-brand-petrol">
+               <Link to="/privacidade" className="group relative z-10 mt-6 inline-flex w-fit items-center gap-2 text-sm font-semibold text-brand-red transition-colors hover:text-brand-petrol">
                 Acessar página <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
               </Link>
             </article>
 
             {/* Card 2 — Integridade */}
-            <article className="relative flex min-h-[300px] flex-col justify-between overflow-hidden rounded-3xl bg-brand-soft p-8 md:p-10">
-              <QuarterCircle color="#00384C" size={70} corner="tr" className="pointer-events-none absolute right-0 top-0 opacity-10" />
-              <span className="pointer-events-none absolute -right-6 -bottom-6 size-24 rounded-full border-2 border-brand-cyan/40" aria-hidden="true" />
-              <span className="pointer-events-none absolute -right-2 -bottom-2 size-16 rounded-full border border-brand-gold/60" aria-hidden="true" />
-              <Triangle color="#ED1C24" size={40} className="pointer-events-none absolute top-4 right-24 opacity-70" rotate={18} />
-              <BrushStroke color="#FFB400" width={120} className="pointer-events-none absolute bottom-2 left-8 opacity-50" />
-              <span className="pointer-events-none absolute left-12 bottom-[88px] h-px w-20 bg-brand-petrol/25" aria-hidden="true" />
-              <span className="pointer-events-none absolute bottom-4 right-24 size-4 rotate-45 border-2 border-brand-petrol/40" aria-hidden="true" />
+            <article className="relative flex min-h-[260px] flex-col justify-between overflow-hidden rounded-3xl bg-brand-soft p-7 md:p-8">
+              <QuarterCircle color="#00384C" size={60} corner="tr" className="pointer-events-none absolute right-0 top-0 opacity-10" />
+              <span className="pointer-events-none absolute -right-5 -bottom-5 size-20 rounded-full border-2 border-brand-cyan/40" aria-hidden="true" />
+              <span className="pointer-events-none absolute -right-1 -bottom-1 size-14 rounded-full border border-brand-gold/60" aria-hidden="true" />
+              <Triangle color="#ED1C24" size={34} className="pointer-events-none absolute top-3 right-20 opacity-70" rotate={18} />
+              <BrushStroke color="#FFB400" width={100} className="pointer-events-none absolute bottom-1 left-7 opacity-50" />
+              <span className="pointer-events-none absolute left-10 bottom-[74px] h-px w-16 bg-brand-petrol/25" aria-hidden="true" />
+              <span className="pointer-events-none absolute bottom-3 right-20 size-3.5 rotate-45 border-2 border-brand-petrol/40" aria-hidden="true" />
               <div className="relative z-10">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Integridade</p>
-                <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.5rem, 2.4vw, 2.1rem)", lineHeight: 1.15, fontWeight: 700 }}>Canal de Denúncias e Relato Ético</h2>
-                <p className="mt-4 max-w-md text-sm text-brand-gray" style={{ lineHeight: 1.7 }}>Orientações para o encaminhamento responsável de situações relacionadas à integridade institucional.</p>
+                 <h2 className="mt-2.5 text-brand-ink" style={{ fontSize: "clamp(1.4rem, 2.2vw, 1.9rem)", lineHeight: 1.15, fontWeight: 700 }}>Canal de Denúncias e Relato Ético</h2>
+                 <p className="mt-3 max-w-md text-sm text-brand-gray" style={{ lineHeight: 1.65 }}>Orientações para o encaminhamento responsável de situações relacionadas à integridade institucional.</p>
               </div>
-              <Link to="/canal-de-denuncias" className="group relative z-10 mt-8 inline-flex w-fit items-center gap-2 text-sm font-semibold text-brand-red transition-colors hover:text-brand-petrol">
+               <Link to="/canal-de-denuncias" className="group relative z-10 mt-6 inline-flex w-fit items-center gap-2 text-sm font-semibold text-brand-red transition-colors hover:text-brand-petrol">
                 Acessar página <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
               </Link>
             </article>
