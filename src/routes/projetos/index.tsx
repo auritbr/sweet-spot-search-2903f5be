@@ -46,6 +46,7 @@ function Projetos() {
         breadcrumb={[{ label: "Início", to: "/" }, { label: "Projetos" }]}
         accent="gold"
         brush="#08B9E6"
+        decoration="diamonds"
       />
 
       <section ref={listStart} className="scroll-mt-24 overflow-hidden bg-background py-12 md:py-20" aria-labelledby="project-list-title">

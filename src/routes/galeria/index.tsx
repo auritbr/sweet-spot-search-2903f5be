@@ -63,6 +63,7 @@ function Galeria() {
         breadcrumb={[{ label: "Início", to: "/" }, { label: "Galeria" }]}
         accent="cyan"
         brush="#FFB400"
+        decoration="hatch"
       />
 
       <Section className="bg-white relative overflow-hidden">

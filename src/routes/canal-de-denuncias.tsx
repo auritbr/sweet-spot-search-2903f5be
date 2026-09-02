@@ -92,7 +92,7 @@ function CanalDenuncias() {
 
   return (
     <main id="main">
-      <PageHero title="Canal de Denúncias e Relato Ético" eyebrow="Integridade" subtitle="Um espaço destinado ao encaminhamento responsável de situações que possam contrariar normas, direitos ou princípios institucionais." image="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80" breadcrumb={[{ label: "Início", to: "/" }, { label: "Quem Somos", to: "/quem-somos" }, { label: "Transparência", to: "/transparencia" }, { label: "Canal de Denúncias" }]} accent="gold" brush="#08B9E6" />
+      <PageHero title="Canal de Denúncias e Relato Ético" eyebrow="Integridade" subtitle="Um espaço destinado ao encaminhamento responsável de situações que possam contrariar normas, direitos ou princípios institucionais." image="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80" breadcrumb={[{ label: "Início", to: "/" }, { label: "Quem Somos", to: "/quem-somos" }, { label: "Transparência", to: "/transparencia" }, { label: "Canal de Denúncias" }]} accent="gold" brush="#08B9E6" decoration="frame" />
 
       <section className="bg-white py-10 md:py-14" aria-labelledby="apresentacao-canal">
         <div className="container-x max-w-3xl">

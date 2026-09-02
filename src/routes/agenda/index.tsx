@@ -170,7 +170,7 @@ function Agenda() {
 
   return (
     <>
-      <PageHero title="Agenda" eyebrow="Programação" subtitle="Acompanhe cursos, oficinas, sessões, apresentações, encontros e outras atividades do Ecossistema Maggu." image="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1920&q=80" accent="gold" brush="#ED1C24" />
+      <PageHero title="Agenda" eyebrow="Programação" subtitle="Acompanhe cursos, oficinas, sessões, apresentações, encontros e outras atividades do Ecossistema Maggu." image="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1920&q=80" accent="gold" brush="#ED1C24" decoration="triangle" />
 
       <main id="programacao" className="relative overflow-hidden bg-background py-14 md:py-20">
         <HatchedCircle size={180} color="#08B9E6" className="pointer-events-none absolute -right-24 top-72 opacity-10" />

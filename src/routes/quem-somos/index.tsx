@@ -47,6 +47,7 @@ function QuemSomos() {
         breadcrumb={[{ label: "Início", to: "/" }, { label: "Quem Somos" }]}
         accent="cyan"
         brush="#FFB400"
+        decoration="orbit"
       />
 
       <Section className="bg-white overflow-hidden">

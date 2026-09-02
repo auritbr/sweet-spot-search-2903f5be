@@ -33,6 +33,7 @@ function Contato() {
         image="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80"
         accent="red"
         brush="#ED1C24"
+        decoration="crescent"
       />
 
       <section className="bg-white py-12 md:py-16">

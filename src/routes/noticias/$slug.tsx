@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ArrowLeft, CalendarDays, Check, Facebook, Instagram, Link2, Linkedin, MessageCircle } from "lucide-react";
-import { PageHero, Section } from "@/components/PageHero";
+import { Section } from "@/components/PageHero";
 import { news } from "@/data/site";
 
 export const Route = createFileRoute("/noticias/$slug")({
@@ -124,15 +124,22 @@ function NewsDetail() {
 
   return (
     <>
-      <PageHero title={n.title} eyebrow={n.category} subtitle={n.excerpt} image={n.image} variant="detail" accent="gold" brush="#08B9E6">
-        <div className="flex flex-wrap items-center gap-4 text-sm text-primary-foreground/85">
-          <Link to="/noticias" className="group inline-flex items-center gap-2 font-medium transition hover:text-brand-gold">
-            <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" aria-hidden="true" />
-            Voltar para Notícias
+      <section className="relative isolate flex min-h-[390px] items-end overflow-hidden md:min-h-[430px]">
+        <img src={n.image} alt="" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-ink/95 via-brand-petrol/75 to-brand-ink/25" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-ink/45 via-transparent to-brand-ink/75" />
+        <div className="container-x w-full pb-10 pt-24 md:pb-12 md:pt-28">
+          <Link to="/noticias" className="group inline-flex items-center gap-2 text-sm font-medium text-primary-foreground/80 transition hover:text-brand-gold">
+            <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" aria-hidden="true" />Voltar para Notícias
           </Link>
-          <time dateTime={n.date} className="inline-flex items-center gap-2"><CalendarDays className="size-4 text-brand-gold" aria-hidden="true" />{formattedDate}</time>
+          <div className="mt-6 flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.12em] text-primary-foreground/80">
+            <span className="rounded-full border border-primary-foreground/20 bg-background/10 px-3 py-1.5 backdrop-blur-sm">{n.category}</span>
+            <time dateTime={n.date} className="inline-flex items-center gap-2"><CalendarDays className="size-4 text-brand-gold" aria-hidden="true" />{formattedDate}</time>
+          </div>
+          <h1 className="mt-4 max-w-4xl text-[clamp(2rem,4vw,3.2rem)] font-bold leading-[1.08] text-primary-foreground [text-shadow:0_4px_22px_rgb(0_0_0_/_0.35)]">{n.title}</h1>
+          <p className="mt-4 max-w-3xl text-[clamp(.95rem,1.35vw,1.1rem)] leading-relaxed text-primary-foreground/90">{n.excerpt}</p>
         </div>
-      </PageHero>
+      </section>
 
       <Section className="bg-white pb-5 md:pb-7">
         <div className="container-x max-w-3xl">
