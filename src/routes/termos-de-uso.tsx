@@ -38,7 +38,7 @@ const toc = [
 function TermosDeUso() {
   return (
     <main id="main">
-      <section className="relative bg-brand-soft pt-28 pb-12 md:pt-32 md:pb-16 overflow-hidden">
+      <section className="relative flex h-[420px] items-center overflow-hidden bg-brand-soft sm:h-[460px] lg:h-[520px]">
         <ArcThick color="#ED1C24" className="absolute -right-10 top-16 w-32 md:w-48 opacity-70" from={20} to={160} />
         <DiamondsCluster color="#08B9E6" size={54} className="absolute left-6 bottom-6 hidden md:block opacity-80" />
         <HatchedCircle size={110} color="#FFB400" className="absolute right-24 bottom-0 opacity-25 hidden md:block" />

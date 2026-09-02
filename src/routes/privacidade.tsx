@@ -40,7 +40,7 @@ function Privacidade() {
 
   return (
     <main id="main">
-      <section className="relative bg-brand-soft pt-28 pb-12 md:pt-32 md:pb-16 overflow-hidden">
+      <section className="relative flex h-[420px] items-center overflow-hidden bg-brand-soft sm:h-[460px] lg:h-[520px]">
         <QuarterCircle corner="tr" color="#ED1C24" className="absolute top-0 right-0 w-24 md:w-40 opacity-90" />
         <ArcThick color="#00384C" className="absolute -left-10 top-24 w-32 md:w-48 opacity-70" from={200} to={340} />
         <HatchedCircle size={120} color="#08B9E6" className="absolute right-10 bottom-0 opacity-30 hidden md:block" />

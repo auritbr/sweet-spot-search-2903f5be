@@ -168,7 +168,7 @@ function Agenda() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-brand-soft pb-16 pt-28 md:pb-20 md:pt-32">
+      <section className="relative flex h-[420px] items-center overflow-hidden bg-brand-soft sm:h-[460px] lg:h-[520px]">
         <ArcThick color="#00384C" className="absolute -left-8 top-24 w-40 opacity-80 md:w-52" from={200} to={340} />
         <HatchedCircle size={140} color="#08B9E6" className="absolute -right-12 -top-12 opacity-50" />
         <Triangle color="#FFB400" size={54} className="absolute bottom-8 right-16 hidden md:block" rotate={20} />
