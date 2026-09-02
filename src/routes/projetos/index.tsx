@@ -43,7 +43,6 @@ function Projetos() {
         eyebrow="Projetos e iniciativas"
         subtitle="Formação, criação e circulação cultural em três frentes complementares."
         image="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?auto=format&fit=crop&w=1920&q=80"
-        breadcrumb={[{ label: "Início", to: "/" }, { label: "Projetos" }]}
         accent="gold"
         brush="#08B9E6"
         compact
