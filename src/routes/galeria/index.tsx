@@ -112,9 +112,10 @@ function Galeria() {
                       <h2 id={`record-${record.slug}`} className="max-w-3xl text-brand-ink" style={{ fontSize: "clamp(1.6rem, 3vw, 2.6rem)", lineHeight: 1.12, fontWeight: 700 }}>
                         {record.title}
                       </h2>
-                      <span className="mt-4 flex items-center gap-2" aria-hidden="true">
-                        <span className="size-2 rotate-45 border border-brand-cyan" />
-                        <span className="h-px w-12 bg-brand-red/70" />
+                      <span className="mt-4 flex h-4 items-end gap-1.5" aria-hidden="true">
+                        <span className="h-3 w-6 rounded-t-full border border-brand-cyan border-b-0" />
+                        <span className="size-2 rotate-45 bg-brand-gold" />
+                        <span className="h-3 w-3 rounded-tl-full bg-brand-red/80" />
                       </span>
                     </div>
                   </div>

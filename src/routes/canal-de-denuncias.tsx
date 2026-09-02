@@ -91,7 +91,7 @@ function CanalDenuncias() {
 
   return (
     <main id="main">
-      <section className="relative flex h-[420px] items-center overflow-hidden text-white sm:h-[460px] lg:h-[520px]" style={{ backgroundColor: "#00384C" }}>
+      <section className="relative flex h-[310px] items-center overflow-hidden text-white sm:h-[330px] lg:h-[370px]" style={{ backgroundColor: "#00384C" }}>
         <QuarterCircle corner="tr" color="#FFB400" className="absolute top-0 right-0 w-20 md:w-32 opacity-90" />
         <ArcThick color="#FFB400" className="absolute -left-12 bottom-4 w-32 md:w-44 opacity-50" from={20} to={160} />
         <HatchedCircle size={140} color="#08B9E6" className="absolute right-16 -bottom-10 opacity-20 hidden md:block" />
@@ -108,7 +108,7 @@ function CanalDenuncias() {
             </ol>
           </nav>
 
-          <div className="mt-6 flex items-start gap-4">
+          <div className="mt-4 flex items-start gap-4">
             <span className="hidden sm:inline-flex w-12 h-12 rounded-full items-center justify-center shrink-0" style={{ backgroundColor: "rgba(255,255,255,0.1)" }} aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFB400" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 12a8 8 0 1 0-3.2 6.4L21 20z" />
@@ -117,10 +117,10 @@ function CanalDenuncias() {
             </span>
             <div>
               <p className="uppercase tracking-[0.22em] text-xs" style={{ color: "#FFB400", fontWeight: 600 }}>Integridade</p>
-              <h1 className="mt-3" style={{ fontSize: "clamp(1.8rem, 2.9vw, 2.9rem)", lineHeight: 1.12, fontWeight: 700 }}>
+              <h1 className="mt-2" style={{ fontSize: "clamp(1.65rem, 2.55vw, 2.45rem)", lineHeight: 1.06, fontWeight: 700 }}>
                 Canal de Denúncias e Relato Ético
               </h1>
-              <p className="mt-5 text-white/85" style={{ fontSize: "clamp(1rem, 1.2vw, 1.1rem)", lineHeight: 1.65 }}>
+              <p className="mt-3 text-white/85" style={{ fontSize: "clamp(0.95rem, 1.1vw, 1.05rem)", lineHeight: 1.55 }}>
                 Um espaço destinado ao encaminhamento responsável de situações que possam contrariar normas, direitos ou princípios institucionais.
               </p>
             </div>

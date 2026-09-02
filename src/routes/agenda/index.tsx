@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight, Clock3, MapPin } from "lucide-react";
 import { useMemo, useState } from "react";
 import { ArcThick, BrushStroke, DiamondsCluster, HatchedCircle, Triangle } from "@/components/Shapes";
 import { Button } from "@/components/ui/button";
+import { FinalCampaignCTA } from "@/components/FinalCampaignCTA";
 import {
   agendaCategories,
   agendaEvents,
@@ -168,14 +169,14 @@ function Agenda() {
 
   return (
     <>
-      <section className="relative flex h-[356px] items-center overflow-hidden bg-brand-soft sm:h-[390px] lg:h-[440px]">
+      <section className="relative flex h-[310px] items-center overflow-hidden bg-brand-soft sm:h-[330px] lg:h-[370px]">
         <ArcThick color="#00384C" className="absolute -left-8 top-24 w-40 opacity-80 md:w-52" from={200} to={340} />
         <HatchedCircle size={140} color="#08B9E6" className="absolute -right-12 -top-12 opacity-50" />
         <Triangle color="#FFB400" size={54} className="absolute bottom-8 right-16 hidden md:block" rotate={20} />
         <DiamondsCluster color="#ED1C24" className="absolute bottom-8 left-[18%] hidden opacity-70 lg:block" size={42} />
         <div className="container-x relative text-center">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Programação</p>
-          <h1 className="text-brand-ink" style={{ fontSize: "clamp(1.9rem, 3vw, 3.1rem)", lineHeight: 1.08, fontWeight: 700 }}>Agenda</h1>
+          <h1 className="text-brand-ink" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.06, fontWeight: 700 }}>Agenda</h1>
           <BrushStroke color="#FFB400" className="mx-auto mt-4 w-32" />
           <p className="mx-auto mt-4 max-w-xl text-brand-gray" style={{ fontSize: "clamp(0.95rem, 1.1vw, 1.05rem)", lineHeight: 1.55 }}>
             Acompanhe cursos, oficinas, sessões, apresentações, encontros e outras atividades do Ecossistema Maggu.
@@ -311,23 +312,7 @@ function Agenda() {
         </div>
       </main>
 
-      <section className="relative overflow-hidden border-t border-brand-petrol/10 bg-brand-soft py-14 md:py-18">
-        <ArcThick color="#08B9E6" className="absolute -left-10 top-5 w-24 opacity-25" from={200} to={340} />
-        <Triangle color="#ED1C24" size={42} className="absolute -bottom-2 right-8 opacity-45" rotate={18} />
-        <div className="container-x relative mx-auto max-w-3xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Siga acompanhando</p>
-          <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.65rem, 2.5vw, 2.45rem)", lineHeight: 1.16, fontWeight: 700 }}>
-            Quer acompanhar mais de perto as atividades da Maggu?
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-brand-gray">
-            Entre em contato, conheça os projetos e acompanhe a programação para descobrir novas experiências, encontros e ações culturais.
-          </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Button asChild className="rounded-full bg-brand-red px-6 font-bold text-primary-foreground shadow-none hover:bg-brand-petrol"><Link to="/projetos">Conheça os Projetos</Link></Button>
-            <Button asChild variant="outline" className="rounded-full border-brand-petrol/25 bg-background/55 px-6 font-semibold text-brand-petrol shadow-none backdrop-blur-sm hover:bg-background hover:text-brand-petrol"><Link to="/contato">Entre em Contato</Link></Button>
-          </div>
-        </div>
-      </section>
+      <FinalCampaignCTA eyebrow="Siga acompanhando" title="Quer acompanhar mais de perto as atividades da Maggu?" text="Entre em contato, conheça os projetos e acompanhe a programação para descobrir novas experiências, encontros e ações culturais." primary={{ label: "Conheça os Projetos", to: "/projetos" }} secondary={{ label: "Entre em Contato", to: "/contato" }} image="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1920&q=80" />
     </>
   );
 }
