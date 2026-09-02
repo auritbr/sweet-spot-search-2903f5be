@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section, SectionTitle } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
+import { FinalCampaignCTA } from "@/components/FinalCampaignCTA";
 import { ArcThick, BrushStroke, DiamondsCluster, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
 
 export const Route = createFileRoute("/ecossistema")({
@@ -267,19 +268,7 @@ function Ecossistema() {
         </div>
       </Section>
 
-      <section className="relative overflow-hidden border-t border-brand-petrol/10 bg-background py-14 md:py-18">
-        <QuarterCircle corner="tl" color="#08B9E6" className="absolute -left-2 -top-2 w-24 opacity-25 md:w-32" />
-        <Triangle color="#FFB400" size={38} className="absolute right-12 top-8 hidden opacity-60 md:block" rotate={18} />
-        <div className="container-x relative mx-auto max-w-3xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Do conceito à prática</p>
-          <h2 className="mt-3 text-2xl text-brand-ink md:text-3xl">O Ecossistema ganha forma nas iniciativas e no que acontece no território.</h2>
-          <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-brand-gray">Explore os projetos da Associação e acompanhe a agenda para conhecer ações, atividades e experiências em movimento.</p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Button asChild className="rounded-full bg-brand-red px-6 font-bold text-primary-foreground shadow-none hover:bg-brand-petrol"><Link to="/projetos">Conheça os Projetos</Link></Button>
-            <Button asChild variant="outline" className="rounded-full border-brand-petrol/25 bg-brand-soft/60 px-6 font-semibold text-brand-petrol shadow-none backdrop-blur-sm hover:bg-brand-soft hover:text-brand-petrol"><Link to="/agenda">Ver Agenda</Link></Button>
-          </div>
-        </div>
-      </section>
+      <FinalCampaignCTA eyebrow="Do conceito à prática" title="O Ecossistema ganha forma nas iniciativas e no que acontece no território." text="Explore os projetos da Associação e acompanhe a agenda para conhecer ações, atividades e experiências em movimento." primary={{ label: "Conheça os Projetos", to: "/projetos" }} secondary={{ label: "Ver Agenda", to: "/agenda" }} image="https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=1920&q=80" variant="center" />
     </>
   );
 }

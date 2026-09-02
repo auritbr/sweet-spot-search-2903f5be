@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
 import { PageHero, Section } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
+import { FinalCampaignCTA } from "@/components/FinalCampaignCTA";
 import { HatchedCircle, ArcThick, BrushStroke, Triangle } from "@/components/Shapes";
 import { projects } from "@/data/site";
 
@@ -89,19 +90,7 @@ function Projetos() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden border-t border-brand-petrol/10 bg-brand-soft py-14 md:py-18">
-        <HatchedCircle size={120} color="#08B9E6" className="absolute -bottom-9 -right-7 opacity-20" />
-        <ArcThick color="#FFB400" className="absolute -left-8 top-7 w-24 opacity-35" from={200} to={340} />
-        <div className="container-x relative mx-auto max-w-3xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Continue explorando</p>
-          <h2 className="mt-3 text-2xl text-brand-ink md:text-3xl">Cada projeto é uma forma de transformar participação em experiência.</h2>
-          <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-brand-gray">Conheça outras iniciativas da Maggu ou acompanhe a agenda para descobrir o que está acontecendo agora.</p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Button asChild className="rounded-full bg-brand-petrol px-6 font-bold text-primary-foreground shadow-none hover:bg-brand-red"><Link to="/ecossistema">Explorar o Ecossistema</Link></Button>
-            <Button asChild variant="outline" className="rounded-full border-brand-petrol/25 bg-background/55 px-6 font-semibold text-brand-petrol shadow-none backdrop-blur-sm hover:bg-background hover:text-brand-petrol"><Link to="/agenda">Ver Agenda</Link></Button>
-          </div>
-        </div>
-      </section>
+      <FinalCampaignCTA eyebrow="Continue explorando" title="Cada projeto é uma forma de transformar participação em experiência." text="Conheça outras iniciativas da Maggu ou acompanhe a agenda para descobrir o que está acontecendo agora." primary={{ label: "Explorar o Ecossistema", to: "/ecossistema" }} secondary={{ label: "Ver Agenda", to: "/agenda" }} image="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?auto=format&fit=crop&w=1920&q=80" variant="right" />
     </>
   );
 }

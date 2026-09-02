@@ -4,6 +4,7 @@ import { slides, albums } from "@/data/site";
 import { Section, SectionTitle } from "@/components/PageHero";
 import { AgendaStatusBadge } from "@/components/AgendaCard";
 import { Button } from "@/components/ui/button";
+import { FinalCampaignCTA } from "@/components/FinalCampaignCTA";
 import { eventDayMonth, upcomingEvents } from "@/data/agenda";
 import { HatchedCircle, ArcThick, BrushStroke, DiamondsCluster, QuarterCircle, Triangle } from "@/components/Shapes";
 
@@ -365,22 +366,6 @@ function TransparencySection() {
 
 function FinalCTA() {
   return (
-    <section className="relative overflow-hidden border-t border-brand-petrol/10 bg-brand-soft py-14 md:py-18">
-      <QuarterCircle corner="tr" color="#08B9E6" className="absolute -right-2 -top-2 w-24 opacity-25 md:w-32" />
-      <ArcThick color="#ED1C24" className="absolute -bottom-12 -left-8 w-28 opacity-30" from={200} to={340} />
-      <div className="container-x relative mx-auto max-w-3xl text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Continue conhecendo</p>
-        <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.65rem, 2.5vw, 2.45rem)", lineHeight: 1.16, fontWeight: 700 }}>
-          Há muitas formas de caminhar com a Associação Maggu.
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-brand-gray">
-          Conheça nossa trajetória, explore os projetos e acompanhe as atividades que fortalecem cultura, formação e território.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Button asChild className="rounded-full bg-brand-red px-6 font-bold text-primary-foreground shadow-none hover:bg-brand-petrol"><Link to="/quem-somos">Conheça a Associação</Link></Button>
-          <Button asChild variant="outline" className="rounded-full border-brand-petrol/25 bg-background/55 px-6 font-semibold text-brand-petrol shadow-none backdrop-blur-sm hover:bg-background hover:text-brand-petrol"><Link to="/agenda">Ver Agenda</Link></Button>
-        </div>
-      </div>
-    </section>
+    <FinalCampaignCTA eyebrow="Caminhe com a Maggu" title="Há muitas formas de caminhar com a Associação Maggu." text="Conheça nossa trajetória, explore os projetos e acompanhe as atividades que fortalecem cultura, formação e território." primary={{ label: "Conheça a Associação", to: "/quem-somos" }} secondary={{ label: "Ver Agenda", to: "/agenda" }} image="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80" />
   );
 }
