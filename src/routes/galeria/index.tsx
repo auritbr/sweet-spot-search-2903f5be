@@ -103,12 +103,11 @@ function Galeria() {
 
 
           <div className="space-y-14 md:space-y-20">
-            {list.map((record, recordIndex) => (
+            {list.map((record) => (
               <section key={record.slug} aria-labelledby={`record-${record.slug}`}>
                 <div className="mb-6 md:mb-8">
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Registro</p>
-                  <div className="mt-2 flex items-start gap-3 md:gap-4">
-                    <span className="mt-1 text-sm font-semibold tabular-nums text-brand-cyan" aria-hidden="true">{String(recordIndex + 1).padStart(2, "0")}</span>
+                  <div className="mt-2">
                     <div>
                       <h2 id={`record-${record.slug}`} className="max-w-3xl text-brand-ink" style={{ fontSize: "clamp(1.6rem, 3vw, 2.6rem)", lineHeight: 1.12, fontWeight: 700 }}>
                         {record.title}
@@ -116,7 +115,6 @@ function Galeria() {
                       <svg className="mt-3 h-3 w-20 text-brand-gold" viewBox="0 0 80 12" fill="none" aria-hidden="true">
                         <path d="M2 8.2C12 3.3 19 9.8 29 5.8C39 1.8 46 8.9 57 5.1C65 2.4 71 4.4 78 2.5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
                       </svg>
-                      <p className="mt-2 text-xs text-brand-gray">{record.year} · {record.photos.length} fotos</p>
                     </div>
                   </div>
                 </div>

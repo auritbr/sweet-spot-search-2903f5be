@@ -91,7 +91,7 @@ function CanalDenuncias() {
 
   return (
     <main id="main">
-      <section className="relative pt-28 pb-14 md:pt-32 md:pb-16 overflow-hidden text-white" style={{ backgroundColor: "#00384C" }}>
+      <section className="relative flex h-[420px] items-center overflow-hidden text-white sm:h-[460px] lg:h-[520px]" style={{ backgroundColor: "#00384C" }}>
         <QuarterCircle corner="tr" color="#FFB400" className="absolute top-0 right-0 w-20 md:w-32 opacity-90" />
         <ArcThick color="#FFB400" className="absolute -left-12 bottom-4 w-32 md:w-44 opacity-50" from={20} to={160} />
         <HatchedCircle size={140} color="#08B9E6" className="absolute right-16 -bottom-10 opacity-20 hidden md:block" />
