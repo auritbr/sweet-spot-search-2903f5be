@@ -50,8 +50,8 @@ function QuemSomos() {
         decoration="orbit"
       >
         <div className="flex flex-wrap gap-3">
-          <HeroButton to="/ecossistema">Conheça o Ecossistema</HeroButton>
-          <HeroButton to="/transparencia">Ver Transparência</HeroButton>
+          <HeroButton to="/ecossistema" tone="petrol">Conheça o Ecossistema</HeroButton>
+          <HeroButton to="/transparencia" tone="red">Ver Transparência</HeroButton>
         </div>
       </PageHero>
 

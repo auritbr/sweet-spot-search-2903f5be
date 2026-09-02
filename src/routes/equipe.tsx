@@ -26,8 +26,8 @@ function Equipe() {
     <>
       <PageHero title="Nossa Equipe" eyebrow="Time" subtitle="Um time multidisciplinar que sustenta a formação, a criação e a circulação cultural." image="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80" accent="cyan" brush="#FFB400" compact decoration="quarters">
         <div className="flex flex-wrap gap-3">
-          <HeroButton to="/quem-somos">Conheça a Associação</HeroButton>
-          <HeroButton to="/transparencia">Ver Transparência</HeroButton>
+          <HeroButton to="/quem-somos" tone="petrol">Conheça a Associação</HeroButton>
+          <HeroButton to="/transparencia" tone="red">Ver Transparência</HeroButton>
         </div>
       </PageHero>
 
