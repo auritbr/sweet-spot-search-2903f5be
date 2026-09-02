@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { ArcThick, HatchedCircle, BrushStroke, QuarterCircle, Triangle } from "@/components/Shapes";
 import { documents } from "@/data/site";
+import { PageHero } from "@/components/PageHero";
 
 export const Route = createFileRoute("/transparencia")({
   head: () => ({
@@ -41,19 +42,7 @@ function Transparencia() {
 
   return (
     <>
-      <section className="relative flex h-[310px] items-center overflow-hidden bg-brand-soft sm:h-[330px] lg:h-[370px]">
-        <ArcThick color="#00384C" className="absolute -left-8 top-24 w-40 md:w-52 opacity-80" from={200} to={340} />
-        <HatchedCircle size={140} color="#08B9E6" className="absolute -right-12 -top-12 opacity-50" />
-        <Triangle color="#FFB400" size={54} className="absolute bottom-8 right-16 hidden md:block" rotate={20} />
-        <div className="container-x text-center relative">
-          <p className="uppercase tracking-[0.22em] text-brand-red text-xs mb-3" style={{ fontWeight: 600 }}>Acervo institucional</p>
-          <h1 className="text-brand-ink" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.06, fontWeight: 700 }}>Transparência</h1>
-          <BrushStroke color="#FFB400" className="mx-auto mt-4 w-32" />
-          <p className="mt-4 text-brand-gray max-w-xl mx-auto" style={{ fontSize: "clamp(0.95rem, 1.1vw, 1.05rem)", lineHeight: 1.55 }}>
-            Acesse relatórios, atas, prestações de contas, certidões, políticas e demais documentos institucionais do Ponto de Cultura.
-          </p>
-        </div>
-      </section>
+      <PageHero title="Transparência" eyebrow="Acervo institucional" subtitle="Acesse relatórios, atas, prestações de contas, certidões, políticas e demais documentos institucionais do Ponto de Cultura." image="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80" accent="gold" brush="#08B9E6" />
 
       <section className="bg-white py-12 md:py-16">
         <div className="container-x max-w-4xl">
