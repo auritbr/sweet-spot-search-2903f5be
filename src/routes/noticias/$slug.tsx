@@ -14,7 +14,7 @@ export const Route = createFileRoute("/noticias/$slug")({
     const n = loaderData?.n;
     return {
       meta: [
-        { title: n ? `${n.title} — Cena Viva` : "Notícia" },
+        { title: n ? `${n.title} — Associação Maggu` : "Notícia — Associação Maggu" },
         { name: "description", content: n?.excerpt ?? "" },
         { property: "og:title", content: n?.title ?? "Notícia" },
         { property: "og:description", content: n?.excerpt ?? "" },

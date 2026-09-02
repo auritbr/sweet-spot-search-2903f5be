@@ -79,7 +79,7 @@ function Galeria() {
               {years.map((y) => {
                 const active = y === year;
                 return (
-                  <button key={y} role="tab" aria-selected={active} onClick={() => { setYear(y); closeAlbum(); }}
+                  <button key={y} role="tab" aria-selected={active} onClick={() => { setYear(y); setOpenPhoto(null); }}
                     className={`px-4 py-2 rounded-full text-sm transition ${active ? "bg-brand-red text-white shadow" : "bg-brand-soft text-brand-ink hover:bg-brand-gold/30"}`}
                     style={{ fontWeight: 600 }}>{y}</button>
                 );
@@ -92,7 +92,7 @@ function Galeria() {
                 {years.map((y) => {
                   const active = y === year;
                   return (
-                    <button key={y} id={y === years[0] ? "year-select" : undefined} role="tab" aria-selected={active} onClick={() => { setYear(y); closeAlbum(); }}
+                    <button key={y} id={y === years[0] ? "year-select" : undefined} role="tab" aria-selected={active} onClick={() => { setYear(y); setOpenPhoto(null); }}
                       className={`shrink-0 px-4 py-2 rounded-full text-sm transition ${active ? "bg-brand-red text-white" : "bg-brand-soft text-brand-ink"}`}
                       style={{ fontWeight: 600 }}>{y}</button>
                   );
