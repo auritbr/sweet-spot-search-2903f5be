@@ -48,8 +48,8 @@ export function Header() {
         Pular para o conteúdo
       </a>
       <div className="container-x flex items-center justify-between h-16 md:h-20">
-        <Link to="/" aria-label={site.short} className="flex shrink-0 items-center">
-          <img src={logoAsset.url} alt="Associação Maggu" className="h-12 w-auto object-contain md:h-14" />
+        <Link to="/" aria-label={site.short} className="flex h-12 w-20 shrink-0 items-center justify-center overflow-hidden md:h-14 md:w-24">
+          <img src={logoAsset.url} alt="Associação Maggu" className="h-20 w-20 max-w-none shrink-0 object-contain md:h-24 md:w-24" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1" aria-label="Menu principal">
