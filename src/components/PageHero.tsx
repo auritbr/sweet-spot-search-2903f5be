@@ -10,7 +10,7 @@ const accentHex: Record<string, string> = {
 
 export function PageHero({
   title, subtitle, image, breadcrumb, accent = "cyan", brush = "#FFB400", split,
-  eyebrow, variant = "internal", compact = false, decoration = "arc", children, imagePosition = "center",
+  eyebrow, variant = "internal", compact: _compact = false, decoration = "arc", children, imagePosition = "center",
 }: {
   title: string; subtitle?: string; image: string;
   breadcrumb?: { label: string; to?: string }[];
@@ -23,12 +23,13 @@ export function PageHero({
   children?: ReactNode;
   imagePosition?: string;
 }) {
-  const height = compact
-    ? "min-h-[405px] md:min-h-[450px] lg:min-h-[480px]"
-    : variant === "detail"
-      ? "min-h-[430px] md:min-h-[460px] lg:min-h-[480px]"
-      : "min-h-[460px] md:min-h-[510px] lg:min-h-[540px]";
-  const contentSpacing = compact ? "pb-10 pt-24 md:pb-12 md:pt-28" : "pb-14 pt-28 md:pb-16 md:pt-32";
+  const height = variant === "detail"
+    ? "h-[350px] md:h-[370px] lg:h-[390px]"
+    : "h-[330px] md:h-[360px] lg:h-[420px]";
+  const contentSpacing = variant === "detail"
+    ? "pb-5 pt-20 md:pb-7 md:pt-24"
+    : "pb-5 pt-20 md:pb-7 md:pt-24";
+  const longTitle = title.length > 30;
 
   const decorations = {
     arc: <><QuarterCircle corner="tr" color={accentHex.petrol} className="pointer-events-none absolute -right-4 -top-4 h-28 w-28 opacity-80 md:h-40 md:w-40" /><ArcThick color={accentHex[accent]} className="pointer-events-none absolute -right-10 bottom-10 w-28 opacity-90 md:right-8 md:w-36" from={210} to={340} /><DiamondsCluster color={accentHex.gold} className="pointer-events-none absolute bottom-10 left-[72%] hidden opacity-85 lg:block" size={42} /><HatchedCircle size={variant === "detail" ? 190 : 240} color={accentHex[accent]} className="pointer-events-none absolute -bottom-20 -right-16 max-w-[40vw] opacity-25 md:right-[8%]" /></>,
@@ -48,7 +49,7 @@ export function PageHero({
     <section className={`relative isolate flex w-full items-center overflow-hidden ${height}`}>
       <div className="absolute inset-0 -z-10">
         <img src={image} alt="" loading="eager" className="h-full w-full object-cover" style={{ objectPosition: imagePosition }} />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-ink/90 via-brand-petrol/70 to-brand-ink/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-ink/90 via-brand-petrol/70 to-brand-ink/25" />
         <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/45 via-transparent to-brand-ink/45" />
       </div>
 
@@ -57,7 +58,7 @@ export function PageHero({
       <div className={`container-x relative w-full ${contentSpacing}`}>
         <div className="max-w-[760px]">
           {breadcrumb && (
-            <nav aria-label="Breadcrumb" className="mb-5 text-xs font-medium text-primary-foreground/65">
+            <nav aria-label="Breadcrumb" className="mb-3 hidden text-[11px] font-medium text-primary-foreground/65 sm:block">
               <ol className="flex flex-wrap items-center gap-2">
                 {breadcrumb.map((b, i) => (
                   <li key={b.label} className="flex items-center gap-2">
@@ -69,19 +70,19 @@ export function PageHero({
             </nav>
           )}
 
-          <p className="mb-5 inline-flex rounded-full border border-primary-foreground/20 bg-background/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground backdrop-blur-md">
+          <p className="mb-3 inline-flex rounded-full border border-primary-foreground/20 bg-background/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-sm backdrop-blur-md">
             {eyebrow ?? title}
           </p>
 
-          <h1 className={`relative max-w-3xl font-bold leading-[1.06] text-primary-foreground [text-shadow:0_4px_22px_rgb(0_0_0_/_0.32)] ${variant === "detail" ? "text-[clamp(2.15rem,4.4vw,3rem)]" : "text-[clamp(2.5rem,5vw,3.75rem)]"}`}>
+          <h1 className={`relative max-w-3xl font-bold leading-[1.08] text-primary-foreground [text-shadow:0_4px_22px_rgb(0_0_0_/_0.32)] ${longTitle ? "text-[30px] md:text-[36px] lg:text-[44px]" : variant === "detail" ? "text-[30px] md:text-[36px] lg:text-[46px]" : "text-[32px] md:text-[40px] lg:text-[50px]"}`}>
             {split ? <><span className="block">{split.first}</span><span className="block" style={{ color: split.secondColor ?? accentHex[accent] }}>{split.second}</span></> : title}
           </h1>
 
-          <BrushStroke color={brush} className="relative mt-5 w-28 md:w-32" />
+          <BrushStroke color={brush} className="relative mt-3 w-24 md:w-28" />
 
-          {subtitle && <p className="relative mt-5 max-w-2xl text-[clamp(1rem,1.5vw,1.2rem)] leading-relaxed text-primary-foreground/90">{subtitle}</p>}
+          {subtitle && <p className="relative mt-3 max-w-2xl text-[14px] leading-[1.55] text-primary-foreground/90 md:text-[15px] lg:text-[17px]">{subtitle}</p>}
 
-          {children && <div className="relative mt-6">{children}</div>}
+          {children && <div className="relative mt-4">{children}</div>}
         </div>
       </div>
     </section>

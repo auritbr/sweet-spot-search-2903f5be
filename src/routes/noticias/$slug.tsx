@@ -124,20 +124,20 @@ function NewsDetail() {
 
   return (
     <>
-      <section className="relative isolate flex min-h-[390px] items-end overflow-hidden md:min-h-[430px]">
+      <section className="relative isolate flex h-[350px] items-end overflow-hidden md:h-[370px] lg:h-[390px]">
         <img src={n.image} alt="" className="absolute inset-0 -z-20 h-full w-full object-cover" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-ink/95 via-brand-petrol/75 to-brand-ink/25" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-ink/90 via-brand-petrol/70 to-brand-ink/25" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-ink/45 via-transparent to-brand-ink/75" />
-        <div className="container-x w-full pb-10 pt-24 md:pb-12 md:pt-28">
-          <Link to="/noticias" className="group inline-flex items-center gap-2 text-sm font-medium text-primary-foreground/80 transition hover:text-brand-gold">
+        <div className="container-x w-full pb-5 pt-20 md:pb-7 md:pt-24">
+          <Link to="/noticias" className="group inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-background/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-primary-foreground/85 shadow-sm backdrop-blur-md transition hover:text-brand-gold">
             <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" aria-hidden="true" />Voltar para Notícias
           </Link>
-          <div className="mt-6 flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.12em] text-primary-foreground/80">
-            <span className="rounded-full border border-primary-foreground/20 bg-background/10 px-3 py-1.5 backdrop-blur-sm">{n.category}</span>
-            <time dateTime={n.date} className="inline-flex items-center gap-2"><CalendarDays className="size-4 text-brand-gold" aria-hidden="true" />{formattedDate}</time>
+          <div className="mt-3 flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-primary-foreground/80">
+            <span className="rounded-full border border-primary-foreground/20 bg-background/10 px-3 py-1.5 shadow-sm backdrop-blur-md">{n.category}</span>
+            <time dateTime={n.date} className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 bg-background/10 px-3 py-1.5 backdrop-blur-md"><CalendarDays className="size-3.5 text-brand-gold" aria-hidden="true" />{formattedDate}</time>
           </div>
-          <h1 className="mt-4 max-w-4xl text-[clamp(2rem,4vw,3.2rem)] font-bold leading-[1.08] text-primary-foreground [text-shadow:0_4px_22px_rgb(0_0_0_/_0.35)]">{n.title}</h1>
-          <p className="mt-4 max-w-3xl text-[clamp(.95rem,1.35vw,1.1rem)] leading-relaxed text-primary-foreground/90">{n.excerpt}</p>
+          <h1 className="mt-3 max-w-4xl text-[30px] font-bold leading-[1.08] text-primary-foreground [text-shadow:0_4px_22px_rgb(0_0_0_/_0.35)] md:text-[36px] lg:text-[44px]">{n.title}</h1>
+          <p className="mt-3 max-w-3xl text-[14px] leading-[1.55] text-primary-foreground/90 md:text-[15px] lg:text-[17px]">{n.excerpt}</p>
         </div>
       </section>
 

@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Section, SectionTitle } from "@/components/PageHero";
+import { PageHero, Section, SectionTitle } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
 import { FinalCampaignCTA } from "@/components/FinalCampaignCTA";
-import { ArcThick, BrushStroke, DiamondsCluster, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
+import { ArcThick, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
 
 export const Route = createFileRoute("/ecossistema")({
   head: () => ({
@@ -160,24 +160,20 @@ const initiatives = allInitiatives.filter((initiative) => initiative.featured);
 function Ecossistema() {
   return (
     <>
-      <section className="relative isolate flex min-h-[405px] items-center overflow-hidden md:min-h-[450px] lg:min-h-[480px]">
-        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80" alt="Encontro de pessoas em uma atividade cultural" className="absolute inset-0 -z-20 h-full w-full object-cover" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-ink/90 via-brand-petrol/70 to-brand-ink/20" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-ink/45 via-transparent to-brand-ink/40" />
-        <ArcThick color="#08B9E6" className="absolute -right-8 top-16 w-32 md:right-[6%] md:w-40" from={70} to={250} />
-        <Triangle color="#FFB400" size={52} className="absolute bottom-10 right-[18%] hidden md:block" rotate={24} />
-        <DiamondsCluster color="#ED1C24" className="absolute bottom-16 right-[5%] hidden lg:block" size={44} />
-        <div className="container-x relative w-full pb-10 pt-24 md:pb-12 md:pt-28">
-          <p className="mb-5 inline-flex rounded-full border border-primary-foreground/20 bg-background/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground backdrop-blur-md">Ecossistema</p>
-          <h1 className="max-w-3xl text-[clamp(2.5rem,5vw,3.75rem)] font-bold leading-[1.06] text-primary-foreground">Ecossistema Maggu</h1>
-          <BrushStroke color="#FFB400" className="mt-5 w-32" />
-          <p className="mt-5 max-w-2xl text-[clamp(1rem,1.5vw,1.2rem)] leading-relaxed text-primary-foreground/90">A Associação Maggu atua por diferentes caminhos que se encontram. Seus eixos ajudam a compreender essa diversidade sem separar aquilo que, na prática, se conecta.</p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <a href="#eixos" className="rounded-full bg-brand-gold px-6 py-3 text-sm font-bold text-brand-petrol transition hover:bg-background">Conheça os eixos</a>
-            <Link to="/projetos" className="rounded-full border-2 border-primary-foreground px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-background/10">Explorar projetos</Link>
-          </div>
+      <PageHero
+        title="Ecossistema Maggu"
+        eyebrow="Ecossistema"
+        subtitle="A Associação Maggu atua por diferentes caminhos que se encontram. Seus eixos ajudam a compreender essa diversidade sem separar aquilo que, na prática, se conecta."
+        image="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80"
+        accent="cyan"
+        brush="#FFB400"
+        decoration="crescent"
+      >
+        <div className="flex flex-wrap gap-3">
+          <a href="#eixos" className="rounded-full bg-brand-gold px-6 py-3 text-sm font-bold text-brand-petrol transition hover:bg-background">Conheça os eixos</a>
+          <Link to="/projetos" className="rounded-full border-2 border-primary-foreground px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-background/10">Explorar projetos</Link>
         </div>
-      </section>
+      </PageHero>
 
       <Section className="overflow-hidden bg-background">
         <div className="container-x grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-14">
