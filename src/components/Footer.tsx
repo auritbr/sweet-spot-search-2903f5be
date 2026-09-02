@@ -138,8 +138,9 @@ export function Footer() {
         </div>
 
         <div className="mt-5 border-t border-primary-foreground/15 pt-4 text-center text-xs text-primary-foreground/55">
-          <p className="font-semibold text-primary-foreground/70">Associação Sócio Cultural Maggu</p>
-          <p>61.841.454/0001-80</p>
+          <p className="font-semibold text-primary-foreground/70">
+            CNPJ: 61.841.454/0001-80 - Associação Sócio Cultural Maggu
+          </p>
           <p>© {year} Associação Sócio Cultural Maggu. Todos os direitos reservados.</p>
           <p className="pt-1.5">
             Desenvolvido por{" "}
