@@ -10,7 +10,7 @@ const accentHex: Record<string, string> = {
 
 export function PageHero({
   title, subtitle, image, breadcrumb, accent = "cyan", brush = "#FFB400", split,
-  eyebrow, variant = "internal", decoration = "arc", children, imagePosition = "center",
+  eyebrow, variant = "internal", compact = false, decoration = "arc", children, imagePosition = "center",
 }: {
   title: string; subtitle?: string; image: string;
   breadcrumb?: { label: string; to?: string }[];
@@ -18,13 +18,16 @@ export function PageHero({
   split?: { first: string; second: string; secondColor?: string };
   eyebrow?: string;
   variant?: "internal" | "detail";
+  compact?: boolean;
   decoration?: "arc" | "orbit" | "diamonds" | "triangle" | "hatch" | "curve" | "quarters" | "ribbon" | "constellation" | "frame" | "crescent";
   children?: ReactNode;
   imagePosition?: string;
 }) {
-  const height = variant === "detail"
-    ? "min-h-[380px] md:min-h-[410px] lg:min-h-[430px]"
-    : "min-h-[405px] md:min-h-[450px] lg:min-h-[480px]";
+  const height = compact
+    ? "min-h-[405px] md:min-h-[450px] lg:min-h-[480px]"
+    : variant === "detail"
+      ? "min-h-[430px] md:min-h-[460px] lg:min-h-[480px]"
+      : "min-h-[460px] md:min-h-[510px] lg:min-h-[540px]";
 
   const decorations = {
     arc: <><QuarterCircle corner="tr" color={accentHex.petrol} className="pointer-events-none absolute -right-4 -top-4 h-24 w-24 opacity-80 md:h-36 md:w-36" /><ArcThick color={accentHex[accent]} className="pointer-events-none absolute -right-10 bottom-5 w-24 opacity-90 md:right-8 md:w-32" from={210} to={340} /></>,

@@ -39,7 +39,7 @@ const toc = [
 function TermosDeUso() {
   return (
     <main id="main">
-      <PageHero title="Termos de Uso" eyebrow="Legal" subtitle="Estas orientações apresentam condições gerais para utilização do site institucional da Associação Maggu e de seus conteúdos digitais." image="https://images.unsplash.com/photo-1526243741027-444d633d7365?auto=format&fit=crop&w=1920&q=80" breadcrumb={[{ label: "Início", to: "/" }, { label: "Termos de Uso" }]} accent="gold" brush="#08B9E6" decoration="constellation" />
+      <PageHero title="Termos de Uso" eyebrow="Legal" subtitle="Estas orientações apresentam condições gerais para utilização do site institucional da Associação Maggu e de seus conteúdos digitais." image="https://images.unsplash.com/photo-1526243741027-444d633d7365?auto=format&fit=crop&w=1920&q=80" breadcrumb={[{ label: "Início", to: "/" }, { label: "Termos de Uso" }]} accent="gold" brush="#08B9E6" compact decoration="constellation" />
 
       <div className="bg-white py-10 md:py-14">
         <div className="container-x grid gap-8 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12">

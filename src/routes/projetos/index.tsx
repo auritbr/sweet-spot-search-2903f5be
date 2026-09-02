@@ -46,6 +46,7 @@ function Projetos() {
         breadcrumb={[{ label: "Início", to: "/" }, { label: "Projetos" }]}
         accent="gold"
         brush="#08B9E6"
+        compact
         decoration="diamonds"
       />
 
