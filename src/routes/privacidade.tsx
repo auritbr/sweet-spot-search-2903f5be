@@ -40,20 +40,20 @@ function Privacidade() {
 
   return (
     <main id="main">
-      <section className="relative flex h-[420px] items-center overflow-hidden bg-brand-soft sm:h-[460px] lg:h-[520px]">
+      <section className="relative flex h-[356px] items-center overflow-hidden bg-brand-soft sm:h-[390px] lg:h-[440px]">
         <QuarterCircle corner="tr" color="#ED1C24" className="absolute top-0 right-0 w-24 md:w-40 opacity-90" />
         <ArcThick color="#00384C" className="absolute -left-10 top-24 w-32 md:w-48 opacity-70" from={200} to={340} />
         <HatchedCircle size={120} color="#08B9E6" className="absolute right-10 bottom-0 opacity-30 hidden md:block" />
         <div className="container-x relative max-w-3xl">
           <Breadcrumbs items={[{ label: "Início", to: "/" }, { label: "Privacidade" }]} />
-          <p className="mt-6 uppercase tracking-[0.22em] text-brand-red text-xs" style={{ fontWeight: 600 }}>Privacidade</p>
-          <h1 className="mt-3" style={{ color: "#00384C", fontSize: "clamp(1.9rem, 3vw, 3rem)", lineHeight: 1.12, fontWeight: 700 }}>
+          <p className="mt-4 uppercase tracking-[0.22em] text-brand-red text-xs" style={{ fontWeight: 600 }}>Privacidade</p>
+          <h1 className="mt-2" style={{ color: "#00384C", fontSize: "clamp(1.75rem, 2.8vw, 2.7rem)", lineHeight: 1.1, fontWeight: 700 }}>
             Privacidade e proteção de dados
           </h1>
-          <p className="mt-5 text-brand-ink" style={{ fontSize: "clamp(1rem, 1.2vw, 1.12rem)", lineHeight: 1.6 }}>
+          <p className="mt-4 max-w-2xl text-brand-ink" style={{ fontSize: "clamp(0.95rem, 1.1vw, 1.05rem)", lineHeight: 1.55 }}>
             A Associação Maggu busca tratar dados pessoais com responsabilidade, segurança e respeito aos direitos das pessoas.
           </p>
-          <p className="mt-3 text-brand-gray" style={{ lineHeight: 1.7 }}>
+          <p className="mt-2 max-w-2xl text-sm text-brand-gray" style={{ lineHeight: 1.6 }}>
             Esta página reúne informações sobre o tratamento de dados relacionados ao uso do site, formulários, inscrições, comunicações e demais serviços digitais da Associação.
           </p>
         </div>

@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero, Section, SectionTitle } from "@/components/PageHero";
+import { Button } from "@/components/ui/button";
 import { ArcThick, BrushStroke, DiamondsCluster, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
 
 export const Route = createFileRoute("/quem-somos/")({
@@ -209,16 +210,16 @@ function QuemSomos() {
         </div>
       </Section>
 
-      <section className="relative overflow-hidden bg-brand-petrol py-16 md:py-20">
-        <QuarterCircle corner="br" color="#ED1C24" className="absolute -bottom-2 -right-2 w-36 opacity-90" />
-        <HatchedCircle size={150} color="#08B9E6" className="absolute -left-12 top-0 opacity-25" />
+      <section className="relative overflow-hidden border-t border-brand-petrol/10 bg-brand-soft py-14 md:py-18">
+        <QuarterCircle corner="br" color="#FFB400" className="absolute -bottom-2 -right-2 w-24 opacity-35 md:w-32" />
+        <HatchedCircle size={120} color="#08B9E6" className="absolute -left-10 top-0 opacity-20" />
         <div className="container-x relative mx-auto max-w-3xl text-center">
-          <h2 className="text-2xl text-white md:text-3xl">Conheça o Ecossistema Maggu.</h2>
-          <BrushStroke color="#FFB400" className="mx-auto mt-5 w-28" />
-          <p className="mt-5 leading-relaxed text-white/90">Arte, educação, audiovisual, leitura, infância, esporte e sustentabilidade se encontram em iniciativas que compartilham um mesmo compromisso com o território.</p>
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Link to="/ecossistema" className="rounded-full bg-brand-gold px-6 py-3 text-sm font-bold text-brand-petrol transition hover:bg-white">Explorar o Ecossistema</Link>
-            <Link to="/contato" className="rounded-full border-2 border-white px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10">Entre em contato</Link>
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Próximos caminhos</p>
+          <h2 className="mt-3 text-2xl text-brand-ink md:text-3xl">Conheça como essa trajetória continua se desdobrando.</h2>
+          <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-brand-gray">A história da Maggu se organiza em diferentes frentes de atuação, iniciativas e experiências conectadas ao território.</p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <Button asChild className="rounded-full bg-brand-petrol px-6 font-bold text-primary-foreground shadow-none hover:bg-brand-red"><Link to="/ecossistema">Conheça o Ecossistema</Link></Button>
+            <Button asChild variant="outline" className="rounded-full border-brand-petrol/25 bg-background/55 px-6 font-semibold text-brand-petrol shadow-none backdrop-blur-sm hover:bg-background hover:text-brand-petrol"><Link to="/transparencia">Ver Transparência</Link></Button>
           </div>
         </div>
       </section>

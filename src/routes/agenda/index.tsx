@@ -168,16 +168,16 @@ function Agenda() {
 
   return (
     <>
-      <section className="relative flex h-[420px] items-center overflow-hidden bg-brand-soft sm:h-[460px] lg:h-[520px]">
+      <section className="relative flex h-[356px] items-center overflow-hidden bg-brand-soft sm:h-[390px] lg:h-[440px]">
         <ArcThick color="#00384C" className="absolute -left-8 top-24 w-40 opacity-80 md:w-52" from={200} to={340} />
         <HatchedCircle size={140} color="#08B9E6" className="absolute -right-12 -top-12 opacity-50" />
         <Triangle color="#FFB400" size={54} className="absolute bottom-8 right-16 hidden md:block" rotate={20} />
         <DiamondsCluster color="#ED1C24" className="absolute bottom-8 left-[18%] hidden opacity-70 lg:block" size={42} />
         <div className="container-x relative text-center">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Programação</p>
-          <h1 className="text-brand-ink" style={{ fontSize: "clamp(2rem, 3.3vw, 3.5rem)", lineHeight: 1.1, fontWeight: 700 }}>Agenda</h1>
+          <h1 className="text-brand-ink" style={{ fontSize: "clamp(1.9rem, 3vw, 3.1rem)", lineHeight: 1.08, fontWeight: 700 }}>Agenda</h1>
           <BrushStroke color="#FFB400" className="mx-auto mt-4 w-32" />
-          <p className="mx-auto mt-5 max-w-2xl text-brand-gray" style={{ fontSize: "clamp(1rem, 1.2vw, 1.1rem)", lineHeight: 1.6 }}>
+          <p className="mx-auto mt-4 max-w-xl text-brand-gray" style={{ fontSize: "clamp(0.95rem, 1.1vw, 1.05rem)", lineHeight: 1.55 }}>
             Acompanhe cursos, oficinas, sessões, apresentações, encontros e outras atividades do Ecossistema Maggu.
           </p>
         </div>
@@ -311,20 +311,20 @@ function Agenda() {
         </div>
       </main>
 
-      <section className="relative overflow-hidden bg-brand-petrol py-14 md:py-16">
-        <ArcThick color="#08B9E6" className="absolute -left-10 top-5 w-32 opacity-40" from={200} to={340} />
-        <Triangle color="#ED1C24" size={64} className="absolute -bottom-3 right-8 opacity-90" rotate={18} />
+      <section className="relative overflow-hidden border-t border-brand-petrol/10 bg-brand-soft py-14 md:py-18">
+        <ArcThick color="#08B9E6" className="absolute -left-10 top-5 w-24 opacity-25" from={200} to={340} />
+        <Triangle color="#ED1C24" size={42} className="absolute -bottom-2 right-8 opacity-45" rotate={18} />
         <div className="container-x relative mx-auto max-w-3xl text-center">
-          <h2 className="text-primary-foreground" style={{ fontSize: "clamp(1.7rem, 2.7vw, 2.6rem)", lineHeight: 1.15, fontWeight: 700 }}>
-            Quer acompanhar mais de perto as ações da Maggu?
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Siga acompanhando</p>
+          <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.65rem, 2.5vw, 2.45rem)", lineHeight: 1.16, fontWeight: 700 }}>
+            Quer acompanhar mais de perto as atividades da Maggu?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-primary-foreground/90">
-            Conheça os projetos, explore o ecossistema ou entre em contato para saber mais sobre as atividades da Associação.
+          <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-brand-gray">
+            Entre em contato, conheça os projetos e acompanhe a programação para descobrir novas experiências, encontros e ações culturais.
           </p>
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Button asChild className="rounded-full bg-brand-gold px-6 text-brand-petrol shadow-none hover:bg-background"><Link to="/projetos">Conheça os projetos</Link></Button>
-            <Button asChild variant="outline" className="rounded-full border-primary-foreground/55 bg-background/10 px-6 text-primary-foreground shadow-none backdrop-blur-md hover:bg-background/20 hover:text-primary-foreground"><Link to="/ecossistema">Explore o Ecossistema</Link></Button>
-            <Button asChild variant="ghost" className="rounded-full px-6 text-primary-foreground hover:bg-background/10 hover:text-primary-foreground"><Link to="/contato">Entre em contato</Link></Button>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <Button asChild className="rounded-full bg-brand-red px-6 font-bold text-primary-foreground shadow-none hover:bg-brand-petrol"><Link to="/projetos">Conheça os Projetos</Link></Button>
+            <Button asChild variant="outline" className="rounded-full border-brand-petrol/25 bg-background/55 px-6 font-semibold text-brand-petrol shadow-none backdrop-blur-sm hover:bg-background hover:text-brand-petrol"><Link to="/contato">Entre em Contato</Link></Button>
           </div>
         </div>
       </section>

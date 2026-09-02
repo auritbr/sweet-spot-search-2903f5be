@@ -38,17 +38,17 @@ const toc = [
 function TermosDeUso() {
   return (
     <main id="main">
-      <section className="relative flex h-[420px] items-center overflow-hidden bg-brand-soft sm:h-[460px] lg:h-[520px]">
+      <section className="relative flex h-[356px] items-center overflow-hidden bg-brand-soft sm:h-[390px] lg:h-[440px]">
         <ArcThick color="#ED1C24" className="absolute -right-10 top-16 w-32 md:w-48 opacity-70" from={20} to={160} />
         <DiamondsCluster color="#08B9E6" size={54} className="absolute left-6 bottom-6 hidden md:block opacity-80" />
         <HatchedCircle size={110} color="#FFB400" className="absolute right-24 bottom-0 opacity-25 hidden md:block" />
         <div className="container-x relative max-w-3xl">
           <Breadcrumbs items={[{ label: "Início", to: "/" }, { label: "Termos de Uso" }]} />
-          <p className="mt-6 uppercase tracking-[0.22em] text-brand-red text-xs" style={{ fontWeight: 600 }}>Legal</p>
-          <h1 className="mt-3" style={{ color: "#00384C", fontSize: "clamp(1.9rem, 3vw, 3rem)", lineHeight: 1.12, fontWeight: 700 }}>
+          <p className="mt-4 uppercase tracking-[0.22em] text-brand-red text-xs" style={{ fontWeight: 600 }}>Legal</p>
+          <h1 className="mt-2" style={{ color: "#00384C", fontSize: "clamp(1.75rem, 2.8vw, 2.7rem)", lineHeight: 1.1, fontWeight: 700 }}>
             Termos de Uso
           </h1>
-          <p className="mt-5 text-brand-ink" style={{ fontSize: "clamp(1rem, 1.2vw, 1.12rem)", lineHeight: 1.6 }}>
+          <p className="mt-4 max-w-2xl text-brand-ink" style={{ fontSize: "clamp(0.95rem, 1.1vw, 1.05rem)", lineHeight: 1.55 }}>
             Estas orientações apresentam condições gerais para utilização do site institucional da Associação Maggu e de seus conteúdos digitais.
           </p>
         </div>

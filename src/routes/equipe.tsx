@@ -24,18 +24,18 @@ function Equipe() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   return (
     <>
-      <section className="relative flex h-[420px] items-center overflow-hidden bg-brand-soft sm:h-[460px] lg:h-[520px]">
+      <section className="relative flex h-[356px] items-center overflow-hidden bg-brand-soft sm:h-[390px] lg:h-[440px]">
         <HatchedCircle size={100} color="#08B9E6" className="absolute top-10 left-10 opacity-50" />
         <ArcThick color="#ED1C24" className="absolute bottom-10 right-10 w-32 opacity-80" from={200} to={340} />
         <Triangle color="#FFB400" size={54} className="absolute top-20 right-24 hidden md:block" rotate={20} />
         <Triangle color="#08B9E6" size={40} className="absolute bottom-20 left-24 hidden md:block" rotate={-15} />
         <div className="container-x relative text-center">
           <p className="uppercase tracking-[0.22em] text-brand-red text-xs mb-3" style={{ fontWeight: 600 }}>Time</p>
-          <h1 style={{ fontSize: "clamp(2rem, 3.3vw, 3.5rem)", lineHeight: 1.1, fontWeight: 700, color: "#00384C" }}>
+          <h1 style={{ fontSize: "clamp(1.9rem, 3vw, 3.1rem)", lineHeight: 1.08, fontWeight: 700, color: "#00384C" }}>
             Nossa Equipe
           </h1>
-          <BrushStroke color="#FFB400" className="mx-auto mt-5 w-36" />
-          <p className="mt-5 text-brand-gray max-w-2xl mx-auto" style={{ fontSize: "clamp(1rem, 1.2vw, 1.1rem)", lineHeight: 1.6 }}>
+          <BrushStroke color="#FFB400" className="mx-auto mt-4 w-32" />
+          <p className="mt-4 text-brand-gray max-w-xl mx-auto" style={{ fontSize: "clamp(0.95rem, 1.1vw, 1.05rem)", lineHeight: 1.55 }}>
             Um time multidisciplinar que sustenta a formação, a criação e a circulação cultural.
           </p>
         </div>

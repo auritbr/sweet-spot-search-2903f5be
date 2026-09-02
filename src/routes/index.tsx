@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { slides, albums } from "@/data/site";
 import { Section, SectionTitle } from "@/components/PageHero";
 import { AgendaStatusBadge } from "@/components/AgendaCard";
+import { Button } from "@/components/ui/button";
 import { eventDayMonth, upcomingEvents } from "@/data/agenda";
 import { HatchedCircle, ArcThick, BrushStroke, DiamondsCluster, QuarterCircle, Triangle } from "@/components/Shapes";
 
@@ -364,22 +365,20 @@ function TransparencySection() {
 
 function FinalCTA() {
   return (
-    <section className="relative overflow-hidden py-16 md:py-20" style={{ backgroundColor: "#00384C" }}>
-      <QuarterCircle corner="tr" color="#ED1C24" className="absolute -top-2 -right-2 w-32 md:w-52 opacity-90" />
-      <ArcThick color="#FFB400" className="absolute -left-6 top-10 w-40 opacity-90" from={200} to={340} />
-      <HatchedCircle size={200} color="#08B9E6" className="absolute -left-16 bottom-0 opacity-20" />
-      <DiamondsCluster color="#FFB400" className="absolute top-16 right-32 hidden md:block" size={54} />
-      <div className="container-x relative mx-auto max-w-3xl text-center text-white">
-        <h2 className="text-white" style={{ fontSize: "clamp(1.7rem, 2.6vw, 2.6rem)", lineHeight: 1.15, fontWeight: 700 }}>
-          Há muitas formas de fazer parte.
+    <section className="relative overflow-hidden border-t border-brand-petrol/10 bg-brand-soft py-14 md:py-18">
+      <QuarterCircle corner="tr" color="#08B9E6" className="absolute -right-2 -top-2 w-24 opacity-25 md:w-32" />
+      <ArcThick color="#ED1C24" className="absolute -bottom-12 -left-8 w-28 opacity-30" from={200} to={340} />
+      <div className="container-x relative mx-auto max-w-3xl text-center">
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Continue conhecendo</p>
+        <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.65rem, 2.5vw, 2.45rem)", lineHeight: 1.16, fontWeight: 700 }}>
+          Há muitas formas de caminhar com a Associação Maggu.
         </h2>
-        <BrushStroke color="#FFB400" className="mx-auto mt-5 w-32" />
-        <p className="mt-5 leading-relaxed text-white/90">
-          Encontre uma atividade, conheça os projetos ou entre em contato com a Associação Maggu.
+        <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-brand-gray">
+          Conheça nossa trajetória, explore os projetos e acompanhe as atividades que fortalecem cultura, formação e território.
         </p>
-        <div className="mt-7 flex flex-wrap justify-center gap-3">
-          <Link to="/agenda" className="rounded-full bg-brand-gold px-7 py-3 text-sm font-bold text-brand-petrol transition hover:bg-white">Ver Agenda</Link>
-          <Link to="/contato" className="rounded-full border-2 border-white px-7 py-3 text-sm font-semibold text-white transition hover:bg-white/10">Entre em contato</Link>
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
+          <Button asChild className="rounded-full bg-brand-red px-6 font-bold text-primary-foreground shadow-none hover:bg-brand-petrol"><Link to="/quem-somos">Conheça a Associação</Link></Button>
+          <Button asChild variant="outline" className="rounded-full border-brand-petrol/25 bg-background/55 px-6 font-semibold text-brand-petrol shadow-none backdrop-blur-sm hover:bg-background hover:text-brand-petrol"><Link to="/agenda">Ver Agenda</Link></Button>
         </div>
       </div>
     </section>
