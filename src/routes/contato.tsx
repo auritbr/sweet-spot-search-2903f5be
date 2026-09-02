@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { HatchedCircle, ArcThick, BrushStroke, Triangle, QuarterCircle } from "@/components/Shapes";
+import { PageHero } from "@/components/PageHero";
+import { BrushStroke, HatchedCircle } from "@/components/Shapes";
 import { site } from "@/data/site";
 
 export const Route = createFileRoute("/contato")({
@@ -25,24 +26,21 @@ function Contato() {
 
   return (
     <>
-      <section className="relative min-h-[540px] overflow-hidden pb-14 pt-28 md:pb-16 md:pt-32">
-        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80" alt="" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-ink/95 via-brand-petrol/85 to-brand-ink/55" />
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/45 via-transparent to-brand-ink/45" />
-        <QuarterCircle corner="tr" color="#ED1C24" className="absolute -top-2 -right-2 w-32 md:w-52 opacity-95" />
-        <ArcThick color="#FFB400" className="absolute -left-4 top-32 w-40 opacity-80" from={200} to={340} />
-        <HatchedCircle size={180} color="#08B9E6" className="absolute -left-16 bottom-0 opacity-25" />
-        <Triangle color="#FFB400" size={54} className="absolute top-16 right-24 hidden md:block" rotate={20} />
+      <PageHero
+        title="Contato"
+        eyebrow="Fale conosco"
+        subtitle="Quer participar, apoiar, propor uma parceria ou saber mais sobre nossos projetos? Estamos por aqui."
+        image="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80"
+        accent="red"
+        brush="#ED1C24"
+      />
 
-        <div className="container-x grid lg:grid-cols-[1fr_minmax(0,520px)] gap-10 items-start relative text-white">
-          <div>
-            <p className="mb-5 inline-flex rounded-full border border-primary-foreground/20 bg-background/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground backdrop-blur-md">Fale conosco</p>
-            <h1 className="text-primary-foreground" style={{ fontSize: "clamp(2.5rem, 5vw, 3.75rem)", lineHeight: 1.06, fontWeight: 700 }}>Contato</h1>
-            <BrushStroke color="#ED1C24" className="mt-4 w-32" />
-            <p className="mt-5 text-white/90 max-w-lg" style={{ fontSize: "clamp(1rem, 1.2vw, 1.1rem)", lineHeight: 1.6 }}>
-              Quer participar, apoiar, propor uma parceria ou saber mais sobre nossos projetos? Estamos por aqui.
-            </p>
-            <div className="mt-7 grid gap-3.5 max-w-md">
+      <section className="bg-white py-12 md:py-16">
+        <div className="container-x grid items-start gap-10 lg:grid-cols-[1fr_minmax(0,520px)]">
+          <div className="text-brand-ink">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Canais de contato</p>
+            <h2 className="mt-2 text-2xl font-bold">Estamos por aqui</h2>
+            <div className="mt-7 grid max-w-md gap-3.5">
               <ContactRow label="Telefone" value={site.phone} />
               <ContactRow label="WhatsApp" value={`+${site.whatsapp}`} href={`https://wa.me/${site.whatsapp}`} />
               <ContactRow label="E-mail" value={site.email} href={`mailto:${site.email}`} />
@@ -50,10 +48,10 @@ function Contato() {
               <ContactRow label="Horário" value={site.hours} />
               <ContactRow label="Acessibilidade" value="Espaço acessível, VLibras disponível no site e canal aberto para solicitações de acessibilidade." />
             </div>
-            <div className="mt-6 flex gap-3 flex-wrap">
-              <a href={site.social.instagram} className="px-5 py-2 rounded-full bg-white/10 border border-white/30 text-white text-sm hover:bg-white/20" style={{ fontWeight: 600 }}>Instagram</a>
-              <a href={site.social.facebook} className="px-5 py-2 rounded-full bg-white/10 border border-white/30 text-white text-sm hover:bg-white/20" style={{ fontWeight: 600 }}>Facebook</a>
-              <a href={site.social.youtube} className="px-5 py-2 rounded-full bg-white/10 border border-white/30 text-white text-sm hover:bg-white/20" style={{ fontWeight: 600 }}>YouTube</a>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href={site.social.instagram} className="rounded-full border border-brand-ink/20 px-5 py-2 text-sm font-semibold text-brand-ink hover:bg-brand-soft">Instagram</a>
+              <a href={site.social.facebook} className="rounded-full border border-brand-ink/20 px-5 py-2 text-sm font-semibold text-brand-ink hover:bg-brand-soft">Facebook</a>
+              <a href={site.social.youtube} className="rounded-full border border-brand-ink/20 px-5 py-2 text-sm font-semibold text-brand-ink hover:bg-brand-soft">YouTube</a>
             </div>
           </div>
 
@@ -112,11 +110,11 @@ function Contato() {
 function ContactRow({ label, value, href }: { label: string; value: string; href?: string }) {
   return (
     <div className="border-l-4 border-brand-gold pl-4">
-      <p className="text-xs uppercase tracking-widest text-brand-gold font-bold">{label}</p>
+      <p className="text-xs uppercase tracking-widest text-brand-red font-bold">{label}</p>
       {href ? (
-        <a href={href} className="text-white/95 hover:text-brand-gold">{value}</a>
+        <a href={href} className="text-brand-gray hover:text-brand-red">{value}</a>
       ) : (
-        <p className="text-white/95">{value}</p>
+        <p className="text-brand-gray">{value}</p>
       )}
     </div>
   );

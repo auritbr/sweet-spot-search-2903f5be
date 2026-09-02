@@ -1,7 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
-import { ArcThick, BrushStroke, HatchedCircle, Triangle } from "@/components/Shapes";
 import { Button } from "@/components/ui/button";
 import { projects } from "@/data/site";
 
@@ -38,7 +37,7 @@ function ProjectDetail() {
 
   return (
     <main className="overflow-hidden bg-background">
-      <PageHero title={project.title} eyebrow={project.category} subtitle={project.description} image={project.image} variant="detail" accent="cyan" brush="#FFB400">
+      <PageHero title={project.title} eyebrow={project.category} subtitle={project.short} image={project.image} variant="detail" accent="cyan" brush="#FFB400">
             <Link to="/projetos" className="inline-flex items-center gap-2 text-sm font-semibold text-primary-foreground/85 transition hover:text-brand-gold"><ArrowLeft className="size-4" aria-hidden="true" /> Voltar aos projetos</Link>
             <div className="mt-7 flex flex-wrap gap-3">
               {project.ctas.map((cta, index) => (
