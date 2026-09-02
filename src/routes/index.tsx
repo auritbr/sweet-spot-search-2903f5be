@@ -66,7 +66,7 @@ function HeroCarousel() {
 
   return (
     <section
-      className="relative h-[620px] w-full overflow-hidden md:h-[660px] lg:h-[680px]"
+      className="relative h-[550px] w-full overflow-hidden md:h-[590px] lg:h-[610px]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       aria-roledescription="carrossel"

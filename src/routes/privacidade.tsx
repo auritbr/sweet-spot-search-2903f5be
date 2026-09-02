@@ -41,7 +41,7 @@ function Privacidade() {
 
   return (
     <main id="main">
-      <PageHero title="Privacidade e proteção de dados" eyebrow="Privacidade" subtitle="A Associação Maggu busca tratar dados pessoais com responsabilidade, segurança e respeito aos direitos das pessoas." image="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80" breadcrumb={[{ label: "Início", to: "/" }, { label: "Privacidade" }]} accent="cyan" brush="#FFB400" />
+      <PageHero title="Privacidade e proteção de dados" eyebrow="Privacidade" subtitle="A Associação Maggu busca tratar dados pessoais com responsabilidade, segurança e respeito aos direitos das pessoas." image="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80" breadcrumb={[{ label: "Início", to: "/" }, { label: "Privacidade" }]} accent="cyan" brush="#FFB400" compact decoration="ribbon" />
 
       <div className="bg-white py-10 md:py-14">
         <div className="container-x grid gap-8 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12">

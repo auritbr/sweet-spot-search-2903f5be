@@ -1,82 +1,68 @@
 import { Link } from "@tanstack/react-router";
-import { site } from "@/data/site";
-import { QuarterCircle, ArcThick, HatchedCircle } from "./Shapes";
+import { Facebook, Instagram, Mail, MapPin, MessageCircle, Phone, Youtube } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import logoAsset from "@/assets/logo-associacao-maggu.png.asset.json";
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const socialLinks = [
+    { label: "YouTube", href: "https://youtube.com", icon: Youtube },
+    { label: "Facebook", href: "https://facebook.com", icon: Facebook },
+    { label: "Instagram", href: "https://instagram.com", icon: Instagram },
+    { label: "WhatsApp", href: "https://wa.me/5582998067374", icon: MessageCircle },
+  ];
+
   return (
-    <footer className="relative mt-24 text-white overflow-hidden" style={{ backgroundColor: "#00384C" }}>
-      {/* Curved geometric transition */}
-      <div className="absolute -top-1 inset-x-0 h-16 bg-white [clip-path:ellipse(90%_100%_at_50%_0%)]" aria-hidden />
-      <QuarterCircle corner="tr" color="#ED1C24" className="absolute top-0 right-0 w-40 md:w-56 opacity-95" />
-      <ArcThick color="#FFB400" className="absolute left-4 top-24 w-40 opacity-90" from={200} to={340} />
-      <HatchedCircle size={200} color="#08B9E6" className="absolute -right-16 bottom-0 opacity-25" />
-
-      <div className="container-x pt-28 pb-12 relative">
-
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-          <div className="lg:col-span-1">
+    <footer className="relative mt-24 overflow-hidden bg-brand-petrol text-primary-foreground">
+      <div className="absolute inset-x-0 top-0 h-px bg-primary-foreground/15" aria-hidden="true" />
+      <div className="container-x relative py-14 md:py-16">
+        <div className="grid gap-11 md:grid-cols-2 lg:grid-cols-[1.45fr_.7fr_.7fr_1.25fr] lg:gap-14">
+          <div>
             <Link to="/" aria-label="Associação Maggu" className="inline-flex">
-              <img src={logoAsset.url} alt="Associação Maggu" className="h-auto w-36 object-contain sm:w-40" />
+              <img src={logoAsset.url} alt="Associação Sócio Cultural Maggu" className="h-auto w-32 object-contain sm:w-36" />
             </Link>
+            <div className="mt-6 space-y-2 text-sm leading-relaxed text-primary-foreground/75">
+              <p>61.841.454/0001-80</p>
+              <p className="font-semibold text-primary-foreground">Associação Sócio Cultural Maggu</p>
+            </div>
           </div>
 
           <div>
-            <h3 className="text-white text-sm uppercase tracking-[0.16em] font-semibold mb-4">Institucional</h3>
-            <ul className="space-y-2 text-sm text-white/80">
-              <li><Link to="/quem-somos" className="hover:text-brand-gold">Quem Somos</Link></li>
-              <li><Link to="/equipe" className="hover:text-brand-gold">Equipe</Link></li>
-              <li><Link to="/ecossistema" className="hover:text-brand-gold">Ecossistema</Link></li>
-              <li><Link to="/projetos" className="hover:text-brand-gold">Projetos</Link></li>
-              <li><Link to="/transparencia" className="hover:text-brand-gold">Transparência</Link></li>
+            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.16em] text-brand-gold">Institucional</h3>
+            <ul className="space-y-3 text-sm text-primary-foreground/75">
+              <li><Link to="/quem-somos" className="transition hover:text-brand-gold">Quem Somos</Link></li>
+              <li><Link to="/equipe" className="transition hover:text-brand-gold">Equipe</Link></li>
+              <li><Link to="/transparencia" className="transition hover:text-brand-gold">Transparência</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-white text-sm uppercase tracking-[0.16em] font-semibold mb-4">Conteúdo</h3>
-            <ul className="space-y-2 text-sm text-white/80">
-              <li><Link to="/agenda" className="hover:text-brand-gold">Agenda</Link></li>
-              <li><Link to="/noticias" className="hover:text-brand-gold">Notícias</Link></li>
-              <li><Link to="/galeria" className="hover:text-brand-gold">Galeria</Link></li>
-            </ul>
-            <h3 className="text-white text-sm uppercase tracking-[0.16em] font-semibold mt-8 mb-4">Legal e integridade</h3>
-            <ul className="space-y-2 text-sm text-white/80">
-              <li><Link to="/privacidade" className="hover:text-brand-gold">Privacidade</Link></li>
-              <li><Link to="/termos-de-uso" className="hover:text-brand-gold">Termos de Uso</Link></li>
-              <li><Link to="/canal-de-denuncias" className="hover:text-brand-gold">Canal de Denúncias</Link></li>
+            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.16em] text-brand-gold">Legal</h3>
+            <ul className="space-y-3 text-sm text-primary-foreground/75">
+              <li><Link to="/privacidade" className="transition hover:text-brand-gold">Política de Privacidade</Link></li>
+              <li><Link to="/termos-de-uso" className="transition hover:text-brand-gold">Termos de Uso</Link></li>
             </ul>
           </div>
 
-          <div className="lg:col-span-2">
-            <h3 className="text-white text-sm uppercase tracking-[0.16em] font-semibold mb-4">Contato</h3>
-            <ul className="space-y-2 text-sm text-white/80">
-              <li><Link to="/contato" className="hover:text-brand-gold">Fale conosco</Link></li>
-              <li>{site.phone}</li>
-              <li>
-                <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold">WhatsApp</a>
-              </li>
-              <li><a href={`mailto:${site.email}`} className="hover:text-brand-gold">{site.email}</a></li>
-              <li>{site.address}</li>
-              <li>{site.hours}</li>
+          <div>
+            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.16em] text-brand-gold">Contato</h3>
+            <ul className="space-y-3 text-sm leading-relaxed text-primary-foreground/75">
+              <li><a href="mailto:comunicacaomktmaggu@gmail.com" className="flex items-start gap-2.5 transition hover:text-brand-gold"><Mail className="mt-0.5 size-4 shrink-0" aria-hidden="true" /><span className="break-all">comunicacaomktmaggu@gmail.com</span></a></li>
+              <li><a href="tel:+5582998067374" className="flex items-center gap-2.5 transition hover:text-brand-gold"><Phone className="size-4 shrink-0" aria-hidden="true" />(82) 99806-7374</a></li>
+              <li className="flex items-start gap-2.5"><MapPin className="mt-0.5 size-4 shrink-0" aria-hidden="true" /><span>Rua Em Projeto A, 33 - Benedito Bentes, Maceió - AL, 57084-411</span></li>
             </ul>
-            <div className="mt-4 flex gap-3">
-              <a href={site.social.instagram} aria-label="Instagram" className="w-9 h-9 rounded-full bg-white/10 hover:bg-brand-red flex items-center justify-center transition"><span className="text-xs font-bold">IG</span></a>
-              <a href={site.social.facebook} aria-label="Facebook" className="w-9 h-9 rounded-full bg-white/10 hover:bg-brand-red flex items-center justify-center transition"><span className="text-xs font-bold">FB</span></a>
-              <a href={site.social.youtube} aria-label="YouTube" className="w-9 h-9 rounded-full bg-white/10 hover:bg-brand-red flex items-center justify-center transition"><span className="text-xs font-bold">YT</span></a>
+            <div className="mt-6 flex gap-2.5" aria-label="Redes sociais">
+              {socialLinks.map(({ label, href, icon: Icon }) => (
+                <Button key={label} asChild variant="ghost" size="icon" className="rounded-full border border-primary-foreground/15 bg-primary-foreground/10 text-primary-foreground shadow-sm backdrop-blur-sm hover:border-brand-gold/50 hover:bg-primary-foreground/15 hover:text-brand-gold">
+                  <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}><Icon aria-hidden="true" /></a>
+                </Button>
+              ))}
             </div>
           </div>
         </div>
 
-
-        <div className="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-white/70">
-          <div className="flex flex-wrap gap-4">
-            <Link to="/privacidade" className="hover:text-brand-gold">Privacidade</Link>
-            <Link to="/termos-de-uso" className="hover:text-brand-gold">Termos de Uso</Link>
-            <Link to="/canal-de-denuncias" className="hover:text-brand-gold">Canal de Denúncias</Link>
-          </div>
-          <p>© {year} {site.name}. Todos os direitos reservados.</p>
+        <div className="mt-12 border-t border-primary-foreground/15 pt-6 text-xs text-primary-foreground/55">
+          <p>© {year} Associação Sócio Cultural Maggu. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
