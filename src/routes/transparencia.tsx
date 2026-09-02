@@ -41,15 +41,15 @@ function Transparencia() {
 
   return (
     <>
-      <section className="relative flex h-[420px] items-center overflow-hidden bg-brand-soft sm:h-[460px] lg:h-[520px]">
+      <section className="relative flex h-[356px] items-center overflow-hidden bg-brand-soft sm:h-[390px] lg:h-[440px]">
         <ArcThick color="#00384C" className="absolute -left-8 top-24 w-40 md:w-52 opacity-80" from={200} to={340} />
         <HatchedCircle size={140} color="#08B9E6" className="absolute -right-12 -top-12 opacity-50" />
         <Triangle color="#FFB400" size={54} className="absolute bottom-8 right-16 hidden md:block" rotate={20} />
         <div className="container-x text-center relative">
           <p className="uppercase tracking-[0.22em] text-brand-red text-xs mb-3" style={{ fontWeight: 600 }}>Acervo institucional</p>
-          <h1 className="text-brand-ink" style={{ fontSize: "clamp(2rem, 3.3vw, 3.5rem)", lineHeight: 1.1, fontWeight: 700 }}>Transparência</h1>
+          <h1 className="text-brand-ink" style={{ fontSize: "clamp(1.9rem, 3vw, 3.1rem)", lineHeight: 1.08, fontWeight: 700 }}>Transparência</h1>
           <BrushStroke color="#FFB400" className="mx-auto mt-4 w-32" />
-          <p className="mt-5 text-brand-gray max-w-2xl mx-auto" style={{ fontSize: "clamp(1rem, 1.2vw, 1.1rem)", lineHeight: 1.6 }}>
+          <p className="mt-4 text-brand-gray max-w-xl mx-auto" style={{ fontSize: "clamp(0.95rem, 1.1vw, 1.05rem)", lineHeight: 1.55 }}>
             Acesse relatórios, atas, prestações de contas, certidões, políticas e demais documentos institucionais do Ponto de Cultura.
           </p>
         </div>

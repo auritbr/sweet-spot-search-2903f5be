@@ -112,9 +112,10 @@ function Galeria() {
                       <h2 id={`record-${record.slug}`} className="max-w-3xl text-brand-ink" style={{ fontSize: "clamp(1.6rem, 3vw, 2.6rem)", lineHeight: 1.12, fontWeight: 700 }}>
                         {record.title}
                       </h2>
-                      <svg className="mt-3 h-3 w-20 text-brand-gold" viewBox="0 0 80 12" fill="none" aria-hidden="true">
-                        <path d="M2 8.2C12 3.3 19 9.8 29 5.8C39 1.8 46 8.9 57 5.1C65 2.4 71 4.4 78 2.5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-                      </svg>
+                      <span className="mt-4 flex items-center gap-2" aria-hidden="true">
+                        <span className="size-2 rotate-45 border border-brand-cyan" />
+                        <span className="h-px w-12 bg-brand-red/70" />
+                      </span>
                     </div>
                   </div>
                 </div>

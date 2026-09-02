@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section, SectionTitle } from "@/components/PageHero";
+import { Button } from "@/components/ui/button";
 import { ArcThick, BrushStroke, DiamondsCluster, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
 
 export const Route = createFileRoute("/ecossistema")({
@@ -266,19 +267,17 @@ function Ecossistema() {
         </div>
       </Section>
 
-      <section className="relative overflow-hidden bg-brand-red py-14 md:py-20">
-        <QuarterCircle corner="tl" color="#00384C" className="absolute -left-2 -top-2 w-36" />
-        <Triangle color="#FFB400" size={54} className="absolute right-16 top-8 hidden md:block" rotate={18} />
-        <DiamondsCluster color="#08B9E6" className="absolute bottom-8 left-16 opacity-60" size={54} />
+      <section className="relative overflow-hidden border-t border-brand-petrol/10 bg-background py-14 md:py-18">
+        <QuarterCircle corner="tl" color="#08B9E6" className="absolute -left-2 -top-2 w-24 opacity-25 md:w-32" />
+        <Triangle color="#FFB400" size={38} className="absolute right-12 top-8 hidden opacity-60 md:block" rotate={18} />
         <div className="container-x relative mx-auto max-w-3xl text-center">
-          <h2 className="text-2xl text-primary-foreground md:text-3xl">Continue explorando o Ecossistema Maggu.</h2>
-          <BrushStroke color="#FFB400" className="mx-auto mt-5 w-28" />
-          <p className="mt-5 leading-relaxed text-primary-foreground/90">Conheça os projetos que dão forma a esses diferentes eixos ou consulte a Agenda para acompanhar as atividades que estão acontecendo.</p>
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Link to="/projetos" className="rounded-full bg-brand-gold px-6 py-3 text-sm font-bold text-brand-petrol transition hover:bg-background">Conheça os projetos</Link>
-            <Link to="/agenda" className="rounded-full border-2 border-primary-foreground px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-background/10">Ver Agenda</Link>
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Do conceito à prática</p>
+          <h2 className="mt-3 text-2xl text-brand-ink md:text-3xl">O Ecossistema ganha forma nas iniciativas e no que acontece no território.</h2>
+          <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-brand-gray">Explore os projetos da Associação e acompanhe a agenda para conhecer ações, atividades e experiências em movimento.</p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <Button asChild className="rounded-full bg-brand-red px-6 font-bold text-primary-foreground shadow-none hover:bg-brand-petrol"><Link to="/projetos">Conheça os Projetos</Link></Button>
+            <Button asChild variant="outline" className="rounded-full border-brand-petrol/25 bg-brand-soft/60 px-6 font-semibold text-brand-petrol shadow-none backdrop-blur-sm hover:bg-brand-soft hover:text-brand-petrol"><Link to="/agenda">Ver Agenda</Link></Button>
           </div>
-          <Link to="/contato" className="mt-5 inline-flex text-sm font-semibold text-primary-foreground/80 underline decoration-primary-foreground/40 underline-offset-4 transition hover:text-brand-gold">Entre em contato</Link>
         </div>
       </section>
     </>
