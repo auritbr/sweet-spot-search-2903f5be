@@ -170,8 +170,8 @@ function Ecossistema() {
         decoration="crescent"
       >
         <div className="flex flex-wrap gap-3">
-          <HeroButton to="/projetos">Explorar Projetos</HeroButton>
-          <HeroButton to="/agenda">Ver Agenda</HeroButton>
+          <HeroButton to="/projetos" tone="gold">Explorar Projetos</HeroButton>
+          <HeroButton to="/agenda" tone="cyan">Ver Agenda</HeroButton>
         </div>
       </PageHero>
 

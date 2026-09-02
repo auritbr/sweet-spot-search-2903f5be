@@ -8,11 +8,33 @@ const accentHex: Record<string, string> = {
   "brand-cyan": "#08B9E6", "brand-gold": "#FFB400", "brand-red": "#ED1C24", "brand-petrol": "#00384C", "brand-orange": "#FF7A00", "brand-lime": "#B8DC4B",
 };
 
-export function HeroButton({ to, children }: { to: string; children: ReactNode }) {
+type HeroTone = "petrol" | "red" | "gold" | "cyan";
+
+const heroTones: Record<HeroTone, string> = {
+  // azul-petróleo institucional — base escura com leve translucidez + blur
+  petrol:
+    "bg-brand-petrol/80 text-white border-white/20 hover:bg-brand-petrol/95 hover:border-white/35",
+  // vermelho institucional
+  red: "bg-brand-red/82 text-white border-white/20 hover:bg-brand-red/95 hover:border-white/35",
+  // dourado suave — base clara, texto escuro
+  gold: "bg-brand-gold/88 text-brand-petrol border-brand-petrol/15 hover:bg-brand-gold/100 hover:border-brand-petrol/30",
+  // ciano — base clara, texto escuro
+  cyan: "bg-brand-cyan/80 text-brand-petrol border-brand-petrol/15 hover:bg-brand-cyan/95 hover:border-brand-petrol/30",
+};
+
+export function HeroButton({
+  to,
+  children,
+  tone = "petrol",
+}: {
+  to: string;
+  children: ReactNode;
+  tone?: HeroTone;
+}) {
   return (
     <Link
       to={to}
-      className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/25 bg-background/10 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.12em] text-primary-foreground/90 shadow-sm backdrop-blur-md transition hover:border-brand-gold/60 hover:bg-background/20 hover:text-brand-gold"
+      className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[13px] font-semibold tracking-normal shadow-sm backdrop-blur-md transition ${heroTones[tone]}`}
     >
       {children}
     </Link>
