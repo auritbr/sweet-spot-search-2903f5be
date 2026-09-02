@@ -169,14 +169,14 @@ function Agenda() {
 
   return (
     <>
-      <section className="relative flex h-[356px] items-center overflow-hidden bg-brand-soft sm:h-[390px] lg:h-[440px]">
+      <section className="relative flex h-[310px] items-center overflow-hidden bg-brand-soft sm:h-[330px] lg:h-[370px]">
         <ArcThick color="#00384C" className="absolute -left-8 top-24 w-40 opacity-80 md:w-52" from={200} to={340} />
         <HatchedCircle size={140} color="#08B9E6" className="absolute -right-12 -top-12 opacity-50" />
         <Triangle color="#FFB400" size={54} className="absolute bottom-8 right-16 hidden md:block" rotate={20} />
         <DiamondsCluster color="#ED1C24" className="absolute bottom-8 left-[18%] hidden opacity-70 lg:block" size={42} />
         <div className="container-x relative text-center">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Programação</p>
-          <h1 className="text-brand-ink" style={{ fontSize: "clamp(1.9rem, 3vw, 3.1rem)", lineHeight: 1.08, fontWeight: 700 }}>Agenda</h1>
+          <h1 className="text-brand-ink" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.06, fontWeight: 700 }}>Agenda</h1>
           <BrushStroke color="#FFB400" className="mx-auto mt-4 w-32" />
           <p className="mx-auto mt-4 max-w-xl text-brand-gray" style={{ fontSize: "clamp(0.95rem, 1.1vw, 1.05rem)", lineHeight: 1.55 }}>
             Acompanhe cursos, oficinas, sessões, apresentações, encontros e outras atividades do Ecossistema Maggu.

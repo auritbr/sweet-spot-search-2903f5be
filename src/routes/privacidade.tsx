@@ -40,14 +40,14 @@ function Privacidade() {
 
   return (
     <main id="main">
-      <section className="relative flex h-[356px] items-center overflow-hidden bg-brand-soft sm:h-[390px] lg:h-[440px]">
+      <section className="relative flex h-[310px] items-center overflow-hidden bg-brand-soft sm:h-[330px] lg:h-[370px]">
         <QuarterCircle corner="tr" color="#ED1C24" className="absolute top-0 right-0 w-24 md:w-40 opacity-90" />
         <ArcThick color="#00384C" className="absolute -left-10 top-24 w-32 md:w-48 opacity-70" from={200} to={340} />
         <HatchedCircle size={120} color="#08B9E6" className="absolute right-10 bottom-0 opacity-30 hidden md:block" />
         <div className="container-x relative max-w-3xl">
           <Breadcrumbs items={[{ label: "Início", to: "/" }, { label: "Privacidade" }]} />
           <p className="mt-4 uppercase tracking-[0.22em] text-brand-red text-xs" style={{ fontWeight: 600 }}>Privacidade</p>
-          <h1 className="mt-2" style={{ color: "#00384C", fontSize: "clamp(1.75rem, 2.8vw, 2.7rem)", lineHeight: 1.1, fontWeight: 700 }}>
+          <h1 className="mt-2" style={{ color: "#00384C", fontSize: "clamp(1.65rem, 2.55vw, 2.45rem)", lineHeight: 1.06, fontWeight: 700 }}>
             Privacidade e proteção de dados
           </h1>
           <p className="mt-4 max-w-2xl text-brand-ink" style={{ fontSize: "clamp(0.95rem, 1.1vw, 1.05rem)", lineHeight: 1.55 }}>

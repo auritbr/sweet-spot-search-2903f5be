@@ -24,14 +24,14 @@ function Equipe() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   return (
     <>
-      <section className="relative flex h-[356px] items-center overflow-hidden bg-brand-soft sm:h-[390px] lg:h-[440px]">
+      <section className="relative flex h-[310px] items-center overflow-hidden bg-brand-soft sm:h-[330px] lg:h-[370px]">
         <HatchedCircle size={100} color="#08B9E6" className="absolute top-10 left-10 opacity-50" />
         <ArcThick color="#ED1C24" className="absolute bottom-10 right-10 w-32 opacity-80" from={200} to={340} />
         <Triangle color="#FFB400" size={54} className="absolute top-20 right-24 hidden md:block" rotate={20} />
         <Triangle color="#08B9E6" size={40} className="absolute bottom-20 left-24 hidden md:block" rotate={-15} />
         <div className="container-x relative text-center">
           <p className="uppercase tracking-[0.22em] text-brand-red text-xs mb-3" style={{ fontWeight: 600 }}>Time</p>
-          <h1 style={{ fontSize: "clamp(1.9rem, 3vw, 3.1rem)", lineHeight: 1.08, fontWeight: 700, color: "#00384C" }}>
+          <h1 style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.06, fontWeight: 700, color: "#00384C" }}>
             Nossa Equipe
           </h1>
           <BrushStroke color="#FFB400" className="mx-auto mt-4 w-32" />

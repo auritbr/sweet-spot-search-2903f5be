@@ -185,7 +185,7 @@ function NewsDetail() {
       </Section>
 
       {gallery.length > 0 && (
-        <Section className="bg-white">
+        <section className="bg-white pb-12 pt-0 md:pb-16">
           <div className="container-x">
             <p className="uppercase tracking-[0.22em] text-brand-red text-xs mb-2" style={{ fontWeight: 600 }}>Galeria</p>
             <h2 className="text-brand-ink" style={{ fontSize: "clamp(1.5rem, 2.2vw, 2rem)", lineHeight: 1.15, fontWeight: 700 }}>Registros desta notícia</h2>
@@ -198,7 +198,7 @@ function NewsDetail() {
               ))}
             </div>
           </div>
-        </Section>
+        </section>
       )}
 
       <Section className="bg-brand-soft">
