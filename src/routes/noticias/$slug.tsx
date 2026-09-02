@@ -77,19 +77,26 @@ function NewsDetail() {
 
   const currentUrl = () => window.location.href;
   const openShare = (url: string) => window.open(url, "_blank", "noopener,noreferrer,width=720,height=640");
+  const copyWithFallback = (url: string) => {
+    const input = document.createElement("textarea");
+    input.value = url;
+    input.style.position = "fixed";
+    input.style.opacity = "0";
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand("copy");
+    input.remove();
+  };
   const copyCurrentLink = async (target: "link" | "instagram") => {
     const url = currentUrl();
-    if (navigator.clipboard?.writeText) {
-      await navigator.clipboard.writeText(url);
-    } else {
-      const input = document.createElement("textarea");
-      input.value = url;
-      input.style.position = "fixed";
-      input.style.opacity = "0";
-      document.body.appendChild(input);
-      input.select();
-      document.execCommand("copy");
-      input.remove();
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        copyWithFallback(url);
+      }
+    } catch {
+      copyWithFallback(url);
     }
     setCopyFeedback(target);
     window.setTimeout(() => setCopyFeedback(null), 2600);
