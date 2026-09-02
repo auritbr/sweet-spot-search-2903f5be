@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { PageHero, Section } from "@/components/PageHero";
+import { HeroButton, PageHero, Section } from "@/components/PageHero";
 import { HatchedCircle, ArcThick, BrushStroke, Triangle } from "@/components/Shapes";
 import { team } from "@/data/site";
 
@@ -24,7 +24,12 @@ function Equipe() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   return (
     <>
-      <PageHero title="Nossa Equipe" eyebrow="Time" subtitle="Um time multidisciplinar que sustenta a formação, a criação e a circulação cultural." image="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80" accent="cyan" brush="#FFB400" compact decoration="quarters" />
+      <PageHero title="Nossa Equipe" eyebrow="Time" subtitle="Um time multidisciplinar que sustenta a formação, a criação e a circulação cultural." image="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80" accent="cyan" brush="#FFB400" compact decoration="quarters">
+        <div className="flex flex-wrap gap-3">
+          <HeroButton to="/quem-somos">Conheça a Associação</HeroButton>
+          <HeroButton to="/transparencia">Ver Transparência</HeroButton>
+        </div>
+      </PageHero>
 
       <Section className="bg-white overflow-hidden">
         <div className="container-x">

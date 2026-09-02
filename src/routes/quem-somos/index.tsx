@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { PageHero, Section, SectionTitle } from "@/components/PageHero";
+import { HeroButton, PageHero, Section, SectionTitle } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
 import { FinalCampaignCTA } from "@/components/FinalCampaignCTA";
 import { ArcThick, BrushStroke, DiamondsCluster, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
@@ -48,7 +48,12 @@ function QuemSomos() {
         brush="#FFB400"
         compact
         decoration="orbit"
-      />
+      >
+        <div className="flex flex-wrap gap-3">
+          <HeroButton to="/ecossistema">Conheça o Ecossistema</HeroButton>
+          <HeroButton to="/transparencia">Ver Transparência</HeroButton>
+        </div>
+      </PageHero>
 
       <Section className="bg-white overflow-hidden">
         <div className="container-x grid gap-12 md:grid-cols-[1.05fr_.95fr] items-center">

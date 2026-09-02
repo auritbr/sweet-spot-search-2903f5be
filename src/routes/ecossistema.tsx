@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { PageHero, Section, SectionTitle } from "@/components/PageHero";
+import { HeroButton, PageHero, Section, SectionTitle } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
 import { FinalCampaignCTA } from "@/components/FinalCampaignCTA";
 import { ArcThick, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
