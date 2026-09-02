@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero, Section, SectionTitle } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
 import { FinalCampaignCTA } from "@/components/FinalCampaignCTA";
-import { ArcThick, BrushStroke, DiamondsCluster, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
+import { ArcThick, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
 
 export const Route = createFileRoute("/ecossistema")({
   head: () => ({
