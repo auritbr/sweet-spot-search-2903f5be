@@ -62,21 +62,6 @@ export function Footer() {
                 className="absolute -top-1/2 left-0 h-auto w-full max-w-none object-contain"
               />
             </Link>
-            <div className="mt-2 space-y-0.5 text-sm leading-relaxed text-primary-foreground/70">
-              <p className="font-semibold text-primary-foreground">Associação Sócio Cultural Maggu</p>
-              <p>61.841.454/0001-80</p>
-              <div className="pt-1.5 text-xs leading-relaxed text-primary-foreground/55">
-                <p>Desenvolvido por Aurit</p>
-                <a
-                  href="https://www.aurit.com.br/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline decoration-primary-foreground/25 underline-offset-2 transition hover:text-brand-gold"
-                >
-                  www.aurit.com.br
-                </a>
-              </div>
-            </div>
           </div>
 
           <div>
