@@ -189,7 +189,9 @@ function EventoDetalhe() {
             {/* Contato — frase curta, sem e-mail de demonstração */}
             <div className="mt-8 border-t border-brand-petrol/10 pt-6">
               <p className="text-sm text-brand-gray">Ficou com alguma dúvida sobre esta atividade?</p>
-              <Link to="/contato" className="mt-2 inline-flex text-sm font-bold text-brand-petrol underline underline-offset-4 hover:text-brand-red">Fale com a Associação</Link>
+              <Button asChild className="mt-3 h-auto rounded-full border border-brand-petrol/15 bg-brand-petrol/85 px-4 py-2 text-sm font-semibold normal-case text-primary-foreground shadow-sm backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-brand-petrol/95 hover:text-primary-foreground">
+                <Link to="/contato">Fale com a Associação</Link>
+              </Button>
             </div>
           </div>
 

@@ -20,6 +20,24 @@ export const Route = createFileRoute("/equipe")({
 
 const palette = ["#08B9E6", "#ED1C24", "#FFB400", "#FF7A00", "#B8DC4B", "#00384C", "#ED1C24", "#08B9E6"];
 
+const teamGroups = [
+  {
+    title: "Direção e produção",
+    description: "Condução artística, produção e construção visual das iniciativas.",
+    roles: ["Direção artística", "Produção executiva", "Cenografia"],
+  },
+  {
+    title: "Formação e mediação",
+    description: "Processos pedagógicos, práticas cênicas e relação com os públicos.",
+    roles: ["Coordenação pedagógica", "Preparação corporal", "Preparação vocal", "Mediação cultural"],
+  },
+  {
+    title: "Comunicação",
+    description: "Conteúdo e circulação das ações da Associação Maggu.",
+    roles: ["Comunicação"],
+  },
+] as const;
+
 function Equipe() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   return (
@@ -54,8 +72,31 @@ function Equipe() {
 
       <Section className="bg-white overflow-hidden">
         <div className="container-x">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {team.map((m, i) => {
+          <div className="space-y-14 md:space-y-16">
+            {teamGroups.map((group, groupIndex) => {
+              const members = team
+                .map((member, index) => ({ member, index }))
+                .filter(({ member }) => (group.roles as readonly string[]).includes(member.role));
+
+              if (members.length === 0) return null;
+
+              return (
+                <section key={group.title} aria-labelledby={`team-group-${groupIndex}`}>
+                  <div className="mb-7 flex items-end justify-between gap-5 border-b border-brand-petrol/10 pb-5 md:mb-8">
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-red">Equipe</p>
+                      <h2 id={`team-group-${groupIndex}`} className="mt-1.5 text-[1.5rem] leading-tight text-brand-ink md:text-[1.8rem]">{group.title}</h2>
+                      <p className="mt-2 max-w-xl text-sm leading-relaxed text-brand-gray">{group.description}</p>
+                    </div>
+                    <div className="hidden shrink-0 items-center gap-2 sm:flex" aria-hidden="true">
+                      <span className="h-px w-9 bg-brand-petrol/25" />
+                      <span className="size-3 rounded-full border-2 border-brand-cyan" />
+                      <span className="size-2 rotate-45 bg-brand-gold" />
+                      <span className="h-4 w-2 rounded-r-full border-y-2 border-r-2 border-brand-red" />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                    {members.map(({ member: m, index: i }) => {
               const color = palette[i % palette.length];
               const textColor = color === "#FFB400" || color === "#B8DC4B" ? "#00384C" : "#ffffff";
               const isOpen = openIdx === i;
@@ -93,6 +134,10 @@ function Equipe() {
                     </button>
                   </div>
                 </article>
+              );
+                    })}
+                  </div>
+                </section>
               );
             })}
           </div>
