@@ -44,6 +44,27 @@ function Transparencia() {
     <>
       <PageHero title="Transparência" eyebrow="Acervo institucional" subtitle="Acesse relatórios, atas, prestações de contas, certidões, políticas e demais documentos institucionais do Ponto de Cultura." image="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80" accent="gold" brush="#08B9E6" compact decoration="curve" />
 
+      <section className="relative overflow-hidden bg-white py-14 md:py-20">
+        <div className="container-x">
+          <div className="relative mx-auto max-w-[860px] text-center">
+            <span className="pointer-events-none absolute -left-8 top-1/2 hidden size-3 rotate-45 border-2 border-brand-cyan/70 md:block" aria-hidden="true" />
+            <span className="pointer-events-none absolute -right-10 top-8 hidden size-5 rounded-full border-2 border-brand-gold/70 md:block" aria-hidden="true" />
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Compromisso institucional</p>
+            <h2 className="mt-3 text-[1.75rem] leading-tight text-brand-ink md:text-[2.25rem]">Nosso jeito de fazer</h2>
+            <div className="mx-auto mt-5 flex items-center justify-center gap-2" aria-hidden="true">
+              <span className="h-px w-8 bg-brand-petrol/25" />
+              <span className="size-2 rotate-45 bg-brand-gold" />
+              <span className="h-px w-8 bg-brand-petrol/25" />
+            </div>
+            <div className="mt-7 space-y-5 text-[15px] leading-[1.75] text-brand-gray md:text-base md:leading-[1.8]">
+              <p>A Associação Maggu acredita que uma atuação comunitária forte também se constrói com <strong className="font-semibold text-brand-petrol">responsabilidade, organização e transparência</strong>.</p>
+              <p>Nesta página, reunimos documentos institucionais, certificados, reconhecimentos, portfólios, registros de apresentações e oficinas, materiais gráficos, fotos e recortes de imprensa que ajudam a contar a trajetória da instituição e tornam públicas partes importantes do nosso trabalho.</p>
+              <p>Esses materiais permitem que a comunidade, parceiros, apoiadores e interessados conheçam melhor as ações desenvolvidas pela Associação Maggu ao longo dos anos.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-white py-12 md:py-16">
         <div className="container-x max-w-4xl">
           <div className="space-y-3">

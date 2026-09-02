@@ -51,11 +51,11 @@ function EventoNaoEncontrado() {
 function EventoDetalhe() {
   const { event } = Route.useLoaderData();
   const closed = event.status === "inscricoes-encerradas";
-  const [shareFeedback, setShareFeedback] = useState("");
+  const [shareFeedback, setShareFeedback] = useState<"link" | "instagram" | null>(null);
 
   const currentUrl = () => window.location.href;
-  const openShare = (url: string) => window.open(url, "_blank", "noopener,noreferrer");
-  const copyActivityLink = async (instagram = false) => {
+  const openShare = (url: string) => window.open(url, "_blank", "noopener,noreferrer,width=720,height=640");
+  const copyActivityLink = async (target: "link" | "instagram") => {
     const url = currentUrl();
     try {
       await navigator.clipboard.writeText(url);
@@ -69,29 +69,9 @@ function EventoDetalhe() {
       document.execCommand("copy");
       input.remove();
     }
-    setShareFeedback(instagram ? "Link copiado. Cole-o no Instagram para compartilhar." : "Link copiado!");
-    window.setTimeout(() => setShareFeedback(""), 3500);
+    setShareFeedback(target);
+    window.setTimeout(() => setShareFeedback(null), 2600);
   };
-
-  const shareButtons = [
-    {
-      label: "WhatsApp",
-      icon: MessageCircle,
-      action: () => openShare(`https://wa.me/?text=${encodeURIComponent(`${event.title} — ${currentUrl()}`)}`),
-    },
-    { label: "Instagram", icon: Instagram, action: () => void copyActivityLink(true) },
-    {
-      label: "LinkedIn",
-      icon: Linkedin,
-      action: () => openShare(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl())}`),
-    },
-    { label: "Copiar link", icon: shareFeedback ? Check : Link2, action: () => void copyActivityLink() },
-    {
-      label: "Facebook",
-      icon: Facebook,
-      action: () => openShare(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl())}`),
-    },
-  ];
 
   // Informações complementares — apenas dados que NÃO aparecem no hero
   // (data, horário, local e valor já estão no hero e não se repetem aqui).
@@ -128,6 +108,35 @@ function EventoDetalhe() {
               <h2 id="activity-description" className="mt-2 text-brand-ink" style={{ fontSize: "clamp(1.6rem, 2.5vw, 2.25rem)", fontWeight: 700 }}>Sobre esta atividade</h2>
               <p className="mt-5 text-brand-gray" style={{ fontSize: "14px", lineHeight: 1.7 }}>
                 {event.description ?? event.summary ?? "Mais informações sobre esta atividade serão divulgadas em breve."}
+              </p>
+            </section>
+
+            <section aria-labelledby="share-title" className="mt-10 border-t border-brand-ink/10 pt-8 md:mt-12 md:pt-10">
+              <h2 id="share-title" className="text-sm font-semibold text-brand-ink">Compartilhe esta atividade</h2>
+              <div className="mt-4 flex flex-wrap items-center gap-3">
+                <button type="button" aria-label="Compartilhar no Facebook" title="Facebook" onClick={() => openShare(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl())}`)} className="group relative inline-flex size-11 items-center justify-center rounded-lg border border-brand-ink/15 bg-white/55 text-brand-ink shadow-sm backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-brand-red/55 hover:bg-brand-red/10 hover:text-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/50">
+                  <Facebook className="size-[18px]" aria-hidden="true" />
+                  <span className="pointer-events-none absolute -bottom-8 left-1/2 z-10 -translate-x-1/2 rounded bg-brand-ink px-2 py-1 text-[10px] font-medium text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">Facebook</span>
+                </button>
+                <button type="button" aria-label="Copiar link para compartilhar no Instagram" title="Instagram" onClick={() => void copyActivityLink("instagram")} className="group relative inline-flex size-11 items-center justify-center rounded-lg border border-brand-ink/15 bg-white/55 text-brand-ink shadow-sm backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-brand-red/55 hover:bg-brand-red/10 hover:text-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/50">
+                  {shareFeedback === "instagram" ? <Check className="size-[18px]" aria-hidden="true" /> : <Instagram className="size-[18px]" aria-hidden="true" />}
+                  <span className="pointer-events-none absolute -bottom-8 left-1/2 z-10 -translate-x-1/2 rounded bg-brand-ink px-2 py-1 text-[10px] font-medium text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">Instagram</span>
+                </button>
+                <button type="button" aria-label="Compartilhar no LinkedIn" title="LinkedIn" onClick={() => openShare(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl())}`)} className="group relative inline-flex size-11 items-center justify-center rounded-lg border border-brand-ink/15 bg-white/55 text-brand-ink shadow-sm backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-brand-red/55 hover:bg-brand-red/10 hover:text-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/50">
+                  <Linkedin className="size-[18px]" aria-hidden="true" />
+                  <span className="pointer-events-none absolute -bottom-8 left-1/2 z-10 -translate-x-1/2 rounded bg-brand-ink px-2 py-1 text-[10px] font-medium text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">LinkedIn</span>
+                </button>
+                <button type="button" aria-label="Compartilhar no WhatsApp" title="WhatsApp" onClick={() => openShare(`https://wa.me/?text=${encodeURIComponent(`${event.title} — ${currentUrl()}`)}`)} className="group relative inline-flex size-11 items-center justify-center rounded-lg border border-brand-ink/15 bg-white/55 text-brand-ink shadow-sm backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-brand-red/55 hover:bg-brand-red/10 hover:text-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/50">
+                  <MessageCircle className="size-[18px]" aria-hidden="true" />
+                  <span className="pointer-events-none absolute -bottom-8 left-1/2 z-10 -translate-x-1/2 rounded bg-brand-ink px-2 py-1 text-[10px] font-medium text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">WhatsApp</span>
+                </button>
+                <button type="button" aria-label="Copiar link da atividade" title="Copiar link" onClick={() => void copyActivityLink("link")} className="group relative inline-flex size-11 items-center justify-center rounded-lg border border-brand-ink/15 bg-white/55 text-brand-ink shadow-sm backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-brand-red/55 hover:bg-brand-red/10 hover:text-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/50">
+                  {shareFeedback === "link" ? <Check className="size-[18px]" aria-hidden="true" /> : <Link2 className="size-[18px]" aria-hidden="true" />}
+                  <span className="pointer-events-none absolute -bottom-8 right-0 z-10 whitespace-nowrap rounded bg-brand-ink px-2 py-1 text-[10px] font-medium text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">{shareFeedback === "link" ? "Link copiado" : "Copiar link"}</span>
+                </button>
+              </div>
+              <p className="mt-3 min-h-5 text-xs text-brand-gray" aria-live="polite">
+                {shareFeedback === "instagram" ? "Link copiado para compartilhar no Instagram." : shareFeedback === "link" ? "Link copiado." : ""}
               </p>
             </section>
 
@@ -184,26 +193,6 @@ function EventoDetalhe() {
             </div>
           </div>
 
-          {/* Compartilhamento — logo após o conteúdo, sem grandes espaços vazios */}
-          <section aria-labelledby="share-title" className="mx-auto mt-12 max-w-[800px] border-t border-brand-petrol/10 pt-7">
-            <h2 id="share-title" className="text-base text-brand-ink">Compartilhe esta atividade</h2>
-            <div className="mt-4 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
-              {shareButtons.map(({ label, icon: Icon, action }) => (
-                <Button
-                  key={label}
-                  type="button"
-                  variant="outline"
-                  onClick={action}
-                  aria-label={label === "Instagram" ? "Instagram — copiar link da atividade" : label}
-                  className="justify-start rounded-full border-brand-petrol/15 bg-brand-soft/60 px-4 text-brand-petrol shadow-sm backdrop-blur-md hover:border-brand-petrol/40 hover:bg-brand-soft/90 hover:text-brand-petrol hover:shadow-md sm:justify-center"
-                >
-                  <Icon aria-hidden="true" className="size-4 shrink-0" />
-                  <span>{label}</span>
-                </Button>
-              ))}
-            </div>
-            <p aria-live="polite" className="mt-3 min-h-5 text-sm text-brand-gray">{shareFeedback}</p>
-          </section>
         </div>
       </Section>
     </>
