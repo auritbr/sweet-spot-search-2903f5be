@@ -67,18 +67,6 @@ export function PageHero({
 
       <div className={`container-x relative w-full ${contentSpacing}`}>
         <div className="max-w-[760px]">
-          {breadcrumb && (
-            <nav aria-label="Breadcrumb" className="mb-3 hidden text-[11px] font-medium text-primary-foreground/65 sm:block">
-              <ol className="flex flex-wrap items-center gap-2">
-                {breadcrumb.map((b, i) => (
-                  <li key={b.label} className="flex items-center gap-2">
-                    {b.to ? <Link to={b.to} className="transition hover:text-brand-gold">{b.label}</Link> : <span aria-current="page">{b.label}</span>}
-                    {i < breadcrumb.length - 1 && <span className="text-primary-foreground/35">/</span>}
-                  </li>
-                ))}
-              </ol>
-            </nav>
-          )}
 
           <p className="mb-3 inline-flex rounded-full border border-primary-foreground/20 bg-background/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-sm backdrop-blur-md">
             {eyebrow ?? title}
