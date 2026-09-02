@@ -147,7 +147,7 @@ function NewsDetail() {
         </div>
       </section>
 
-      <Section className="bg-white">
+      <Section className="bg-white pb-5 md:pb-7">
         <div className="container-x max-w-3xl">
           <div className="space-y-5 text-[15px] text-brand-gray md:text-base" style={{ lineHeight: 1.8 }}>
             <p>{n.body}</p>
