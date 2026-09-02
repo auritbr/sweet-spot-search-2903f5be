@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { PageHero, Section } from "@/components/PageHero";
+import { ArrowLeft, CalendarDays, Check, Facebook, Instagram, Link2, Linkedin, MessageCircle } from "lucide-react";
+import { Section } from "@/components/PageHero";
 import { news } from "@/data/site";
 
 export const Route = createFileRoute("/noticias/$slug")({
@@ -17,7 +18,11 @@ export const Route = createFileRoute("/noticias/$slug")({
         { name: "description", content: n?.excerpt ?? "" },
         { property: "og:title", content: n?.title ?? "Notícia" },
         { property: "og:description", content: n?.excerpt ?? "" },
+        { property: "og:type", content: "article" },
+        { property: "og:url", content: n ? `/noticias/${n.slug}` : "/noticias" },
+        { name: "twitter:card", content: "summary_large_image" },
         ...(n ? [{ property: "og:image" as const, content: n.image }] : []),
+        ...(n ? [{ name: "twitter:image" as const, content: n.image }] : []),
       ],
       links: n ? [{ rel: "canonical", href: `/noticias/${n.slug}` }] : [],
     };
@@ -62,6 +67,33 @@ function NewsDetail() {
   const related = news.filter((x) => x.slug !== n.slug).slice(0, 3);
   const gallery = demoGallery[n.slug] ?? [];
   const [lb, setLb] = useState<number | null>(null);
+  const [copyFeedback, setCopyFeedback] = useState<"link" | "instagram" | null>(null);
+
+  const formattedDate = new Intl.DateTimeFormat("pt-BR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(new Date(`${n.date}T12:00:00`));
+
+  const currentUrl = () => window.location.href;
+  const openShare = (url: string) => window.open(url, "_blank", "noopener,noreferrer,width=720,height=640");
+  const copyCurrentLink = async (target: "link" | "instagram") => {
+    const url = currentUrl();
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(url);
+    } else {
+      const input = document.createElement("textarea");
+      input.value = url;
+      input.style.position = "fixed";
+      input.style.opacity = "0";
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand("copy");
+      input.remove();
+    }
+    setCopyFeedback(target);
+    window.setTimeout(() => setCopyFeedback(null), 2600);
+  };
 
   useEffect(() => {
     if (lb === null) return;
@@ -85,30 +117,35 @@ function NewsDetail() {
 
   return (
     <>
-      <PageHero
-        title={n.title}
-        image={n.image}
-        breadcrumb={[{ label: "Início", to: "/" }, { label: "Notícias", to: "/noticias" }, { label: n.category }]}
-        accent="brand-orange"
-      />
+      <section className="relative isolate flex min-h-[520px] items-end overflow-hidden md:min-h-[620px]">
+        <img src={n.image} alt="" loading="eager" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+        <div className="absolute inset-0 -z-10 bg-brand-ink/75" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-ink/90 via-brand-ink/35 to-brand-ink/50" />
+        <div className="container-x w-full pb-14 pt-32 md:pb-20 md:pt-40">
+          <Link to="/noticias" className="group inline-flex items-center gap-2 text-sm font-medium text-white/85 transition hover:text-brand-gold">
+            <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" aria-hidden="true" />
+            Voltar para Notícias
+          </Link>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <span className="rounded-full bg-brand-red px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-white">{n.category}</span>
+            <time dateTime={n.date} className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-xs font-medium text-white/90 backdrop-blur-md">
+              <CalendarDays className="size-3.5" aria-hidden="true" />
+              {formattedDate}
+            </time>
+          </div>
+          <h1 className="mt-5 max-w-5xl text-white" style={{ fontSize: "clamp(2.1rem, 5.4vw, 4.8rem)", lineHeight: 1.04, fontWeight: 700, textShadow: "0 3px 18px rgba(0,0,0,.28)" }}>
+            {n.title}
+          </h1>
+          {n.excerpt && <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg">{n.excerpt}</p>}
+        </div>
+      </section>
+
       <Section className="bg-white">
         <div className="container-x max-w-3xl">
-          <div className="flex items-center gap-3 text-sm">
-            <span className="px-3 py-1 rounded-full bg-brand-red text-white font-bold text-xs">{n.category}</span>
-            <time className="text-brand-gray">{new Date(n.date).toLocaleDateString("pt-BR")}</time>
-          </div>
-          <p className="mt-6 text-xl text-brand-ink leading-relaxed">{n.excerpt}</p>
-          <div className="mt-6 space-y-4 text-brand-gray text-lg leading-relaxed">
+          <div className="space-y-5 text-[15px] text-brand-gray md:text-base" style={{ lineHeight: 1.8 }}>
             <p>{n.body}</p>
             <p>A programação seguiu com momentos de fala aberta, apresentações artísticas e trocas entre educadores e público. As atividades reforçam o compromisso do Ponto de Cultura com a formação contínua e o diálogo com o território.</p>
           </div>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <span className="text-sm text-brand-gray">Compartilhar:</span>
-            <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(n.title)}`} className="px-4 py-2 rounded-full border border-brand-ink/20 text-sm font-semibold">Twitter</a>
-            <a href={`https://www.facebook.com/sharer/sharer.php?u=`} className="px-4 py-2 rounded-full border border-brand-ink/20 text-sm font-semibold">Facebook</a>
-            <a href={`https://wa.me/?text=${encodeURIComponent(n.title)}`} className="px-4 py-2 rounded-full border border-brand-ink/20 text-sm font-semibold">WhatsApp</a>
-          </div>
-          <Link to="/noticias" className="mt-10 inline-flex px-5 py-3 rounded-full bg-brand-ink text-white font-semibold">← Voltar às notícias</Link>
         </div>
       </Section>
 
@@ -128,6 +165,34 @@ function NewsDetail() {
           </div>
         </Section>
       )}
+
+      <Section className="bg-white">
+        <div className="container-x max-w-5xl border-t border-brand-ink/10 pt-10 md:pt-12">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Compartilhamento</p>
+          <h2 className="mt-2 text-2xl font-bold text-brand-ink md:text-3xl">Compartilhe esta notícia</h2>
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
+            <button type="button" onClick={() => openShare(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl())}`)} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-brand-ink/15 bg-white/55 px-4 py-2.5 text-sm font-semibold text-brand-ink shadow-sm backdrop-blur-md transition hover:border-brand-red/40 hover:bg-brand-red/10 hover:text-brand-ink">
+              <Facebook className="size-4" aria-hidden="true" /> Facebook
+            </button>
+            <button type="button" onClick={() => void copyCurrentLink("instagram")} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-brand-ink/15 bg-white/55 px-4 py-2.5 text-sm font-semibold text-brand-ink shadow-sm backdrop-blur-md transition hover:border-brand-red/40 hover:bg-brand-red/10 hover:text-brand-ink">
+              <Instagram className="size-4" aria-hidden="true" /> Instagram
+            </button>
+            <button type="button" onClick={() => openShare(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl())}`)} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-brand-ink/15 bg-white/55 px-4 py-2.5 text-sm font-semibold text-brand-ink shadow-sm backdrop-blur-md transition hover:border-brand-red/40 hover:bg-brand-red/10 hover:text-brand-ink">
+              <Linkedin className="size-4" aria-hidden="true" /> LinkedIn
+            </button>
+            <button type="button" onClick={() => openShare(`https://wa.me/?text=${encodeURIComponent(`${n.title} — ${currentUrl()}`)}`)} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-brand-ink/15 bg-white/55 px-4 py-2.5 text-sm font-semibold text-brand-ink shadow-sm backdrop-blur-md transition hover:border-brand-red/40 hover:bg-brand-red/10 hover:text-brand-ink">
+              <MessageCircle className="size-4" aria-hidden="true" /> WhatsApp
+            </button>
+            <button type="button" onClick={() => void copyCurrentLink("link")} className="col-span-2 inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-brand-ink/15 bg-white/55 px-4 py-2.5 text-sm font-semibold text-brand-ink shadow-sm backdrop-blur-md transition hover:border-brand-red/40 hover:bg-brand-red/10 hover:text-brand-ink sm:col-span-1">
+              {copyFeedback === "link" ? <Check className="size-4" aria-hidden="true" /> : <Link2 className="size-4" aria-hidden="true" />}
+              {copyFeedback === "link" ? "Link copiado" : "Copiar link"}
+            </button>
+          </div>
+          <p className="mt-3 min-h-5 text-sm text-brand-gray" aria-live="polite">
+            {copyFeedback === "instagram" ? "Link copiado para compartilhar no Instagram." : ""}
+          </p>
+        </div>
+      </Section>
 
       <Section className="bg-brand-soft">
         <div className="container-x">

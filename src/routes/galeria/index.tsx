@@ -19,37 +19,37 @@ export const Route = createFileRoute("/galeria/")({
 });
 
 type Album = (typeof albums)[number];
+type OpenPhoto = { record: Album; index: number };
 
 function Galeria() {
   const years = useMemo(() => Array.from(new Set(albums.map((a) => a.year))).sort((a, b) => b - a), []);
   const [year, setYear] = useState<number>(years[0]);
-  const [activeAlbum, setActiveAlbum] = useState<Album | null>(null);
-  const [photoIdx, setPhotoIdx] = useState(0);
-  const [lightbox, setLightbox] = useState(false);
+  const [openPhoto, setOpenPhoto] = useState<OpenPhoto | null>(null);
 
   const list = albums.filter((a) => a.year === year);
 
-  const openAlbum = (a: Album) => { setActiveAlbum(a); setPhotoIdx(0); };
-  const closeAlbum = () => { setActiveAlbum(null); setLightbox(false); };
-
   useEffect(() => {
-    if (!activeAlbum) return;
+    if (!openPhoto) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") { if (lightbox) setLightbox(false); else closeAlbum(); }
-      if (e.key === "ArrowRight") setPhotoIdx((v) => (v + 1) % activeAlbum.photos.length);
-      if (e.key === "ArrowLeft") setPhotoIdx((v) => (v - 1 + activeAlbum.photos.length) % activeAlbum.photos.length);
+      if (e.key === "Escape") setOpenPhoto(null);
+      if (e.key === "ArrowRight") setOpenPhoto((current) => current ? { ...current, index: (current.index + 1) % current.record.photos.length } : null);
+      if (e.key === "ArrowLeft") setOpenPhoto((current) => current ? { ...current, index: (current.index - 1 + current.record.photos.length) % current.record.photos.length } : null);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [activeAlbum, lightbox]);
+  }, [openPhoto]);
 
-  // touch swipe on lightbox / main image
   const [touchX, setTouchX] = useState<number | null>(null);
   const onTouchStart = (e: React.TouchEvent) => setTouchX(e.touches[0].clientX);
   const onTouchEnd = (e: React.TouchEvent) => {
-    if (touchX == null || !activeAlbum) return;
+    if (touchX == null || !openPhoto) return;
     const dx = e.changedTouches[0].clientX - touchX;
-    if (Math.abs(dx) > 40) setPhotoIdx((v) => (v + (dx < 0 ? 1 : -1) + activeAlbum.photos.length) % activeAlbum.photos.length);
+    if (Math.abs(dx) > 40) {
+      setOpenPhoto((current) => current ? {
+        ...current,
+        index: (current.index + (dx < 0 ? 1 : -1) + current.record.photos.length) % current.record.photos.length,
+      } : null);
+    }
     setTouchX(null);
   };
 
@@ -71,7 +71,7 @@ function Galeria() {
           {/* Year selector */}
           <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
             <div>
-              <p className="uppercase tracking-[0.22em] text-brand-red text-xs" style={{ fontWeight: 600 }}>Álbuns</p>
+              <p className="uppercase tracking-[0.22em] text-brand-red text-xs" style={{ fontWeight: 600 }}>Registros</p>
               <BrushStroke color="#FFB400" className="mt-3 w-24" />
             </div>
             {/* Desktop tabs */}
@@ -102,68 +102,48 @@ function Galeria() {
           </div>
 
 
-          {/* Album area: transforms into gallery viewer */}
-          {!activeAlbum ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {list.map((a) => (
-                <button key={a.slug} onClick={() => openAlbum(a)} className="group text-left rounded-3xl overflow-hidden bg-white shadow-sm hover:shadow-xl transition border border-black/5">
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <img src={a.cover} alt={a.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
-                  </div>
-                  <div className="p-5">
-                    <p className="uppercase text-xs tracking-widest text-brand-red" style={{ fontWeight: 600 }}>{a.year} · {a.count} fotos</p>
-                    <h3 className="mt-1 text-brand-ink" style={{ fontSize: "clamp(1.05rem, 1.4vw, 1.25rem)", lineHeight: 1.25, fontWeight: 600 }}>{a.title}</h3>
-                    <p className="mt-2 text-sm text-brand-gray">{a.description}</p>
-                    <span className="mt-4 inline-block text-brand-red text-xs uppercase tracking-widest" style={{ fontWeight: 600 }}>Abrir galeria →</span>
-                  </div>
-                </button>
-              ))}
-            </div>
-          ) : (
-            <div>
-              <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
-                <div>
-                  <p className="uppercase text-xs tracking-widest text-brand-red" style={{ fontWeight: 600 }}>{activeAlbum.year} · {activeAlbum.photos.length} fotos</p>
-                  <h3 className="text-brand-ink mt-1" style={{ fontSize: "clamp(1.4rem, 2vw, 2rem)", fontWeight: 700 }}>{activeAlbum.title}</h3>
-                  <p className="text-brand-gray text-sm max-w-xl mt-1">{activeAlbum.description}</p>
+          <div className="space-y-14 md:space-y-20">
+            {list.map((record) => (
+              <section key={record.slug} aria-labelledby={`record-${record.slug}`}>
+                <div className="mb-6 md:mb-8">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">{record.year} · {record.photos.length} fotos</p>
+                  <h2 id={`record-${record.slug}`} className="mt-2 max-w-3xl text-brand-ink" style={{ fontSize: "clamp(1.6rem, 3vw, 2.6rem)", lineHeight: 1.12, fontWeight: 700 }}>
+                    {record.title}
+                  </h2>
                 </div>
-                <button onClick={closeAlbum} className="px-5 py-2.5 rounded-full bg-brand-ink text-white text-sm" style={{ fontWeight: 600 }}>← Voltar aos álbuns</button>
-              </div>
-
-              <div className="relative rounded-3xl overflow-hidden bg-black" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-                <button onClick={() => setLightbox(true)} className="block w-full">
-                  <img src={activeAlbum.photos[photoIdx]} alt={`Foto ${photoIdx + 1}`} className="w-full max-h-[70vh] object-contain bg-black" />
-                </button>
-                <button aria-label="Anterior" onClick={() => setPhotoIdx((v) => (v - 1 + activeAlbum.photos.length) % activeAlbum.photos.length)}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/80 hover:bg-white text-brand-ink text-2xl flex items-center justify-center">‹</button>
-                <button aria-label="Próxima" onClick={() => setPhotoIdx((v) => (v + 1) % activeAlbum.photos.length)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/80 hover:bg-white text-brand-ink text-2xl flex items-center justify-center">›</button>
-                <span className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-black/60 text-white text-xs">{photoIdx + 1} / {activeAlbum.photos.length}</span>
-              </div>
-
-              <div className="mt-4 flex gap-3 overflow-x-auto pb-2">
-                {activeAlbum.photos.map((src, idx) => (
-                  <button key={idx} onClick={() => setPhotoIdx(idx)}
-                    className={`shrink-0 w-24 h-24 rounded-xl overflow-hidden border-2 transition ${idx === photoIdx ? "border-brand-red" : "border-transparent opacity-70 hover:opacity-100"}`}>
-                    <img src={src} alt="" className="w-full h-full object-cover" loading="lazy" />
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+                  {record.photos.map((src, index) => (
+                    <button
+                      key={src}
+                      type="button"
+                      onClick={() => setOpenPhoto({ record, index })}
+                      className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-brand-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red focus-visible:ring-offset-2"
+                      aria-label={`Ampliar foto ${index + 1} de ${record.title}`}
+                    >
+                      <img src={src} alt={`Foto ${index + 1} — ${record.title}`} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+                    </button>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
         </div>
       </Section>
 
       {/* Lightbox */}
-      {activeAlbum && lightbox && (
+      {openPhoto && (
         <div role="dialog" aria-modal="true" className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
           onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-          <button aria-label="Fechar" onClick={() => setLightbox(false)} className="absolute top-4 right-4 text-white text-3xl">✕</button>
-          <button aria-label="Anterior" onClick={() => setPhotoIdx((v) => (v - 1 + activeAlbum.photos.length) % activeAlbum.photos.length)} className="absolute left-4 md:left-8 text-white text-4xl">‹</button>
-          <button aria-label="Próxima" onClick={() => setPhotoIdx((v) => (v + 1) % activeAlbum.photos.length)} className="absolute right-4 md:right-8 text-white text-4xl">›</button>
+          <button aria-label="Fechar" onClick={() => setOpenPhoto(null)} className="absolute top-4 right-4 text-white text-3xl">✕</button>
+          {openPhoto.record.photos.length > 1 && (
+            <>
+              <button aria-label="Anterior" onClick={() => setOpenPhoto((current) => current ? { ...current, index: (current.index - 1 + current.record.photos.length) % current.record.photos.length } : null)} className="absolute left-4 md:left-8 text-white text-4xl">‹</button>
+              <button aria-label="Próxima" onClick={() => setOpenPhoto((current) => current ? { ...current, index: (current.index + 1) % current.record.photos.length } : null)} className="absolute right-4 md:right-8 text-white text-4xl">›</button>
+            </>
+          )}
           <figure className="max-w-6xl w-full">
-            <img src={activeAlbum.photos[photoIdx]} alt="" className="w-full max-h-[80vh] object-contain rounded-2xl" />
-            <figcaption className="mt-3 text-center text-white/80 text-sm">{activeAlbum.title} — {photoIdx + 1} de {activeAlbum.photos.length}</figcaption>
+            <img src={openPhoto.record.photos[openPhoto.index]} alt={`Foto ${openPhoto.index + 1} — ${openPhoto.record.title}`} className="w-full max-h-[80vh] object-contain rounded-2xl" />
+            <figcaption className="mt-3 text-center text-white/80 text-sm">{openPhoto.record.title} — {openPhoto.index + 1} de {openPhoto.record.photos.length}</figcaption>
           </figure>
         </div>
       )}
