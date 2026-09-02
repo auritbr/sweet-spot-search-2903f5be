@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { PageHero, Section, SectionTitle } from "@/components/PageHero";
+import { HeroButton, PageHero, Section, SectionTitle } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
 import { FinalCampaignCTA } from "@/components/FinalCampaignCTA";
 import { ArcThick, BrushStroke, DiamondsCluster, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
@@ -44,12 +44,16 @@ function QuemSomos() {
         eyebrow="Quem Somos"
         subtitle="A Associação Maggu reúne uma trajetória cultural construída no Benedito Bentes e hoje conecta diferentes iniciativas de formação, criação e participação comunitária."
         image="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80"
-        breadcrumb={[{ label: "Início", to: "/" }, { label: "Quem Somos" }]}
         accent="cyan"
         brush="#FFB400"
         compact
         decoration="orbit"
-      />
+      >
+        <div className="flex flex-wrap gap-3">
+          <HeroButton to="/ecossistema">Conheça o Ecossistema</HeroButton>
+          <HeroButton to="/transparencia">Ver Transparência</HeroButton>
+        </div>
+      </PageHero>
 
       <Section className="bg-white overflow-hidden">
         <div className="container-x grid gap-12 md:grid-cols-[1.05fr_.95fr] items-center">

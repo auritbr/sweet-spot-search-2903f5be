@@ -52,7 +52,6 @@ function AlbumDetail() {
         eyebrow={`Registro · ${a.year}`}
         subtitle={a.description}
         image={a.cover}
-        breadcrumb={[{ label: "Início", to: "/" }, { label: "Galeria", to: "/galeria" }, { label: String(a.year) }, { label: a.title }]}
         accent="brand-gold"
         variant="detail"
       />

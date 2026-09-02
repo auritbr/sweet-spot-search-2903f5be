@@ -8,12 +8,22 @@ const accentHex: Record<string, string> = {
   "brand-cyan": "#08B9E6", "brand-gold": "#FFB400", "brand-red": "#ED1C24", "brand-petrol": "#00384C", "brand-orange": "#FF7A00", "brand-lime": "#B8DC4B",
 };
 
+export function HeroButton({ to, children }: { to: string; children: ReactNode }) {
+  return (
+    <Link
+      to={to}
+      className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/25 bg-background/10 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.12em] text-primary-foreground/90 shadow-sm backdrop-blur-md transition hover:border-brand-gold/60 hover:bg-background/20 hover:text-brand-gold"
+    >
+      {children}
+    </Link>
+  );
+}
+
 export function PageHero({
-  title, subtitle, image, breadcrumb, accent = "cyan", brush = "#FFB400", split,
+  title, subtitle, image, accent = "cyan", brush = "#FFB400", split,
   eyebrow, variant = "internal", compact: _compact = false, decoration = "arc", children, imagePosition = "center",
 }: {
   title: string; subtitle?: string; image: string;
-  breadcrumb?: { label: string; to?: string }[];
   accent?: Accent; brush?: string;
   split?: { first: string; second: string; secondColor?: string };
   eyebrow?: string;
@@ -57,18 +67,6 @@ export function PageHero({
 
       <div className={`container-x relative w-full ${contentSpacing}`}>
         <div className="max-w-[760px]">
-          {breadcrumb && (
-            <nav aria-label="Breadcrumb" className="mb-3 hidden text-[11px] font-medium text-primary-foreground/65 sm:block">
-              <ol className="flex flex-wrap items-center gap-2">
-                {breadcrumb.map((b, i) => (
-                  <li key={b.label} className="flex items-center gap-2">
-                    {b.to ? <Link to={b.to} className="transition hover:text-brand-gold">{b.label}</Link> : <span aria-current="page">{b.label}</span>}
-                    {i < breadcrumb.length - 1 && <span className="text-primary-foreground/35">/</span>}
-                  </li>
-                ))}
-              </ol>
-            </nav>
-          )}
 
           <p className="mb-3 inline-flex rounded-full border border-primary-foreground/20 bg-background/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-sm backdrop-blur-md">
             {eyebrow ?? title}
