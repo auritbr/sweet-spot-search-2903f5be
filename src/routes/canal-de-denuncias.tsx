@@ -10,6 +10,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArcThick, HatchedCircle, Triangle, QuarterCircle } from "@/components/Shapes";
 import { Breadcrumbs } from "@/components/Legal";
+import { PageHero } from "@/components/PageHero";
 import { useState } from "react";
 
 export const Route = createFileRoute("/canal-de-denuncias")({
@@ -91,42 +92,7 @@ function CanalDenuncias() {
 
   return (
     <main id="main">
-      <section className="relative flex h-[310px] items-center overflow-hidden text-white sm:h-[330px] lg:h-[370px]" style={{ backgroundColor: "#00384C" }}>
-        <QuarterCircle corner="tr" color="#FFB400" className="absolute top-0 right-0 w-20 md:w-32 opacity-90" />
-        <ArcThick color="#FFB400" className="absolute -left-12 bottom-4 w-32 md:w-44 opacity-50" from={20} to={160} />
-        <HatchedCircle size={140} color="#08B9E6" className="absolute right-16 -bottom-10 opacity-20 hidden md:block" />
-        <div className="container-x relative max-w-3xl">
-          <nav aria-label="Você está aqui" className="text-xs text-white/70">
-            <ol className="flex flex-wrap items-center gap-1.5">
-              <li><Link to="/" className="underline underline-offset-2 hover:text-brand-gold">Início</Link></li>
-              <li aria-hidden="true">›</li>
-              <li><Link to="/quem-somos" className="underline underline-offset-2 hover:text-brand-gold">Quem Somos</Link></li>
-              <li aria-hidden="true">›</li>
-              <li><Link to="/transparencia" className="underline underline-offset-2 hover:text-brand-gold">Transparência</Link></li>
-              <li aria-hidden="true">›</li>
-              <li aria-current="page" className="text-white" style={{ fontWeight: 600 }}>Canal de Denúncias</li>
-            </ol>
-          </nav>
-
-          <div className="mt-4 flex items-start gap-4">
-            <span className="hidden sm:inline-flex w-12 h-12 rounded-full items-center justify-center shrink-0" style={{ backgroundColor: "rgba(255,255,255,0.1)" }} aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFB400" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 12a8 8 0 1 0-3.2 6.4L21 20z" />
-                <path d="M9 11h6" /><path d="M9 8h6" />
-              </svg>
-            </span>
-            <div>
-              <p className="uppercase tracking-[0.22em] text-xs" style={{ color: "#FFB400", fontWeight: 600 }}>Integridade</p>
-              <h1 className="mt-2" style={{ fontSize: "clamp(1.65rem, 2.55vw, 2.45rem)", lineHeight: 1.06, fontWeight: 700 }}>
-                Canal de Denúncias e Relato Ético
-              </h1>
-              <p className="mt-3 text-white/85" style={{ fontSize: "clamp(0.95rem, 1.1vw, 1.05rem)", lineHeight: 1.55 }}>
-                Um espaço destinado ao encaminhamento responsável de situações que possam contrariar normas, direitos ou princípios institucionais.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero title="Canal de Denúncias e Relato Ético" eyebrow="Integridade" subtitle="Um espaço destinado ao encaminhamento responsável de situações que possam contrariar normas, direitos ou princípios institucionais." image="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80" breadcrumb={[{ label: "Início", to: "/" }, { label: "Quem Somos", to: "/quem-somos" }, { label: "Transparência", to: "/transparencia" }, { label: "Canal de Denúncias" }]} accent="gold" brush="#08B9E6" />
 
       <section className="bg-white py-10 md:py-14" aria-labelledby="apresentacao-canal">
         <div className="container-x max-w-3xl">
