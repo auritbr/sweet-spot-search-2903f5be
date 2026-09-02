@@ -1,6 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { site } from "@/data/site";
+import logoAsset from "@/assets/logo-associacao-maggu.png.asset.json";
 
 const nav = [
   { label: "Início", to: "/" },
@@ -25,8 +26,6 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [openSub, setOpenSub] = useState<string | null>(null);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const isHome = pathname === "/";
-
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
@@ -36,22 +35,21 @@ export function Header() {
 
   useEffect(() => { setOpen(false); setOpenSub(null); }, [pathname]);
 
-  const solid = scrolled || !isHome;
+  const solid = scrolled || open;
   const textColor = solid ? "text-brand-ink" : "text-white";
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
-        solid ? "bg-white/95 backdrop-blur border-b border-black/5 shadow-sm" : "bg-transparent"
+      className={`fixed top-0 inset-x-0 z-40 transition-[background-color,box-shadow,backdrop-filter,border-color] duration-300 ${
+        solid ? "border-b border-black/5 bg-white/95 shadow-sm backdrop-blur" : "border-b border-transparent bg-transparent shadow-none"
       }`}
     >
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:bg-brand-gold focus:text-brand-ink focus:px-4 focus:py-2 focus:rounded-md focus:z-50">
         Pular para o conteúdo
       </a>
       <div className="container-x flex items-center justify-between h-16 md:h-20">
-        <Link to="/" className={`flex items-center gap-3 ${textColor}`}>
-          <span className="relative inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-red text-white" style={{ fontWeight: 700 }}>M</span>
-          <span style={{ fontSize: "1rem", fontWeight: 700, letterSpacing: "-0.01em" }}>{site.short}</span>
+        <Link to="/" aria-label={site.short} className="flex h-12 w-20 shrink-0 items-center justify-center overflow-hidden md:h-14 md:w-24">
+          <img src={logoAsset.url} alt="Associação Maggu" className="h-20 w-20 max-w-none shrink-0 object-contain md:h-24 md:w-24" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1" aria-label="Menu principal">
@@ -60,7 +58,7 @@ export function Header() {
               <Link
                 to={item.to}
                 className={`relative px-3 py-2 ${textColor} transition-colors duration-200 hover:text-brand-red after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:origin-left after:scale-x-0 after:bg-brand-red after:transition-transform after:duration-200 hover:after:scale-x-100`}
-                style={{ fontSize: "0.95rem", fontWeight: 500 }}
+                style={{ fontSize: "15px", fontWeight: 500 }}
                 activeProps={{ className: "text-brand-red after:scale-x-100" }}
                 activeOptions={{ exact: item.to === "/" }}
                 aria-current={pathname === item.to ? "page" : undefined}
@@ -103,7 +101,7 @@ export function Header() {
             {nav.map((item) => (
               <div key={item.to}>
                 <div className="flex items-center">
-                  <Link to={item.to} className="flex-1 px-3 py-3 font-semibold text-brand-ink transition-colors duration-200 hover:text-brand-red" activeProps={{ className: "text-brand-red" }} activeOptions={{ exact: item.to === "/" }} aria-current={pathname === item.to ? "page" : undefined}>
+                   <Link to={item.to} className="flex-1 px-3 py-3 text-[15px] font-semibold text-brand-ink transition-colors duration-200 hover:text-brand-red" activeProps={{ className: "text-brand-red" }} activeOptions={{ exact: item.to === "/" }} aria-current={pathname === item.to ? "page" : undefined}>
                     {item.label}
                   </Link>
                   {item.children && (

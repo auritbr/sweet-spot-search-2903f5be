@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { site } from "@/data/site";
 import { QuarterCircle, ArcThick, HatchedCircle } from "./Shapes";
+import logoAsset from "@/assets/logo-associacao-maggu.png.asset.json";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -17,13 +18,9 @@ export function Footer() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3">
-              <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-red text-white font-display uppercase text-lg">M</span>
-              <span className="font-display uppercase text-xl">{site.short}</span>
-            </div>
-            <p className="mt-4 text-white/80 text-sm leading-relaxed">
-              Organização da sociedade civil sediada no Benedito Bentes, em Maceió, que articula cultura, formação, memória e participação comunitária.
-            </p>
+            <Link to="/" aria-label="Associação Maggu" className="inline-flex">
+              <img src={logoAsset.url} alt="Associação Maggu" className="h-auto w-36 object-contain sm:w-40" />
+            </Link>
           </div>
 
           <div>
