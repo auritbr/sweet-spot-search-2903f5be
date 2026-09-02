@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { ArcThick, HatchedCircle, BrushStroke, QuarterCircle, Triangle } from "@/components/Shapes";
 import { documents } from "@/data/site";
 import { PageHero } from "@/components/PageHero";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/transparencia")({
   head: () => ({
@@ -45,33 +46,13 @@ function Transparencia() {
       <PageHero title="Transparência" eyebrow="Acervo institucional" subtitle="Acesse relatórios, atas, prestações de contas, certidões, políticas e demais documentos institucionais do Ponto de Cultura." image="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80" accent="gold" brush="#08B9E6" compact decoration="curve" />
 
       <section className="relative overflow-hidden bg-white py-14 md:py-20">
+        <QuarterCircle corner="br" color="#ED1C24" className="pointer-events-none absolute -left-2 top-12 w-12 opacity-75 md:left-6 md:top-16 md:w-16" />
+        <span className="pointer-events-none absolute left-12 top-24 hidden size-3 rotate-45 bg-brand-gold md:block" aria-hidden="true" />
+        <HatchedCircle size={104} color="#08B9E6" className="pointer-events-none absolute -right-12 bottom-8 opacity-25 md:-right-7 md:bottom-10" />
         <div className="container-x">
           <div className="relative mx-auto max-w-[860px] text-center">
-            <div className="pointer-events-none absolute -left-12 top-0 hidden h-24 w-24 md:block" aria-hidden="true">
-              <span className="absolute left-1 top-2 h-[74px] w-[58px] border border-brand-petrol/25" />
-              <span className="absolute left-[47px] top-2 h-4 w-4 border-b border-l border-brand-petrol/25 bg-white" />
-              <span className="absolute left-4 top-8 h-px w-7 bg-brand-red/70" />
-              <span className="absolute left-4 top-11 h-px w-9 bg-brand-petrol/25" />
-              <span className="absolute left-4 top-14 h-px w-6 bg-brand-cyan/60" />
-              <span className="absolute bottom-0 right-0 size-2 rotate-45 bg-brand-gold" />
-            </div>
-            <div className="pointer-events-none absolute -bottom-4 -right-12 hidden h-24 w-28 md:block" aria-hidden="true">
-              <span className="absolute bottom-1 right-1 h-16 w-20 border-b border-r border-brand-petrol/20" />
-              <span className="absolute bottom-5 right-5 size-10 rounded-full border border-brand-red/40" />
-              <span className="absolute bottom-8 right-8 size-4 rounded-full border-2 border-brand-gold/70" />
-              <span className="absolute left-1 top-3 size-1.5 rounded-full bg-brand-cyan" />
-              <span className="absolute left-5 top-3 size-1.5 rounded-full bg-brand-red/70" />
-              <span className="absolute left-9 top-3 size-1.5 rounded-full bg-brand-petrol/35" />
-            </div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Compromisso institucional</p>
             <h2 className="mt-3 text-[1.75rem] leading-tight text-brand-ink md:text-[2.25rem]">Nosso jeito de fazer</h2>
-            <div className="mx-auto mt-5 flex items-center justify-center gap-2" aria-hidden="true">
-              <span className="h-px w-6 bg-brand-petrol/25" />
-              <span className="size-1.5 rounded-full bg-brand-cyan" />
-              <span className="h-2.5 w-2.5 border border-brand-gold rotate-45" />
-              <span className="size-1.5 rounded-full bg-brand-red" />
-              <span className="h-px w-6 bg-brand-petrol/25" />
-            </div>
             <div className="mt-7 space-y-5 text-[15px] leading-[1.75] text-brand-gray md:text-base md:leading-[1.8]">
               <p>A Associação Maggu acredita que uma atuação comunitária forte também se constrói com <strong className="font-semibold text-brand-petrol">responsabilidade, organização e transparência</strong>.</p>
               <p>Nesta página, reunimos documentos institucionais, certificados, reconhecimentos, portfólios, registros de apresentações e oficinas, materiais gráficos, fotos e recortes de imprensa que ajudam a contar a trajetória da instituição e tornam públicas partes importantes do nosso trabalho.</p>
@@ -81,18 +62,15 @@ function Transparencia() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white py-10 md:py-14">
+      <section id="acervo" className="relative overflow-hidden bg-white py-10 md:py-14">
+        <ArcThick color="#00384C" className="pointer-events-none absolute -left-10 top-6 w-20 opacity-35 md:left-4 md:top-8 md:w-24" from={210} to={330} />
+        <div className="pointer-events-none absolute right-5 top-7 hidden h-12 w-14 md:block" aria-hidden="true">
+          <Triangle color="#FFB400" size={30} className="absolute left-0 top-0 opacity-85" rotate={12} />
+          <Triangle color="#08B9E6" size={25} className="absolute bottom-0 right-0 opacity-70" rotate={48} />
+        </div>
+        <span className="pointer-events-none absolute bottom-8 right-6 size-3 rotate-45 bg-brand-red/80 md:bottom-10 md:right-12" aria-hidden="true" />
         <div className="container-x">
           <div className="relative mx-auto max-w-[800px] text-center">
-            <div className="pointer-events-none mx-auto mb-6 h-14 w-24" aria-hidden="true">
-              <span className="absolute left-1/2 top-0 h-10 w-14 -translate-x-[62%] border border-brand-petrol/20 bg-white" />
-              <span className="absolute left-1/2 top-2 h-10 w-14 -translate-x-[38%] border border-brand-cyan/40 bg-white" />
-              <span className="absolute left-1/2 top-5 h-px w-7 -translate-x-[18%] bg-brand-red/65" />
-              <span className="absolute left-1/2 top-8 h-px w-9 -translate-x-[18%] bg-brand-petrol/25" />
-              <span className="absolute left-[18px] bottom-0 grid grid-cols-3 gap-1">
-                {Array.from({ length: 6 }).map((_, index) => <i key={index} className="size-1 rounded-full bg-brand-gold/80" />)}
-              </span>
-            </div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Acervo</p>
             <h2 className="mt-3 text-[1.75rem] leading-tight text-brand-ink md:text-[2.25rem]">Acervo institucional</h2>
             <p className="mx-auto mt-5 max-w-[760px] text-[15px] leading-[1.75] text-brand-gray md:text-base md:leading-[1.8]">Acesse documentos, certificados, reconhecimentos, portfólios e registros da Associação Maggu, organizados por categoria para facilitar a consulta pública.</p>
@@ -180,6 +158,28 @@ function Transparencia() {
                 Acessar página <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
               </Link>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white px-4 pb-12 pt-2 md:pb-16 md:pt-4">
+        <div className="container-x">
+          <div className="relative mx-auto flex min-h-[300px] max-w-5xl items-center justify-center overflow-hidden rounded-2xl bg-brand-petrol px-6 py-10 text-center md:px-12">
+            <QuarterCircle corner="tl" color="#FFB400" className="pointer-events-none absolute left-0 top-0 w-16 opacity-90 md:w-24" />
+            <HatchedCircle size={96} color="#08B9E6" className="pointer-events-none absolute -bottom-10 -right-8 opacity-20 md:right-5" />
+            <span className="pointer-events-none absolute bottom-7 left-8 size-3 rotate-45 bg-brand-red md:left-12" aria-hidden="true" />
+            <div className="relative max-w-3xl">
+              <h2 className="text-[1.65rem] font-bold leading-tight text-primary-foreground md:text-[2.15rem]">Transparência também se constrói com acesso.</h2>
+              <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-primary-foreground/80 md:text-base">Consulte documentos, conheça nossas políticas institucionais e acompanhe informações que ajudam a tornar pública a atuação da Associação Maggu.</p>
+              <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <Button asChild size="sm" className="rounded-full border border-brand-petrol/15 bg-brand-gold/90 px-5 font-semibold text-brand-petrol shadow-sm backdrop-blur-md hover:bg-brand-gold">
+                  <a href="#acervo">Acessar o Acervo</a>
+                </Button>
+                <Button asChild size="sm" className="rounded-full border border-primary-foreground/20 bg-brand-red/85 px-5 font-semibold text-primary-foreground shadow-sm backdrop-blur-md hover:bg-brand-red">
+                  <Link to="/contato">Entre em Contato</Link>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
