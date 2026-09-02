@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
 import { PageHero, Section } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
-import { FinalCampaignCTA } from "@/components/FinalCampaignCTA";
+import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { HatchedCircle, ArcThick, BrushStroke, Triangle } from "@/components/Shapes";
 import { projects } from "@/data/site";
 
@@ -92,7 +92,13 @@ function Projetos() {
         </div>
       </section>
 
-      <FinalCampaignCTA eyebrow="Continue explorando" title="Cada projeto é uma forma de transformar participação em experiência." text="Conheça outras iniciativas da Maggu ou acompanhe a agenda para descobrir o que está acontecendo agora." primary={{ label: "Explorar o Ecossistema", to: "/ecossistema" }} secondary={{ label: "Ver Agenda", to: "/agenda" }} image="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?auto=format&fit=crop&w=1920&q=80" variant="right" />
+      <CompactFinalCTA
+        title="Cada iniciativa revela uma forma de atuar."
+        text="Explore o Ecossistema Maggu ou acompanhe a Agenda para conhecer projetos, atividades e experiências em movimento."
+        primary={{ label: "Explorar o Ecossistema", to: "/ecossistema" }}
+        secondary={{ label: "Ver Agenda", to: "/agenda" }}
+        variant="projects"
+      />
     </>
   );
 }

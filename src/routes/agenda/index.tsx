@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight, Clock3, MapPin } from "lucide-react";
 import { useMemo, useState } from "react";
 import { ArcThick, BrushStroke, DiamondsCluster, HatchedCircle, Triangle } from "@/components/Shapes";
 import { Button } from "@/components/ui/button";
-import { FinalCampaignCTA } from "@/components/FinalCampaignCTA";
+import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { PageHero } from "@/components/PageHero";
 import {
   agendaCategories,
@@ -300,7 +300,13 @@ function Agenda() {
         </div>
       </main>
 
-      <FinalCampaignCTA eyebrow="Siga acompanhando" title="Quer acompanhar mais de perto as atividades da Maggu?" text="Entre em contato, conheça os projetos e acompanhe a programação para descobrir novas experiências, encontros e ações culturais." primary={{ label: "Conheça os Projetos", to: "/projetos" }} secondary={{ label: "Entre em Contato", to: "/contato" }} image="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1920&q=80" />
+      <CompactFinalCTA
+        title="Quer acompanhar mais de perto as atividades da Maggu?"
+        text="Conheça os projetos, acompanhe a programação e descubra novas experiências, encontros e ações culturais."
+        primary={{ label: "Conheça os Projetos", to: "/projetos" }}
+        secondary={{ label: "Entre em Contato", to: "/contato" }}
+        variant="agenda"
+      />
     </>
   );
 }

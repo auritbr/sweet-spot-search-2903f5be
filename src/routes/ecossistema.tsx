@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { HeroButton, PageHero, Section, SectionTitle } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
-import { FinalCampaignCTA } from "@/components/FinalCampaignCTA";
+import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { ArcThick, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
 
 export const Route = createFileRoute("/ecossistema")({
@@ -264,7 +264,13 @@ function Ecossistema() {
         </div>
       </Section>
 
-      <FinalCampaignCTA eyebrow="Do conceito à prática" title="O Ecossistema ganha forma nas iniciativas e no que acontece no território." text="Explore os projetos da Associação e acompanhe a agenda para conhecer ações, atividades e experiências em movimento." primary={{ label: "Conheça os Projetos", to: "/projetos" }} secondary={{ label: "Ver Agenda", to: "/agenda" }} image="https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=1920&q=80" variant="center" />
+      <CompactFinalCTA
+        title="O Ecossistema ganha forma no que a Maggu realiza."
+        text="Conheça os projetos que dão vida aos diferentes eixos ou acompanhe a Agenda para descobrir o que está acontecendo agora."
+        primary={{ label: "Conheça os Projetos", to: "/projetos" }}
+        secondary={{ label: "Ver Agenda", to: "/agenda" }}
+        variant="ecosystem"
+      />
     </>
   );
 }

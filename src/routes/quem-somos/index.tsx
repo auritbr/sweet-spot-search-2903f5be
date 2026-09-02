@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { HeroButton, PageHero, Section, SectionTitle } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
-import { FinalCampaignCTA } from "@/components/FinalCampaignCTA";
+import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { ArcThick, BrushStroke, DiamondsCluster, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
 
 export const Route = createFileRoute("/quem-somos/")({
@@ -218,7 +218,13 @@ function QuemSomos() {
         </div>
       </Section>
 
-      <FinalCampaignCTA eyebrow="Trajetória em movimento" title="Conheça como essa trajetória continua se desdobrando." text="A história da Maggu se organiza em diferentes frentes de atuação, iniciativas e experiências conectadas ao território." primary={{ label: "Conheça o Ecossistema", to: "/ecossistema" }} secondary={{ label: "Ver Transparência", to: "/transparencia" }} image="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1920&q=80" variant="right" />
+      <CompactFinalCTA
+        title="Conheça como essa trajetória continua se desdobrando."
+        text="A história da Maggu se conecta a diferentes frentes de atuação, projetos e experiências construídas junto ao território."
+        primary={{ label: "Conheça o Ecossistema", to: "/ecossistema" }}
+        secondary={{ label: "Ver Transparência", to: "/transparencia" }}
+        variant="continuity"
+      />
     </>
   );
 }
