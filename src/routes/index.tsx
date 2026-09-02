@@ -66,7 +66,7 @@ function HeroCarousel() {
 
   return (
     <section
-      className="relative h-[550px] w-full overflow-hidden md:h-[590px] lg:h-[610px]"
+      className="relative h-[470px] w-full overflow-hidden md:h-[520px] lg:h-[550px]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       aria-roledescription="carrossel"
@@ -100,15 +100,15 @@ function HeroCarousel() {
         <HatchedCircle size={300} color="#08B9E6" className="max-w-[55vw] opacity-25" />
       </div>
 
-      <div className="container-x relative z-10 flex h-full flex-col justify-center pb-14 pt-28 md:pb-16 md:pt-32">
+      <div className="container-x relative z-10 flex h-full flex-col justify-center pb-10 pt-24 md:pb-12 md:pt-28">
         <div className="max-w-[760px] animate-fade-up text-primary-foreground" key={i}>
-          <p className="mb-5 inline-flex rounded-full border border-primary-foreground/20 bg-background/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground backdrop-blur-md">Associação Maggu</p>
-          <h1 style={{ fontSize: "clamp(2.6rem, 5.4vw, 4.4rem)", lineHeight: 1.04, fontWeight: 700, textShadow: "0 4px 24px rgba(0,0,0,.4)" }} className="max-w-3xl text-primary-foreground">
+          <p className="mb-3 inline-flex rounded-full border border-primary-foreground/20 bg-background/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-sm backdrop-blur-md">Associação Maggu</p>
+          <h1 style={{ fontSize: "clamp(2.1rem, 4.7vw, 3.6rem)", lineHeight: 1.06, fontWeight: 700, textShadow: "0 4px 24px rgba(0,0,0,.4)" }} className="max-w-3xl text-primary-foreground">
             {s.title}
           </h1>
-          <BrushStroke color="#FFB400" className="mt-5 w-32" />
-          <p className="mt-5 max-w-2xl text-[clamp(1rem,1.5vw,1.2rem)] leading-relaxed text-primary-foreground/90">{s.text}</p>
-          <div className="mt-7 flex flex-wrap gap-3">
+          <BrushStroke color="#FFB400" className="mt-3 w-28" />
+          <p className="mt-3 max-w-2xl text-[14px] leading-[1.55] text-primary-foreground/90 md:text-[15px] lg:text-[17px]">{s.text}</p>
+          <div className="mt-5 flex flex-wrap gap-3">
             {s.buttons.map((b, k) => (
               <Link key={k} to={b.to} className={`px-6 py-3 rounded-full text-sm ${k === 0 ? "bg-brand-red text-white hover:bg-brand-red/90" : "bg-white text-brand-ink hover:bg-brand-gold"} transition`} style={{ fontWeight: 600 }}>
                 {b.label}
