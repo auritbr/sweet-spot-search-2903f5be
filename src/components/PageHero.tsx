@@ -10,61 +10,63 @@ const accentHex: Record<string, string> = {
 
 export function PageHero({
   title, subtitle, image, breadcrumb, accent = "cyan", brush = "#FFB400", split,
+  eyebrow, variant = "internal", children, imagePosition = "center",
 }: {
   title: string; subtitle?: string; image: string;
   breadcrumb?: { label: string; to?: string }[];
   accent?: Accent; brush?: string;
   split?: { first: string; second: string; secondColor?: string };
+  eyebrow?: string;
+  variant?: "internal" | "detail";
+  children?: ReactNode;
+  imagePosition?: string;
 }) {
+  const height = variant === "detail"
+    ? "min-h-[430px] md:min-h-[460px] lg:min-h-[480px]"
+    : "min-h-[460px] md:min-h-[510px] lg:min-h-[540px]";
+
   return (
-    <section className="relative isolate h-[420px] w-full sm:h-[450px] md:h-[480px] lg:h-[520px] xl:h-[min(560px,70vh)]">
+    <section className={`relative isolate flex w-full items-center overflow-hidden ${height}`}>
       <div className="absolute inset-0 -z-10">
-        <img src={image} alt="" loading="eager" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-brand-ink/50" />
+        <img src={image} alt="" loading="eager" className="h-full w-full object-cover" style={{ objectPosition: imagePosition }} />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-ink/90 via-brand-petrol/70 to-brand-ink/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/45 via-transparent to-brand-ink/45" />
       </div>
 
-      <QuarterCircle corner="tr" color={accentHex.petrol} className="absolute -right-4 -top-4 h-28 w-28 opacity-90 md:h-44 md:w-44 xl:h-52 xl:w-52" />
-      <ArcThick color={accentHex[accent]} className="absolute -left-5 top-5 w-24 opacity-90 sm:-left-2 sm:top-[30%] md:left-5 md:w-36 lg:w-40" from={210} to={340} />
-      <DiamondsCluster color={accentHex.cyan} className="absolute bottom-20 right-7 hidden opacity-90 md:block lg:right-12" size={54} />
-      <div className="pointer-events-none absolute -bottom-1 inset-x-0 h-12 md:h-16 bg-white [clip-path:ellipse(90%_100%_at_50%_100%)]" aria-hidden />
+      <QuarterCircle corner="tr" color={accentHex.petrol} className="pointer-events-none absolute -right-4 -top-4 h-28 w-28 opacity-80 md:h-40 md:w-40" />
+      <ArcThick color={accentHex[accent]} className="pointer-events-none absolute -right-10 bottom-10 w-28 opacity-90 md:right-8 md:w-36" from={210} to={340} />
+      <DiamondsCluster color={accentHex.gold} className="pointer-events-none absolute bottom-10 left-[72%] hidden opacity-85 lg:block" size={42} />
+      <HatchedCircle size={variant === "detail" ? 190 : 240} color={accentHex[accent]} className="pointer-events-none absolute -bottom-20 -right-16 max-w-[40vw] opacity-25 md:right-[8%]" />
 
-      <div className="container-x relative flex h-full flex-col items-center justify-center pb-14 pt-24 text-center md:pb-16 md:pt-28">
-        <div className="pointer-events-none absolute left-1/2 top-[44%] -translate-x-1/2 -translate-y-1/2">
-          <HatchedCircle size={300} color={accentHex[accent]} className="max-w-[68vw] opacity-45 md:max-w-[46vw]" />
-        </div>
+      <div className="container-x relative w-full pb-14 pt-28 md:pb-16 md:pt-32">
+        <div className="max-w-[760px]">
+          {breadcrumb && (
+            <nav aria-label="Breadcrumb" className="mb-5 text-xs font-medium text-primary-foreground/65">
+              <ol className="flex flex-wrap items-center gap-2">
+                {breadcrumb.map((b, i) => (
+                  <li key={b.label} className="flex items-center gap-2">
+                    {b.to ? <Link to={b.to} className="transition hover:text-brand-gold">{b.label}</Link> : <span aria-current="page">{b.label}</span>}
+                    {i < breadcrumb.length - 1 && <span className="text-primary-foreground/35">/</span>}
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )}
 
-        <h1
-          className="relative text-[clamp(2.2rem,8vw,3rem)] leading-[1.04] text-white md:text-[clamp(2.5rem,5vw,3.8rem)] lg:text-[clamp(2.8rem,4.5vw,4.6rem)]"
-          style={{ fontWeight: 700, textShadow: "0 4px 20px rgba(0,0,0,.35)" }}
-        >
-          {split ? (
-            <>
-              <span className="block">{split.first}</span>
-              <span className="block" style={{ color: split.secondColor ?? accentHex[accent] }}>{split.second}</span>
-            </>
-          ) : title}
-        </h1>
-
-        <BrushStroke color={brush} className="relative mt-5 w-36 md:w-40" />
-
-        {subtitle && (
-          <p className="relative mt-6 max-w-2xl text-white/95 md:mt-7" style={{ fontSize: "clamp(1rem, 1.2vw, 1.15rem)", lineHeight: 1.6 }}>
-            {subtitle}
+          <p className="mb-5 inline-flex rounded-full border border-primary-foreground/20 bg-background/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground backdrop-blur-md">
+            {eyebrow ?? title}
           </p>
-        )}
 
-        {breadcrumb && (
-          <nav aria-label="Breadcrumb" className="relative mt-7 text-xs font-medium text-white/75 md:mt-8">
-            <ol className="flex flex-wrap gap-2 items-center justify-center">
-              {breadcrumb.map((b, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  {b.to ? <Link to={b.to} className="underline decoration-white/40 underline-offset-4 transition hover:text-brand-gold">{b.label}</Link> : <span>{b.label}</span>}
-                  {i < breadcrumb.length - 1 && <span className="text-white/45">/</span>}
-                </li>
-              ))}
-            </ol>
-          </nav>
-        )}
+          <h1 className={`relative max-w-3xl font-bold leading-[1.06] text-primary-foreground [text-shadow:0_4px_22px_rgb(0_0_0_/_0.32)] ${variant === "detail" ? "text-[clamp(2.15rem,4.4vw,3rem)]" : "text-[clamp(2.5rem,5vw,3.75rem)]"}`}>
+            {split ? <><span className="block">{split.first}</span><span className="block" style={{ color: split.secondColor ?? accentHex[accent] }}>{split.second}</span></> : title}
+          </h1>
+
+          <BrushStroke color={brush} className="relative mt-5 w-28 md:w-32" />
+
+          {subtitle && <p className="relative mt-5 max-w-2xl text-[clamp(1rem,1.5vw,1.2rem)] leading-relaxed text-primary-foreground/90">{subtitle}</p>}
+
+          {children && <div className="relative mt-6">{children}</div>}
+        </div>
       </div>
     </section>
   );
