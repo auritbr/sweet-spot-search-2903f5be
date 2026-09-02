@@ -31,6 +31,27 @@ function Equipe() {
         </div>
       </PageHero>
 
+      <section className="relative overflow-hidden bg-white py-14 md:py-20">
+        <div className="container-x">
+          <div className="relative mx-auto max-w-[860px] text-center">
+            <span className="pointer-events-none absolute -left-10 top-10 hidden h-10 w-10 rounded-full border border-brand-red/35 md:block" aria-hidden="true" />
+            <span className="pointer-events-none absolute -left-5 top-5 hidden h-10 w-10 rounded-full border border-brand-cyan/45 md:block" aria-hidden="true" />
+            <span className="pointer-events-none absolute -right-8 bottom-8 hidden h-1.5 w-12 rounded-full bg-brand-gold/80 md:block" aria-hidden="true" />
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Equipe</p>
+            <h2 className="mt-3 text-[1.75rem] leading-tight text-brand-ink md:text-[2.25rem]">Quem faz a Maggu acontecer</h2>
+            <div className="mx-auto mt-5 flex w-fit items-end gap-1.5" aria-hidden="true">
+              <span className="h-2 w-2 rounded-full bg-brand-cyan" />
+              <span className="h-3 w-3 rounded-full bg-brand-red" />
+              <span className="h-2 w-2 rounded-full bg-brand-gold" />
+            </div>
+            <div className="mt-7 space-y-5 text-[15px] leading-[1.75] text-brand-gray md:text-base md:leading-[1.8]">
+              <p>Por trás de cada projeto, oficina, apresentação e ação comunitária existe uma equipe comprometida com a transformação social por meio da arte, da cultura, da educação e do cuidado.</p>
+              <p>Nossa atuação reúne pessoas com diferentes experiências, conhecimentos e formas de contribuir, que trabalham de maneira integrada na criação, organização e realização das iniciativas da Associação. Da gestão institucional aos processos formativos, artísticos e comunitários, cada pessoa participa da construção de um trabalho coletivo conectado ao território e às pessoas que fazem parte dele.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Section className="bg-white overflow-hidden">
         <div className="container-x">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
