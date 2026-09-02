@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Section } from "@/components/PageHero";
+import { PageHero, Section } from "@/components/PageHero";
 import { HatchedCircle, ArcThick, BrushStroke, Triangle } from "@/components/Shapes";
 import { team } from "@/data/site";
 
@@ -24,22 +24,7 @@ function Equipe() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   return (
     <>
-      <section className="relative flex h-[310px] items-center overflow-hidden bg-brand-soft sm:h-[330px] lg:h-[370px]">
-        <HatchedCircle size={100} color="#08B9E6" className="absolute top-10 left-10 opacity-50" />
-        <ArcThick color="#ED1C24" className="absolute bottom-10 right-10 w-32 opacity-80" from={200} to={340} />
-        <Triangle color="#FFB400" size={54} className="absolute top-20 right-24 hidden md:block" rotate={20} />
-        <Triangle color="#08B9E6" size={40} className="absolute bottom-20 left-24 hidden md:block" rotate={-15} />
-        <div className="container-x relative text-center">
-          <p className="uppercase tracking-[0.22em] text-brand-red text-xs mb-3" style={{ fontWeight: 600 }}>Time</p>
-          <h1 style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.06, fontWeight: 700, color: "#00384C" }}>
-            Nossa Equipe
-          </h1>
-          <BrushStroke color="#FFB400" className="mx-auto mt-4 w-32" />
-          <p className="mt-4 text-brand-gray max-w-xl mx-auto" style={{ fontSize: "clamp(0.95rem, 1.1vw, 1.05rem)", lineHeight: 1.55 }}>
-            Um time multidisciplinar que sustenta a formação, a criação e a circulação cultural.
-          </p>
-        </div>
-      </section>
+      <PageHero title="Nossa Equipe" eyebrow="Time" subtitle="Um time multidisciplinar que sustenta a formação, a criação e a circulação cultural." image="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80" accent="cyan" brush="#FFB400" />
 
       <Section className="bg-white overflow-hidden">
         <div className="container-x">

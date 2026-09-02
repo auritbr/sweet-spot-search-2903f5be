@@ -160,23 +160,24 @@ const initiatives = allInitiatives.filter((initiative) => initiative.featured);
 function Ecossistema() {
   return (
     <>
-      <section className="relative isolate min-h-[min(76vh,760px)] overflow-hidden">
+      <section className="relative isolate flex min-h-[460px] items-center overflow-hidden md:min-h-[510px] lg:min-h-[540px]">
         <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80" alt="Encontro de pessoas em uma atividade cultural" className="absolute inset-0 -z-20 h-full w-full object-cover" />
-        <div className="absolute inset-0 -z-10 bg-brand-petrol/75" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-ink/90 via-brand-petrol/70 to-brand-ink/20" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-ink/45 via-transparent to-brand-ink/40" />
         <QuarterCircle corner="tr" color="#ED1C24" className="absolute -right-4 -top-4 w-40 md:w-60" />
-        <ArcThick color="#FFB400" className="absolute left-4 top-24 w-28 md:w-44" from={210} to={340} />
-        <HatchedCircle size={310} color="#08B9E6" className="absolute left-1/2 top-1/2 -z-0 max-w-[70vw] -translate-x-1/2 -translate-y-1/2 opacity-30" />
+        <ArcThick color="#FFB400" className="absolute -right-8 bottom-12 w-28 md:right-8 md:w-36" from={210} to={340} />
+        <HatchedCircle size={240} color="#08B9E6" className="absolute -bottom-20 right-[8%] -z-0 max-w-[45vw] opacity-25" />
         <DiamondsCluster color="#08B9E6" className="absolute bottom-24 right-10 hidden md:block" size={56} />
-        <div className="container-x relative flex min-h-[min(76vh,760px)] flex-col items-center justify-center px-5 pb-16 pt-28 text-center">
-          <h1 className="max-w-4xl text-4xl leading-tight text-primary-foreground md:text-5xl">Ecossistema Maggu</h1>
-          <BrushStroke color="#FFB400" className="mt-5 w-40" />
-          <p className="mt-5 max-w-3xl leading-relaxed text-primary-foreground/95">A Associação Maggu atua por diferentes caminhos que se encontram. Seus eixos ajudam a compreender essa diversidade sem separar aquilo que, na prática, se conecta.</p>
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
+        <div className="container-x relative w-full pb-14 pt-28 md:pb-16 md:pt-32">
+          <p className="mb-5 inline-flex rounded-full border border-primary-foreground/20 bg-background/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground backdrop-blur-md">Ecossistema</p>
+          <h1 className="max-w-3xl text-[clamp(2.5rem,5vw,3.75rem)] font-bold leading-[1.06] text-primary-foreground">Ecossistema Maggu</h1>
+          <BrushStroke color="#FFB400" className="mt-5 w-32" />
+          <p className="mt-5 max-w-2xl text-[clamp(1rem,1.5vw,1.2rem)] leading-relaxed text-primary-foreground/90">A Associação Maggu atua por diferentes caminhos que se encontram. Seus eixos ajudam a compreender essa diversidade sem separar aquilo que, na prática, se conecta.</p>
+          <div className="mt-7 flex flex-wrap gap-3">
             <a href="#eixos" className="rounded-full bg-brand-gold px-6 py-3 text-sm font-bold text-brand-petrol transition hover:bg-background">Conheça os eixos</a>
             <Link to="/projetos" className="rounded-full border-2 border-primary-foreground px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-background/10">Explorar projetos</Link>
           </div>
         </div>
-        <div className="pointer-events-none absolute -bottom-1 inset-x-0 h-12 bg-background [clip-path:ellipse(90%_100%_at_50%_100%)] md:h-16" aria-hidden="true" />
       </section>
 
       <Section className="overflow-hidden bg-background">

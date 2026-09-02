@@ -66,8 +66,7 @@ function HeroCarousel() {
 
   return (
     <section
-      className="relative w-full overflow-hidden"
-      style={{ height: "min(88vh, 780px)", minHeight: 520 }}
+      className="relative h-[620px] w-full overflow-hidden md:h-[660px] lg:h-[680px]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       aria-roledescription="carrossel"
@@ -75,7 +74,8 @@ function HeroCarousel() {
       {slides.map((sl, idx) => (
         <div key={idx} className={`absolute inset-0 transition-opacity duration-1000 ${idx === i ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
           <img src={sl.image} alt="" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-brand-ink/55" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-ink/90 via-brand-petrol/65 to-brand-ink/20" />
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/45 via-transparent to-brand-ink/40" />
         </div>
       ))}
 
@@ -93,22 +93,22 @@ function HeroCarousel() {
       )}
 
       <QuarterCircle corner="tr" color="#00384C" className="absolute -top-4 -right-4 w-40 md:w-64 z-10" />
-      <ArcThick color="#FFB400" className="absolute left-6 top-24 w-32 md:w-52 z-10" from={200} to={340} />
+      <ArcThick color="#FFB400" className="absolute -right-8 bottom-20 z-10 w-28 md:right-8 md:w-40" from={200} to={340} />
       <div className="absolute bottom-24 right-16 z-10 hidden md:block"><DiamondsCluster color="#08B9E6" size={60} /></div>
 
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none">
-        <HatchedCircle size={360} color="#ED1C24" className="opacity-40 max-w-[70vw]" />
+      <div className="pointer-events-none absolute -bottom-24 right-[8%] z-0">
+        <HatchedCircle size={300} color="#08B9E6" className="max-w-[55vw] opacity-25" />
       </div>
 
-      <div className="relative z-10 h-full container-x flex flex-col justify-center items-center text-center pt-16">
-        <div className="max-w-2xl text-white animate-fade-up" key={i}>
-          <p className="uppercase tracking-[0.22em] text-brand-gold font-semibold text-xs mb-4">Associação Maggu</p>
-          <h1 style={{ fontSize: "clamp(1.9rem, 3.4vw, 3.4rem)", lineHeight: 1.08, fontWeight: 700, textShadow: "0 4px 24px rgba(0,0,0,.4)" }} className="text-white">
+      <div className="container-x relative z-10 flex h-full flex-col justify-center pb-14 pt-28 md:pb-16 md:pt-32">
+        <div className="max-w-[760px] animate-fade-up text-primary-foreground" key={i}>
+          <p className="mb-5 inline-flex rounded-full border border-primary-foreground/20 bg-background/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground backdrop-blur-md">Associação Maggu</p>
+          <h1 style={{ fontSize: "clamp(2.6rem, 5.4vw, 4.4rem)", lineHeight: 1.04, fontWeight: 700, textShadow: "0 4px 24px rgba(0,0,0,.4)" }} className="max-w-3xl text-primary-foreground">
             {s.title}
           </h1>
-          <BrushStroke color="#FFB400" className="mx-auto mt-5 w-40" />
-          <p className="mt-5 mx-auto text-white/95" style={{ fontSize: "clamp(0.98rem, 1.1vw, 1.1rem)", lineHeight: 1.65, maxWidth: "58ch" }}>{s.text}</p>
-          <div className="mt-7 flex flex-wrap gap-3 justify-center">
+          <BrushStroke color="#FFB400" className="mt-5 w-32" />
+          <p className="mt-5 max-w-2xl text-[clamp(1rem,1.5vw,1.2rem)] leading-relaxed text-primary-foreground/90">{s.text}</p>
+          <div className="mt-7 flex flex-wrap gap-3">
             {s.buttons.map((b, k) => (
               <Link key={k} to={b.to} className={`px-6 py-3 rounded-full text-sm ${k === 0 ? "bg-brand-red text-white hover:bg-brand-red/90" : "bg-white text-brand-ink hover:bg-brand-gold"} transition`} style={{ fontWeight: 600 }}>
                 {b.label}

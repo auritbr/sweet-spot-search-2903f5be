@@ -2,6 +2,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArcThick, DiamondsCluster, Triangle, HatchedCircle } from "@/components/Shapes";
 import { Breadcrumbs, LegalToc, LegalSection } from "@/components/Legal";
+import { PageHero } from "@/components/PageHero";
 
 export const Route = createFileRoute("/termos-de-uso")({
   head: () => ({
@@ -38,21 +39,7 @@ const toc = [
 function TermosDeUso() {
   return (
     <main id="main">
-      <section className="relative flex h-[310px] items-center overflow-hidden bg-brand-soft sm:h-[330px] lg:h-[370px]">
-        <ArcThick color="#ED1C24" className="absolute -right-10 top-16 w-32 md:w-48 opacity-70" from={20} to={160} />
-        <DiamondsCluster color="#08B9E6" size={54} className="absolute left-6 bottom-6 hidden md:block opacity-80" />
-        <HatchedCircle size={110} color="#FFB400" className="absolute right-24 bottom-0 opacity-25 hidden md:block" />
-        <div className="container-x relative max-w-3xl">
-          <Breadcrumbs items={[{ label: "Início", to: "/" }, { label: "Termos de Uso" }]} />
-          <p className="mt-4 uppercase tracking-[0.22em] text-brand-red text-xs" style={{ fontWeight: 600 }}>Legal</p>
-          <h1 className="mt-2" style={{ color: "#00384C", fontSize: "clamp(1.65rem, 2.55vw, 2.45rem)", lineHeight: 1.06, fontWeight: 700 }}>
-            Termos de Uso
-          </h1>
-          <p className="mt-4 max-w-2xl text-brand-ink" style={{ fontSize: "clamp(0.95rem, 1.1vw, 1.05rem)", lineHeight: 1.55 }}>
-            Estas orientações apresentam condições gerais para utilização do site institucional da Associação Maggu e de seus conteúdos digitais.
-          </p>
-        </div>
-      </section>
+      <PageHero title="Termos de Uso" eyebrow="Legal" subtitle="Estas orientações apresentam condições gerais para utilização do site institucional da Associação Maggu e de seus conteúdos digitais." image="https://images.unsplash.com/photo-1526243741027-444d633d7365?auto=format&fit=crop&w=1920&q=80" breadcrumb={[{ label: "Início", to: "/" }, { label: "Termos de Uso" }]} accent="gold" brush="#08B9E6" />
 
       <div className="bg-white py-10 md:py-14">
         <div className="container-x grid gap-8 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12">

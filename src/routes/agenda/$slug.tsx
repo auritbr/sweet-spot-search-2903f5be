@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, CalendarDays, Check, Clock3, Facebook, Instagram, Link2, Linkedin, MapPin, MessageCircle } from "lucide-react";
 import { useState } from "react";
-import { Section } from "@/components/PageHero";
+import { PageHero, Section } from "@/components/PageHero";
 import { AgendaStatusBadge } from "@/components/AgendaCard";
 import { ArcThick, BrushStroke, HatchedCircle, QuarterCircle } from "@/components/Shapes";
 import { Button } from "@/components/ui/button";
@@ -103,46 +103,20 @@ function EventoDetalhe() {
   return (
     <>
       {/* ---------------- HERO ---------------- */}
-      <section className="relative isolate overflow-hidden bg-brand-soft">
-        <QuarterCircle corner="tr" color="#ED1C24" className="absolute -right-3 -top-3 w-28 md:w-44" />
-        <ArcThick color="#FFB400" className="absolute left-4 bottom-8 w-24 md:w-36 opacity-90" from={210} to={340} />
-        <HatchedCircle size={110} color="#08B9E6" className="absolute -bottom-12 right-[12%] hidden opacity-40 md:block" />
-        <div className="container-x relative pb-14 pt-28 text-center md:pb-16 md:pt-32">
-          {/* Voltar para a Agenda — discreto, no topo */}
-          <div className="flex justify-center sm:justify-start">
-            <Link
-              to="/agenda"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-petrol underline-offset-4 hover:text-brand-red hover:underline"
-            >
-              <ArrowLeft aria-hidden="true" className="size-4" />
-              Voltar para a Agenda
-            </Link>
-          </div>
-
-          <p className="mt-8 text-xs font-bold uppercase tracking-[0.2em] text-brand-red">{event.category}</p>
-          <h1 className="mx-auto mt-3 max-w-3xl text-brand-ink" style={{ fontSize: "clamp(1.9rem, 3.2vw, 3rem)", lineHeight: 1.1, fontWeight: 700 }}>{event.title}</h1>
-          <BrushStroke color="#ED1C24" className="mx-auto mt-5 w-28" />
-
-          <ul className="mx-auto mt-6 flex max-w-3xl flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-brand-gray">
-            <li className="flex items-center gap-2"><CalendarDays aria-hidden="true" className="size-4 text-brand-red" />{formatEventDate(event.date)}</li>
-            {event.time && <li className="flex items-center gap-2"><Clock3 aria-hidden="true" className="size-4 text-brand-red" />{event.time}</li>}
-            {event.location && <li className="flex items-center gap-2"><MapPin aria-hidden="true" className="size-4 text-brand-red" />{event.location}</li>}
-          </ul>
-
-          <div className="mt-5 flex justify-center">
-            <AgendaStatusBadge event={event} />
-          </div>
-
-          {/* Ação principal — somente quando há link de inscrição e não está encerrada */}
-          {event.registrationUrl && !closed && (
-            <div className="mt-6 flex justify-center">
-              <Button asChild className="rounded-full bg-brand-red px-6 text-primary-foreground shadow-none hover:bg-brand-petrol">
-                <a href={event.registrationUrl} target="_blank" rel="noopener noreferrer">Inscreva-se</a>
-              </Button>
-            </div>
-          )}
+      <PageHero title={event.title} eyebrow={event.category} image={event.image ?? "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1920&q=80"} variant="detail" accent="gold" brush="#ED1C24">
+        <Link to="/agenda" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-foreground/85 underline-offset-4 hover:text-brand-gold hover:underline">
+          <ArrowLeft aria-hidden="true" className="size-4" /> Voltar para a Agenda
+        </Link>
+        <ul className="mt-5 flex max-w-3xl flex-wrap items-center gap-x-5 gap-y-2 text-sm text-primary-foreground/85">
+          <li className="flex items-center gap-2"><CalendarDays aria-hidden="true" className="size-4 text-brand-gold" />{formatEventDate(event.date)}</li>
+          {event.time && <li className="flex items-center gap-2"><Clock3 aria-hidden="true" className="size-4 text-brand-gold" />{event.time}</li>}
+          {event.location && <li className="flex items-center gap-2"><MapPin aria-hidden="true" className="size-4 text-brand-gold" />{event.location}</li>}
+        </ul>
+        <div className="mt-5 flex flex-wrap items-center gap-3">
+          <AgendaStatusBadge event={event} />
+          {event.registrationUrl && !closed && <Button asChild className="rounded-full bg-brand-red px-6 text-primary-foreground shadow-none hover:bg-brand-gold hover:text-brand-petrol"><a href={event.registrationUrl} target="_blank" rel="noopener noreferrer">Inscreva-se</a></Button>}
         </div>
-      </section>
+      </PageHero>
 
       {/* ---------------- CONTEÚDO ---------------- */}
       <Section className="bg-background">

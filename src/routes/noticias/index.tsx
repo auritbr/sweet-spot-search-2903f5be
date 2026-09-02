@@ -55,6 +55,7 @@ function Noticias() {
     <>
       <PageHero
         title="Notícias"
+        eyebrow="Notícias"
         subtitle="Acompanhe as ações, encontros e novidades do Ponto de Cultura."
         image="https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1920&q=80"
         breadcrumb={[{ label: "Início", to: "/" }, { label: "Notícias" }]}

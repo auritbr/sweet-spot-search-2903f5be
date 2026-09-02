@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { ArcThick, BrushStroke, DiamondsCluster, HatchedCircle, Triangle } from "@/components/Shapes";
 import { Button } from "@/components/ui/button";
 import { FinalCampaignCTA } from "@/components/FinalCampaignCTA";
+import { PageHero } from "@/components/PageHero";
 import {
   agendaCategories,
   agendaEvents,
@@ -169,20 +170,7 @@ function Agenda() {
 
   return (
     <>
-      <section className="relative flex h-[310px] items-center overflow-hidden bg-brand-soft sm:h-[330px] lg:h-[370px]">
-        <ArcThick color="#00384C" className="absolute -left-8 top-24 w-40 opacity-80 md:w-52" from={200} to={340} />
-        <HatchedCircle size={140} color="#08B9E6" className="absolute -right-12 -top-12 opacity-50" />
-        <Triangle color="#FFB400" size={54} className="absolute bottom-8 right-16 hidden md:block" rotate={20} />
-        <DiamondsCluster color="#ED1C24" className="absolute bottom-8 left-[18%] hidden opacity-70 lg:block" size={42} />
-        <div className="container-x relative text-center">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Programação</p>
-          <h1 className="text-brand-ink" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.06, fontWeight: 700 }}>Agenda</h1>
-          <BrushStroke color="#FFB400" className="mx-auto mt-4 w-32" />
-          <p className="mx-auto mt-4 max-w-xl text-brand-gray" style={{ fontSize: "clamp(0.95rem, 1.1vw, 1.05rem)", lineHeight: 1.55 }}>
-            Acompanhe cursos, oficinas, sessões, apresentações, encontros e outras atividades do Ecossistema Maggu.
-          </p>
-        </div>
-      </section>
+      <PageHero title="Agenda" eyebrow="Programação" subtitle="Acompanhe cursos, oficinas, sessões, apresentações, encontros e outras atividades do Ecossistema Maggu." image="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1920&q=80" accent="gold" brush="#ED1C24" />
 
       <main id="programacao" className="relative overflow-hidden bg-background py-14 md:py-20">
         <HatchedCircle size={180} color="#08B9E6" className="pointer-events-none absolute -right-24 top-72 opacity-10" />
