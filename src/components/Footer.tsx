@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Mail, MapPin, MessageCircle, Phone, Youtube } from "lucide-react";
+import { Facebook, Instagram, MessageCircle, Youtube } from "lucide-react";
 import logoAsset from "@/assets/logo-associacao-maggu.png.asset.json";
-import { ArcThick, HatchedCircle, QuarterCircle } from "@/components/Shapes";
+import { HatchedCircle, QuarterCircle } from "@/components/Shapes";
 
 const institucional = [
   { label: "Quem Somos", to: "/quem-somos" },
@@ -32,7 +32,11 @@ const socialLinks = [
 ];
 
 function ColumnTitle({ children }: { children: React.ReactNode }) {
-  return <h3 className="mb-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-gold">{children}</h3>;
+  return <h3 className="mb-3 text-sm font-semibold uppercase tracking-[0.12em] text-brand-gold">{children}</h3>;
+}
+
+function ContactTitle({ children }: { children: React.ReactNode }) {
+  return <h3 className="mb-1.5 text-sm font-semibold text-primary-foreground">{children}</h3>;
 }
 
 export function Footer() {
@@ -41,25 +45,24 @@ export function Footer() {
   return (
     <footer className="relative mt-24 overflow-hidden bg-brand-petrol text-primary-foreground">
       <div className="absolute inset-x-0 top-0 h-px bg-primary-foreground/15" aria-hidden="true" />
-      <QuarterCircle corner="tr" color="#08B9E6" className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 opacity-15" />
-      <HatchedCircle size={260} color="#FFB400" className="pointer-events-none absolute -bottom-28 -left-24 opacity-[0.12]" />
-      <ArcThick color="#ED1C24" className="pointer-events-none absolute -right-10 bottom-16 hidden w-40 opacity-20 lg:block" from={200} to={340} />
+      <QuarterCircle corner="tr" color="#08B9E6" className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 opacity-10" />
+      <HatchedCircle size={180} color="#FFB400" className="pointer-events-none absolute -bottom-20 -left-20 opacity-[0.08]" />
 
-      <div className="container-x relative py-16 md:py-20">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.35fr_.8fr_.8fr_.9fr_1.2fr] lg:gap-10">
-          <div>
+      <div className="container-x relative pb-7 pt-10 md:pb-8 md:pt-12">
+        <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_.8fr_1.15fr] lg:gap-x-14">
+          <div className="self-start">
             <Link to="/" aria-label="Associação Maggu" className="inline-flex">
-              <img src={logoAsset.url} alt="Associação Sócio Cultural Maggu" className="h-auto w-36 object-contain sm:w-40" />
+              <img src={logoAsset.url} alt="Associação Sócio Cultural Maggu" className="h-auto w-32 object-contain sm:w-36" />
             </Link>
-            <div className="mt-7 space-y-2 text-sm leading-relaxed text-primary-foreground/70">
-              <p>61.841.454/0001-80</p>
+            <div className="mt-4 space-y-1 text-sm leading-relaxed text-primary-foreground/70">
               <p className="font-semibold text-primary-foreground">Associação Sócio Cultural Maggu</p>
+              <p>61.841.454/0001-80</p>
             </div>
           </div>
 
           <div>
             <ColumnTitle>Institucional</ColumnTitle>
-            <ul className="space-y-3 text-sm text-primary-foreground/75">
+            <ul className="space-y-2 text-sm text-primary-foreground/75">
               {institucional.map((item) => (
                 <li key={item.to}><Link to={item.to} className="transition hover:text-brand-gold">{item.label}</Link></li>
               ))}
@@ -68,7 +71,7 @@ export function Footer() {
 
           <div>
             <ColumnTitle>Navegação</ColumnTitle>
-            <ul className="space-y-3 text-sm text-primary-foreground/75">
+            <ul className="space-y-2 text-sm text-primary-foreground/75">
               {navegacao.map((item) => (
                 <li key={item.to}><Link to={item.to} className="transition hover:text-brand-gold">{item.label}</Link></li>
               ))}
@@ -78,33 +81,41 @@ export function Footer() {
 
           <div>
             <ColumnTitle>Legal</ColumnTitle>
-            <ul className="space-y-3 text-sm text-primary-foreground/75">
+            <ul className="space-y-2 text-sm text-primary-foreground/75">
               {legal.map((item) => (
                 <li key={item.to}><Link to={item.to} className="transition hover:text-brand-gold">{item.label}</Link></li>
               ))}
             </ul>
           </div>
+        </div>
+
+        <div className="my-7 h-px bg-primary-foreground/15" aria-hidden="true" />
+
+        <div className="grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-[1.35fr_1fr_1.25fr_.8fr] lg:gap-x-12">
+          <div>
+            <ContactTitle>E-mail</ContactTitle>
+            <a href="mailto:comunicacaomktmaggu@gmail.com" className="break-all text-sm text-primary-foreground/70 transition hover:text-brand-gold">
+              comunicacaomktmaggu@gmail.com
+            </a>
+          </div>
 
           <div>
-            <ColumnTitle>Contato</ColumnTitle>
-            <ul className="space-y-3 text-sm leading-relaxed text-primary-foreground/75">
-              <li>
-                <a href="mailto:comunicacaomktmaggu@gmail.com" className="flex items-start gap-2.5 transition hover:text-brand-gold">
-                  <Mail className="mt-0.5 size-4 shrink-0" aria-hidden="true" /><span className="break-all">comunicacaomktmaggu@gmail.com</span>
-                </a>
-              </li>
-              <li>
-                <a href="tel:+5582998067374" className="flex items-center gap-2.5 transition hover:text-brand-gold">
-                  <Phone className="size-4 shrink-0" aria-hidden="true" />(82) 99806-7374
-                </a>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <MapPin className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
-                <span>Rua Em Projeto A, 33<br />Benedito Bentes<br />Maceió - AL, 57084-411</span>
-              </li>
-            </ul>
+            <ContactTitle>Telefone / WhatsApp</ContactTitle>
+            <a href="tel:+5582998067374" className="text-sm text-primary-foreground/70 transition hover:text-brand-gold">
+              (82) 99806-7374
+            </a>
+          </div>
 
-            <div className="mt-7 flex gap-2.5" aria-label="Redes sociais">
+          <div>
+            <ContactTitle>Endereço</ContactTitle>
+            <address className="text-sm not-italic leading-relaxed text-primary-foreground/70">
+              Rua Em Projeto A, 33<br />Benedito Bentes<br />Maceió - AL, 57084-411
+            </address>
+          </div>
+
+          <div>
+            <ContactTitle>Conecte-se</ContactTitle>
+            <div className="flex gap-2" aria-label="Redes sociais">
               {socialLinks.map(({ label, href, icon: Icon }) => (
                 <a
                   key={label}
@@ -113,16 +124,16 @@ export function Footer() {
                   rel="noopener noreferrer"
                   aria-label={label}
                   title={label}
-                  className="inline-flex size-9 items-center justify-center rounded-full border border-primary-foreground/15 bg-primary-foreground/10 text-primary-foreground/85 shadow-sm backdrop-blur-md transition hover:border-brand-gold/50 hover:bg-primary-foreground/15 hover:text-brand-gold"
+                  className="inline-flex size-8 items-center justify-center rounded-full border border-primary-foreground/15 bg-primary-foreground/[0.08] text-primary-foreground/80 backdrop-blur-sm transition hover:border-brand-gold/40 hover:bg-primary-foreground/[0.12] hover:text-brand-gold"
                 >
-                  <Icon className="size-4" aria-hidden="true" />
+                  <Icon className="size-3.5" aria-hidden="true" />
                 </a>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="mt-14 border-t border-primary-foreground/15 pt-7 text-center text-xs text-primary-foreground/55">
+        <div className="mt-7 border-t border-primary-foreground/15 pt-5 text-center text-xs text-primary-foreground/55">
           <p>© {year} Associação Sócio Cultural Maggu. Todos os direitos reservados.</p>
         </div>
       </div>
