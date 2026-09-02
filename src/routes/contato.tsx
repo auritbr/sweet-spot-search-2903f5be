@@ -25,7 +25,10 @@ function Contato() {
 
   return (
     <>
-      <section className="relative overflow-hidden pt-28 pb-14 md:pt-32 md:pb-16" style={{ backgroundColor: "#00384C" }}>
+      <section className="relative min-h-[540px] overflow-hidden pb-14 pt-28 md:pb-16 md:pt-32">
+        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80" alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-ink/95 via-brand-petrol/85 to-brand-ink/55" />
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/45 via-transparent to-brand-ink/45" />
         <QuarterCircle corner="tr" color="#ED1C24" className="absolute -top-2 -right-2 w-32 md:w-52 opacity-95" />
         <ArcThick color="#FFB400" className="absolute -left-4 top-32 w-40 opacity-80" from={200} to={340} />
         <HatchedCircle size={180} color="#08B9E6" className="absolute -left-16 bottom-0 opacity-25" />
@@ -33,8 +36,8 @@ function Contato() {
 
         <div className="container-x grid lg:grid-cols-[1fr_minmax(0,520px)] gap-10 items-start relative text-white">
           <div>
-            <p className="uppercase tracking-[0.22em] text-brand-gold text-xs mb-3" style={{ fontWeight: 600 }}>Fale conosco</p>
-            <h1 style={{ fontSize: "clamp(2rem, 3.3vw, 3.5rem)", lineHeight: 1.1, fontWeight: 700, color: "#fff" }}>Contato</h1>
+            <p className="mb-5 inline-flex rounded-full border border-primary-foreground/20 bg-background/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground backdrop-blur-md">Fale conosco</p>
+            <h1 className="text-primary-foreground" style={{ fontSize: "clamp(2.5rem, 5vw, 3.75rem)", lineHeight: 1.06, fontWeight: 700 }}>Contato</h1>
             <BrushStroke color="#ED1C24" className="mt-4 w-32" />
             <p className="mt-5 text-white/90 max-w-lg" style={{ fontSize: "clamp(1rem, 1.2vw, 1.1rem)", lineHeight: 1.6 }}>
               Quer participar, apoiar, propor uma parceria ou saber mais sobre nossos projetos? Estamos por aqui.

@@ -41,6 +41,7 @@ function QuemSomos() {
     <>
       <PageHero
         title="Quem Somos"
+        eyebrow="Quem Somos"
         subtitle="A Associação Maggu reúne uma trajetória cultural construída no Benedito Bentes e hoje conecta diferentes iniciativas de formação, criação e participação comunitária."
         image="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80"
         breadcrumb={[{ label: "Início", to: "/" }, { label: "Quem Somos" }]}
