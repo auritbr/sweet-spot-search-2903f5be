@@ -1,10 +1,11 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight, Clock3, MapPin } from "lucide-react";
 import { useMemo, useState } from "react";
 import { DiamondsCluster, Triangle } from "@/components/Shapes";
 import { Button } from "@/components/ui/button";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { PageHero } from "@/components/PageHero";
+import { EventPreviewPanel } from "@/components/EventPreviewPanel";
 import {
   agendaCategories,
   agendaCategoryStyles,
@@ -76,12 +77,14 @@ function dateKey(date: Date) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 }
 
-function CalendarEvent({ event }: { event: AgendaEvent }) {
+function CalendarEvent({ event, onSelect }: { event: AgendaEvent; onSelect: (event: AgendaEvent) => void }) {
   const style = agendaCategoryStyles[event.category];
   return (
-    <Link
-      to="/agenda/$slug"
-      params={{ slug: event.slug }}
+    <Button
+      type="button"
+      variant="ghost"
+      onClick={() => onSelect(event)}
+      aria-label={`Ver detalhes de ${event.title}`}
       className={`group relative block rounded-2xl border border-brand-petrol/8 ${style.surface} p-3.5 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-brand-petrol/15 hover:shadow-md`}
     >
       <div className="flex items-center gap-2">
@@ -104,7 +107,7 @@ function CalendarEvent({ event }: { event: AgendaEvent }) {
           {agendaStatusLabels[event.status]}
         </span>
       )}
-    </Link>
+    </Button>
   );
 }
 
@@ -112,6 +115,7 @@ function Agenda() {
   const [category, setCategory] = useState<"Todos" | AgendaCategory>("Todos");
   const [view, setView] = useState<CalendarView>("semana");
   const [cursor, setCursor] = useState(() => atStartOfDay(new Date()));
+  const [selectedEvent, setSelectedEvent] = useState<AgendaEvent | null>(null);
 
   const filteredEvents = useMemo(
     () => sortByDate(agendaEvents).filter((event) => category === "Todos" || event.category === category),
@@ -260,7 +264,7 @@ function Agenda() {
                       </time>
                     </div>
                     <div className="space-y-2">
-                      {dayEvents.map((event) => <CalendarEvent key={event.slug} event={event} />)}
+                      {dayEvents.map((event) => <CalendarEvent key={event.slug} event={event} onSelect={setSelectedEvent} />)}
                     </div>
                   </article>
                 );
@@ -285,6 +289,7 @@ function Agenda() {
         secondary={{ label: "Entre em Contato", to: "/contato" }}
         variant="agenda"
       />
+      <EventPreviewPanel event={selectedEvent} onOpenChange={(open) => { if (!open) setSelectedEvent(null); }} />
     </>
   );
 }
