@@ -82,7 +82,7 @@ export function CompactFinalCTA({ title, text, primary, secondary, variant }: Co
   const styles = buttonStyles[variant];
 
   return (
-    <section className="bg-white px-4 pb-8 pt-2 md:pb-10 md:pt-4">
+    <section className="bg-white px-4 pb-4 pt-2 md:pb-6 md:pt-4">
       <div className="container-x">
         <div className={`relative mx-auto flex min-h-[300px] max-w-5xl items-center overflow-hidden rounded-2xl bg-brand-petrol px-6 py-10 md:px-12 ${centered ? "justify-center text-center" : ""}`}>
           <Decorations variant={variant} />

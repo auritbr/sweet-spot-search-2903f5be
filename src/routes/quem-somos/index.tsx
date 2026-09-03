@@ -20,11 +20,11 @@ export const Route = createFileRoute("/quem-somos/")({
 });
 
 const milestones = [
-  { year: "1999", title: "O início da trajetória", text: "Nasce a Companhia de Teatro Cortina, dando início a uma trajetória de criação, formação artística e mobilização cultural." },
-  { year: "2001", title: "A relação com o território se fortalece", text: "A Paixão de Cristo amplia a participação de artistas e moradores e fortalece a presença cultural no Benedito Bentes." },
+  { year: "1999", title: "O início da trajetória", text: "Nasce a Companhia de Teatro Cortina, iniciando uma trajetória de criação, formação artística e mobilização cultural." },
+  { year: "2001", title: "A presença cultural se amplia", text: "A Paixão de Cristo fortalece a relação com artistas, moradores e comunidade do Benedito Bentes." },
   { year: "2025", title: "A Associação é formalizada", text: "A trajetória construída ao longo dos anos ganha uma nova estrutura institucional com a formalização da Associação Sócio Cultural Maggu." },
-  { year: "2025", title: "Reconhecimento como Ponto de Cultura", text: "O Teatro Escola Maggu é certificado como Ponto de Cultura." },
-  { year: "2026", title: "Consolidação do Ecossistema Maggu", text: "A Associação fortalece sua governança e organiza suas diferentes iniciativas como parte do Ecossistema Maggu." },
+  { year: "2025", title: "Ponto de Cultura", text: "O Teatro Escola Maggu é certificado como Ponto de Cultura." },
+  { year: "2026", title: "Ecossistema Maggu", text: "A Associação fortalece sua governança e organiza suas diferentes iniciativas como parte do Ecossistema Maggu." },
 ];
 
 const process = [
@@ -93,85 +93,58 @@ function QuemSomos() {
 
       <section id="nossa-historia" className="scroll-mt-24 overflow-hidden bg-brand-soft py-12 md:py-16 lg:py-20">
         <div className="container-x">
-          <div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr] items-start">
-            <div className="lg:sticky lg:top-28">
-              <SectionTitle eyebrow="Nossa história" title="Nossa história começou antes da Associação." />
-            </div>
-            <div className="space-y-5 text-brand-gray leading-relaxed">
-              <p>A Maggu nasce de uma trajetória cultural construída muito antes da atual estrutura institucional. Teatro, formação artística e mobilização comunitária foram criando relações com artistas, moradores e diferentes gerações do Benedito Bentes.</p>
-              <p>Ao longo dos anos, essa experiência ampliou linguagens, iniciativas e formas de participação. Em 2025, esse percurso ganhou uma estrutura jurídica própria com a formalização da Associação Sócio Cultural Maggu, fortalecendo as condições para organizar, conectar e dar continuidade ao trabalho desenvolvido.</p>
-              <p>Hoje, essa trajetória segue em movimento por meio das diferentes iniciativas que compõem o Ecossistema Maggu.</p>
-            </div>
+          <div className="mx-auto max-w-3xl text-center">
+            <SectionTitle align="center" eyebrow="Nossa história" title="Nossa história começou antes da Associação." />
+            <p className="mx-auto -mt-3 max-w-2xl leading-relaxed text-brand-gray">A história da Maggu começa antes da atual estrutura institucional.</p>
           </div>
 
-          <div className="mt-12 hidden lg:block" aria-label="Linha do tempo da Associação Maggu">
-            <ol className="relative grid min-h-[450px] grid-cols-5 gap-6">
-              <span className="absolute left-[9%] right-[9%] top-1/2 -z-0 h-0.5 bg-brand-red/30" aria-hidden="true" />
-              {milestones.map((item, index) => {
-                const above = index % 2 === 0;
-                return (
-                  <li key={`${item.year}-${item.title}`} className="relative min-w-0">
-                    <span className="absolute left-1/2 top-1/2 z-10 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-red ring-4 ring-brand-soft" />
-                    <span className={`absolute left-1/2 h-10 w-px -translate-x-1/2 bg-brand-red/40 ${above ? "bottom-1/2 mb-2" : "top-1/2 mt-2"}`} aria-hidden="true" />
-                    <div className={`absolute inset-x-0 px-1 text-center ${above ? "bottom-[calc(50%+3.5rem)]" : "top-[calc(50%+3.5rem)]"}`}>
-                      <p className="text-xl font-bold text-brand-red">{item.year}</p>
-                      <h3 className="mt-2 text-base leading-snug text-brand-ink">{item.title}</h3>
-                      <p className="mt-2 text-xs leading-relaxed text-brand-gray">{item.text}</p>
-                    </div>
-                  </li>
-                );
-              })}
-            </ol>
-          </div>
-
-          <ol className="relative ml-2 mt-12 space-y-8 border-l-2 border-brand-red/30 pl-7 lg:hidden">
-            {milestones.map((item) => (
-              <li key={`${item.year}-${item.title}`} className="relative">
-                <span className="absolute -left-[2.18rem] top-1 h-4 w-4 rounded-full bg-brand-red ring-4 ring-brand-soft" />
-                <p className="text-xl font-bold text-brand-red">{item.year}</p>
-                <h3 className="mt-1 text-base text-brand-ink">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-brand-gray">{item.text}</p>
+          <ol className="relative mt-12 grid gap-5 md:grid-cols-5 md:gap-0" aria-label="Linha do tempo da Associação Maggu">
+            <span className="absolute left-[10%] right-[10%] top-5 hidden h-px bg-brand-petrol/20 md:block" aria-hidden="true" />
+            {milestones.map((item, index) => (
+              <li key={`${item.year}-${item.title}`} className="relative grid grid-cols-[auto_1fr] gap-4 md:block md:px-3 md:pt-12">
+                <span className={`relative z-10 mt-1 size-3 rounded-full ring-4 ring-brand-soft md:absolute md:left-1/2 md:top-3 md:-translate-x-1/2 ${index % 3 === 0 ? "bg-brand-red" : index % 3 === 1 ? "bg-brand-gold" : "bg-brand-cyan"}`} aria-hidden="true" />
+                <div className="border-t border-brand-petrol/15 pt-4 md:border-t-0 md:pt-0 md:text-center">
+                  <p className="text-xl font-bold text-brand-red">{item.year}</p>
+                  <h3 className="mt-2 text-base leading-snug text-brand-ink">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-brand-gray">{item.text}</p>
+                </div>
               </li>
             ))}
           </ol>
 
-          <aside className="relative mt-14 flex min-h-[320px] overflow-hidden md:min-h-[360px]" aria-labelledby="ponto-cultura-title">
-            <img src="https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=1600&q=80" alt="Ação cultural em espaço de artes cênicas" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
-            <div className="absolute inset-0 bg-brand-petrol/85" />
-            <div className="absolute inset-0 bg-gradient-to-r from-brand-petrol via-brand-red/45 to-brand-petrol/55" />
-            <HatchedCircle size={180} color="#FFB400" className="pointer-events-none absolute -bottom-16 -left-10 opacity-25" />
-            <Triangle color="#08B9E6" size={40} className="pointer-events-none absolute right-8 top-7 opacity-80 md:right-14" rotate={18} />
-            <div className="container-x relative grid w-full items-center gap-7 py-9 md:grid-cols-[1.2fr_.8fr] md:gap-12 md:py-10">
+          <aside className="relative mt-12 overflow-hidden rounded-xl border border-brand-petrol/10 bg-background/80 shadow-sm backdrop-blur-sm" aria-labelledby="ponto-cultura-title">
+            <span className="absolute inset-y-0 left-0 w-1.5 bg-brand-red" aria-hidden="true" />
+            <Triangle color="#08B9E6" size={28} className="pointer-events-none absolute right-5 top-5 opacity-60" rotate={18} />
+            <div className="relative grid items-center gap-6 px-7 py-8 md:grid-cols-[1fr_auto] md:px-10 md:py-9">
               <div className="max-w-2xl">
-                <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-gold">Ponto de Cultura</p>
-                <h2 id="ponto-cultura-title" className="mt-3 text-2xl text-primary-foreground md:text-3xl">Um reconhecimento que integra essa trajetória.</h2>
-                <p className="mt-4 leading-relaxed text-primary-foreground/85">Em 2025, o Teatro Escola Maggu foi certificado como Ponto de Cultura, fortalecendo institucionalmente uma atuação cultural construída no território.</p>
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-red">Ponto de Cultura</p>
+                <h2 id="ponto-cultura-title" className="mt-2 text-2xl text-brand-ink md:text-3xl">Um reconhecimento que integra essa trajetória.</h2>
+                <p className="mt-3 leading-relaxed text-brand-gray">Em 2025, o Teatro Escola Maggu foi certificado como Ponto de Cultura, fortalecendo institucionalmente uma atuação cultural construída no território.</p>
               </div>
-              <div className="relative flex items-center justify-center md:justify-end" aria-label="Certificação como Ponto de Cultura em 2025">
-                <div className="relative border border-primary-foreground/25 bg-background/10 px-8 py-6 text-center backdrop-blur-md md:px-10">
-                  <span className="block text-5xl font-bold leading-none text-brand-gold md:text-7xl">2025</span>
-                  <span className="mt-2 block text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground">Ponto de Cultura</span>
-                </div>
-                <span className="absolute -bottom-3 right-3 h-1.5 w-16 bg-brand-red md:right-0" aria-hidden="true" />
+              <div className="relative border-l-0 border-brand-petrol/15 text-left md:min-w-48 md:border-l md:pl-9 md:text-center" aria-label="Certificação como Ponto de Cultura em 2025">
+                <span className="block text-5xl font-bold leading-none text-brand-petrol md:text-6xl">2025</span>
+                <span className="mt-2 block text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">Ponto de Cultura</span>
               </div>
             </div>
           </aside>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-brand-petrol py-12 md:py-16 lg:py-20">
-        <HatchedCircle size={210} color="#08B9E6" className="absolute -bottom-20 -right-12 opacity-20" />
-        <ArcThick color="#FFB400" className="absolute -left-6 top-8 w-32" from={210} to={340} />
-        <div className="container-x grid gap-10 lg:grid-cols-[1.08fr_.92fr] items-center">
-          <div className="relative overflow-hidden rounded-md aspect-[16/10]">
-            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1400&q=80" alt="Pessoas compartilhando uma atividade comunitária" className="h-full w-full object-cover" loading="lazy" />
-            <div className="absolute inset-0 bg-brand-petrol/20" />
+      <section className="relative overflow-hidden border-b border-brand-petrol/10 bg-white py-12 md:py-16 lg:py-20">
+        <HatchedCircle size={130} color="#08B9E6" className="pointer-events-none absolute -bottom-12 -right-8 opacity-15" />
+        <div className="container-x grid items-center gap-10 lg:grid-cols-[.9fr_1.1fr] lg:gap-16">
+          <div className="relative mx-auto w-full max-w-lg">
+            <div className="aspect-[16/11] overflow-hidden rounded-[5rem_0.75rem_0.75rem_0.75rem] bg-brand-soft">
+              <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1400&q=80" alt="Pessoas compartilhando uma atividade comunitária" className="h-full w-full object-cover" loading="lazy" />
+            </div>
+            <span className="absolute -bottom-3 left-8 h-1.5 w-24 rounded-full bg-brand-gold" aria-hidden="true" />
+            <span className="absolute -right-3 top-8 size-5 rotate-45 border-2 border-brand-red" aria-hidden="true" />
           </div>
-          <div className="relative text-white">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-gold">Território</p>
-            <h2 className="mt-3 text-white text-2xl md:text-3xl leading-tight">Benedito Bentes: território de onde partimos e com quem construímos.</h2>
-            <p className="mt-5 leading-relaxed text-white/90">O Benedito Bentes não é apenas o endereço da Associação. É território de relações, memórias, desafios, saberes e potências que ajudam a explicar por que e para quem o Ecossistema Maggu existe.</p>
-            <p className="mt-4 leading-relaxed text-white/90">É parte da identidade da Maggu e do modo como a organização pensa cultura, acesso, memória, formação e participação.</p>
+          <div className="relative max-w-2xl">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-red">Território</p>
+            <h2 className="mt-3 text-2xl leading-tight text-brand-ink md:text-3xl">Benedito Bentes: território de onde partimos e com quem construímos.</h2>
+            <p className="mt-5 leading-relaxed text-brand-gray">O Benedito Bentes não é apenas o endereço da Associação. É território de relações, memórias, desafios, saberes e potências que ajudam a explicar por que e para quem o Ecossistema Maggu existe.</p>
+            <p className="mt-4 leading-relaxed text-brand-gray">É parte da identidade da Maggu e do modo como a organização pensa cultura, acesso, memória, formação e participação.</p>
           </div>
         </div>
       </section>
@@ -180,7 +153,7 @@ function QuemSomos() {
         <div className="container-x">
           <SectionTitle align="center" eyebrow="O que nos orienta" title="Missão, visão e valores" text="Referências que orientam a atuação da Associação e conectam suas diferentes iniciativas." />
           <div className="grid gap-5 lg:grid-cols-3">
-            <article className="relative flex min-h-[330px] flex-col justify-between overflow-hidden bg-brand-petrol p-7 md:p-8">
+            <article className="relative flex min-h-[330px] flex-col justify-between overflow-hidden rounded-xl border border-primary-foreground/20 bg-brand-petrol/95 p-7 shadow-sm backdrop-blur-sm md:p-8">
               <ArcThick color="#08B9E6" className="pointer-events-none absolute -right-10 -top-12 w-36 opacity-35" from={190} to={330} />
               <Triangle color="#FFB400" size={42} className="pointer-events-none absolute right-8 top-10 opacity-90" rotate={18} />
               <p className="relative text-xs font-bold uppercase tracking-[0.22em] text-brand-gold">Missão</p>
@@ -190,7 +163,7 @@ function QuemSomos() {
               </div>
             </article>
 
-            <article className="relative flex min-h-[330px] flex-col justify-between overflow-hidden bg-brand-cyan p-7 md:p-8">
+            <article className="relative flex min-h-[330px] flex-col justify-between overflow-hidden rounded-xl border border-brand-petrol/15 bg-brand-cyan/90 p-7 shadow-sm backdrop-blur-sm md:p-8">
               <span className="pointer-events-none absolute -right-10 top-10 h-24 w-24 rounded-full border-[14px] border-brand-petrol/15" aria-hidden="true" />
               <span className="pointer-events-none absolute right-7 top-[5.3rem] h-px w-28 bg-brand-petrol/35" aria-hidden="true" />
               <p className="relative text-xs font-bold uppercase tracking-[0.22em] text-brand-petrol">Visão</p>
@@ -200,7 +173,7 @@ function QuemSomos() {
               </div>
             </article>
 
-            <article className="relative flex min-h-[330px] flex-col justify-between overflow-hidden bg-brand-gold p-7 md:p-8">
+            <article className="relative flex min-h-[330px] flex-col justify-between overflow-hidden rounded-xl border border-brand-petrol/15 bg-brand-gold/90 p-7 shadow-sm backdrop-blur-sm md:p-8">
               <DiamondsCluster color="#ED1C24" className="pointer-events-none absolute right-7 top-7 opacity-60" size={50} />
               <QuarterCircle corner="bl" color="#00384C" className="pointer-events-none absolute bottom-0 left-0 w-20 opacity-15" />
               <p className="relative text-xs font-bold uppercase tracking-[0.22em] text-brand-red">Valores</p>
