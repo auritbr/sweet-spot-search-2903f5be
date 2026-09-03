@@ -16,7 +16,7 @@ export function FinalCampaignCTA({ eyebrow, title, text, primary, secondary, ima
   const panelPosition = variant === "right" ? "md:ml-auto" : variant === "center" ? "md:mx-auto" : "md:mr-auto";
 
   return (
-    <section className="relative isolate overflow-hidden pb-5 pt-10 md:pb-7 md:pt-16">
+    <section className="relative isolate -mb-16 overflow-hidden pb-5 pt-10 md:pb-7 md:pt-16">
       <img src={image} alt="" loading="lazy" className="absolute inset-0 -z-30 h-full w-full object-cover" />
       <div className="absolute inset-0 -z-20 bg-brand-petrol/70" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-petrol/65 via-brand-petrol/20 to-brand-petrol/55" />

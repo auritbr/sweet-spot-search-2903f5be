@@ -145,7 +145,7 @@ function Equipe() {
         </div>
       </Section>
 
-      <section className="bg-white px-4 pb-4 pt-2 md:pb-6 md:pt-4">
+      <section className="-mb-16 bg-white px-4 pb-4 pt-2 md:pb-6 md:pt-4">
         <div className="container-x">
           <div className="relative mx-auto flex min-h-[300px] max-w-5xl items-center overflow-hidden rounded-2xl bg-brand-petrol px-6 py-10 md:px-12">
             <ArcThick color="#08B9E6" className="pointer-events-none absolute -right-10 -top-12 w-28 opacity-25 md:right-5 md:w-36" from={190} to={320} />
