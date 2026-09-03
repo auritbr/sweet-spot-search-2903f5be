@@ -149,11 +149,13 @@ function QuemSomos() {
         </div>
       </section>
 
-      <Section className="overflow-hidden bg-white">
+      <Section className="relative overflow-hidden bg-white">
+        <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-brand-petrol/10" aria-hidden="true" />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="O que nos orienta" title="Missão, visão e valores" text="Referências que orientam a atuação da Associação e conectam suas diferentes iniciativas." />
           <div className="grid gap-5 lg:grid-cols-3">
-            <article className="relative flex min-h-[330px] flex-col justify-between overflow-hidden rounded-xl border border-primary-foreground/20 bg-brand-petrol/95 p-7 shadow-sm backdrop-blur-sm md:p-8">
+            <article className="relative flex min-h-[330px] flex-col justify-between overflow-hidden rounded-[1.75rem] border border-primary-foreground/25 bg-brand-petrol/95 p-7 shadow-[0_18px_40px_-28px_rgba(0,56,76,0.65)] ring-1 ring-inset ring-primary-foreground/10 backdrop-blur-sm md:p-8">
+              <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-primary-foreground/25" aria-hidden="true" />
               <ArcThick color="#08B9E6" className="pointer-events-none absolute -right-10 -top-12 w-36 opacity-35" from={190} to={330} />
               <Triangle color="#FFB400" size={42} className="pointer-events-none absolute right-8 top-10 opacity-90" rotate={18} />
               <p className="relative text-xs font-bold uppercase tracking-[0.22em] text-brand-gold">Missão</p>
@@ -163,7 +165,8 @@ function QuemSomos() {
               </div>
             </article>
 
-            <article className="relative flex min-h-[330px] flex-col justify-between overflow-hidden rounded-xl border border-brand-petrol/15 bg-brand-cyan/90 p-7 shadow-sm backdrop-blur-sm md:p-8">
+            <article className="relative flex min-h-[330px] flex-col justify-between overflow-hidden rounded-[1.75rem] border border-brand-petrol/15 bg-brand-cyan/90 p-7 shadow-[0_18px_40px_-28px_rgba(0,56,76,0.5)] ring-1 ring-inset ring-white/25 backdrop-blur-sm md:p-8">
+              <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/45" aria-hidden="true" />
               <span className="pointer-events-none absolute -right-10 top-10 h-24 w-24 rounded-full border-[14px] border-brand-petrol/15" aria-hidden="true" />
               <span className="pointer-events-none absolute right-7 top-[5.3rem] h-px w-28 bg-brand-petrol/35" aria-hidden="true" />
               <p className="relative text-xs font-bold uppercase tracking-[0.22em] text-brand-petrol">Visão</p>
@@ -173,7 +176,8 @@ function QuemSomos() {
               </div>
             </article>
 
-            <article className="relative flex min-h-[330px] flex-col justify-between overflow-hidden rounded-xl border border-brand-petrol/15 bg-brand-gold/90 p-7 shadow-sm backdrop-blur-sm md:p-8">
+            <article className="relative flex min-h-[330px] flex-col justify-between overflow-hidden rounded-[1.75rem] border border-brand-petrol/15 bg-brand-gold/90 p-7 shadow-[0_18px_40px_-28px_rgba(0,56,76,0.5)] ring-1 ring-inset ring-white/25 backdrop-blur-sm md:p-8">
+              <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/50" aria-hidden="true" />
               <DiamondsCluster color="#ED1C24" className="pointer-events-none absolute right-7 top-7 opacity-60" size={50} />
               <QuarterCircle corner="bl" color="#00384C" className="pointer-events-none absolute bottom-0 left-0 w-20 opacity-15" />
               <p className="relative text-xs font-bold uppercase tracking-[0.22em] text-brand-red">Valores</p>
@@ -189,6 +193,7 @@ function QuemSomos() {
           </div>
         </div>
       </Section>
+
 
       <Section className="overflow-hidden bg-brand-soft">
         <div className="container-x">
@@ -217,13 +222,10 @@ function QuemSomos() {
           <h3 className="mt-2 text-xs font-bold uppercase tracking-[0.22em] text-brand-red">Diretoria</h3>
           <div className="mx-auto mt-7 grid max-w-3xl gap-5 sm:grid-cols-2">
             {directors.map((director, index) => (
-              <article key={director.name} className={`relative flex aspect-[4/5] min-h-0 flex-col overflow-hidden text-left ${director.tone}`}>
-                <div className="relative flex-1 overflow-hidden bg-background/10" aria-label={`Espaço reservado para fotografia de ${director.name}`}>
-                  <div className="absolute inset-x-[22%] bottom-0 top-[16%] rounded-t-full bg-background/15" aria-hidden="true" />
-                  <div className="absolute left-1/2 top-[18%] size-20 -translate-x-1/2 rounded-full border border-current opacity-25 md:size-24" aria-hidden="true" />
-                  <div className="absolute bottom-0 left-1/2 h-[48%] w-[58%] -translate-x-1/2 rounded-t-[50%] border border-current opacity-20" aria-hidden="true" />
-                  <span className="absolute bottom-5 left-5 text-[10px] font-semibold uppercase tracking-[0.16em] opacity-65">Fotografia em breve</span>
-                  {index === 0 ? <ArcThick color="#08B9E6" className="absolute -right-8 -top-9 w-24 opacity-65" from={190} to={330} /> : <HatchedCircle size={86} color="#ED1C24" className="absolute -right-5 -top-5 opacity-30" />}
+              <article key={director.name} className={`relative flex min-h-0 flex-col overflow-hidden rounded-2xl text-left shadow-sm ring-1 ring-brand-petrol/10 ${director.tone}`}>
+                <div className="relative aspect-[4/3] overflow-hidden bg-background/10">
+                  <img src={director.photo} alt={`Retrato de ${director.name}`} className="h-full w-full object-cover" loading="lazy" />
+                  {index === 0 ? <ArcThick color="#08B9E6" className="pointer-events-none absolute -right-8 -top-9 w-24 opacity-60" from={190} to={330} /> : <HatchedCircle size={86} color="#ED1C24" className="pointer-events-none absolute -right-5 -top-5 opacity-25" />}
                 </div>
                 <div className="relative p-5 md:p-6">
                   <span className={`absolute left-5 top-0 h-1 w-14 -translate-y-1/2 ${director.accent}`} aria-hidden="true" />
@@ -233,6 +235,7 @@ function QuemSomos() {
               </article>
             ))}
           </div>
+
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link to="/equipe" className="inline-flex rounded-full bg-brand-petrol px-6 py-2.5 text-sm font-bold text-primary-foreground transition hover:bg-brand-red">Conheça nossa equipe</Link>
             <Link to="/transparencia" className="inline-flex rounded-full border-2 border-brand-petrol px-6 py-2.5 text-sm font-bold text-brand-petrol transition hover:bg-brand-soft">Acesse a Transparência</Link>
