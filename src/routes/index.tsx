@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { Clock3, MapPin } from "lucide-react";
 import { slides, albums } from "@/data/site";
 import { Section, SectionTitle } from "@/components/PageHero";
-import { AgendaStatusBadge } from "@/components/AgendaCard";
 import { Button } from "@/components/ui/button";
+import { EventPreviewPanel } from "@/components/EventPreviewPanel";
 import { FinalCampaignCTA } from "@/components/FinalCampaignCTA";
-import { eventDayMonth, upcomingEvents } from "@/data/agenda";
+import { agendaCategoryStyles, eventDayMonth, upcomingEvents, type AgendaEvent } from "@/data/agenda";
 import { HatchedCircle, ArcThick, BrushStroke, DiamondsCluster, QuarterCircle, Triangle } from "@/components/Shapes";
 
 export const Route = createFileRoute("/")({
@@ -108,9 +109,9 @@ function HeroCarousel() {
           </h1>
           <BrushStroke color="#FFB400" className="mt-3 w-28" />
           <p className="mt-3 max-w-2xl text-[14px] leading-[1.55] text-primary-foreground/90 md:text-[15px] lg:text-[17px]">{s.text}</p>
-          <div className="mt-5 flex flex-wrap gap-3">
+          <div className="mt-5 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap">
             {s.buttons.map((b, k) => (
-              <Link key={k} to={b.to} className={`px-6 py-3 rounded-full text-sm ${k === 0 ? "bg-brand-red text-white hover:bg-brand-red/90" : "bg-white text-brand-ink hover:bg-brand-gold"} transition`} style={{ fontWeight: 600 }}>
+              <Link key={k} to={b.to} className={`inline-flex w-auto max-w-full items-center justify-center whitespace-nowrap rounded-full border px-5 py-2.5 text-[13px] shadow-sm backdrop-blur-md transition sm:px-6 sm:py-3 sm:text-sm ${k === 0 ? "border-primary-foreground/20 bg-brand-red/85 text-white hover:bg-brand-red" : "border-primary-foreground/20 bg-background/85 text-brand-ink hover:bg-brand-gold"}`} style={{ fontWeight: 600 }}>
                 {b.label}
               </Link>
             ))}
@@ -164,43 +165,31 @@ function IntroSection() {
   );
 }
 
-const axesSummary = [
-  { title: "Arte, Cultura & Formação", phrase: "Criar, experimentar, aprender e apresentar.", className: "bg-brand-red text-white", shape: "circle" },
-  { title: "Audiovisual & Comunicação", phrase: "Ver, ouvir, conversar e comunicar.", className: "bg-brand-cyan text-brand-petrol", shape: "arc" },
-  { title: "Livro, Leitura & Memória", phrase: "Ler, lembrar e pertencer.", className: "bg-brand-gold text-brand-petrol", shape: "diamond" },
-  { title: "Infância, Cidadania & Território", phrase: "Brincar, conviver e participar.", className: "bg-brand-orange text-brand-petrol", shape: "arc" },
-  { title: "Esporte, Bem-estar & Inclusão", phrase: "Mover, aprender e conviver.", className: "bg-brand-petrol text-white", shape: "circle" },
-  { title: "Sustentabilidade & Desenvolvimento", phrase: "Criar também é cuidar.", className: "bg-brand-lime text-brand-petrol", shape: "diamond" },
-];
-
 function EcosystemSection() {
   return (
-    <Section className="bg-brand-soft overflow-hidden">
-      <div className="container-x">
-        <SectionTitle
-          eyebrow="Ecossistema Maggu"
-          title="Diferentes áreas. Uma atuação conectada."
-          text="A atuação da Maggu está organizada em seis eixos que ajudam a compreender sua diversidade sem separar aquilo que, na prática, se conecta."
-        />
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {axesSummary.map((axis) => (
-            <li key={axis.title} className={`relative min-h-36 overflow-hidden rounded-md p-5 ${axis.className}`}>
-              <span className="absolute -right-6 -top-6 opacity-30" aria-hidden="true">
-                {axis.shape === "circle" ? (
-                  <HatchedCircle size={96} color="#FFFFFF" />
-                ) : axis.shape === "arc" ? (
-                  <ArcThick color="#FFFFFF" className="w-24" from={120} to={280} />
-                ) : (
-                  <DiamondsCluster color="#FFFFFF" size={44} />
-                )}
-              </span>
-              <h3 className="relative text-lg leading-snug text-inherit">{axis.title}</h3>
-              <p className="relative mt-2 text-sm opacity-90">{axis.phrase}</p>
-            </li>
-          ))}
-        </ul>
-        <div className="mt-9">
-          <Link to="/ecossistema" className="inline-flex rounded-full bg-brand-petrol px-7 py-3 text-sm font-bold text-white transition hover:bg-brand-red">Explorar o Ecossistema</Link>
+    <Section className="overflow-hidden bg-brand-soft py-14 md:py-20">
+      <div className="container-x grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="max-w-xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Ecossistema Maggu</p>
+          <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.65rem)", lineHeight: 1.15, fontWeight: 700 }}>Diferentes formas de atuar. Um mesmo território.</h2>
+          <div className="mt-5 space-y-3 leading-relaxed text-brand-gray">
+            <p>A Maggu conecta cultura, formação, memória, comunicação, infância, esporte e sustentabilidade em uma atuação construída de forma integrada.</p>
+            <p>Seis eixos ajudam a compreender essa diversidade sem separar aquilo que, na prática, se conecta.</p>
+          </div>
+          <Link to="/ecossistema" className="mt-7 inline-flex rounded-full bg-brand-petrol px-7 py-3 text-sm font-bold text-white transition hover:bg-brand-red">Conheça o Ecossistema</Link>
+        </div>
+        <div className="relative mx-auto aspect-square w-full max-w-[430px]" role="img" aria-label="Composição gráfica abstrata representando os seis eixos conectados do Ecossistema Maggu">
+          <svg className="absolute inset-0 h-full w-full" viewBox="0 0 430 430" fill="none" aria-hidden="true">
+            <path d="M80 129C145 48 280 52 346 129M71 226C130 176 300 176 359 226M92 310C174 374 275 366 341 302M120 90L316 332M320 92L104 320" stroke="var(--brand-petrol)" strokeOpacity=".12" strokeWidth="2" />
+            <circle cx="214" cy="214" r="70" stroke="var(--brand-petrol)" strokeOpacity=".1" />
+          </svg>
+          {[
+            ["Arte", "bg-brand-red", "left-[7%] top-[15%]"], ["Audiovisual", "bg-brand-cyan", "right-[3%] top-[20%]"],
+            ["Memória", "bg-brand-gold", "left-[1%] top-[52%]"], ["Infância", "bg-brand-orange", "right-[2%] top-[50%]"],
+            ["Esporte", "bg-brand-petrol", "bottom-[4%] left-[18%]"], ["Sustentabilidade", "bg-brand-lime", "bottom-[8%] right-[9%]"],
+          ].map(([label, color, position]) => <span key={label} className={`absolute inline-flex items-center gap-2 rounded-full border border-brand-petrol/10 bg-background/80 px-3 py-2 text-xs font-semibold text-brand-ink shadow-sm backdrop-blur-sm ${position}`}><span className={`size-2.5 rounded-full ${color}`} aria-hidden="true" />{label}</span>)}
+          <HatchedCircle size={92} color="#08B9E6" className="pointer-events-none absolute left-[38%] top-[38%] opacity-25" />
+          <span className="absolute left-1/2 top-1/2 grid size-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-brand-petrol text-center text-[11px] font-bold uppercase tracking-[0.1em] text-primary-foreground shadow-md">Território</span>
         </div>
       </div>
     </Section>
@@ -272,42 +261,34 @@ function CulturePointSection() {
 
 function AgendaSection() {
   const events = upcomingEvents(3);
+  const [selectedEvent, setSelectedEvent] = useState<AgendaEvent | null>(null);
   return (
-    <Section className="overflow-hidden bg-white">
-      <div className="container-x grid gap-10 lg:grid-cols-[.78fr_1.22fr] lg:gap-16">
-        <div>
-          <SectionTitle
-            eyebrow="Agenda"
-            title="Acontecendo agora"
-            text="Cursos, sessões, oficinas, apresentações, encontros e outras atividades do Ecossistema Maggu."
-          />
-          <div className="flex flex-wrap items-center gap-4">
-            <Link to="/agenda" className="inline-flex rounded-full bg-brand-petrol px-7 py-3 text-sm font-bold text-white transition hover:bg-brand-red">Ver Agenda</Link>
-            {!events.length && (
-              <Link to="/projetos" className="text-sm font-bold text-brand-petrol underline decoration-brand-red decoration-2 underline-offset-4 transition hover:text-brand-red">Conheça os projetos</Link>
-            )}
+    <Section className="overflow-hidden bg-background py-14 md:py-20">
+      <div className="container-x">
+        <div className="grid items-end gap-5 sm:grid-cols-[minmax(0,1fr)_auto]">
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Agenda</p>
+            <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.65rem)", lineHeight: 1.15, fontWeight: 700 }}>O que está acontecendo</h2>
+            <p className="mt-4 leading-relaxed text-brand-gray">Confira as próximas atividades, encontros e ações do Ecossistema Maggu.</p>
           </div>
+          <Link to="/agenda" className="inline-flex w-fit rounded-full bg-brand-petrol px-6 py-3 text-sm font-bold text-white transition hover:bg-brand-red">Ver agenda completa</Link>
         </div>
         {events.length ? (
-          <div className="border-t border-brand-petrol/15">
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
             {events.map((event) => {
               const { day, month } = eventDayMonth(event.date);
+              const style = agendaCategoryStyles[event.category];
               return (
-                <article key={event.slug} className="grid gap-4 border-b border-brand-petrol/15 py-6 sm:grid-cols-[4.5rem_1fr_auto] sm:items-center">
-                  <time dateTime={event.date} className="text-brand-red">
-                    <span className="block text-2xl font-bold leading-none">{day}</span>
-                    <span className="mt-1 block text-xs font-bold uppercase tracking-[0.18em]">{month}</span>
-                  </time>
-                  <div className="min-w-0">
-                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-red">{event.category}</p>
-                    <h3 className="mt-1 text-lg leading-snug text-brand-ink">{event.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-brand-gray">{[event.time, event.location, event.summary].filter(Boolean).join(" · ")}</p>
-                  </div>
-                  <div className="flex flex-col items-start gap-3 sm:items-end">
-                    <AgendaStatusBadge event={event} />
-                    <Link to="/agenda/$slug" params={{ slug: event.slug }} className="rounded-full border-2 border-brand-petrol px-5 py-2 text-sm font-bold text-brand-petrol transition hover:bg-brand-soft">Saiba mais</Link>
-                  </div>
-                </article>
+                <Button key={event.slug} type="button" variant="ghost" onClick={() => setSelectedEvent(event)} aria-label={`Ver detalhes de ${event.title}`} className="group grid h-auto min-h-56 w-full grid-cols-[4rem_minmax(0,1fr)] items-start gap-4 rounded-2xl border border-brand-petrol/10 bg-background/75 p-5 text-left shadow-sm backdrop-blur-sm transition hover:-translate-y-1 hover:border-brand-petrol/20 hover:bg-background hover:shadow-md">
+                  <time dateTime={event.date} className={`border-r border-brand-petrol/10 pr-4 text-center ${style.accentText}`}><span className="block text-3xl font-bold leading-none">{day}</span><span className="mt-1 block text-[11px] font-bold uppercase tracking-[0.12em]">{month}</span></time>
+                  <span className="min-w-0">
+                    <span className={`block text-[10px] font-bold uppercase tracking-[0.12em] ${style.text}`}>{event.category}</span>
+                    <span className="mt-2 block text-lg font-bold leading-snug text-brand-ink transition group-hover:text-brand-red">{event.title}</span>
+                    {event.time && <span className="mt-4 flex items-center gap-2 text-xs text-brand-gray"><Clock3 className="size-3.5" aria-hidden="true" />{event.time}</span>}
+                    {event.location && <span className="mt-2 flex items-start gap-2 text-xs text-brand-gray"><MapPin className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />{event.location}</span>}
+                    {event.status && <span className={`mt-4 inline-flex rounded-full border border-current bg-background/60 px-2.5 py-1 text-[10px] font-semibold ${style.accentText}`}>{event.status === "inscricoes-abertas" ? "Inscrições abertas" : event.status === "ultimas-vagas" ? "Últimas vagas" : event.status === "inscricoes-encerradas" ? "Inscrições encerradas" : "Em breve"}</span>}
+                  </span>
+                </Button>
               );
             })}
           </div>
@@ -318,6 +299,7 @@ function AgendaSection() {
           </div>
         )}
       </div>
+      <EventPreviewPanel event={selectedEvent} onOpenChange={(open) => { if (!open) setSelectedEvent(null); }} />
     </Section>
   );
 }
@@ -348,17 +330,24 @@ function MemorySection() {
 
 function TransparencySection() {
   return (
-    <section className="relative overflow-hidden bg-white pb-24 pt-12 md:pb-32 md:pt-16">
-      <Triangle color="#FFB400" size={48} className="pointer-events-none absolute right-8 top-12 hidden opacity-70 md:block" rotate={18} />
-      <div className="container-x relative mx-auto max-w-3xl text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Transparência</p>
-        <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.5rem, 2.2vw, 2.1rem)", lineHeight: 1.2, fontWeight: 700 }}>
-          Informação acessível. Gestão responsável.
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-brand-gray" style={{ lineHeight: 1.7 }}>
-          Documentos, informações de governança, políticas e registros institucionais reunidos em um espaço próprio para facilitar o acesso público.
-        </p>
-        <Link to="/transparencia" className="mt-7 inline-flex rounded-full bg-brand-gold px-7 py-3 text-sm font-bold text-brand-petrol transition hover:bg-white">Acessar Transparência</Link>
+    <section className="relative overflow-hidden bg-background pb-20 pt-14 md:pb-24 md:pt-20">
+      <div className="container-x">
+        <div className="mx-auto grid max-w-5xl overflow-hidden rounded-2xl border border-brand-petrol/10 bg-brand-soft/45 shadow-sm md:grid-cols-[1.4fr_.6fr]">
+          <div className="p-7 md:p-10 lg:p-12">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Transparência</p>
+            <h2 className="mt-3 max-w-2xl text-brand-ink" style={{ fontSize: "clamp(1.55rem, 2.3vw, 2.2rem)", lineHeight: 1.2, fontWeight: 700 }}>Responsabilidade também faz parte da nossa atuação.</h2>
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-brand-gray md:text-base">Documentos, políticas, informações institucionais e canais de integridade reunidos para ampliar o acesso público e fortalecer a confiança.</p>
+            <Link to="/transparencia" className="mt-6 inline-flex rounded-full bg-brand-gold px-6 py-3 text-sm font-bold text-brand-petrol transition hover:bg-brand-cyan">Acessar Transparência</Link>
+          </div>
+          <div className="relative min-h-52 overflow-hidden bg-brand-petrol/95 md:min-h-full" aria-hidden="true">
+            <span className="absolute left-[18%] top-[18%] h-[62%] w-[48%] rotate-[-5deg] rounded-md border border-primary-foreground/30 bg-background/10 backdrop-blur-sm" />
+            <span className="absolute left-[31%] top-[27%] h-[58%] w-[49%] rotate-[6deg] rounded-md border border-primary-foreground/30 bg-background/15 backdrop-blur-sm" />
+            <span className="absolute left-[43%] top-[39%] h-px w-[24%] bg-brand-gold" />
+            <span className="absolute left-[43%] top-[50%] h-px w-[31%] bg-primary-foreground/45" />
+            <span className="absolute left-[43%] top-[61%] h-px w-[23%] bg-primary-foreground/45" />
+            <span className="absolute bottom-[18%] right-[14%] grid size-11 place-items-center rounded-full border border-brand-cyan/50 bg-brand-cyan/15 text-xl font-bold text-brand-cyan">✓</span>
+          </div>
+        </div>
       </div>
     </section>
   );

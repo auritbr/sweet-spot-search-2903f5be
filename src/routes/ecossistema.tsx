@@ -277,23 +277,23 @@ function Ecossistema() {
       </section>
 
 
-      <Section className="relative overflow-hidden bg-background pb-16 pt-14 md:pb-20 md:pt-20">
-        <div className="container-x grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,.72fr)] lg:gap-16">
+      <Section className="relative overflow-hidden bg-background pb-12 pt-12 md:pb-16 md:pt-16">
+        <div className="container-x">
+          <div className="mx-auto grid max-w-5xl items-center gap-7 lg:grid-cols-[minmax(0,1.45fr)_minmax(280px,.75fr)] lg:gap-12">
           <div className="relative max-w-2xl">
-            <span className="mb-5 block h-1 w-12 rounded-full bg-brand-gold" aria-hidden="true" />
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Uma atuação integrada</p>
-            <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.15, fontWeight: 700 }}>Organizar não significa separar.</h2>
-            <div className="mt-5 space-y-4 leading-relaxed text-brand-gray">
+            <h2 className="mt-2 text-brand-ink" style={{ fontSize: "clamp(1.55rem, 2.3vw, 2.2rem)", lineHeight: 1.18, fontWeight: 700 }}>Organizar não significa separar.</h2>
+            <div className="mt-4 space-y-3 text-sm leading-relaxed text-brand-gray md:text-[15px]">
               <p>Os eixos tornam mais fácil compreender a diversidade da Maggu, enquanto as conexões entre eles preservam aquilo que caracteriza sua atuação: diferentes linguagens, públicos e experiências compartilhando um mesmo território.</p>
               <p>É assim que teatro pode dialogar com memória, audiovisual pode se tornar formação, esporte pode fortalecer convivência e sustentabilidade pode se transformar em processo criativo.</p>
             </div>
           </div>
-          <blockquote className="relative overflow-hidden rounded-2xl bg-brand-petrol px-7 py-8 text-primary-foreground shadow-sm md:px-9 md:py-10">
-            <ArcThick color="#08B9E6" className="pointer-events-none absolute -right-10 -top-10 w-28 opacity-30" from={120} to={280} />
-            <span className="relative text-4xl font-bold leading-none text-brand-gold" aria-hidden="true">“</span>
-            <p className="relative mt-2 text-xl font-bold leading-snug text-primary-foreground md:text-2xl">O território é o ponto de encontro entre essas diferentes formas de atuar.</p>
-            <span className="relative mt-6 block size-2 rotate-45 bg-brand-red" aria-hidden="true" />
+          <blockquote className="relative border-l-2 border-brand-gold bg-brand-soft/45 py-5 pl-6 pr-5">
+            <span className="absolute -left-1.5 top-5 size-2.5 rotate-45 bg-brand-red" aria-hidden="true" />
+            <span className="text-3xl font-bold leading-none text-brand-gold" aria-hidden="true">“</span>
+            <p className="mt-1 text-lg font-semibold leading-snug text-brand-ink">O território é o ponto de encontro entre essas diferentes formas de atuar.</p>
           </blockquote>
+          </div>
         </div>
       </Section>
 
