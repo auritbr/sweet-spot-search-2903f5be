@@ -1,6 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { HeroButton, PageHero, Section, SectionTitle } from "@/components/PageHero";
-import { Button } from "@/components/ui/button";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { ArcThick, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
 
@@ -25,7 +24,9 @@ const axes = [
     title: "Arte, Cultura & Formação",
     phrase: "Criar, experimentar, aprender e apresentar.",
     text: "Reúne teatro, formação artística, produções e experiências que aproximam pessoas da criação e da vida cultural.",
-    classes: "bg-brand-red text-primary-foreground lg:col-span-7",
+    band: "bg-brand-red",
+    bandText: "text-primary-foreground",
+    phraseText: "text-brand-red",
     accent: "#FFB400",
     layout: "shape",
   },
@@ -33,7 +34,9 @@ const axes = [
     title: "Audiovisual & Comunicação",
     phrase: "Ver, ouvir, conversar e comunicar.",
     text: "Cinema, cineclubismo, rádio, audiovisual e meios digitais como espaços de repertório, expressão e participação.",
-    classes: "bg-brand-cyan text-brand-petrol lg:col-span-5",
+    band: "bg-brand-cyan",
+    bandText: "text-brand-petrol",
+    phraseText: "text-brand-petrol",
     accent: "#00384C",
     layout: "arc",
   },
@@ -41,7 +44,9 @@ const axes = [
     title: "Livro, Leitura & Memória",
     phrase: "Ler, lembrar e pertencer.",
     text: "Livros, histórias, acervos e narrativas que fortalecem leitura, memória e vínculo com o território.",
-    classes: "bg-brand-gold text-brand-petrol lg:col-span-5",
+    band: "bg-brand-gold",
+    bandText: "text-brand-petrol",
+    phraseText: "text-brand-petrol",
     accent: "#ED1C24",
     layout: "split",
   },
@@ -49,7 +54,9 @@ const axes = [
     title: "Infância, Cidadania & Território",
     phrase: "Brincar, conviver e participar.",
     text: "Ações que reconhecem infância, convivência, cultura e participação comunitária como dimensões de direitos.",
-    classes: "bg-brand-orange text-brand-petrol lg:col-span-7",
+    band: "bg-brand-orange",
+    bandText: "text-brand-petrol",
+    phraseText: "text-brand-petrol",
     accent: "#00384C",
     layout: "shape",
   },
@@ -57,7 +64,9 @@ const axes = [
     title: "Esporte, Bem-estar & Inclusão",
     phrase: "Mover, aprender e conviver.",
     text: "O esporte e o lazer como caminhos de formação, saúde, disciplina, inclusão e desenvolvimento humano.",
-    classes: "bg-brand-petrol text-primary-foreground lg:col-span-7",
+    band: "bg-brand-petrol",
+    bandText: "text-primary-foreground",
+    phraseText: "text-brand-petrol",
     accent: "#08B9E6",
     layout: "split",
   },
@@ -65,7 +74,9 @@ const axes = [
     title: "Sustentabilidade & Desenvolvimento",
     phrase: "Criar também é cuidar.",
     text: "Arte sustentável, ODS, reaproveitamento, colaboração, economia solidária e desenvolvimento local responsável.",
-    classes: "bg-brand-lime text-brand-petrol lg:col-span-5",
+    band: "bg-brand-lime",
+    bandText: "text-brand-petrol",
+    phraseText: "text-brand-petrol",
     accent: "#FFB400",
     layout: "arc",
   },
@@ -176,7 +187,7 @@ function Ecossistema() {
       </PageHero>
 
       <Section className="overflow-hidden bg-background">
-        <div className="container-x grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-14">
+        <div className="container-x grid items-center gap-10 lg:grid-cols-[1.02fr_.98fr] lg:gap-16">
           <div>
             <SectionTitle eyebrow="A lógica do Ecossistema" title="Muitas frentes. Um mesmo compromisso com o território." />
             <div className="max-w-2xl space-y-4 leading-relaxed text-brand-gray">
@@ -191,62 +202,72 @@ function Ecossistema() {
       <section id="eixos" className="scroll-mt-24 overflow-hidden bg-brand-soft py-12 md:py-20">
         <div className="container-x">
           <SectionTitle eyebrow="Seis eixos" title="Seis eixos para compreender uma atuação integrada." text="Cada eixo reúne iniciativas com características próprias e ajuda a compreender diferentes dimensões da atuação da Associação." align="center" />
-          <div className="grid gap-5 lg:grid-cols-12">
+          <div className="grid gap-6 md:grid-cols-2 lg:gap-7">
             {axes.map((axis, index) => (
-              <article key={axis.title} className={`relative flex min-h-[270px] flex-col justify-end overflow-hidden rounded-md p-7 md:min-h-[290px] md:p-9 ${axis.classes}`}>
-                {axis.layout === "arc" ? (
-                  <ArcThick color={axis.accent} className="absolute -right-6 -top-8 w-36 opacity-60" from={120} to={280} />
-                ) : axis.layout === "split" ? (
-                  <div className="absolute right-0 top-0 h-full w-2/5 opacity-25" aria-hidden="true">
-                    <HatchedCircle size={220} color={axis.accent} className="absolute -right-14 top-2 max-w-none" />
-                  </div>
-                ) : (
-                  <>
-                    <QuarterCircle corner={index === 0 ? "tr" : "br"} color={axis.accent} className="absolute -right-2 -top-2 w-32 opacity-65" />
-                    <Triangle color={axis.accent} size={42} className="absolute left-8 top-8 opacity-80" rotate={index * 9} />
-                  </>
-                )}
-                <p className="relative text-xs font-bold uppercase tracking-[0.2em] opacity-80">Eixo {String(index + 1).padStart(2, "0")}</p>
-                <h2 className="relative mt-3 text-2xl leading-tight text-inherit md:text-3xl">{axis.title}</h2>
-                <p className="relative mt-3 font-bold">{axis.phrase}</p>
-                <p className="relative mt-3 max-w-2xl leading-relaxed opacity-90">{axis.text}</p>
+              <article key={axis.title} className="group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-brand-petrol/10 bg-white/85 shadow-[0_10px_30px_-24px_rgba(0,56,76,0.55)] backdrop-blur-sm transition-shadow duration-300 hover:shadow-[0_18px_40px_-26px_rgba(0,56,76,0.6)]">
+                <div className={`relative flex h-[104px] items-end overflow-hidden px-6 pb-4 md:h-[112px] md:px-7 ${axis.band} ${axis.bandText}`}>
+                  {axis.layout === "arc" ? (
+                    <ArcThick color={axis.accent} className="pointer-events-none absolute -right-6 -top-10 w-32 opacity-55" from={120} to={280} />
+                  ) : axis.layout === "split" ? (
+                    <HatchedCircle size={170} color={axis.accent} className="pointer-events-none absolute -right-12 -top-8 max-w-none opacity-25" />
+                  ) : (
+                    <>
+                      <QuarterCircle corner="tr" color={axis.accent} className="pointer-events-none absolute -right-3 -top-3 w-24 opacity-60" />
+                      <Triangle color={axis.accent} size={34} className="pointer-events-none absolute right-24 top-5 opacity-80" rotate={index * 12} />
+                    </>
+                  )}
+                  <p className="relative text-[11px] font-bold uppercase tracking-[0.24em] opacity-85">Eixo {String(index + 1).padStart(2, "0")}</p>
+                </div>
+                <div className="flex flex-1 flex-col px-6 py-6 md:px-7 md:py-7">
+                  <h2 className="text-[1.35rem] leading-tight text-brand-ink md:text-[1.55rem]">{axis.title}</h2>
+                  <p className={`mt-2.5 text-sm font-semibold ${axis.phraseText}`}>{axis.phrase}</p>
+                  <span className="mt-4 h-px w-12 rounded-full" style={{ backgroundColor: axis.accent }} aria-hidden="true" />
+                  <p className="mt-4 text-[15px] leading-[1.75] text-brand-gray">{axis.text}</p>
+                </div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-brand-petrol py-14 md:py-20">
-        <ArcThick color="#FFB400" className="absolute -left-8 -top-8 w-28 opacity-70" from={210} to={340} />
-        <HatchedCircle size={130} color="#08B9E6" className="absolute -bottom-10 -right-7 opacity-15" />
+      <section className="relative overflow-hidden bg-background py-14 md:py-20">
+        <ArcThick color="#FFB400" className="pointer-events-none absolute -left-10 top-10 w-24 opacity-30 md:w-28" from={210} to={340} />
+        <span className="pointer-events-none absolute right-8 top-14 hidden size-2.5 rotate-45 bg-brand-red md:block" aria-hidden="true" />
+        <HatchedCircle size={120} color="#08B9E6" className="pointer-events-none absolute -bottom-10 -right-8 opacity-15" />
         <div className="container-x relative">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl text-primary-foreground md:text-3xl">Os eixos se conectam na prática.</h2>
-            <p className="mx-auto mt-3 max-w-xl leading-relaxed text-primary-foreground/85">Uma mesma iniciativa pode reunir diferentes dimensões da atuação da Maggu.</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Conceitos transversais</p>
+            <h2 className="mt-3 text-[1.75rem] leading-tight text-brand-ink md:text-[2.15rem]">Os eixos se conectam na prática.</h2>
+            <p className="mx-auto mt-4 max-w-xl leading-relaxed text-brand-gray">Uma mesma iniciativa pode reunir diferentes dimensões da atuação da Maggu.</p>
           </div>
-          <div className="mx-auto mt-10 max-w-6xl rounded-md border border-primary-foreground/15 bg-background/5 px-5 py-7 backdrop-blur-sm md:px-8 md:py-8">
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/65">Conceitos transversais</p>
-            <ol className="relative mx-auto mt-7 grid max-w-sm gap-0 pl-2 md:max-w-none md:grid-cols-6 md:pl-0" aria-label="Conceitos transversais conectados">
-              <span className="absolute bottom-6 left-[1.9rem] top-6 w-px bg-brand-cyan/70 md:bottom-auto md:left-[8.33%] md:right-[8.33%] md:top-6 md:h-px md:w-auto" aria-hidden="true" />
+          <div className="relative mx-auto mt-12 max-w-4xl">
+            <svg className="pointer-events-none absolute inset-0 hidden h-full w-full md:block" viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M16 18 H50 H84 M16 42 H50 H84 M16 18 V42 M50 18 V42 M84 18 V42" stroke="#00384C" strokeOpacity="0.16" strokeWidth="0.4" fill="none" strokeDasharray="1.6 2.2" />
+            </svg>
+            <ul className="relative grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 md:gap-7">
               {[
-                ["Formação", "bg-brand-red text-primary-foreground"],
-                ["Criação", "bg-brand-gold text-brand-petrol"],
-                ["Território", "bg-brand-cyan text-brand-petrol"],
-                ["Memória", "bg-brand-red text-primary-foreground"],
-                ["Comunicação", "bg-brand-gold text-brand-petrol"],
-                ["Redes", "bg-brand-cyan text-brand-petrol"],
-              ].map(([item, accent], index) => (
-                <li key={item} className="group relative z-10 flex min-h-20 items-center gap-4 md:min-h-0 md:flex-col md:gap-3 md:text-center">
-                  <span className={`flex size-11 shrink-0 items-center justify-center rounded-full border border-primary-foreground/35 text-[10px] font-bold shadow-sm ring-4 ring-brand-petrol transition-transform duration-300 group-hover:scale-105 ${accent}`}>
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span className="rounded-full border border-primary-foreground/15 bg-background/10 px-3 py-1.5 text-sm font-semibold text-primary-foreground backdrop-blur-sm">{item}</span>
+                ["Formação", "#ED1C24"],
+                ["Criação", "#FFB400"],
+                ["Território", "#08B9E6"],
+                ["Memória", "#FF7A00"],
+                ["Comunicação", "#00384C"],
+                ["Redes", "#B8DC4B"],
+              ].map(([item, color]) => (
+                <li
+                  key={item}
+                  className="group relative flex min-h-[112px] flex-col justify-between overflow-hidden rounded-2xl border border-brand-petrol/10 bg-white/70 p-5 shadow-[0_8px_24px_-22px_rgba(0,56,76,0.6)] backdrop-blur-md transition-transform duration-300 hover:-translate-y-0.5"
+                >
+                  <span className="absolute right-4 top-4 size-2.5 rounded-full opacity-80" style={{ backgroundColor: color }} aria-hidden="true" />
+                  <span className="absolute -bottom-6 -left-6 size-16 rounded-full opacity-10" style={{ backgroundColor: color }} aria-hidden="true" />
+                  <span className="relative h-px w-8 rounded-full" style={{ backgroundColor: color }} aria-hidden="true" />
+                  <p className="relative text-base font-semibold text-brand-ink md:text-lg">{item}</p>
                 </li>
               ))}
-            </ol>
+            </ul>
           </div>
         </div>
       </section>
+
 
       <Section className="bg-background">
         <div className="container-x">
@@ -276,27 +297,42 @@ function Ecossistema() {
 }
 
 const diagramNodes = [
-  { label: "Arte & Formação", classes: "left-[3%] top-[12%] bg-brand-red text-primary-foreground" },
-  { label: "Audiovisual", classes: "right-[3%] top-[12%] bg-brand-cyan text-brand-petrol" },
-  { label: "Livro & Memória", classes: "left-0 bottom-[15%] bg-brand-gold text-brand-petrol" },
-  { label: "Infância & Território", classes: "right-0 bottom-[15%] bg-brand-orange text-brand-petrol" },
-  { label: "Esporte & Inclusão", classes: "left-[36%] top-0 bg-brand-petrol text-primary-foreground" },
-  { label: "Sustentabilidade", classes: "left-[36%] bottom-0 bg-brand-lime text-brand-petrol" },
+  { label: "Arte & Formação", color: "#ED1C24", style: { left: "2%", top: "6%" } },
+  { label: "Audiovisual", color: "#08B9E6", style: { right: "4%", top: "18%" } },
+  { label: "Livro & Memória", color: "#FFB400", style: { left: "10%", top: "39%" } },
+  { label: "Infância & Território", color: "#FF7A00", style: { right: "0%", top: "52%" } },
+  { label: "Esporte & Inclusão", color: "#00384C", style: { left: "4%", top: "72%" } },
+  { label: "Sustentabilidade", color: "#B8DC4B", style: { right: "8%", top: "86%" } },
 ] as const;
 
 function EcosystemDiagram() {
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[460px]" role="img" aria-label="Seis áreas do Ecossistema Maggu conectadas entre si">
-      <div className="absolute inset-[19%] rounded-full border-2 border-dashed border-brand-petrol/25" />
-      {[0, 60, 120].map((rotation) => <div key={rotation} className="absolute left-1/2 top-1/2 h-px w-[70%] -translate-x-1/2 bg-brand-petrol/25" style={{ transform: `translateX(-50%) rotate(${rotation}deg)` }} />)}
-      <div className="absolute left-1/2 top-1/2 z-10 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-background px-3 text-center text-xs font-bold uppercase text-brand-petrol shadow-lg md:h-32 md:w-32 md:text-sm">Ecossistema<br />Maggu</div>
-      {diagramNodes.map((node) => (
-        <div key={node.label} className={`absolute z-20 flex h-[76px] w-[96px] items-center justify-center rounded-full border-[5px] border-background px-2 text-center text-[10px] font-bold leading-tight shadow-md sm:h-[88px] sm:w-[118px] sm:text-xs ${node.classes}`}>
-          {node.label}
-        </div>
-      ))}
-      <ArcThick color="#ED1C24" className="absolute -left-4 top-1/3 w-24 opacity-80" from={100} to={250} />
-      <HatchedCircle size={88} color="#08B9E6" className="absolute -bottom-3 right-1/4 opacity-40" />
+    <div className="relative mx-auto w-full max-w-[440px]" role="img" aria-label="Seis áreas do Ecossistema Maggu conectadas entre si">
+      <div className="relative h-[360px] sm:h-[400px]">
+        <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path
+            d="M18 12 C 55 16, 60 22, 82 24 M82 24 C 50 32, 34 40, 24 45 M24 45 C 58 50, 74 54, 88 58 M88 58 C 52 66, 34 72, 20 78 M20 78 C 54 84, 70 88, 84 92"
+            stroke="#00384C"
+            strokeOpacity="0.18"
+            strokeWidth="0.5"
+            fill="none"
+            strokeDasharray="1.5 2.4"
+          />
+        </svg>
+        <ArcThick color="#ED1C24" className="pointer-events-none absolute -left-3 top-[30%] w-16 opacity-25" from={100} to={250} />
+        <span className="pointer-events-none absolute right-[42%] top-[8%] size-2 rotate-45 bg-brand-gold opacity-80" aria-hidden="true" />
+        <span className="pointer-events-none absolute left-[46%] bottom-[6%] size-2 rounded-full bg-brand-cyan opacity-70" aria-hidden="true" />
+        {diagramNodes.map((node) => (
+          <span
+            key={node.label}
+            className="absolute inline-flex items-center gap-2 rounded-full border border-brand-petrol/10 bg-white/80 px-4 py-2 text-[13px] font-semibold text-brand-ink shadow-[0_10px_26px_-22px_rgba(0,56,76,0.7)] backdrop-blur-md"
+            style={node.style}
+          >
+            <span className="size-2 rounded-full" style={{ backgroundColor: node.color }} aria-hidden="true" />
+            {node.label}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
