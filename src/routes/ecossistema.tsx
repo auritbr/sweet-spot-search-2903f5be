@@ -298,27 +298,42 @@ function Ecossistema() {
 }
 
 const diagramNodes = [
-  { label: "Arte & Formação", classes: "left-[3%] top-[12%] bg-brand-red text-primary-foreground" },
-  { label: "Audiovisual", classes: "right-[3%] top-[12%] bg-brand-cyan text-brand-petrol" },
-  { label: "Livro & Memória", classes: "left-0 bottom-[15%] bg-brand-gold text-brand-petrol" },
-  { label: "Infância & Território", classes: "right-0 bottom-[15%] bg-brand-orange text-brand-petrol" },
-  { label: "Esporte & Inclusão", classes: "left-[36%] top-0 bg-brand-petrol text-primary-foreground" },
-  { label: "Sustentabilidade", classes: "left-[36%] bottom-0 bg-brand-lime text-brand-petrol" },
+  { label: "Arte & Formação", color: "#ED1C24", style: { left: "2%", top: "6%" } },
+  { label: "Audiovisual", color: "#08B9E6", style: { right: "4%", top: "18%" } },
+  { label: "Livro & Memória", color: "#FFB400", style: { left: "10%", top: "39%" } },
+  { label: "Infância & Território", color: "#FF7A00", style: { right: "0%", top: "52%" } },
+  { label: "Esporte & Inclusão", color: "#00384C", style: { left: "4%", top: "72%" } },
+  { label: "Sustentabilidade", color: "#B8DC4B", style: { right: "8%", top: "86%" } },
 ] as const;
 
 function EcosystemDiagram() {
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[460px]" role="img" aria-label="Seis áreas do Ecossistema Maggu conectadas entre si">
-      <div className="absolute inset-[19%] rounded-full border-2 border-dashed border-brand-petrol/25" />
-      {[0, 60, 120].map((rotation) => <div key={rotation} className="absolute left-1/2 top-1/2 h-px w-[70%] -translate-x-1/2 bg-brand-petrol/25" style={{ transform: `translateX(-50%) rotate(${rotation}deg)` }} />)}
-      <div className="absolute left-1/2 top-1/2 z-10 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-background px-3 text-center text-xs font-bold uppercase text-brand-petrol shadow-lg md:h-32 md:w-32 md:text-sm">Ecossistema<br />Maggu</div>
-      {diagramNodes.map((node) => (
-        <div key={node.label} className={`absolute z-20 flex h-[76px] w-[96px] items-center justify-center rounded-full border-[5px] border-background px-2 text-center text-[10px] font-bold leading-tight shadow-md sm:h-[88px] sm:w-[118px] sm:text-xs ${node.classes}`}>
-          {node.label}
-        </div>
-      ))}
-      <ArcThick color="#ED1C24" className="absolute -left-4 top-1/3 w-24 opacity-80" from={100} to={250} />
-      <HatchedCircle size={88} color="#08B9E6" className="absolute -bottom-3 right-1/4 opacity-40" />
+    <div className="relative mx-auto w-full max-w-[440px]" role="img" aria-label="Seis áreas do Ecossistema Maggu conectadas entre si">
+      <div className="relative h-[360px] sm:h-[400px]">
+        <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path
+            d="M18 12 C 55 16, 60 22, 82 24 M82 24 C 50 32, 34 40, 24 45 M24 45 C 58 50, 74 54, 88 58 M88 58 C 52 66, 34 72, 20 78 M20 78 C 54 84, 70 88, 84 92"
+            stroke="#00384C"
+            strokeOpacity="0.18"
+            strokeWidth="0.5"
+            fill="none"
+            strokeDasharray="1.5 2.4"
+          />
+        </svg>
+        <ArcThick color="#ED1C24" className="pointer-events-none absolute -left-3 top-[30%] w-16 opacity-25" from={100} to={250} />
+        <span className="pointer-events-none absolute right-[42%] top-[8%] size-2 rotate-45 bg-brand-gold opacity-80" aria-hidden="true" />
+        <span className="pointer-events-none absolute left-[46%] bottom-[6%] size-2 rounded-full bg-brand-cyan opacity-70" aria-hidden="true" />
+        {diagramNodes.map((node) => (
+          <span
+            key={node.label}
+            className="absolute inline-flex items-center gap-2 rounded-full border border-brand-petrol/10 bg-white/80 px-4 py-2 text-[13px] font-semibold text-brand-ink shadow-[0_10px_26px_-22px_rgba(0,56,76,0.7)] backdrop-blur-md"
+            style={node.style}
+          >
+            <span className="size-2 rounded-full" style={{ backgroundColor: node.color }} aria-hidden="true" />
+            {node.label}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
