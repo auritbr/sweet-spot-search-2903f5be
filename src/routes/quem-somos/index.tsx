@@ -112,42 +112,51 @@ function QuemSomos() {
             ))}
           </ol>
 
-          <aside className="relative mt-12 overflow-hidden rounded-xl border border-brand-petrol/10 bg-background/80 shadow-sm backdrop-blur-sm" aria-labelledby="ponto-cultura-title">
-            <span className="absolute inset-y-0 left-0 w-1.5 bg-brand-red" aria-hidden="true" />
-            <Triangle color="#08B9E6" size={28} className="pointer-events-none absolute right-5 top-5 opacity-60" rotate={18} />
-            <div className="relative grid items-center gap-6 px-7 py-8 md:grid-cols-[1fr_auto] md:px-10 md:py-9">
-              <div className="max-w-2xl">
-                <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-red">Ponto de Cultura</p>
-                <h2 id="ponto-cultura-title" className="mt-2 text-2xl text-brand-ink md:text-3xl">Um reconhecimento que integra essa trajetória.</h2>
-                <p className="mt-3 leading-relaxed text-brand-gray">Em 2025, o Teatro Escola Maggu foi certificado como Ponto de Cultura, fortalecendo institucionalmente uma atuação cultural construída no território.</p>
-              </div>
-              <div className="relative border-l-0 border-brand-petrol/15 text-left md:min-w-48 md:border-l md:pl-9 md:text-center" aria-label="Certificação como Ponto de Cultura em 2025">
-                <span className="block text-5xl font-bold leading-none text-brand-petrol md:text-6xl">2025</span>
-                <span className="mt-2 block text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">Ponto de Cultura</span>
-              </div>
-            </div>
-          </aside>
+          <span className="mx-auto mt-12 block h-px w-24 bg-brand-petrol/20" aria-hidden="true" />
         </div>
       </section>
 
-      <section className="relative overflow-hidden border-b border-brand-petrol/10 bg-white py-12 md:py-16 lg:py-20">
-        <HatchedCircle size={130} color="#08B9E6" className="pointer-events-none absolute -bottom-12 -right-8 opacity-15" />
-        <div className="container-x grid items-center gap-10 lg:grid-cols-[.9fr_1.1fr] lg:gap-16">
-          <div className="relative mx-auto w-full max-w-lg">
-            <div className="aspect-[16/11] overflow-hidden rounded-[5rem_0.75rem_0.75rem_0.75rem] bg-brand-soft">
-              <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1400&q=80" alt="Pessoas compartilhando uma atividade comunitária" className="h-full w-full object-cover" loading="lazy" />
+      <section className="relative overflow-hidden bg-white py-12 md:py-16" aria-labelledby="ponto-cultura-title">
+        <div className="container-x">
+          <div className="relative mx-auto max-w-3xl overflow-hidden rounded-[1.75rem] border border-brand-petrol/12 bg-white/70 px-6 py-7 shadow-[0_20px_44px_-32px_rgba(0,56,76,0.55)] ring-1 ring-inset ring-white/50 backdrop-blur-md md:px-9 md:py-8">
+            <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-brand-petrol/15" aria-hidden="true" />
+            <Triangle color="#08B9E6" size={22} className="pointer-events-none absolute -right-1 top-6 opacity-50" rotate={18} />
+            <QuarterCircle corner="bl" color="#FFB400" className="pointer-events-none absolute -bottom-3 -left-3 w-14 opacity-40" />
+            <div className="relative grid items-center gap-6 md:grid-cols-[1fr_auto]">
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-brand-red">Ponto de Cultura</p>
+                <h2 id="ponto-cultura-title" className="mt-2 text-xl leading-snug text-brand-ink md:text-2xl">Um reconhecimento que integra essa trajetória.</h2>
+                <p className="mt-3 text-sm leading-relaxed text-brand-gray">Em 2025, o Teatro Escola Maggu foi certificado como Ponto de Cultura, fortalecendo institucionalmente uma atuação cultural construída no território.</p>
+              </div>
+              <div className="relative text-left md:min-w-40 md:border-l md:border-brand-petrol/15 md:pl-8 md:text-center" aria-label="Certificação como Ponto de Cultura em 2025">
+                <span className="block text-4xl font-bold leading-none text-brand-petrol md:text-5xl">2025</span>
+                <span className="mt-2 block text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-red">Ponto de Cultura</span>
+              </div>
             </div>
-            <span className="absolute -bottom-3 left-8 h-1.5 w-24 rounded-full bg-brand-gold" aria-hidden="true" />
-            <span className="absolute -right-3 top-8 size-5 rotate-45 border-2 border-brand-red" aria-hidden="true" />
-          </div>
-          <div className="relative max-w-2xl">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-red">Território</p>
-            <h2 className="mt-3 text-2xl leading-tight text-brand-ink md:text-3xl">Benedito Bentes: território de onde partimos e com quem construímos.</h2>
-            <p className="mt-5 leading-relaxed text-brand-gray">O Benedito Bentes não é apenas o endereço da Associação. É território de relações, memórias, desafios, saberes e potências que ajudam a explicar por que e para quem o Ecossistema Maggu existe.</p>
-            <p className="mt-4 leading-relaxed text-brand-gray">É parte da identidade da Maggu e do modo como a organização pensa cultura, acesso, memória, formação e participação.</p>
           </div>
         </div>
       </section>
+
+      <section className="relative overflow-hidden bg-brand-soft py-12 md:py-16 lg:py-20">
+        <span className="pointer-events-none absolute -left-16 top-1/3 hidden h-40 w-40 rounded-full border border-brand-petrol/10 md:block" aria-hidden="true" />
+        <Triangle color="#FFB400" size={26} className="pointer-events-none absolute right-[6%] top-10 hidden opacity-60 md:block" rotate={-12} />
+        <div className="container-x grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-16">
+          <div className="relative max-w-2xl">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-red">Território</p>
+            <h2 className="mt-3 text-2xl leading-tight text-brand-ink md:text-3xl">Benedito Bentes: território de onde partimos e com quem construímos.</h2>
+            <span className="mt-5 block h-px w-16 bg-brand-petrol/25" aria-hidden="true" />
+            <p className="mt-5 leading-relaxed text-brand-gray">O Benedito Bentes não é apenas o endereço da Associação. É território de relações, memórias, desafios, saberes e potências que ajudam a explicar por que e para quem o Ecossistema Maggu existe.</p>
+            <p className="mt-4 leading-relaxed text-brand-gray">É parte da identidade da Maggu e do modo como a organização pensa cultura, acesso, memória, formação e participação.</p>
+          </div>
+          <div className="relative mx-auto w-full max-w-sm">
+            <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] border border-brand-petrol/10">
+              <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80" alt="Pessoas compartilhando uma atividade comunitária" className="h-full w-full object-cover" loading="lazy" />
+            </div>
+            <span className="absolute -bottom-3 left-10 h-1.5 w-20 rounded-full bg-brand-gold" aria-hidden="true" />
+          </div>
+        </div>
+      </section>
+
 
       <Section className="relative overflow-hidden bg-white">
         <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-brand-petrol/10" aria-hidden="true" />
