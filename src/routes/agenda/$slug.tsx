@@ -5,7 +5,7 @@ import { PageHero, Section } from "@/components/PageHero";
 import { AgendaStatusBadge } from "@/components/AgendaCard";
 import { ArcThick, BrushStroke, HatchedCircle, QuarterCircle } from "@/components/Shapes";
 import { Button } from "@/components/ui/button";
-import { formatEventDate, getEventBySlug } from "@/data/agenda";
+import { agendaCategoryStyles, formatEventDate, getEventBySlug } from "@/data/agenda";
 
 export const Route = createFileRoute("/agenda/$slug")({
   loader: ({ params }) => {
@@ -51,6 +51,7 @@ function EventoNaoEncontrado() {
 function EventoDetalhe() {
   const { event } = Route.useLoaderData();
   const closed = event.status === "inscricoes-encerradas";
+  const categoryStyle = agendaCategoryStyles[event.category];
   const [shareFeedback, setShareFeedback] = useState<"link" | "instagram" | null>(null);
 
   const currentUrl = () => window.location.href;
@@ -83,7 +84,7 @@ function EventoDetalhe() {
   return (
     <>
       {/* ---------------- HERO ---------------- */}
-      <PageHero title={event.title} eyebrow={event.category} image={event.image ?? "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1920&q=80"} variant="detail" accent="gold" brush="#ED1C24">
+      <PageHero title={event.title} eyebrow={event.category} image={event.image ?? "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1920&q=80"} variant="detail" accent="gold" brush={categoryStyle.accentColor}>
         <Link to="/agenda" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-foreground/85 underline-offset-4 hover:text-brand-gold hover:underline">
           <ArrowLeft aria-hidden="true" className="size-4" /> Voltar para a Agenda
         </Link>
@@ -93,7 +94,7 @@ function EventoDetalhe() {
           {event.location && <li className="flex items-center gap-2"><MapPin aria-hidden="true" className="size-4 text-brand-gold" />{event.location}</li>}
         </ul>
         <div className="mt-5 flex flex-wrap items-center gap-3">
-          <AgendaStatusBadge event={event} />
+          <AgendaStatusBadge event={event} statusAccentClass={categoryStyle.accentText} />
           {event.registrationUrl && !closed && <Button asChild className="rounded-full bg-brand-red px-6 text-primary-foreground shadow-none hover:bg-brand-gold hover:text-brand-petrol"><a href={event.registrationUrl} target="_blank" rel="noopener noreferrer">Inscreva-se</a></Button>}
         </div>
       </PageHero>

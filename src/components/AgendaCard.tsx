@@ -8,10 +8,15 @@ const statusStyles: Record<string, string> = {
   "em-breve": "bg-brand-cyan text-brand-petrol",
 };
 
-export function AgendaStatusBadge({ event }: { event: AgendaEvent }) {
+export function AgendaStatusBadge({ event, statusAccentClass }: { event: AgendaEvent; statusAccentClass?: string }) {
   const badges: { label: string; className: string }[] = [];
   if (event.status) {
-    badges.push({ label: agendaStatusLabels[event.status], className: statusStyles[event.status] });
+    badges.push({
+      label: agendaStatusLabels[event.status],
+      className: statusAccentClass
+        ? `border border-current bg-background/85 backdrop-blur-md ${statusAccentClass}`
+        : statusStyles[event.status],
+    });
   }
   if (event.free === true) badges.push({ label: "Gratuito", className: "bg-brand-petrol text-white" });
   else if (event.price) badges.push({ label: event.price, className: "bg-brand-petrol text-white" });

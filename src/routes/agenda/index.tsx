@@ -7,6 +7,7 @@ import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { PageHero } from "@/components/PageHero";
 import {
   agendaCategories,
+  agendaCategoryStyles,
   agendaEvents,
   agendaStatusLabels,
   parseEventDate,
@@ -40,16 +41,6 @@ const views: { value: CalendarView; label: string }[] = [
 ];
 
 const weekdays = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-
-const categoryStyle: Record<AgendaCategory, { surface: string; text: string }> = {
-  Teatro: { surface: "bg-brand-red/8", text: "text-brand-red" },
-  Cinema: { surface: "bg-brand-cyan/10", text: "text-brand-petrol" },
-  Formação: { surface: "bg-brand-gold/12", text: "text-brand-petrol" },
-  Literatura: { surface: "bg-brand-lime/15", text: "text-brand-petrol" },
-  Esporte: { surface: "bg-brand-orange/10", text: "text-brand-petrol" },
-  Comunidade: { surface: "bg-brand-petrol/8", text: "text-brand-petrol" },
-  Sustentabilidade: { surface: "bg-brand-lime/15", text: "text-brand-petrol" },
-};
 
 function atStartOfDay(date: Date) {
   const value = new Date(date);
@@ -86,7 +77,7 @@ function dateKey(date: Date) {
 }
 
 function CalendarEvent({ event }: { event: AgendaEvent }) {
-  const style = categoryStyle[event.category];
+  const style = agendaCategoryStyles[event.category];
   return (
     <Link
       to="/agenda/$slug"
