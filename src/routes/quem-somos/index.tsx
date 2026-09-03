@@ -138,10 +138,9 @@ function QuemSomos() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-brand-soft py-12 md:py-16 lg:py-20">
-        <span className="pointer-events-none absolute -left-16 top-1/3 hidden h-40 w-40 rounded-full border border-brand-petrol/10 md:block" aria-hidden="true" />
-        <Triangle color="#FFB400" size={26} className="pointer-events-none absolute right-[6%] top-10 hidden opacity-60 md:block" rotate={-12} />
-        <div className="container-x grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-16">
+      <section className="relative overflow-hidden bg-[#FDFBF5] py-10 md:py-14">
+        <span className="pointer-events-none absolute -right-24 top-8 hidden size-[22rem] rounded-full bg-brand-gold/10 md:block" aria-hidden="true" />
+        <div className="container-x relative grid items-center gap-8 lg:grid-cols-[1.5fr_1fr] lg:gap-14">
           <div className="relative max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-red">Território</p>
             <h2 className="mt-3 text-2xl leading-tight text-brand-ink md:text-3xl">Benedito Bentes: território de onde partimos e com quem construímos.</h2>
@@ -149,14 +148,16 @@ function QuemSomos() {
             <p className="mt-5 leading-relaxed text-brand-gray">O Benedito Bentes não é apenas o endereço da Associação. É território de relações, memórias, desafios, saberes e potências que ajudam a explicar por que e para quem o Ecossistema Maggu existe.</p>
             <p className="mt-4 leading-relaxed text-brand-gray">É parte da identidade da Maggu e do modo como a organização pensa cultura, acesso, memória, formação e participação.</p>
           </div>
-          <div className="relative mx-auto w-full max-w-sm">
-            <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] border border-brand-petrol/10">
-              <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80" alt="Pessoas compartilhando uma atividade comunitária" className="h-full w-full object-cover" loading="lazy" />
+          <div className="relative w-full">
+            <div className="relative h-[220px] overflow-hidden rounded-tl-[2.5rem] rounded-br-[2.5rem] border border-brand-petrol/10 md:h-[280px] lg:h-[320px]">
+              <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80" alt="Pessoas compartilhando uma atividade comunitária" className="h-full w-full object-cover" loading="lazy" />
             </div>
-            <span className="absolute -bottom-3 left-10 h-1.5 w-20 rounded-full bg-brand-gold" aria-hidden="true" />
+            <span className="pointer-events-none absolute -bottom-2 left-8 size-4 rotate-45 bg-brand-red" aria-hidden="true" />
+            <span className="pointer-events-none absolute -top-3 right-6 hidden h-8 w-16 border-t-2 border-brand-cyan/50 md:block" aria-hidden="true" />
           </div>
         </div>
       </section>
+
 
 
       <Section className="relative overflow-hidden bg-white">
