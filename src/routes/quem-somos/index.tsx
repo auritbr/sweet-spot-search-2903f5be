@@ -208,23 +208,29 @@ function QuemSomos() {
       <Section className="overflow-hidden bg-brand-soft">
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Nossa forma de atuar" title="Da escuta ao registro" text="A atuação da Maggu conecta cinco movimentos que ajudam a orientar seus processos culturais." />
-          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <ol className="mx-auto grid max-w-6xl grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-6">
             {process.map((item, index) => (
-              <li key={item.title} className={`relative flex min-h-60 flex-col overflow-hidden rounded-lg border bg-background/60 p-5 shadow-sm backdrop-blur-md ${processDetails[index].accent}`}>
-                <span className={`absolute -right-4 -top-4 size-16 rounded-full opacity-10 ${processDetails[index].shape}`} aria-hidden="true" />
-                <div className="relative flex items-center justify-between">
-                  <span className="text-xs font-bold tracking-[0.16em]">{item.number}</span>
-                  <span className={`size-3 rotate-45 ${processDetails[index].shape}`} aria-hidden="true" />
+              <li
+                key={item.title}
+                className={`relative flex items-start gap-3 rounded-xl border border-brand-petrol/10 bg-white/55 px-4 py-4 shadow-[0_10px_26px_-24px_rgba(0,56,76,0.6)] ring-1 ring-inset ring-white/50 backdrop-blur-sm ${index < 3 ? "lg:col-span-2" : "lg:col-span-3"}`}
+              >
+                <span className={`mt-0.5 text-xs font-bold tracking-[0.16em] ${processDetails[index].accent.split(" ")[1]}`}>{item.number}</span>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-base text-brand-ink md:text-lg">{item.title}</h3>
+                    <span className={`size-1.5 rotate-45 ${processDetails[index].shape}`} aria-hidden="true" />
+                  </div>
+                  <p className="mt-1.5 text-sm leading-relaxed text-brand-gray">{item.text}</p>
                 </div>
-                <div className="relative mt-auto pt-9">
-                  <h3 className="text-xl text-brand-ink">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-brand-gray">{item.text}</p>
-                </div>
+                {index !== process.length - 1 && (
+                  <span className="pointer-events-none absolute -right-3 top-1/2 hidden h-px w-4 -translate-y-1/2 bg-brand-petrol/25 lg:block" aria-hidden="true" />
+                )}
               </li>
             ))}
           </ol>
         </div>
       </Section>
+
 
       <Section className="overflow-hidden bg-white">
         <div className="container-x mx-auto max-w-5xl text-center">
