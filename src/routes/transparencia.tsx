@@ -62,7 +62,7 @@ function Transparencia() {
         </div>
       </section>
 
-      <section id="acervo" className="relative overflow-hidden bg-white py-10 md:py-14">
+      <section id="acervo" className="relative overflow-hidden bg-white pb-2 pt-10 md:pb-3 md:pt-14">
         <ArcThick color="#00384C" className="pointer-events-none absolute -left-10 top-6 w-20 opacity-35 md:left-4 md:top-8 md:w-24" from={210} to={330} />
         <div className="pointer-events-none absolute right-5 top-7 hidden h-12 w-14 md:block" aria-hidden="true">
           <Triangle color="#FFB400" size={30} className="absolute left-0 top-0 opacity-85" rotate={12} />
@@ -78,7 +78,7 @@ function Transparencia() {
         </div>
       </section>
 
-      <section className="bg-white py-12 md:py-16">
+      <section className="bg-white pb-12 pt-6 md:pb-16 md:pt-8">
         <div className="container-x max-w-4xl">
           <div className="space-y-3">
             {categories.map((c, i) => {
@@ -121,7 +121,16 @@ function Transparencia() {
             })}
           </div>
 
-          <div className="mx-auto mt-12 grid max-w-[52rem] gap-6 md:grid-cols-2 md:gap-8">
+          <div className="relative mx-auto mt-16 max-w-[46rem] text-center md:mt-20">
+            <span className="pointer-events-none absolute left-1/2 top-[-2.75rem] h-9 w-px -translate-x-1/2 bg-brand-petrol/20" aria-hidden="true" />
+            <span className="pointer-events-none absolute -left-2 top-2 hidden size-2.5 rotate-45 bg-brand-gold md:block" aria-hidden="true" />
+            <span className="pointer-events-none absolute -right-2 top-6 hidden size-2.5 rounded-full bg-brand-cyan md:block" aria-hidden="true" />
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Canais institucionais</p>
+            <h2 className="mt-3 text-[1.6rem] leading-tight text-brand-ink md:text-[2.05rem]">Privacidade, proteção e integridade</h2>
+            <p className="mx-auto mt-4 max-w-[42rem] text-[15px] leading-[1.75] text-brand-gray md:text-base">Além do acervo institucional, a Associação Maggu também disponibiliza orientações e canais voltados à privacidade, à proteção de dados e ao encaminhamento responsável de situações relacionadas à integridade institucional.</p>
+          </div>
+
+          <div className="mx-auto mt-9 grid max-w-[52rem] gap-6 md:mt-11 md:grid-cols-2 md:gap-8">
             {/* Card 1 — Privacidade */}
             <article className="relative flex min-h-[260px] flex-col justify-between overflow-hidden rounded-3xl bg-brand-soft p-7 md:p-8">
               <ArcThick color="#00384C" className="pointer-events-none absolute -left-20 -top-16 w-48 opacity-15" from={200} to={340} />
