@@ -55,6 +55,21 @@ export const agendaCategories: AgendaCategory[] = [
   "Sustentabilidade",
 ];
 
+export const agendaCategoryStyles: Record<AgendaCategory, {
+  surface: string;
+  text: string;
+  accentText: string;
+  accentColor: string;
+}> = {
+  Teatro: { surface: "bg-brand-red/8", text: "text-brand-red", accentText: "text-brand-red", accentColor: "var(--brand-red)" },
+  Cinema: { surface: "bg-brand-cyan/10", text: "text-brand-petrol", accentText: "text-brand-cyan", accentColor: "var(--brand-cyan)" },
+  Formação: { surface: "bg-brand-gold/12", text: "text-brand-petrol", accentText: "text-brand-gold", accentColor: "var(--brand-gold)" },
+  Literatura: { surface: "bg-brand-lime/15", text: "text-brand-petrol", accentText: "text-brand-lime", accentColor: "var(--brand-lime)" },
+  Esporte: { surface: "bg-brand-orange/10", text: "text-brand-petrol", accentText: "text-brand-orange", accentColor: "var(--brand-orange)" },
+  Comunidade: { surface: "bg-brand-petrol/8", text: "text-brand-petrol", accentText: "text-brand-petrol", accentColor: "var(--brand-petrol)" },
+  Sustentabilidade: { surface: "bg-brand-lime/15", text: "text-brand-petrol", accentText: "text-brand-lime", accentColor: "var(--brand-lime)" },
+};
+
 export const agendaStatusLabels: Record<AgendaStatus, string> = {
   "inscricoes-abertas": "Inscrições abertas",
   "ultimas-vagas": "Últimas vagas",

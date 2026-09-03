@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { HeroButton, PageHero, Section, SectionTitle } from "@/components/PageHero";
-import { Button } from "@/components/ui/button";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { ArcThick, BrushStroke, DiamondsCluster, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
 
@@ -36,6 +35,19 @@ const process = [
   { number: "05", title: "Registrar", text: "Preservar processos e memórias para reconhecer trajetórias e fortalecer a continuidade." },
 ];
 
+const processDetails = [
+  { accent: "border-brand-red/30 text-brand-red", shape: "bg-brand-red" },
+  { accent: "border-brand-gold/40 text-brand-gold", shape: "bg-brand-gold" },
+  { accent: "border-brand-cyan/35 text-brand-cyan", shape: "bg-brand-cyan" },
+  { accent: "border-brand-petrol/25 text-brand-petrol", shape: "bg-brand-petrol" },
+  { accent: "border-brand-red/30 text-brand-red", shape: "bg-brand-red" },
+] as const;
+
+const directors = [
+  { name: "Cristiano Alcides da Silva Paes", role: "Diretor Geral", tone: "bg-brand-petrol text-primary-foreground", accent: "bg-brand-cyan" },
+  { name: "Rafaela da Silva Leite", role: "Diretora Administrativo-Financeira", tone: "bg-brand-gold text-brand-petrol", accent: "bg-brand-red" },
+] as const;
+
 function QuemSomos() {
   return (
     <>
@@ -55,23 +67,26 @@ function QuemSomos() {
         </div>
       </PageHero>
 
-      <Section className="bg-white overflow-hidden">
-        <div className="container-x grid gap-12 md:grid-cols-[1.05fr_.95fr] items-center">
-          <div className="max-w-2xl">
-            <SectionTitle eyebrow="Associação Maggu" title="Uma trajetória cultural que ganhou forma institucional." />
-            <div className="space-y-5 text-brand-gray leading-relaxed">
+      <Section className="relative overflow-hidden bg-white">
+        <QuarterCircle corner="tl" color="#FFB400" className="pointer-events-none absolute -left-2 -top-2 w-20 opacity-75 md:w-32" />
+        <HatchedCircle size={142} color="#ED1C24" className="pointer-events-none absolute -bottom-12 -right-12 opacity-25 md:-right-6" />
+        <Triangle color="#08B9E6" size={34} className="pointer-events-none absolute right-[8%] top-10 hidden opacity-80 md:block" rotate={24} />
+        <span className="pointer-events-none absolute bottom-12 left-[8%] hidden size-3 rotate-45 bg-brand-petrol md:block" aria-hidden="true" />
+        <div className="container-x">
+          <div className="relative mx-auto max-w-4xl text-center">
+            <SectionTitle align="center" eyebrow="Associação Maggu" title="Uma trajetória cultural que ganhou forma institucional." />
+            <div className="mx-auto max-w-3xl space-y-5 leading-relaxed text-brand-gray">
               <p>A Associação Sócio Cultural Maggu é uma organização da sociedade civil sediada no Benedito Bentes, em Maceió. Formalizada em 2025, organiza e amplia uma trajetória cultural construída ao longo de décadas por meio do teatro, da formação artística e da mobilização comunitária.</p>
               <p>Hoje, a Associação articula iniciativas de cultura, educação, audiovisual, leitura, memória, comunicação, infância, esporte, sustentabilidade e desenvolvimento comunitário.</p>
-              <p>Cada frente possui identidade própria, mas todas compartilham o compromisso de ampliar o acesso à cultura, fortalecer vínculos, formar pessoas, preservar memórias e criar oportunidades.</p>
+              <p className="font-medium text-brand-petrol">Cada frente possui identidade própria, mas todas compartilham o compromisso de ampliar o acesso à cultura, fortalecer vínculos, formar pessoas, preservar memórias e criar oportunidades.</p>
             </div>
-          </div>
-          <div className="relative mx-auto w-full max-w-lg">
-            <div className="aspect-[4/5] overflow-hidden rounded-t-[48%] rounded-b-md">
-              <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80" alt="Pessoas reunidas em atividade cultural" className="h-full w-full object-cover" loading="lazy" />
+            <div className="relative mx-auto mt-9 w-full max-w-md">
+              <div className="aspect-[16/9] overflow-hidden rounded-[45%_45%_0.5rem_0.5rem]">
+                <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1000&q=80" alt="Pessoas reunidas em atividade cultural" className="h-full w-full object-cover" loading="lazy" />
+              </div>
+              <span className="absolute -bottom-3 -left-4 h-1.5 w-20 rounded-full bg-brand-gold" aria-hidden="true" />
+              <span className="absolute -right-3 top-7 size-5 rotate-45 border-2 border-brand-cyan" aria-hidden="true" />
             </div>
-            <ArcThick color="#ED1C24" className="absolute -left-8 -top-7 w-32" from={100} to={260} />
-            <HatchedCircle size={116} color="#08B9E6" className="absolute -bottom-8 -right-5 opacity-60" />
-            <Triangle color="#FFB400" size={46} className="absolute right-2 top-14" rotate={18} />
           </div>
         </div>
       </Section>
@@ -120,17 +135,25 @@ function QuemSomos() {
             ))}
           </ol>
 
-          <aside className="relative mt-14 overflow-hidden bg-brand-petrol px-7 py-9 md:grid md:grid-cols-[1.15fr_.85fr] md:items-center md:gap-12 md:px-11 md:py-11" aria-labelledby="ponto-cultura-title">
-            <QuarterCircle corner="br" color="#ED1C24" className="absolute -bottom-2 -right-2 w-28 opacity-90 md:w-36" />
-            <div className="relative max-w-2xl">
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-red">Ponto de Cultura</p>
-              <h2 id="ponto-cultura-title" className="mt-3 text-2xl text-primary-foreground">Um reconhecimento que integra essa trajetória.</h2>
-              <p className="mt-4 leading-relaxed text-primary-foreground/85">Em 2025, o Teatro Escola Maggu foi certificado como Ponto de Cultura, fortalecendo institucionalmente uma atuação cultural construída no território.</p>
-            </div>
-            <div className="relative mt-9 flex min-h-40 items-center justify-center md:mt-0" aria-hidden="true">
-              <HatchedCircle size={176} color="#08B9E6" className="absolute opacity-35" />
-              <ArcThick color="#FFB400" className="absolute -left-2 top-1/2 w-24 -translate-y-1/2" from={210} to={340} />
-              <div className="relative bg-brand-gold px-7 py-5 text-4xl font-bold text-brand-petrol md:text-5xl">2025</div>
+          <aside className="relative mt-14 flex min-h-[320px] overflow-hidden md:min-h-[360px]" aria-labelledby="ponto-cultura-title">
+            <img src="https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=1600&q=80" alt="Ação cultural em espaço de artes cênicas" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+            <div className="absolute inset-0 bg-brand-petrol/85" />
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-petrol via-brand-red/45 to-brand-petrol/55" />
+            <HatchedCircle size={180} color="#FFB400" className="pointer-events-none absolute -bottom-16 -left-10 opacity-25" />
+            <Triangle color="#08B9E6" size={40} className="pointer-events-none absolute right-8 top-7 opacity-80 md:right-14" rotate={18} />
+            <div className="container-x relative grid w-full items-center gap-7 py-9 md:grid-cols-[1.2fr_.8fr] md:gap-12 md:py-10">
+              <div className="max-w-2xl">
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-gold">Ponto de Cultura</p>
+                <h2 id="ponto-cultura-title" className="mt-3 text-2xl text-primary-foreground md:text-3xl">Um reconhecimento que integra essa trajetória.</h2>
+                <p className="mt-4 leading-relaxed text-primary-foreground/85">Em 2025, o Teatro Escola Maggu foi certificado como Ponto de Cultura, fortalecendo institucionalmente uma atuação cultural construída no território.</p>
+              </div>
+              <div className="relative flex items-center justify-center md:justify-end" aria-label="Certificação como Ponto de Cultura em 2025">
+                <div className="relative border border-primary-foreground/25 bg-background/10 px-8 py-6 text-center backdrop-blur-md md:px-10">
+                  <span className="block text-5xl font-bold leading-none text-brand-gold md:text-7xl">2025</span>
+                  <span className="mt-2 block text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground">Ponto de Cultura</span>
+                </div>
+                <span className="absolute -bottom-3 right-3 h-1.5 w-16 bg-brand-red md:right-0" aria-hidden="true" />
+              </div>
             </div>
           </aside>
         </div>
@@ -155,24 +178,39 @@ function QuemSomos() {
 
       <Section className="overflow-hidden bg-white">
         <div className="container-x">
-          <SectionTitle align="center" eyebrow="O que nos orienta" title="Missão e filosofia" text="Duas referências que orientam a atuação da Associação e conectam suas diferentes iniciativas." />
-          <div className="grid gap-7 lg:grid-cols-[1.18fr_.82fr] lg:items-end">
-            <article className="relative flex min-h-[380px] flex-col justify-between overflow-hidden bg-brand-petrol p-8 md:p-11">
-              <QuarterCircle corner="tr" color="#ED1C24" className="absolute -right-2 -top-2 w-36 opacity-90" />
-              <HatchedCircle size={160} color="#08B9E6" className="absolute -left-12 top-8 opacity-25" />
+          <SectionTitle align="center" eyebrow="O que nos orienta" title="Missão, visão e valores" text="Referências que orientam a atuação da Associação e conectam suas diferentes iniciativas." />
+          <div className="grid gap-5 lg:grid-cols-3">
+            <article className="relative flex min-h-[330px] flex-col justify-between overflow-hidden bg-brand-petrol p-7 md:p-8">
+              <ArcThick color="#08B9E6" className="pointer-events-none absolute -right-10 -top-12 w-36 opacity-35" from={190} to={330} />
+              <Triangle color="#FFB400" size={42} className="pointer-events-none absolute right-8 top-10 opacity-90" rotate={18} />
               <p className="relative text-xs font-bold uppercase tracking-[0.22em] text-brand-gold">Missão</p>
-              <div className="relative max-w-3xl text-center md:text-left">
-                <BrushStroke color="#FFB400" className="mx-auto mb-7 w-24 md:mx-0" />
-                <h2 className="text-2xl leading-snug text-primary-foreground md:text-3xl">Transformar a exclusão cultural em obra-prima, antes que a criatividade seja uma relíquia do passado. Incluir, inspirar, criar.</h2>
+              <div className="relative">
+                <span className="mb-6 block h-1.5 w-16 bg-brand-red" aria-hidden="true" />
+                <h3 className="text-xl leading-snug text-primary-foreground md:text-2xl">Transformar a exclusão cultural em obra-prima, antes que a criatividade seja uma relíquia do passado. Incluir, inspirar, criar.</h3>
               </div>
             </article>
-            <article className="relative flex min-h-[330px] flex-col justify-between overflow-hidden bg-brand-gold p-8 md:p-10">
-              <ArcThick color="#ED1C24" className="absolute -right-8 -top-8 w-32" from={120} to={280} />
-              <DiamondsCluster color="#00384C" className="absolute left-8 top-8 opacity-35" size={52} />
-              <p className="relative text-right text-xs font-bold uppercase tracking-[0.22em] text-brand-red">Filosofia</p>
-              <div className="relative text-center">
-                <h2 className="text-2xl leading-snug text-brand-petrol md:text-3xl">A arte como instrumento de transformação social.</h2>
-                <p className="mt-4 leading-relaxed text-brand-petrol">É a partir dessa compreensão que a Associação desenvolve experiências de formação, criação, convivência, memória e participação cultural.</p>
+
+            <article className="relative flex min-h-[330px] flex-col justify-between overflow-hidden bg-brand-cyan p-7 md:p-8">
+              <span className="pointer-events-none absolute -right-10 top-10 h-24 w-24 rounded-full border-[14px] border-brand-petrol/15" aria-hidden="true" />
+              <span className="pointer-events-none absolute right-7 top-[5.3rem] h-px w-28 bg-brand-petrol/35" aria-hidden="true" />
+              <p className="relative text-xs font-bold uppercase tracking-[0.22em] text-brand-petrol">Visão</p>
+              <div className="relative">
+                <HatchedCircle size={68} color="#00384C" className="mb-5 opacity-25" />
+                <h3 className="text-2xl leading-snug text-brand-petrol">A arte como instrumento de transformação social.</h3>
+              </div>
+            </article>
+
+            <article className="relative flex min-h-[330px] flex-col justify-between overflow-hidden bg-brand-gold p-7 md:p-8">
+              <DiamondsCluster color="#ED1C24" className="pointer-events-none absolute right-7 top-7 opacity-60" size={50} />
+              <QuarterCircle corner="bl" color="#00384C" className="pointer-events-none absolute bottom-0 left-0 w-20 opacity-15" />
+              <p className="relative text-xs font-bold uppercase tracking-[0.22em] text-brand-red">Valores</p>
+              <div className="relative">
+                <div className="mb-6 flex items-center gap-2" aria-hidden="true">
+                  <span className="size-5 rounded-full bg-brand-red" />
+                  <span className="size-5 rounded-full bg-brand-cyan" />
+                  <span className="size-5 rounded-full bg-brand-petrol" />
+                </div>
+                <h3 className="text-xl leading-snug text-brand-petrol md:text-2xl">É a partir dessa compreensão que a Associação desenvolve experiências de formação, criação, convivência, memória e participação cultural.</h3>
               </div>
             </article>
           </div>
@@ -182,14 +220,17 @@ function QuemSomos() {
       <Section className="overflow-hidden bg-brand-soft">
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Nossa forma de atuar" title="Da escuta ao registro" text="A atuação da Maggu conecta cinco movimentos que ajudam a orientar seus processos culturais." />
-          <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {process.map((item, index) => (
-              <li key={item.title} className={`relative flex min-h-64 flex-col overflow-hidden p-6 ${["bg-brand-red text-primary-foreground", "bg-brand-gold text-brand-petrol", "bg-brand-cyan text-brand-petrol", "bg-brand-petrol text-primary-foreground", "bg-brand-lime text-brand-petrol"][index]}`}>
-                <span className="absolute right-4 top-1 text-7xl font-bold opacity-15" aria-hidden="true">{item.number}</span>
-                <div className="relative flex h-11 w-11 items-center justify-center border-2 border-current text-sm font-bold">{item.number}</div>
-                <div className="relative mt-auto pt-12">
-                  <h3 className="text-xl text-inherit">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed opacity-90">{item.text}</p>
+              <li key={item.title} className={`relative flex min-h-60 flex-col overflow-hidden rounded-lg border bg-background/60 p-5 shadow-sm backdrop-blur-md ${processDetails[index].accent}`}>
+                <span className={`absolute -right-4 -top-4 size-16 rounded-full opacity-10 ${processDetails[index].shape}`} aria-hidden="true" />
+                <div className="relative flex items-center justify-between">
+                  <span className="text-xs font-bold tracking-[0.16em]">{item.number}</span>
+                  <span className={`size-3 rotate-45 ${processDetails[index].shape}`} aria-hidden="true" />
+                </div>
+                <div className="relative mt-auto pt-9">
+                  <h3 className="text-xl text-brand-ink">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-brand-gray">{item.text}</p>
                 </div>
               </li>
             ))}
@@ -201,15 +242,23 @@ function QuemSomos() {
         <div className="container-x mx-auto max-w-5xl text-center">
           <SectionTitle align="center" eyebrow="Organização institucional" title="Uma estrutura para dar continuidade ao que construímos." text="A formalização da Associação fortalece a definição de responsabilidades, a organização institucional e a continuidade das iniciativas desenvolvidas." />
           <h3 className="mt-2 text-xs font-bold uppercase tracking-[0.22em] text-brand-red">Diretoria</h3>
-          <div className="mx-auto mt-7 grid max-w-4xl gap-5 md:grid-cols-2">
-            <article className="flex min-h-44 flex-col items-center justify-center bg-brand-petrol p-7 text-center">
-              <h4 className="text-xl text-primary-foreground">Cristiano Alcides da Silva Paes</h4>
-              <p className="mt-3 text-sm text-primary-foreground/80">Diretor Geral</p>
-            </article>
-            <article className="flex min-h-44 flex-col items-center justify-center bg-brand-gold p-7 text-center">
-              <h4 className="text-xl text-brand-petrol">Rafaela da Silva Leite</h4>
-              <p className="mt-3 text-sm text-brand-petrol/80">Diretora Administrativo-Financeira</p>
-            </article>
+          <div className="mx-auto mt-7 grid max-w-3xl gap-5 sm:grid-cols-2">
+            {directors.map((director, index) => (
+              <article key={director.name} className={`relative flex aspect-[4/5] min-h-0 flex-col overflow-hidden text-left ${director.tone}`}>
+                <div className="relative flex-1 overflow-hidden bg-background/10" aria-label={`Espaço reservado para fotografia de ${director.name}`}>
+                  <div className="absolute inset-x-[22%] bottom-0 top-[16%] rounded-t-full bg-background/15" aria-hidden="true" />
+                  <div className="absolute left-1/2 top-[18%] size-20 -translate-x-1/2 rounded-full border border-current opacity-25 md:size-24" aria-hidden="true" />
+                  <div className="absolute bottom-0 left-1/2 h-[48%] w-[58%] -translate-x-1/2 rounded-t-[50%] border border-current opacity-20" aria-hidden="true" />
+                  <span className="absolute bottom-5 left-5 text-[10px] font-semibold uppercase tracking-[0.16em] opacity-65">Fotografia em breve</span>
+                  {index === 0 ? <ArcThick color="#08B9E6" className="absolute -right-8 -top-9 w-24 opacity-65" from={190} to={330} /> : <HatchedCircle size={86} color="#ED1C24" className="absolute -right-5 -top-5 opacity-30" />}
+                </div>
+                <div className="relative p-5 md:p-6">
+                  <span className={`absolute left-5 top-0 h-1 w-14 -translate-y-1/2 ${director.accent}`} aria-hidden="true" />
+                  <h4 className="text-xl leading-tight text-inherit">{director.name}</h4>
+                  <p className="mt-2 text-sm opacity-80">{director.role}</p>
+                </div>
+              </article>
+            ))}
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link to="/equipe" className="inline-flex rounded-full bg-brand-petrol px-6 py-2.5 text-sm font-bold text-primary-foreground transition hover:bg-brand-red">Conheça nossa equipe</Link>
