@@ -186,9 +186,9 @@ function Ecossistema() {
         </div>
       </PageHero>
 
-      <Section className="relative overflow-hidden bg-background pb-14 pt-16 md:pb-20 md:pt-20">
+      <Section className="relative overflow-hidden bg-background pb-14 pt-14 md:pb-18 md:pt-18">
         <span className="pointer-events-none absolute left-0 top-0 h-px w-full bg-brand-petrol/8" aria-hidden="true" />
-        <div className="container-x grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(360px,.86fr)] lg:gap-20">
+        <div className="container-x grid items-center gap-9 lg:grid-cols-[minmax(0,1fr)_minmax(360px,.82fr)] lg:gap-16">
           <div>
             <SectionTitle eyebrow="A lógica do Ecossistema" title="Muitas frentes. Um mesmo compromisso com o território." />
             <div className="max-w-2xl space-y-4 leading-relaxed text-brand-gray">
@@ -200,26 +200,29 @@ function Ecossistema() {
         </div>
       </Section>
 
-      <section id="eixos" className="relative scroll-mt-24 overflow-hidden bg-brand-soft/55 py-14 md:py-20">
+      <section id="eixos" className="relative scroll-mt-24 overflow-hidden bg-brand-soft/45 py-14 md:py-20">
         <HatchedCircle size={190} color="#08B9E6" className="pointer-events-none absolute -right-20 top-8 opacity-10" />
         <span className="pointer-events-none absolute bottom-0 left-0 h-px w-full bg-brand-petrol/8" aria-hidden="true" />
         <div className="container-x relative">
           <SectionTitle eyebrow="Seis eixos" title="Seis eixos para compreender uma atuação integrada." text="Cada eixo reúne iniciativas com características próprias e ajuda a compreender diferentes dimensões da atuação da Associação." align="center" />
-          <div className="mt-10 grid gap-4 md:grid-cols-2 md:gap-5">
+          <div className="relative mx-auto mt-10 max-w-6xl space-y-5 md:mt-12 md:space-y-7">
+            <span className="pointer-events-none absolute bottom-8 left-1/2 top-8 hidden w-px -translate-x-1/2 bg-brand-petrol/10 md:block" aria-hidden="true" />
             {axes.map((axis, index) => (
-              <article key={axis.title} className="group relative grid min-h-[230px] overflow-hidden rounded-2xl border border-brand-petrol/10 bg-background/90 shadow-sm backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:border-brand-petrol/20 hover:shadow-md sm:grid-cols-[8.5rem_minmax(0,1fr)]">
-                <div className={`relative flex min-h-28 items-end overflow-hidden px-5 pb-5 sm:min-h-full ${axis.band} ${axis.bandText}`}>
+              <div key={axis.title} className={`relative flex ${index % 2 === 0 ? "md:justify-start" : "md:justify-end"}`}>
+                <span className={`pointer-events-none absolute left-1/2 top-1/2 z-10 hidden size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-brand-soft ${axis.band} md:block`} aria-hidden="true" />
+                <article className="group relative grid w-full overflow-hidden rounded-2xl border border-brand-petrol/10 bg-background/85 shadow-sm backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:border-brand-petrol/20 hover:shadow-md sm:grid-cols-[7.5rem_minmax(0,1fr)] md:w-[62%]">
+                <div className={`relative flex min-h-24 items-end overflow-hidden px-4 pb-4 sm:min-h-full ${axis.band}`}>
                   {axis.layout === "arc" ? (
-                    <ArcThick color={axis.accent} className="pointer-events-none absolute -right-8 -top-8 w-32 opacity-55" from={120} to={280} />
+                    <ArcThick color={axis.accent} className="pointer-events-none absolute -right-8 -top-8 w-28 opacity-55" from={120} to={280} />
                   ) : axis.layout === "split" ? (
                     <HatchedCircle size={150} color={axis.accent} className="pointer-events-none absolute -right-16 -top-8 max-w-none opacity-25" />
                   ) : (
                     <>
-                      <QuarterCircle corner="tr" color={axis.accent} className="pointer-events-none absolute -right-3 -top-3 w-24 opacity-55" />
+                      <QuarterCircle corner="tr" color={axis.accent} className="pointer-events-none absolute -right-3 -top-3 w-20 opacity-55" />
                       <Triangle color={axis.accent} size={28} className="pointer-events-none absolute left-5 top-5 opacity-75" rotate={index * 12} />
                     </>
                   )}
-                  <p className="relative text-[11px] font-bold uppercase tracking-[0.2em] opacity-90">Eixo {String(index + 1).padStart(2, "0")}</p>
+                  <p className={`relative text-[10px] font-bold uppercase tracking-[0.18em] ${axis.bandText}`}>Eixo {String(index + 1).padStart(2, "0")}</p>
                 </div>
                 <div className="flex min-w-0 flex-col justify-center px-5 py-5 sm:px-6 md:px-7">
                   <div className="flex min-w-0 items-start gap-3">
@@ -229,13 +232,14 @@ function Ecossistema() {
                   <p className={`mt-2.5 text-sm font-semibold ${axis.phraseText}`}>{axis.phrase}</p>
                   <p className="mt-3 text-[14px] leading-[1.65] text-brand-gray">{axis.text}</p>
                 </div>
-              </article>
+                </article>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-background py-14 md:py-20">
+      <section className="relative overflow-hidden bg-brand-cyan/5 py-14 md:py-20">
         <ArcThick color="#FFB400" className="pointer-events-none absolute -left-10 top-10 w-20 opacity-25 md:w-24" from={210} to={340} />
         <span className="pointer-events-none absolute right-8 top-14 hidden size-2 rotate-45 bg-brand-red md:block" aria-hidden="true" />
         <div className="container-x relative">
@@ -244,9 +248,10 @@ function Ecossistema() {
             <h2 className="mt-3 text-[1.75rem] leading-tight text-brand-ink md:text-[2.15rem]">Os eixos se conectam na prática.</h2>
             <p className="mx-auto mt-4 max-w-xl leading-relaxed text-brand-gray">Uma mesma iniciativa pode reunir diferentes dimensões da atuação da Maggu.</p>
           </div>
-          <div className="relative mx-auto mt-10 max-w-5xl rounded-3xl border border-brand-petrol/8 bg-brand-soft/35 p-4 sm:p-6 md:p-8">
+          <div className="relative mx-auto mt-9 max-w-5xl rounded-2xl border border-brand-petrol/8 bg-background/65 p-4 shadow-sm backdrop-blur-sm sm:p-6 md:p-8">
             <svg className="pointer-events-none absolute inset-0 hidden h-full w-full md:block" viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M18 18 C30 10, 38 10, 50 18 S72 26, 82 18 M18 42 C30 34, 38 34, 50 42 S72 50, 82 42 M18 18 C10 28, 10 34, 18 42 M50 18 V42 M82 18 C90 28, 90 34, 82 42" stroke="#00384C" strokeOpacity="0.12" strokeWidth="0.35" fill="none" strokeDasharray="1.4 2" />
+              <path d="M17 18 H50 H83 M17 42 H50 H83 M17 18 L50 42 M50 18 V42 M83 18 L50 42" stroke="#00384C" strokeOpacity="0.14" strokeWidth="0.3" fill="none" />
+              <circle cx="50" cy="30" r="1" fill="#FFB400" fillOpacity="0.8" />
             </svg>
             <ul className="relative grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 md:gap-5">
               {[
@@ -259,11 +264,10 @@ function Ecossistema() {
               ].map(([item, color]) => (
                 <li
                   key={item}
-                  className="group relative flex min-h-[96px] items-end overflow-hidden rounded-xl border border-brand-petrol/10 bg-background/80 p-4 shadow-sm backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-brand-petrol/20 hover:shadow-md sm:min-h-[108px] sm:p-5"
+                  className="group relative flex min-h-[78px] items-center justify-center overflow-hidden rounded-xl border border-brand-petrol/10 bg-background/85 px-4 py-5 text-center shadow-sm backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:border-brand-petrol/20 hover:shadow-md"
                 >
                   <span className="absolute right-4 top-4 size-2.5 rotate-45 opacity-80" style={{ backgroundColor: color }} aria-hidden="true" />
-                  <span className="absolute -right-8 -top-8 size-20 rounded-full border opacity-20" style={{ borderColor: color }} aria-hidden="true" />
-                  <span className="absolute bottom-0 left-0 h-1 w-12" style={{ backgroundColor: color }} aria-hidden="true" />
+                   <span className="absolute -right-7 -top-7 size-16 rounded-full border opacity-20" style={{ borderColor: color }} aria-hidden="true" />
                   <p className="relative text-base font-semibold text-brand-ink md:text-lg">{item}</p>
                 </li>
               ))}
@@ -273,21 +277,23 @@ function Ecossistema() {
       </section>
 
 
-      <Section className="relative overflow-hidden bg-brand-soft/20 pb-16 pt-14 md:pb-20 md:pt-20">
-        <span className="pointer-events-none absolute left-1/2 top-0 h-px w-32 -translate-x-1/2 bg-brand-petrol/15" aria-hidden="true" />
-        <div className="container-x">
-          <div className="relative mx-auto max-w-[860px] text-center">
-            <span className="mx-auto mb-6 block size-2 rotate-45 bg-brand-gold" aria-hidden="true" />
+      <Section className="relative overflow-hidden bg-background pb-16 pt-14 md:pb-20 md:pt-20">
+        <div className="container-x grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,.72fr)] lg:gap-16">
+          <div className="relative max-w-2xl">
+            <span className="mb-5 block h-1 w-12 rounded-full bg-brand-gold" aria-hidden="true" />
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Uma atuação integrada</p>
             <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.15, fontWeight: 700 }}>Organizar não significa separar.</h2>
-            <div className="mt-5 space-y-4 leading-relaxed text-brand-gray" style={{ fontSize: "clamp(1rem, 1.2vw, 1.15rem)", lineHeight: 1.7 }}>
+            <div className="mt-5 space-y-4 leading-relaxed text-brand-gray">
               <p>Os eixos tornam mais fácil compreender a diversidade da Maggu, enquanto as conexões entre eles preservam aquilo que caracteriza sua atuação: diferentes linguagens, públicos e experiências compartilhando um mesmo território.</p>
               <p>É assim que teatro pode dialogar com memória, audiovisual pode se tornar formação, esporte pode fortalecer convivência e sustentabilidade pode se transformar em processo criativo.</p>
             </div>
           </div>
-          <p className="mx-auto mt-9 max-w-2xl border-y border-brand-petrol/10 py-6 text-center font-bold text-brand-petrol" style={{ fontSize: "clamp(1.25rem, 2vw, 1.6rem)", lineHeight: 1.3 }}>
-            “O território é o ponto de encontro entre essas diferentes formas de atuar.”
-          </p>
+          <blockquote className="relative overflow-hidden rounded-2xl bg-brand-petrol px-7 py-8 text-primary-foreground shadow-sm md:px-9 md:py-10">
+            <ArcThick color="#08B9E6" className="pointer-events-none absolute -right-10 -top-10 w-28 opacity-30" from={120} to={280} />
+            <span className="relative text-4xl font-bold leading-none text-brand-gold" aria-hidden="true">“</span>
+            <p className="relative mt-2 text-xl font-bold leading-snug text-primary-foreground md:text-2xl">O território é o ponto de encontro entre essas diferentes formas de atuar.</p>
+            <span className="relative mt-6 block size-2 rotate-45 bg-brand-red" aria-hidden="true" />
+          </blockquote>
         </div>
       </Section>
 
@@ -303,36 +309,23 @@ function Ecossistema() {
 }
 
 const diagramNodes = [
-  { label: "Arte & Formação", color: "#ED1C24", style: { left: "2%", top: "6%" } },
-  { label: "Audiovisual", color: "#08B9E6", style: { right: "4%", top: "18%" } },
-  { label: "Livro & Memória", color: "#FFB400", style: { left: "10%", top: "39%" } },
-  { label: "Infância & Território", color: "#FF7A00", style: { right: "0%", top: "52%" } },
-  { label: "Esporte & Inclusão", color: "#00384C", style: { left: "4%", top: "72%" } },
-  { label: "Sustentabilidade", color: "#B8DC4B", style: { right: "8%", top: "86%" } },
+  { label: "Arte & Formação", color: "#ED1C24" },
+  { label: "Audiovisual", color: "#08B9E6" },
+  { label: "Livro & Memória", color: "#FFB400" },
+  { label: "Infância & Território", color: "#FF7A00" },
+  { label: "Esporte & Inclusão", color: "#00384C" },
+  { label: "Sustentabilidade", color: "#B8DC4B" },
 ] as const;
 
 function EcosystemDiagram() {
   return (
-    <div className="relative mx-auto w-full max-w-[470px] rounded-3xl border border-brand-petrol/8 bg-brand-soft/35 p-4 sm:p-6" role="img" aria-label="Seis áreas do Ecossistema Maggu conectadas entre si">
-      <div className="relative h-[330px] sm:h-[360px]">
-        <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-          <path
-            d="M20 16 C 44 8, 58 18, 78 26 C 54 30, 40 36, 24 44 C 48 48, 64 50, 80 58 C 60 64, 42 68, 22 76 C 42 84, 60 86, 76 90"
-            stroke="#00384C"
-            strokeOpacity="0.16"
-            strokeWidth="0.45"
-            fill="none"
-            strokeDasharray="1.3 2"
-          />
-        </svg>
-        <ArcThick color="#ED1C24" className="pointer-events-none absolute -left-2 top-[31%] w-14 opacity-20" from={100} to={250} />
-        <span className="pointer-events-none absolute left-1/2 top-1/2 size-12 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-petrol/10 bg-background/55 backdrop-blur-sm" aria-hidden="true" />
-        <span className="pointer-events-none absolute left-1/2 top-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-brand-gold" aria-hidden="true" />
-        {diagramNodes.map((node) => (
+    <div className="relative mx-auto w-full max-w-[440px] px-2 py-2" role="img" aria-label="Seis áreas do Ecossistema Maggu como partes de uma mesma atuação">
+      <span className="pointer-events-none absolute bottom-7 left-1/2 top-7 w-px -translate-x-1/2 bg-brand-petrol/10" aria-hidden="true" />
+      <div className="relative grid gap-3.5">
+        {diagramNodes.map((node, index) => (
           <span
             key={node.label}
-            className="absolute inline-flex max-w-[48%] items-center gap-2 rounded-full border border-brand-petrol/10 bg-background/90 px-3.5 py-2 text-[12px] font-semibold leading-tight text-brand-ink shadow-sm backdrop-blur-md sm:text-[13px]"
-            style={node.style}
+            className={`relative inline-flex w-[72%] items-center gap-3 rounded-xl border border-brand-petrol/10 bg-background/90 px-4 py-3 text-[12px] font-semibold leading-tight text-brand-ink shadow-sm ${index % 2 === 0 ? "justify-self-start" : "justify-self-end"} sm:text-[13px]`}
           >
             <span className="size-2 rounded-full" style={{ backgroundColor: node.color }} aria-hidden="true" />
             {node.label}
