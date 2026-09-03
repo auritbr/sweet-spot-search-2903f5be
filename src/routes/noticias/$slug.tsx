@@ -124,7 +124,7 @@ function NewsDetail() {
 
   return (
     <>
-      <section className="relative isolate flex h-[350px] items-end overflow-hidden md:h-[370px] lg:h-[390px]">
+      <section className="relative isolate flex h-[375px] items-end overflow-hidden md:h-[410px] lg:h-[440px]">
         <img src={n.image} alt="" className="absolute inset-0 -z-20 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-ink/90 via-brand-petrol/70 to-brand-ink/25" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-ink/45 via-transparent to-brand-ink/75" />

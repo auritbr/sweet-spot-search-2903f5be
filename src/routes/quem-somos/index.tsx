@@ -138,10 +138,9 @@ function QuemSomos() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-brand-soft py-12 md:py-16 lg:py-20">
-        <span className="pointer-events-none absolute -left-16 top-1/3 hidden h-40 w-40 rounded-full border border-brand-petrol/10 md:block" aria-hidden="true" />
-        <Triangle color="#FFB400" size={26} className="pointer-events-none absolute right-[6%] top-10 hidden opacity-60 md:block" rotate={-12} />
-        <div className="container-x grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-16">
+      <section className="relative overflow-hidden bg-[#FDFBF5] py-10 md:py-14">
+        <span className="pointer-events-none absolute -right-24 top-8 hidden size-[22rem] rounded-full bg-brand-gold/10 md:block" aria-hidden="true" />
+        <div className="container-x relative grid items-center gap-8 lg:grid-cols-[1.5fr_1fr] lg:gap-14">
           <div className="relative max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-red">Território</p>
             <h2 className="mt-3 text-2xl leading-tight text-brand-ink md:text-3xl">Benedito Bentes: território de onde partimos e com quem construímos.</h2>
@@ -149,14 +148,16 @@ function QuemSomos() {
             <p className="mt-5 leading-relaxed text-brand-gray">O Benedito Bentes não é apenas o endereço da Associação. É território de relações, memórias, desafios, saberes e potências que ajudam a explicar por que e para quem o Ecossistema Maggu existe.</p>
             <p className="mt-4 leading-relaxed text-brand-gray">É parte da identidade da Maggu e do modo como a organização pensa cultura, acesso, memória, formação e participação.</p>
           </div>
-          <div className="relative mx-auto w-full max-w-sm">
-            <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] border border-brand-petrol/10">
-              <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80" alt="Pessoas compartilhando uma atividade comunitária" className="h-full w-full object-cover" loading="lazy" />
+          <div className="relative w-full">
+            <div className="relative h-[220px] overflow-hidden rounded-tl-[2.5rem] rounded-br-[2.5rem] border border-brand-petrol/10 md:h-[280px] lg:h-[320px]">
+              <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80" alt="Pessoas compartilhando uma atividade comunitária" className="h-full w-full object-cover" loading="lazy" />
             </div>
-            <span className="absolute -bottom-3 left-10 h-1.5 w-20 rounded-full bg-brand-gold" aria-hidden="true" />
+            <span className="pointer-events-none absolute -bottom-2 left-8 size-4 rotate-45 bg-brand-red" aria-hidden="true" />
+            <span className="pointer-events-none absolute -top-3 right-6 hidden h-8 w-16 border-t-2 border-brand-cyan/50 md:block" aria-hidden="true" />
           </div>
         </div>
       </section>
+
 
 
       <Section className="relative overflow-hidden bg-white">
@@ -208,23 +209,29 @@ function QuemSomos() {
       <Section className="overflow-hidden bg-brand-soft">
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Nossa forma de atuar" title="Da escuta ao registro" text="A atuação da Maggu conecta cinco movimentos que ajudam a orientar seus processos culturais." />
-          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <ol className="mx-auto grid max-w-6xl grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-6">
             {process.map((item, index) => (
-              <li key={item.title} className={`relative flex min-h-60 flex-col overflow-hidden rounded-lg border bg-background/60 p-5 shadow-sm backdrop-blur-md ${processDetails[index].accent}`}>
-                <span className={`absolute -right-4 -top-4 size-16 rounded-full opacity-10 ${processDetails[index].shape}`} aria-hidden="true" />
-                <div className="relative flex items-center justify-between">
-                  <span className="text-xs font-bold tracking-[0.16em]">{item.number}</span>
-                  <span className={`size-3 rotate-45 ${processDetails[index].shape}`} aria-hidden="true" />
+              <li
+                key={item.title}
+                className={`relative flex items-start gap-3 rounded-xl border border-brand-petrol/10 bg-white/55 px-4 py-4 shadow-[0_10px_26px_-24px_rgba(0,56,76,0.6)] ring-1 ring-inset ring-white/50 backdrop-blur-sm ${index < 3 ? "lg:col-span-2" : "lg:col-span-3"}`}
+              >
+                <span className={`mt-0.5 text-xs font-bold tracking-[0.16em] ${processDetails[index].accent.split(" ")[1]}`}>{item.number}</span>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-base text-brand-ink md:text-lg">{item.title}</h3>
+                    <span className={`size-1.5 rotate-45 ${processDetails[index].shape}`} aria-hidden="true" />
+                  </div>
+                  <p className="mt-1.5 text-sm leading-relaxed text-brand-gray">{item.text}</p>
                 </div>
-                <div className="relative mt-auto pt-9">
-                  <h3 className="text-xl text-brand-ink">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-brand-gray">{item.text}</p>
-                </div>
+                {index !== process.length - 1 && (
+                  <span className="pointer-events-none absolute -right-3 top-1/2 hidden h-px w-4 -translate-y-1/2 bg-brand-petrol/25 lg:block" aria-hidden="true" />
+                )}
               </li>
             ))}
           </ol>
         </div>
       </Section>
+
 
       <Section className="overflow-hidden bg-white">
         <div className="container-x mx-auto max-w-5xl text-center">
