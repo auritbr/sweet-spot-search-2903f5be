@@ -279,7 +279,7 @@ function AgendaSection() {
               const { day, month } = eventDayMonth(event.date);
               const style = agendaCategoryStyles[event.category];
               return (
-                <Button key={event.slug} type="button" variant="ghost" onClick={() => setSelectedEvent(event)} className="group grid h-auto min-h-56 w-full grid-cols-[4rem_minmax(0,1fr)] items-start gap-4 rounded-2xl border border-brand-petrol/10 bg-background/75 p-5 text-left shadow-sm backdrop-blur-sm transition hover:-translate-y-1 hover:border-brand-petrol/20 hover:bg-background hover:shadow-md">
+                <Button key={event.slug} type="button" variant="ghost" onClick={() => setSelectedEvent(event)} aria-label={`Ver detalhes de ${event.title}`} className="group grid h-auto min-h-56 w-full grid-cols-[4rem_minmax(0,1fr)] items-start gap-4 rounded-2xl border border-brand-petrol/10 bg-background/75 p-5 text-left shadow-sm backdrop-blur-sm transition hover:-translate-y-1 hover:border-brand-petrol/20 hover:bg-background hover:shadow-md">
                   <time dateTime={event.date} className={`border-r border-brand-petrol/10 pr-4 text-center ${style.accentText}`}><span className="block text-3xl font-bold leading-none">{day}</span><span className="mt-1 block text-[11px] font-bold uppercase tracking-[0.12em]">{month}</span></time>
                   <span className="min-w-0">
                     <span className={`block text-[10px] font-bold uppercase tracking-[0.12em] ${style.text}`}>{event.category}</span>
