@@ -210,8 +210,8 @@ function Ecossistema() {
             {axes.map((axis, index) => (
               <div key={axis.title} className={`relative flex ${index % 2 === 0 ? "md:justify-start" : "md:justify-end"}`}>
                 <span className={`pointer-events-none absolute left-1/2 top-1/2 z-10 hidden size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-brand-soft ${axis.band} md:block`} aria-hidden="true" />
-                <article className="group relative grid w-full overflow-hidden rounded-2xl border border-brand-petrol/10 bg-background/85 shadow-sm backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:border-brand-petrol/20 hover:shadow-md sm:grid-cols-[7.5rem_minmax(0,1fr)] md:w-[62%]">
-                <div className={`relative flex min-h-24 items-end overflow-hidden px-4 pb-4 sm:min-h-full ${axis.band}`}>
+                <article className="group relative grid w-full grid-cols-[5.5rem_minmax(0,1fr)] overflow-hidden rounded-2xl border border-brand-petrol/10 bg-background/85 shadow-sm backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:border-brand-petrol/20 hover:shadow-md sm:grid-cols-[7.5rem_minmax(0,1fr)] md:w-[62%]">
+                <div className={`relative flex min-h-full items-end overflow-hidden px-3 pb-4 sm:px-4 ${axis.band}`}>
                   {axis.layout === "arc" ? (
                     <ArcThick color={axis.accent} className="pointer-events-none absolute -right-8 -top-8 w-28 opacity-55" from={120} to={280} />
                   ) : axis.layout === "split" ? (
@@ -224,10 +224,10 @@ function Ecossistema() {
                   )}
                   <p className={`relative text-[10px] font-bold uppercase tracking-[0.18em] ${axis.bandText}`}>Eixo {String(index + 1).padStart(2, "0")}</p>
                 </div>
-                <div className="flex min-w-0 flex-col justify-center px-5 py-5 sm:px-6 md:px-7">
+                <div className="flex min-w-0 flex-col justify-center px-4 py-5 sm:px-6 md:px-7">
                   <div className="flex min-w-0 items-start gap-3">
                     <span className={`mt-2 size-2 shrink-0 rotate-45 ${axis.band}`} aria-hidden="true" />
-                    <h2 className="text-[1.25rem] leading-tight text-brand-ink md:text-[1.4rem]">{axis.title}</h2>
+                    <h2 className="text-[1.05rem] leading-tight text-brand-ink sm:text-[1.25rem] md:text-[1.4rem]">{axis.title}</h2>
                   </div>
                   <p className={`mt-2.5 text-sm font-semibold ${axis.phraseText}`}>{axis.phrase}</p>
                   <p className="mt-3 text-[14px] leading-[1.65] text-brand-gray">{axis.text}</p>
