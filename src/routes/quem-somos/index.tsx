@@ -44,9 +44,10 @@ const processDetails = [
 ] as const;
 
 const directors = [
-  { name: "Cristiano Alcides da Silva Paes", role: "Diretor Geral", tone: "bg-brand-petrol text-primary-foreground", accent: "bg-brand-cyan" },
-  { name: "Rafaela da Silva Leite", role: "Diretora Administrativo-Financeira", tone: "bg-brand-gold text-brand-petrol", accent: "bg-brand-red" },
+  { name: "Cristiano Alcides da Silva Paes", role: "Diretor Geral", tone: "bg-brand-petrol text-primary-foreground", accent: "bg-brand-cyan", photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" },
+  { name: "Rafaela da Silva Leite", role: "Diretora Administrativo-Financeira", tone: "bg-brand-gold text-brand-petrol", accent: "bg-brand-red", photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80" },
 ] as const;
+
 
 function QuemSomos() {
   return (
