@@ -82,22 +82,23 @@ function CalendarEvent({ event }: { event: AgendaEvent }) {
     <Link
       to="/agenda/$slug"
       params={{ slug: event.slug }}
-      className={`group block rounded-md border border-background/80 ${style.surface} p-3 shadow-sm backdrop-blur-md transition hover:-translate-y-0.5 hover:border-brand-petrol/15 hover:shadow-md`}
+      className={`group relative block overflow-hidden rounded-lg border border-background/90 ${style.surface} p-3 shadow-sm backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-brand-petrol/15 hover:shadow-md`}
     >
-      <p className={`text-[10px] font-bold uppercase ${style.text}`}>{event.category}</p>
-      <h3 className="mt-1 text-sm leading-snug text-brand-ink group-hover:text-brand-red">{event.title}</h3>
+      <span className={`absolute inset-y-0 left-0 w-1 ${style.badge}`} aria-hidden="true" />
+      <p className={`pl-1 text-[9px] font-bold uppercase tracking-[0.08em] ${style.text}`}>{event.category}</p>
+      <h3 className="mt-1.5 pl-1 text-sm leading-snug text-brand-ink transition-colors group-hover:text-brand-red">{event.title}</h3>
       {event.time && (
-        <p className="mt-2 flex items-center gap-1.5 text-[11px] font-semibold text-brand-gray">
+        <p className="mt-2 flex items-center gap-1.5 pl-1 text-[11px] font-semibold text-brand-gray">
           <Clock3 aria-hidden="true" className="size-3" /> {event.time}
         </p>
       )}
       {event.location && (
-        <p className="mt-1 flex items-start gap-1.5 text-[11px] leading-snug text-brand-gray">
+        <p className="mt-1 flex items-start gap-1.5 pl-1 text-[11px] leading-snug text-brand-gray">
           <MapPin aria-hidden="true" className="mt-0.5 size-3 shrink-0" /> {event.location}
         </p>
       )}
       {event.status && (
-        <span className="mt-2 inline-flex rounded-full border border-background/80 bg-background/70 px-2 py-1 text-[9px] font-bold uppercase text-brand-petrol backdrop-blur-sm">
+        <span className="ml-1 mt-2 inline-flex rounded-full border border-background/80 bg-background/75 px-2 py-1 text-[9px] font-bold uppercase text-brand-petrol backdrop-blur-sm">
           {agendaStatusLabels[event.status]}
         </span>
       )}
@@ -163,24 +164,24 @@ function Agenda() {
     <>
       <PageHero title="Agenda" eyebrow="Programação" subtitle="Acompanhe cursos, oficinas, sessões, apresentações, encontros e outras atividades do Ecossistema Maggu." image="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1920&q=80" accent="gold" brush="#ED1C24" compact decoration="triangle" />
 
-      <main id="programacao" className="relative overflow-hidden bg-background py-14 md:py-20">
-        <HatchedCircle size={180} color="#08B9E6" className="pointer-events-none absolute -right-24 top-72 opacity-10" />
+      <main id="programacao" className="relative overflow-hidden bg-brand-soft/20 py-12 md:py-16">
+        <HatchedCircle size={150} color="#08B9E6" className="pointer-events-none absolute -right-20 top-56 opacity-10" />
         <div className="container-x">
           <header className="mx-auto max-w-3xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Agenda Maggu</p>
             <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.75rem, 2.7vw, 2.75rem)", lineHeight: 1.15, fontWeight: 700 }}>
               Acompanhe a programação
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-brand-gray">
+             <p className="mx-auto mt-3 max-w-2xl leading-relaxed text-brand-gray">
               Veja as atividades da Associação Maggu por categoria e período, de forma simples, visual e organizada.
             </p>
             <p className="mt-2 text-sm text-brand-gray">A agenda reúne ações culturais, formativas e comunitárias do Ecossistema Maggu.</p>
           </header>
 
-          <div className="mx-auto mt-10 max-w-5xl rounded-lg border border-background/80 bg-background/70 p-3 shadow-[0_12px_40px_rgba(0,56,76,0.08)] backdrop-blur-xl md:p-4">
-            <div className="flex flex-col items-center justify-center gap-5 lg:flex-row lg:gap-8">
-              <fieldset className="min-w-0 text-center">
-                <legend className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-brand-gray">Categoria</legend>
+          <div className="mx-auto mt-7 max-w-6xl rounded-2xl border border-brand-petrol/10 bg-background/75 p-4 shadow-sm backdrop-blur-xl md:p-5">
+            <div className="grid min-w-0 gap-5 lg:grid-cols-[minmax(0,1fr)_1px_minmax(280px,.48fr)] lg:items-center lg:gap-6">
+              <fieldset className="min-w-0">
+                <legend className="mb-2.5 text-[10px] font-bold uppercase tracking-[0.18em] text-brand-gray">Categoria</legend>
                 <div className="flex max-w-full flex-wrap justify-center gap-2 pb-1">
                   {(["Todos", ...agendaCategories] as const).map((item) => (
                     <Button
@@ -190,7 +191,7 @@ function Agenda() {
                       variant="ghost"
                       onClick={() => setCategory(item)}
                       aria-pressed={category === item}
-                      className={`shrink-0 rounded-full border px-4 shadow-none backdrop-blur-md ${category === item ? "border-brand-red bg-brand-red text-primary-foreground hover:bg-brand-red/90 hover:text-primary-foreground" : "border-brand-petrol/10 bg-background/65 text-brand-petrol hover:bg-brand-soft/80 hover:text-brand-petrol"}`}
+                      className={`shrink-0 rounded-full border px-4 shadow-none backdrop-blur-md transition-colors ${category === item ? "border-brand-red bg-brand-red text-primary-foreground hover:bg-brand-red/90 hover:text-primary-foreground" : "border-brand-petrol/10 bg-background/70 text-brand-petrol hover:border-brand-petrol/20 hover:bg-brand-soft/80 hover:text-brand-petrol"}`}
                     >
                       {item}
                     </Button>
@@ -198,12 +199,12 @@ function Agenda() {
                 </div>
               </fieldset>
 
-              <div className="hidden h-12 w-px bg-brand-petrol/10 lg:block" aria-hidden="true" />
+              <div className="hidden h-full min-h-16 w-px bg-brand-petrol/10 lg:block" aria-hidden="true" />
 
-              <fieldset className="min-w-0 text-center">
-                <legend className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-brand-gray">Período</legend>
-                <div className="flex flex-wrap justify-center gap-2 pb-1">
-                  {views.slice(0, 2).map((item) => (
+              <fieldset className="min-w-0">
+                <legend className="mb-2.5 text-[10px] font-bold uppercase tracking-[0.18em] text-brand-gray">Período</legend>
+                <div className="grid grid-cols-2 gap-2 rounded-xl bg-brand-soft/55 p-1.5">
+                  {views.map((item, index) => (
                     <Button
                       key={item.value}
                       type="button"
@@ -211,22 +212,7 @@ function Agenda() {
                       variant="ghost"
                       onClick={() => setView(item.value)}
                       aria-pressed={view === item.value}
-                      className={`shrink-0 rounded-full border px-4 shadow-none backdrop-blur-md ${view === item.value ? "border-brand-petrol bg-brand-petrol text-primary-foreground hover:bg-brand-petrol/90 hover:text-primary-foreground" : "border-brand-petrol/10 bg-background/65 text-brand-petrol hover:bg-brand-soft/80 hover:text-brand-petrol"}`}
-                    >
-                      {item.label}
-                    </Button>
-                  ))}
-                </div>
-                <div className="mt-2 flex flex-wrap justify-center gap-2 pb-1">
-                  {views.slice(2).map((item) => (
-                    <Button
-                      key={item.value}
-                      type="button"
-                      size="sm"
-                      variant="ghost"
-                      onClick={() => setView(item.value)}
-                      aria-pressed={view === item.value}
-                      className={`shrink-0 rounded-full border px-4 shadow-none backdrop-blur-md ${view === item.value ? "border-brand-petrol bg-brand-petrol text-primary-foreground hover:bg-brand-petrol/90 hover:text-primary-foreground" : "border-brand-petrol/10 bg-background/65 text-brand-petrol hover:bg-brand-soft/80 hover:text-brand-petrol"}`}
+                      className={`min-w-0 rounded-lg border px-3 text-xs shadow-none backdrop-blur-md ${index === 2 ? "col-span-2" : ""} ${view === item.value ? "border-brand-petrol bg-brand-petrol text-primary-foreground hover:bg-brand-petrol/90 hover:text-primary-foreground" : "border-transparent bg-background/70 text-brand-petrol hover:bg-background hover:text-brand-petrol"}`}
                     >
                       {item.label}
                     </Button>
@@ -236,27 +222,27 @@ function Agenda() {
             </div>
           </div>
 
-          <section aria-labelledby="calendar-title" className="mx-auto mt-8 max-w-7xl overflow-hidden rounded-lg border border-brand-petrol/10 bg-background">
-            <div className="flex flex-col gap-4 border-b border-brand-petrol/10 px-4 py-5 sm:flex-row sm:items-center sm:justify-between md:px-6">
+          <section aria-labelledby="calendar-title" className="mx-auto mt-6 max-w-7xl overflow-hidden rounded-2xl border border-brand-petrol/10 bg-background/90 shadow-sm">
+            <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-brand-petrol/8 px-4 py-4 md:px-6 md:py-5">
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-brand-red">{view === "mes" ? "Calendário mensal" : "Calendário semanal"}</p>
                 <h2 id="calendar-title" className="mt-1 capitalize text-brand-ink" style={{ fontSize: "clamp(1.35rem, 2vw, 1.8rem)", fontWeight: 700 }}>{title}</h2>
               </div>
-              <div className="flex items-center gap-2">
-                <Button type="button" variant="outline" size="icon" aria-label="Período anterior" onClick={() => movePeriod(-1)} className="rounded-full border-brand-petrol/15 bg-background shadow-none hover:bg-brand-soft">
+              <div className="flex shrink-0 items-center gap-1.5 rounded-full border border-brand-petrol/10 bg-brand-soft/45 p-1.5">
+                <Button type="button" variant="outline" size="icon" aria-label="Período anterior" onClick={() => movePeriod(-1)} className="size-9 rounded-full border-transparent bg-background/80 shadow-none hover:bg-background">
                   <ChevronLeft aria-hidden="true" />
                 </Button>
-                <Button type="button" variant="outline" onClick={() => setCursor(atStartOfDay(new Date()))} className="rounded-full border-brand-petrol/15 bg-background px-5 text-brand-petrol shadow-none hover:bg-brand-soft">
+                <Button type="button" variant="outline" onClick={() => setCursor(atStartOfDay(new Date()))} className="h-9 rounded-full border-transparent bg-background/80 px-4 text-brand-petrol shadow-none hover:bg-background">
                   Hoje
                 </Button>
-                <Button type="button" variant="outline" size="icon" aria-label="Próximo período" onClick={() => movePeriod(1)} className="rounded-full border-brand-petrol/15 bg-background shadow-none hover:bg-brand-soft">
+                <Button type="button" variant="outline" size="icon" aria-label="Próximo período" onClick={() => movePeriod(1)} className="size-9 rounded-full border-transparent bg-background/80 shadow-none hover:bg-background">
                   <ChevronRight aria-hidden="true" />
                 </Button>
               </div>
             </div>
 
-            <div className="hidden grid-cols-7 border-b border-brand-petrol/10 bg-brand-soft/55 md:grid">
-              {weekdays.map((day) => <div key={day} className="px-3 py-3 text-center text-[10px] font-bold uppercase tracking-[0.12em] text-brand-gray">{day}</div>)}
+            <div className="hidden grid-cols-7 border-b border-brand-petrol/8 bg-brand-soft/35 md:grid">
+              {weekdays.map((day) => <div key={day} className="px-3 py-3.5 text-center text-[10px] font-bold uppercase tracking-[0.14em] text-brand-gray">{day}</div>)}
             </div>
 
             <div className="grid md:grid-cols-7">
@@ -265,7 +251,7 @@ function Agenda() {
                 const isToday = sameDay(day, new Date());
                 const outsideMonth = view === "mes" && day.getMonth() !== cursor.getMonth();
                 return (
-                  <article key={dateKey(day)} className={`min-h-36 border-b border-brand-petrol/10 p-3 md:min-h-52 md:border-r ${outsideMonth ? "bg-brand-soft/35" : "bg-background"}`}>
+                  <article key={dateKey(day)} className={`min-h-36 border-b border-brand-petrol/8 p-3 transition-colors md:min-h-52 md:border-r ${outsideMonth ? "bg-brand-soft/25" : "bg-background hover:bg-brand-soft/15"}`}>
                     <div className="mb-3 flex items-center justify-between md:justify-end">
                       <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-brand-gray md:hidden">{weekdays[day.getDay()]}</p>
                       <time dateTime={dateKey(day)} className={`flex size-8 items-center justify-center rounded-full text-sm font-bold ${isToday ? "bg-brand-red text-primary-foreground" : outsideMonth ? "text-brand-gray/50" : "text-brand-petrol"}`}>
