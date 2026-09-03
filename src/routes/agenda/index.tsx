@@ -84,7 +84,7 @@ function CalendarEvent({ event }: { event: AgendaEvent }) {
       params={{ slug: event.slug }}
       className={`group relative block overflow-hidden rounded-lg border border-background/90 ${style.surface} p-3 shadow-sm backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-brand-petrol/15 hover:shadow-md`}
     >
-      <span className={`absolute inset-y-0 left-0 w-1 ${style.badge}`} aria-hidden="true" />
+      <span className={`absolute inset-y-0 left-0 w-1 bg-current ${style.accentText}`} aria-hidden="true" />
       <p className={`pl-1 text-[9px] font-bold uppercase tracking-[0.08em] ${style.text}`}>{event.category}</p>
       <h3 className="mt-1.5 pl-1 text-sm leading-snug text-brand-ink transition-colors group-hover:text-brand-red">{event.title}</h3>
       {event.time && (
