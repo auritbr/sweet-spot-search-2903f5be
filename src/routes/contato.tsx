@@ -48,17 +48,29 @@ function Contato() {
             <div className="mt-7 grid max-w-2xl gap-3 sm:grid-cols-2">
               <ContactCard icon={Mail} label="E-mail" value={site.email} href={`mailto:${site.email}`} accent="cyan" />
               <ContactCard icon={Phone} label="Telefone e WhatsApp" value={site.phone} support={`WhatsApp +${site.whatsapp}`} href={`https://wa.me/${site.whatsapp}`} accent="gold" />
-              <ContactCard icon={MapPin} label="Endereço" value={site.address} accent="red" />
-              <ContactCard icon={Clock3} label="Horário" value={site.hours} accent="petrol" />
-              <ContactCard icon={Accessibility} label="Acessibilidade" value="Espaço acessível, VLibras disponível no site e canal aberto para solicitações de acessibilidade." accent="cyan" wide />
+              <ContactCard icon={MapPin} label="Endereço" value={site.address} accent="red" wide />
             </div>
-            <div className="mt-5 flex flex-wrap items-center gap-2.5">
-              <span className="mr-1 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-gray"><Share2 className="size-4 text-brand-red" aria-hidden="true" /> Redes</span>
-              {[["Instagram", site.social.instagram], ["Facebook", site.social.facebook], ["YouTube", site.social.youtube]].map(([label, href]) => (
-                <a key={label} href={href} className="rounded-full border border-brand-petrol/12 bg-brand-soft/55 px-4 py-2 text-xs font-semibold text-brand-ink transition hover:border-brand-red/25 hover:bg-white hover:text-brand-red">{label}</a>
-              ))}
+            <div className="mt-7">
+              <h3 className="flex items-center gap-2 text-sm font-semibold text-brand-ink"><Share2 className="size-4 text-brand-red" aria-hidden="true" /> Redes sociais</h3>
+              <div className="mt-4 flex flex-wrap items-center gap-3">
+                {socialLinks.map(({ label, href, icon: Icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    title={label}
+                    className="group relative inline-flex size-11 items-center justify-center rounded-lg border border-brand-ink/15 bg-white/55 text-brand-ink shadow-sm backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-brand-red/55 hover:bg-brand-red/10 hover:text-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/50"
+                  >
+                    <Icon className="size-[18px]" aria-hidden="true" />
+                    <span className="pointer-events-none absolute -bottom-8 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded bg-brand-ink px-2 py-1 text-[10px] font-medium text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">{label}</span>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
+
 
           <div className="relative bg-white text-brand-ink rounded-2xl p-5 md:p-6 shadow-xl w-full lg:max-w-[520px] lg:justify-self-end">
             <h2 style={{ fontSize: "1.25rem", fontWeight: 700 }}>Envie sua mensagem</h2>
