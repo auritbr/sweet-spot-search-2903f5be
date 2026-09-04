@@ -68,42 +68,39 @@ function List({ items }: { items: string[] }) {
 
 function Privacidade() {
   return (
-    <main id="main">
-      <PageHero
-        title="Política de Privacidade e Proteção de Dados Pessoais"
-        eyebrow="Privacidade"
-        subtitle="Entenda como a Associação Maggu trata, protege e utiliza dados pessoais em suas atividades, projetos e canais institucionais."
-        image="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80"
-        accent="cyan"
-        brush="#FFB400"
-        compact
-        decoration="ribbon"
-      />
+    <main id="main" className="bg-brand-soft/60">
+      <section className="relative overflow-hidden border-b border-brand-petrol/10 bg-background py-10 md:py-12">
+        <div className="container-x relative">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-cyan">Privacidade</p>
+          <h1 className="mt-3 text-[1.7rem] font-bold leading-[1.15] text-brand-ink md:text-[2.2rem]">Política de Privacidade</h1>
+          <p className="mt-3 max-w-2xl text-[0.98rem] leading-relaxed text-brand-gray">Proteção de dados pessoais e transparência institucional.</p>
+        </div>
+        <span className="pointer-events-none absolute -right-10 top-1/2 hidden size-28 -translate-y-1/2 rounded-full border-[10px] border-brand-cyan/10 md:block" aria-hidden="true" />
+      </section>
 
-      <LegalIntro
-        tone="privacy"
-        eyebrow="Transparência e dados"
-        title="Privacidade também faz parte da nossa responsabilidade institucional."
-        text="A Associação Maggu busca tratar informações pessoais com responsabilidade, clareza e respeito. Nesta página estão reunidas as orientações relacionadas à coleta, utilização, proteção, compartilhamento e demais formas de tratamento de dados pessoais."
-        updated={ultimaAtualizacao}
-      />
+      <div className="px-4 py-8 md:px-6 md:py-12">
+        <article className="mx-auto max-w-[1000px] rounded-md bg-background px-5 py-8 shadow-[0_1px_3px_rgba(0,56,76,0.06),0_10px_30px_-18px_rgba(0,56,76,0.25)] md:px-14 md:py-14">
+          <header className="border-b border-brand-petrol/12 pb-7 text-center">
+            <h2 className="text-[1.35rem] font-bold uppercase leading-[1.25] tracking-[0.01em] text-brand-ink md:text-[1.85rem]">
+              Política de Privacidade e Proteção de Dados Pessoais
+            </h2>
+            <div className="mt-4 space-y-1 text-sm leading-relaxed text-brand-gray">
+              <p className="font-semibold text-brand-ink">Associação Sócio Cultural Maggu – Associação Maggu</p>
+              <p>CNPJ nº 61.841.454/0001-80</p>
+              <p className="pt-2">Última atualização: {ultimaAtualizacao}</p>
+            </div>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+              <button
+                type="button"
+                onClick={() => window.print()}
+                className="inline-flex items-center gap-2 rounded-md border border-brand-petrol/15 bg-brand-soft/60 px-3 py-1.5 text-[13px] font-medium text-brand-ink backdrop-blur transition-colors hover:bg-brand-soft"
+              >
+                Baixar em PDF
+              </button>
+            </div>
+            <DocIndex items={toc} />
+          </header>
 
-      <div className="bg-background py-10 md:py-14">
-        <div className="container-x grid gap-10 lg:grid-cols-[260px_minmax(0,880px)] lg:justify-center lg:gap-14">
-          <LegalToc items={toc} tone="privacy" />
-
-          <article className="min-w-0 max-w-[880px]">
-            <header className="border-b border-brand-petrol/12 pb-8">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-cyan">Documento institucional</p>
-              <h2 className="mt-3 text-[1.5rem] font-bold leading-[1.2] text-brand-ink md:text-[1.9rem]">
-                Política de Privacidade e Proteção de Dados Pessoais
-              </h2>
-              <div className="mt-4 space-y-1 text-sm leading-relaxed text-brand-gray">
-                <p className="font-semibold text-brand-ink">Associação Sócio Cultural Maggu – Associação Maggu</p>
-                <p>CNPJ nº 61.841.454/0001-80</p>
-                <p>Última atualização: {ultimaAtualizacao}</p>
-              </div>
-            </header>
 
             <DocSection id="sec-1" number={1} tone="privacy" title="Apresentação">
               <p>
