@@ -33,9 +33,11 @@ function Home() {
       <IntroSection />
       <EcosystemSection />
       <ProjectHighlights />
+      <ImpactoSection />
       <CulturePointSection />
       <AgendaSection />
       <MemorySection />
+      <ParticipeSection />
       <TransparencySection />
       <FinalCTA />
     </>
