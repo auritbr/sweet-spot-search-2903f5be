@@ -3,7 +3,7 @@ import {
   Accessibility,
   ALargeSmall,
   CaseSensitive,
-  CircleHalf,
+  Contrast,
   Cookie,
   Link as LinkIcon,
   Minus,
@@ -189,7 +189,7 @@ const defaultA11y: A11yState = {
 const AK = "cv_a11y";
 
 const a11yOptions = [
-  { key: "highContrast", label: "Alto contraste", Icon: CircleHalf },
+  { key: "highContrast", label: "Alto contraste", Icon: Contrast },
   { key: "grayscale", label: "Escala de cinza", Icon: ScanText },
   { key: "underline", label: "Destacar links", Icon: LinkIcon },
   { key: "readable", label: "Fonte para dislexia", Icon: CaseSensitive },
