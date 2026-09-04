@@ -8,9 +8,9 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/privacidade")({
   head: () => ({
     meta: [
-      { title: "Privacidade e Proteção de Dados | Associação Maggu" },
+      { title: "Política de Privacidade | Associação Maggu" },
       { name: "description", content: "Conheça as orientações da Associação Maggu sobre privacidade, tratamento de dados pessoais e direitos relacionados ao uso de seus canais digitais." },
-      { property: "og:title", content: "Privacidade e Proteção de Dados | Associação Maggu" },
+      { property: "og:title", content: "Política de Privacidade | Associação Maggu" },
       { property: "og:description", content: "Orientações sobre privacidade, tratamento de dados pessoais e direitos relacionados ao uso dos canais digitais da Associação Maggu." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/privacidade" },

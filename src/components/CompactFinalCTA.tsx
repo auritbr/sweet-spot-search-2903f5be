@@ -95,6 +95,7 @@ function CtaButton({ item, className }: { item: CtaLink; className: string }) {
 
 export function CompactFinalCTA({ title, text, primary, secondary, variant }: CompactFinalCTAProps) {
   const styles = buttonStyles[variant];
+  const isLegal = variant === "privacy" || variant === "terms";
 
   return (
     <section data-final-cta className="relative isolate mt-4 overflow-hidden bg-brand-petrol px-4 pt-5 md:mt-6 md:px-6 md:pt-7">
@@ -105,7 +106,7 @@ export function CompactFinalCTA({ title, text, primary, secondary, variant }: Co
           <span className="pointer-events-none absolute bottom-0 left-1/2 h-12 w-[68%] -translate-x-1/2 rounded-t-full bg-primary-foreground/[0.025]" aria-hidden="true" />
           <div className="relative z-10 mx-auto max-w-2xl">
             <span className="mx-auto mb-4 block size-3 rotate-45 border border-brand-gold/75 bg-brand-gold/15" aria-hidden="true" />
-            <h2 className="text-[1.45rem] font-bold leading-tight text-primary-foreground md:text-[1.9rem]">{title}</h2>
+            <h2 className={`mx-auto text-[1.45rem] font-bold leading-tight text-primary-foreground md:text-[1.9rem] ${isLegal ? "max-w-[17rem] sm:max-w-2xl" : ""}`}>{title}</h2>
             <p className="mx-auto mt-3 max-w-xl text-[0.85rem] leading-relaxed text-primary-foreground/80 md:text-[0.95rem]">{text}</p>
             <div className="mt-6 flex flex-col items-center justify-center gap-2.5 sm:flex-row">
               <CtaButton item={primary} className={styles[0]} />
