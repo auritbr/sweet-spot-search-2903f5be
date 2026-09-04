@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TransparenciaRouteImport } from './routes/transparencia'
 import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
+import { Route as ImprensaRouteImport } from './routes/imprensa'
 import { Route as EquipeRouteImport } from './routes/equipe'
 import { Route as EcossistemaRouteImport } from './routes/ecossistema'
 import { Route as ContatoRouteImport } from './routes/contato'
@@ -40,6 +41,11 @@ const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
 const PrivacidadeRoute = PrivacidadeRouteImport.update({
   id: '/privacidade',
   path: '/privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImprensaRoute = ImprensaRouteImport.update({
+  id: '/imprensa',
+  path: '/imprensa',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EquipeRoute = EquipeRouteImport.update({
@@ -119,6 +125,7 @@ export interface FileRoutesByFullPath {
   '/contato': typeof ContatoRoute
   '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
+  '/imprensa': typeof ImprensaRoute
   '/privacidade': typeof PrivacidadeRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/transparencia': typeof TransparenciaRoute
@@ -138,6 +145,7 @@ export interface FileRoutesByTo {
   '/contato': typeof ContatoRoute
   '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
+  '/imprensa': typeof ImprensaRoute
   '/privacidade': typeof PrivacidadeRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/transparencia': typeof TransparenciaRoute
@@ -158,6 +166,7 @@ export interface FileRoutesById {
   '/contato': typeof ContatoRoute
   '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
+  '/imprensa': typeof ImprensaRoute
   '/privacidade': typeof PrivacidadeRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/transparencia': typeof TransparenciaRoute
@@ -179,6 +188,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/ecossistema'
     | '/equipe'
+    | '/imprensa'
     | '/privacidade'
     | '/termos-de-uso'
     | '/transparencia'
@@ -198,6 +208,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/ecossistema'
     | '/equipe'
+    | '/imprensa'
     | '/privacidade'
     | '/termos-de-uso'
     | '/transparencia'
@@ -217,6 +228,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/ecossistema'
     | '/equipe'
+    | '/imprensa'
     | '/privacidade'
     | '/termos-de-uso'
     | '/transparencia'
@@ -237,6 +249,7 @@ export interface RootRouteChildren {
   ContatoRoute: typeof ContatoRoute
   EcossistemaRoute: typeof EcossistemaRoute
   EquipeRoute: typeof EquipeRoute
+  ImprensaRoute: typeof ImprensaRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
   TermosDeUsoRoute: typeof TermosDeUsoRoute
   TransparenciaRoute: typeof TransparenciaRoute
@@ -272,6 +285,13 @@ declare module '@tanstack/react-router' {
       path: '/privacidade'
       fullPath: '/privacidade'
       preLoaderRoute: typeof PrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/imprensa': {
+      id: '/imprensa'
+      path: '/imprensa'
+      fullPath: '/imprensa'
+      preLoaderRoute: typeof ImprensaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/equipe': {
@@ -381,6 +401,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContatoRoute: ContatoRoute,
   EcossistemaRoute: EcossistemaRoute,
   EquipeRoute: EquipeRoute,
+  ImprensaRoute: ImprensaRoute,
   PrivacidadeRoute: PrivacidadeRoute,
   TermosDeUsoRoute: TermosDeUsoRoute,
   TransparenciaRoute: TransparenciaRoute,
