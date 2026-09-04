@@ -138,8 +138,9 @@ function QuemSomos() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#FDFBF5] py-10 md:py-14">
-        <span className="pointer-events-none absolute -right-24 top-8 hidden size-[22rem] rounded-full bg-brand-gold/10 md:block" aria-hidden="true" />
+      <section className="relative overflow-hidden bg-brand-soft py-10 md:py-14">
+        <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-brand-petrol/8" aria-hidden="true" />
+        <span className="pointer-events-none absolute -right-20 top-10 hidden size-40 rounded-full border border-brand-gold/20 md:block" aria-hidden="true" />
         <div className="container-x relative grid items-center gap-8 lg:grid-cols-[1.5fr_1fr] lg:gap-14">
           <div className="relative max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-red">Território</p>
