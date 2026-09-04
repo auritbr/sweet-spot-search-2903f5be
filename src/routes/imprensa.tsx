@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Download, FileText, Mail, Phone } from "lucide-react";
+import { ArrowUpRight, Download, FileArchive, FileText, Mail, Phone } from "lucide-react";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { PageHero, HeroButton, Section, SectionTitle } from "@/components/PageHero";
 import { ArcThick, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
@@ -37,8 +37,8 @@ export const Route = createFileRoute("/imprensa")({
 
 const accentBar: Record<string, string> = { cyan: "bg-brand-cyan", gold: "bg-brand-gold", red: "bg-brand-red" };
 const accentHex: Record<string, string> = { cyan: "#08B9E6", gold: "#FFB400", red: "#ED1C24" };
-const factColors = ["#08B9E6", "#FFB400", "#ED1C24", "#00689D", "#3F7E44", "#00384C"];
-const docColors = ["#00689D", "#FD9D24", "#C5192D", "#3F7E44", "#08B9E6", "#00384C"];
+const factColors = ["#08B9E6", "#FFB400", "#00689D", "#00384C", "#3F7E44", "#08B9E6"];
+const docColors = ["#00384C", "#08B9E6", "#A47819"];
 
 
 function Imprensa() {
@@ -89,22 +89,22 @@ function Imprensa() {
         <span className="pointer-events-none absolute right-8 bottom-10 hidden size-20 rounded-full border border-brand-cyan/25 md:block" aria-hidden="true" />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Ficha rápida" title="Maggu em resumo" text="Dados institucionais para consulta e citação." />
-          <div className="mx-auto grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto grid max-w-5xl auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {pressFacts.map((fact, i) => {
               const color = factColors[i % factColors.length];
               return (
                 <div
                   key={fact.label}
-                  className="group relative overflow-hidden rounded-[18px] border border-brand-petrol/8 bg-white/70 p-5 pl-6 shadow-[0_10px_28px_-26px_rgba(0,56,76,0.55)] ring-1 ring-inset ring-white/70 backdrop-blur-sm transition duration-300 hover:-translate-y-0.5"
+                  className={`group relative min-h-32 overflow-hidden rounded-[16px] border border-brand-petrol/8 bg-white/75 p-6 shadow-[0_12px_28px_-27px_rgba(0,56,76,0.55)] transition duration-300 hover:-translate-y-0.5 ${i === 0 || i === 1 ? "lg:col-span-2" : "lg:col-span-1"}`}
                 >
-                  <span className="absolute left-0 top-5 bottom-5 w-[3px] rounded-r-full" style={{ backgroundColor: color }} aria-hidden="true" />
+                  <span className="absolute left-6 top-0 h-[3px] w-10 rounded-b-full" style={{ backgroundColor: color }} aria-hidden="true" />
                   <span
                     className="pointer-events-none absolute -right-7 -top-7 size-20 rounded-full opacity-[0.08] transition-opacity duration-300 group-hover:opacity-[0.15]"
                     style={{ backgroundColor: color }}
                     aria-hidden="true"
                   />
                   <p className="relative text-[11px] font-semibold uppercase tracking-[0.2em]" style={{ color }}>{fact.label}</p>
-                  <p className="relative mt-2 text-[15px] leading-snug text-brand-ink">{fact.value}</p>
+                  <p className={`relative mt-3 leading-snug text-brand-ink ${i < 2 ? "text-[1.05rem] font-semibold md:text-[1.15rem]" : "text-[15px]"}`}>{fact.value}</p>
                 </div>
               );
             })}
@@ -184,13 +184,13 @@ function Imprensa() {
         <HatchedCircle size={120} color="#FFB400" className="pointer-events-none absolute -left-12 bottom-6 opacity-20" />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Marca" title="Identidade institucional" />
-          <div className="mx-auto grid max-w-4xl items-center gap-6 overflow-hidden rounded-[22px] border border-brand-petrol/8 bg-brand-soft/40 p-6 shadow-[0_14px_34px_-30px_rgba(0,56,76,0.5)] ring-1 ring-inset ring-white/70 md:grid-cols-[240px_1fr] md:p-8">
-            <div className="relative flex items-center justify-center rounded-[18px] bg-white p-6 ring-1 ring-brand-petrol/8">
-              <span className="pointer-events-none absolute left-3 top-3 size-5 border-l border-t border-brand-cyan/40" aria-hidden="true" />
-              <span className="pointer-events-none absolute bottom-3 right-3 size-5 border-b border-r border-brand-gold/50" aria-hidden="true" />
-              <img src={logoAsset} alt="Associação Maggu" className="h-24 w-auto max-w-full object-contain" />
+          <div className="mx-auto grid max-w-5xl overflow-hidden rounded-[20px] border border-brand-petrol/8 bg-brand-soft/35 shadow-[0_16px_38px_-32px_rgba(0,56,76,0.6)] md:grid-cols-[minmax(280px,0.85fr)_1.15fr]">
+            <div className="relative flex min-h-64 items-center justify-center bg-brand-petrol p-10 md:min-h-80">
+              <span className="pointer-events-none absolute left-6 top-6 size-8 border-l border-t border-brand-cyan/45" aria-hidden="true" />
+              <span className="pointer-events-none absolute bottom-6 right-6 size-3 rotate-45 bg-brand-gold/75" aria-hidden="true" />
+              <img src={logoAsset} alt="Associação Maggu" className="h-32 w-auto max-w-full object-contain md:h-40" />
             </div>
-            <div>
+            <div className="p-7 md:p-10">
               <p className="text-[15px] leading-[1.75] text-brand-gray">
                 Utilize sempre os arquivos oficiais disponibilizados pela Associação. Não recriar, distorcer ou alterar a identidade institucional.
               </p>
@@ -216,13 +216,9 @@ function Imprensa() {
         <QuarterCircle corner="tl" color="#FFB400" className="pointer-events-none absolute -right-6 bottom-8 hidden w-14 opacity-30 md:block" />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Credenciais" title="Um reconhecimento que integra essa trajetória" text="Reconhecimentos públicos que podem ser citados em matérias e materiais editoriais." />
-          <div className="mx-auto grid max-w-4xl items-center gap-6 overflow-hidden rounded-[22px] border border-brand-petrol/8 bg-white/75 p-6 shadow-[0_14px_34px_-30px_rgba(0,56,76,0.5)] ring-1 ring-inset ring-white/70 md:grid-cols-[200px_1fr] md:p-8">
-            <div className="flex justify-center">
-              <div className="flex size-40 items-center justify-center rounded-full bg-brand-soft/70 ring-1 ring-brand-petrol/8">
-                <img src={pontoCulturaAsset} alt="Ponto de Cultura" className="h-28 w-28 object-contain" loading="lazy" />
-              </div>
-            </div>
-            <div>
+          <div className="relative mx-auto grid max-w-5xl overflow-hidden rounded-[18px] border border-brand-petrol/8 bg-white/80 shadow-[0_16px_38px_-32px_rgba(0,56,76,0.55)] md:grid-cols-[1.3fr_0.7fr]">
+            <span className="pointer-events-none absolute left-7 top-0 h-[3px] w-14 rounded-b-full bg-brand-gold" aria-hidden="true" />
+            <div className="p-7 md:p-10">
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-gold">Certificação</p>
               <h3 className="mt-1.5 text-[1.2rem] font-bold text-brand-ink">Ponto de Cultura</h3>
               <p className="mt-2 text-[15px] leading-[1.75] text-brand-gray">
@@ -232,6 +228,12 @@ function Imprensa() {
                 Ver Transparência <ArrowUpRight className="size-4" aria-hidden="true" />
               </Link>
             </div>
+            <div className="relative flex min-h-60 flex-col items-center justify-center border-t border-brand-petrol/10 bg-brand-soft/35 p-8 md:border-l md:border-t-0">
+              <span className="pointer-events-none absolute right-6 top-6 size-2.5 rotate-45 bg-brand-cyan/50" aria-hidden="true" />
+              <img src={pontoCulturaAsset} alt="Ponto de Cultura" className="h-32 w-32 object-contain md:h-36 md:w-36" loading="lazy" />
+              <span className="mt-4 h-px w-12 bg-brand-gold/60" aria-hidden="true" />
+              <p className="mt-3 text-center text-xs font-semibold uppercase tracking-[0.16em] text-brand-petrol/70">Certificação cultural</p>
+            </div>
           </div>
         </div>
       </Section>
@@ -239,15 +241,16 @@ function Imprensa() {
 
       {/* Releases */}
       <Section className="overflow-hidden bg-white">
-        <span className="pointer-events-none absolute right-8 top-10 hidden size-16 rounded-full border border-brand-red/20 md:block" aria-hidden="true" />
+        <span className="pointer-events-none absolute right-8 top-10 hidden size-16 rounded-full border border-brand-cyan/20 md:block" aria-hidden="true" />
+        <span className="pointer-events-none absolute left-10 bottom-12 hidden size-2.5 rotate-45 bg-brand-gold/55 md:block" aria-hidden="true" />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Conteúdo" title="Releases" text="Materiais sobre projetos, eventos, resultados e pautas institucionais." />
           <ul className="mx-auto max-w-3xl divide-y divide-brand-petrol/10 overflow-hidden rounded-[20px] border border-brand-petrol/8 bg-brand-soft/35">
             {releases.map((item) => (
               <li key={item.title} className="group px-5 py-5 transition hover:bg-white/60 md:px-7 md:py-6">
                 <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em]">
-                  <span className="inline-flex items-center gap-1.5 text-brand-red">
-                    <span className="size-1.5 rotate-45 bg-brand-red" aria-hidden="true" />
+                  <span className="inline-flex items-center gap-1.5 text-brand-cyan">
+                    <span className="size-1.5 rotate-45 bg-brand-cyan" aria-hidden="true" />
                     {item.category}
                   </span>
                   <span className="text-brand-gray/70">{item.date}</span>
@@ -270,8 +273,8 @@ function Imprensa() {
           <SectionTitle align="center" eyebrow="Na mídia" title="Clipping" text="Matérias, entrevistas e reportagens selecionadas sobre a Associação Maggu e suas iniciativas." />
           <ul className="mx-auto max-w-3xl divide-y divide-brand-petrol/10 overflow-hidden rounded-[20px] border border-brand-petrol/8 bg-white/75 shadow-[0_14px_34px_-32px_rgba(0,56,76,0.5)]">
             {clipping.map((item) => (
-              <li key={item.title} className="flex flex-wrap items-center gap-3 px-5 py-4 transition hover:bg-brand-soft/40">
-                <span className="hidden h-9 w-[3px] shrink-0 rounded-full bg-brand-cyan/50 sm:block" aria-hidden="true" />
+              <li key={item.title} className="relative flex flex-wrap items-center gap-4 px-5 py-5 transition hover:bg-brand-soft/40 md:px-7">
+                <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-full border border-brand-cyan/25" aria-hidden="true"><span className="size-1.5 rotate-45 bg-brand-cyan/70" /></span>
                 <div className="min-w-0 flex-1">
                   <p className="text-[15px] font-semibold leading-snug text-brand-ink">{item.title}</p>
                   <p className="mt-1 text-xs text-brand-gray">{item.outlet} · {item.date}</p>
@@ -318,32 +321,33 @@ function Imprensa() {
         <Triangle color="#ED1C24" size={22} className="pointer-events-none absolute left-8 bottom-10 hidden opacity-60 md:block" rotate={-12} />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Download" title="Kit de Imprensa" text="Conjunto de materiais oficiais reunidos para uso editorial e institucional." />
-          <div className="mx-auto grid max-w-4xl gap-5 md:grid-cols-2">
-            <div className="relative overflow-hidden rounded-[20px] border border-brand-petrol/8 bg-white/80 p-6 shadow-[0_14px_34px_-32px_rgba(0,56,76,0.5)] ring-1 ring-inset ring-white/70">
-              <span className="absolute left-6 top-0 h-[3px] w-12 rounded-b-full bg-brand-cyan" aria-hidden="true" />
-              <span className="pointer-events-none absolute -bottom-10 -right-10 size-28 rounded-full bg-brand-cyan/10" aria-hidden="true" />
-              <p className="relative text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-cyan">O que o kit contém</p>
-              <ul className="relative mt-3 space-y-2 text-sm leading-relaxed text-brand-gray">
+          <div className="mx-auto max-w-5xl overflow-hidden rounded-[20px] border border-brand-petrol/8 bg-white/80 shadow-[0_16px_38px_-32px_rgba(0,56,76,0.6)]">
+            <div className="grid md:grid-cols-[1.25fr_0.75fr]">
+              <div className="p-7 md:p-10">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-cyan">O que o kit contém</p>
+                <ul className="mt-5 grid gap-x-8 gap-y-3 text-sm leading-relaxed text-brand-gray sm:grid-cols-2">
                 {pressKitIncludes.map((item) => (
                   <li key={item} className="flex gap-2.5"><span className="mt-[7px] size-1.5 shrink-0 rotate-45 bg-brand-cyan" aria-hidden="true" />{item}</li>
                 ))}
-              </ul>
+                </ul>
+                <Link to="/contato" className="mt-7 inline-flex items-center gap-2 rounded-full bg-brand-petrol px-7 py-3 text-sm font-bold text-primary-foreground shadow-[0_16px_30px_-22px_rgba(0,56,76,0.9)] transition hover:-translate-y-0.5 hover:bg-brand-red">
+                  <Download className="size-4" aria-hidden="true" /> Baixar Kit de Imprensa
+                </Link>
+              </div>
+              <div className="relative flex min-h-56 items-center justify-center overflow-hidden border-t border-brand-petrol/10 bg-brand-petrol p-10 md:border-l md:border-t-0">
+                <span className="absolute left-10 top-10 h-28 w-20 rotate-[-7deg] rounded-[6px] border border-primary-foreground/30 bg-primary-foreground/8" aria-hidden="true" />
+                <span className="absolute right-10 top-14 h-28 w-20 rotate-[8deg] rounded-[6px] border border-brand-cyan/55 bg-brand-cyan/10" aria-hidden="true" />
+                <span className="relative inline-flex size-20 items-center justify-center rounded-full border border-primary-foreground/20 bg-primary-foreground/10 text-primary-foreground backdrop-blur-sm"><FileArchive className="size-8" aria-hidden="true" /></span>
+              </div>
             </div>
-            <div className="relative overflow-hidden rounded-[20px] border border-brand-red/12 bg-white/80 p-6 shadow-[0_14px_34px_-32px_rgba(0,56,76,0.5)] ring-1 ring-inset ring-white/70">
-              <span className="absolute left-6 top-0 h-[3px] w-12 rounded-b-full bg-brand-red" aria-hidden="true" />
-              <span className="pointer-events-none absolute -bottom-10 -right-10 size-28 rounded-full bg-brand-red/8" aria-hidden="true" />
-              <p className="relative text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-red">O que não entra no kit</p>
-              <ul className="relative mt-3 space-y-2 text-sm leading-relaxed text-brand-gray">
+            <div className="grid gap-3 border-t border-brand-petrol/10 bg-brand-soft/35 px-7 py-5 md:grid-cols-[180px_1fr] md:items-start md:px-10">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-gray/75">O que não entra no kit</p>
+              <ul className="grid gap-x-6 gap-y-1.5 text-xs leading-relaxed text-brand-gray sm:grid-cols-2">
                 {pressKitExcludes.map((item) => (
-                  <li key={item} className="flex gap-2.5"><span className="mt-[7px] size-1.5 shrink-0 rotate-45 bg-brand-red/70" aria-hidden="true" />{item}</li>
+                  <li key={item} className="flex gap-2.5"><span className="mt-[6px] size-1 shrink-0 rounded-full bg-brand-petrol/45" aria-hidden="true" />{item}</li>
                 ))}
               </ul>
             </div>
-          </div>
-          <div className="mt-7 flex justify-center">
-            <Link to="/contato" className="inline-flex items-center gap-2 rounded-full bg-brand-petrol px-7 py-3 text-sm font-bold text-primary-foreground shadow-[0_16px_30px_-22px_rgba(0,56,76,0.9)] transition hover:-translate-y-0.5 hover:bg-brand-red">
-              <Download className="size-4" aria-hidden="true" /> Baixar Kit de Imprensa
-            </Link>
           </div>
         </div>
       </Section>
@@ -353,21 +357,18 @@ function Imprensa() {
         <span className="pointer-events-none absolute left-6 top-10 hidden size-10 border-l border-t border-brand-cyan/35 md:block" aria-hidden="true" />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Fale conosco" title="Contato de imprensa" />
-          <div className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2">
-            <a href="mailto:comunicacaomktmaggu@gmail.com" className="group flex items-center gap-4 rounded-[18px] border border-brand-petrol/8 bg-brand-soft/40 p-5 transition hover:-translate-y-0.5 hover:border-brand-cyan/40">
-              <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-cyan/15 text-brand-petrol"><Mail className="size-5" aria-hidden="true" /></span>
-              <span className="min-w-0">
-                <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-cyan">E-mail</span>
-                <span className="block break-all text-sm text-brand-ink">comunicacaomktmaggu@gmail.com</span>
-              </span>
-            </a>
-            <a href="tel:+5582998067374" className="group flex items-center gap-4 rounded-[18px] border border-brand-petrol/8 bg-brand-soft/40 p-5 transition hover:-translate-y-0.5 hover:border-brand-gold/50">
-              <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-gold/20 text-brand-petrol"><Phone className="size-5" aria-hidden="true" /></span>
-              <span className="min-w-0">
-                <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-gold">Telefone / WhatsApp</span>
-                <span className="block text-sm text-brand-ink">(82) 99806-7374</span>
-              </span>
-            </a>
+          <div className="relative mx-auto max-w-4xl overflow-hidden rounded-[20px] border border-brand-petrol/8 bg-brand-soft/35 p-6 shadow-[0_16px_38px_-34px_rgba(0,56,76,0.6)] md:p-9">
+            <span className="pointer-events-none absolute right-7 top-0 h-[3px] w-12 rounded-b-full bg-brand-cyan" aria-hidden="true" />
+            <div className="grid gap-5 md:grid-cols-2 md:divide-x md:divide-brand-petrol/10">
+              <a href="mailto:comunicacaomktmaggu@gmail.com" className="group grid grid-cols-[44px_minmax(0,1fr)] items-center gap-4 md:pr-7">
+                <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-brand-cyan/20 bg-white/70 text-brand-petrol"><Mail className="size-4.5" aria-hidden="true" /></span>
+                <span className="min-w-0"><span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-cyan">E-mail</span><span className="block break-all text-sm text-brand-ink group-hover:text-brand-petrol">comunicacaomktmaggu@gmail.com</span></span>
+              </a>
+              <a href="tel:+5582998067374" className="group grid grid-cols-[44px_minmax(0,1fr)] items-center gap-4 border-t border-brand-petrol/10 pt-5 md:border-t-0 md:pl-7 md:pt-0">
+                <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-brand-gold/30 bg-white/70 text-brand-petrol"><Phone className="size-4.5" aria-hidden="true" /></span>
+                <span className="min-w-0"><span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-gold">Telefone / WhatsApp</span><span className="block text-sm text-brand-ink group-hover:text-brand-petrol">(82) 99806-7374</span></span>
+              </a>
+            </div>
           </div>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Link to="/contato" className="inline-flex rounded-full bg-brand-red px-6 py-2.5 text-sm font-bold text-primary-foreground transition hover:bg-brand-petrol">Solicitar entrevista</Link>

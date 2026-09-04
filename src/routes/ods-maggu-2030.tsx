@@ -141,28 +141,26 @@ function OdsMaggu2030() {
           <SectionTitle align="center" eyebrow="Percurso" title="Jornada institucional" text="Etapas que organizam a construção dos compromissos e o acompanhamento dos resultados." />
 
           {/* Desktop: linha horizontal com marcos alternados */}
-          <div className="relative mx-auto hidden max-w-5xl lg:block">
-            <span className="pointer-events-none absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-brand-petrol/15" aria-hidden="true" />
-            <span className="pointer-events-none absolute left-0 top-1/2 size-2 -translate-x-1 -translate-y-1/2 rotate-45 bg-brand-petrol/40" aria-hidden="true" />
-            <span className="pointer-events-none absolute right-0 top-1/2 size-2 translate-x-1 -translate-y-1/2 rotate-45 bg-brand-petrol/40" aria-hidden="true" />
+          <div className="relative mx-auto hidden max-w-6xl px-4 lg:block">
+            <span className="pointer-events-none absolute left-8 right-8 top-[190px] h-px bg-brand-petrol/14" aria-hidden="true" />
             <ol className="relative grid grid-cols-6">
               {odsJourney.map((item, i) => {
                 const color = journeyColors[i % journeyColors.length];
                 const up = i % 2 === 0;
                 return (
-                  <li key={item.step} className="relative flex h-[300px] flex-col items-center px-2">
-                    <div className={`flex w-full flex-1 flex-col ${up ? "justify-end pb-5" : "justify-start pt-5 order-2"}`}>
-                      <p className="text-[11px] font-semibold tracking-[0.18em]" style={{ color }}>{item.step}</p>
-                      <h3 className="mt-1 text-[0.95rem] font-bold leading-snug text-brand-ink">{item.title}</h3>
-                      <p className="mt-1.5 text-[13px] leading-[1.6] text-brand-gray">{item.text}</p>
+                  <li key={item.step} className="relative h-[380px] px-3">
+                    <div className={`absolute left-3 right-3 ${up ? "bottom-[218px]" : "top-[218px]"}`}>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em]" style={{ color }}>{item.step}</p>
+                      <h3 className="mt-2 text-[0.95rem] font-bold leading-snug text-brand-ink">{item.title}</h3>
+                      <p className="mt-2 text-[13px] leading-[1.65] text-brand-gray">{item.text}</p>
                     </div>
                     <span
-                      className={`absolute top-1/2 h-6 w-px -translate-y-1/2 ${up ? "-mt-3" : "mt-3"}`}
+                      className={`absolute left-1/2 h-5 w-px -translate-x-1/2 ${up ? "top-[170px]" : "top-[191px]"}`}
                       style={{ backgroundColor: `${color}55` }}
                       aria-hidden="true"
                     />
                     <span
-                      className="absolute top-1/2 size-3 -translate-y-1/2 rounded-full ring-4 ring-white"
+                      className="absolute left-1/2 top-[185px] size-[11px] -translate-x-1/2 rounded-full border-2 border-white shadow-[0_0_0_1px_rgba(0,56,76,0.12)]"
                       style={{ backgroundColor: color }}
                       aria-hidden="true"
                     />
@@ -173,13 +171,13 @@ function OdsMaggu2030() {
           </div>
 
           {/* Mobile / tablet: timeline vertical */}
-          <ol className="relative mx-auto max-w-2xl space-y-6 pl-7 lg:hidden">
-            <span className="pointer-events-none absolute left-[5px] top-2 h-[calc(100%-1rem)] w-px bg-brand-petrol/15" aria-hidden="true" />
+          <ol className="relative mx-auto max-w-2xl space-y-8 pl-9 lg:hidden">
+            <span className="pointer-events-none absolute left-[6px] top-2 h-[calc(100%-1rem)] w-px bg-brand-petrol/15" aria-hidden="true" />
             {odsJourney.map((item, i) => {
               const color = journeyColors[i % journeyColors.length];
               return (
-                <li key={item.step} className="relative">
-                  <span className="absolute -left-7 top-1.5 size-[11px] rounded-full ring-4 ring-white" style={{ backgroundColor: color }} aria-hidden="true" />
+                <li key={item.step} className="relative min-h-20">
+                  <span className="absolute -left-9 top-1 size-[11px] rounded-full border-2 border-white shadow-[0_0_0_1px_rgba(0,56,76,0.12)]" style={{ backgroundColor: color }} aria-hidden="true" />
                   <p className="text-[11px] font-semibold tracking-[0.18em]" style={{ color }}>{item.step}</p>
                   <h3 className="mt-1 text-[1rem] font-bold leading-snug text-brand-ink">{item.title}</h3>
                   <p className="mt-1.5 text-sm leading-[1.7] text-brand-gray">{item.text}</p>
@@ -198,15 +196,15 @@ function OdsMaggu2030() {
             {odsCommitments.map((item) => (
               <article
                 key={item.title}
-                className="group relative overflow-hidden rounded-[18px] border border-brand-petrol/8 bg-white/75 p-6 pl-7 shadow-[0_10px_28px_-26px_rgba(0,56,76,0.55)] ring-1 ring-inset ring-white/70 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_34px_-28px_rgba(0,56,76,0.7)]"
+                className="group relative overflow-hidden rounded-[18px] border border-brand-petrol/8 bg-white/75 p-6 shadow-[0_10px_28px_-26px_rgba(0,56,76,0.55)] ring-1 ring-inset ring-white/70 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_34px_-28px_rgba(0,56,76,0.7)]"
               >
-                <span className="absolute left-0 top-5 bottom-5 w-[3px] rounded-r-full" style={{ backgroundColor: item.color }} aria-hidden="true" />
+                <span className="absolute left-6 top-0 h-[3px] w-10 rounded-b-full" style={{ backgroundColor: item.color }} aria-hidden="true" />
                 <span
                   className="pointer-events-none absolute -right-6 -top-6 size-20 rotate-45 opacity-[0.07] transition-opacity duration-300 group-hover:opacity-[0.14]"
                   style={{ backgroundColor: item.color }}
                   aria-hidden="true"
                 />
-                <span className="block size-2 rotate-45" style={{ backgroundColor: item.color }} aria-hidden="true" />
+                <span className="block size-2 rounded-full" style={{ backgroundColor: item.color }} aria-hidden="true" />
                 <h3 className="relative mt-4 text-[1.05rem] font-bold leading-snug text-brand-ink">{item.title}</h3>
                 <p className="relative mt-2 text-sm leading-[1.7] text-brand-gray">{item.text}</p>
               </article>
@@ -224,19 +222,20 @@ function OdsMaggu2030() {
               const Icon = indicatorIcons[i % indicatorIcons.length];
               const color = indicatorColors[i % indicatorColors.length];
               return (
-                <div key={item.label} className="relative overflow-hidden rounded-[16px] border border-brand-petrol/8 bg-brand-soft/40 p-5">
-                  <div className="flex items-start gap-3">
-                    <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: `${color}1f`, color }} aria-hidden="true">
+                <article key={item.label} className="group relative overflow-hidden rounded-[16px] border border-brand-petrol/8 bg-white p-5 shadow-[0_12px_30px_-28px_rgba(0,56,76,0.65)] transition duration-300 hover:-translate-y-0.5 hover:border-brand-petrol/15">
+                  <span className="pointer-events-none absolute right-5 top-5 size-2 rotate-45 opacity-45" style={{ backgroundColor: color }} aria-hidden="true" />
+                  <div className="flex items-start gap-4">
+                    <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-brand-petrol/8 bg-brand-soft/60" style={{ color }} aria-hidden="true">
                       <Icon className="size-4" />
                     </span>
                     <div className="min-w-0">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-gray/65">Em consolidação</p>
                       <p className="text-[15px] font-semibold leading-snug text-brand-ink">{item.label}</p>
-                      <p className="mt-1.5 text-sm leading-[1.7] text-brand-gray">{item.note}</p>
+                      <span className="mt-3 block h-px w-8" style={{ backgroundColor: `${color}66` }} aria-hidden="true" />
+                      <p className="mt-3 text-sm leading-[1.7] text-brand-gray">{item.note}</p>
                     </div>
                   </div>
-                  <span className="mt-4 block h-px w-full bg-brand-petrol/10" aria-hidden="true" />
-                  <p className="mt-3 text-[11px] uppercase tracking-[0.16em] text-brand-gray/60">Em consolidação</p>
-                </div>
+                </article>
               );
             })}
           </div>
