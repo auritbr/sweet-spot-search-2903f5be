@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useState, type ReactNode } from "react";
 import {
   Accessibility,
   ALargeSmall,
@@ -157,7 +157,7 @@ function CookieDialog({ prefs, setPrefs, save }: { prefs: CookiePrefs; setPrefs:
   );
 }
 
-function PreferenceRow({ title, description, control, htmlFor }: { title: string; description: string; control: React.ReactNode; htmlFor?: string }) {
+function PreferenceRow({ title, description, control, htmlFor }: { title: string; description: string; control: ReactNode; htmlFor?: string }) {
   const content = (
     <>
       <span className="min-w-0 flex-1">
@@ -188,7 +188,15 @@ const defaultA11y: A11yState = {
 };
 const AK = "cv_a11y";
 
-function A11yPanel({ onClose }: { onClose: () => void }) {
+const a11yOptions = [
+  { key: "highContrast", label: "Alto contraste", Icon: CircleHalf },
+  { key: "grayscale", label: "Escala de cinza", Icon: ScanText },
+  { key: "underline", label: "Destacar links", Icon: LinkIcon },
+  { key: "readable", label: "Fonte para dislexia", Icon: CaseSensitive },
+  { key: "spacing", label: "Espaçamento de texto", Icon: ALargeSmall },
+] as const;
+
+function A11yPanel() {
   const [s, setS] = useState<A11yState>(defaultA11y);
 
   useEffect(() => {
@@ -224,41 +232,52 @@ function A11yPanel({ onClose }: { onClose: () => void }) {
   const setFont = (v: number) => setS({ ...s, fontScale: Math.min(140, Math.max(80, v)) });
 
   return (
-    <div role="dialog" aria-labelledby="a11y-title" className="fixed inset-0 z-50 flex">
-      <button className="flex-1 bg-black/40" onClick={onClose} aria-label="Fechar" />
-      <aside className="w-full max-w-sm bg-white h-full overflow-y-auto p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 id="a11y-title" className="font-display text-xl font-black text-brand-ink">Acessibilidade</h2>
-          <button onClick={onClose} aria-label="Fechar" className="p-2 rounded-full hover:bg-brand-soft">✕</button>
-        </div>
-        <div className="space-y-2 text-sm">
-          <div className="p-3 rounded-lg bg-brand-soft">
-            <p className="font-semibold text-brand-ink mb-2">Tamanho da fonte ({s.fontScale}%)</p>
-            <div className="flex gap-2">
-              <button onClick={() => setFont(s.fontScale - 10)} className="px-3 py-2 rounded bg-white border">A-</button>
-              <button onClick={() => setFont(100)} className="px-3 py-2 rounded bg-white border">A</button>
-              <button onClick={() => setFont(s.fontScale + 10)} className="px-3 py-2 rounded bg-white border">A+</button>
-            </div>
+    <DialogContent className="flex max-h-[80dvh] w-[calc(100%-1.5rem)] max-w-[480px] flex-col gap-0 overflow-hidden rounded-xl border-brand-petrol/10 bg-background p-0 shadow-2xl [&>button.absolute]:hidden">
+      <div className="flex shrink-0 items-center gap-3 bg-brand-petrol px-5 py-3.5 text-primary-foreground sm:px-6">
+        <Accessibility className="size-5 shrink-0" strokeWidth={2} aria-hidden="true" />
+        <DialogTitle className="flex-1 text-lg font-semibold text-primary-foreground">Acessibilidade</DialogTitle>
+        <DialogDescription className="sr-only">Ajuste a apresentação visual e a legibilidade do site.</DialogDescription>
+        <DialogClose asChild>
+          <Button variant="ghost" size="icon" className="size-11 shrink-0 rounded-full text-primary-foreground hover:bg-background/10 hover:text-primary-foreground" aria-label="Fechar acessibilidade">
+            <X className="size-5" aria-hidden="true" />
+          </Button>
+        </DialogClose>
+      </div>
+
+      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-5 sm:px-6">
+        <div className="rounded-lg border border-brand-petrol/10 bg-brand-soft/45 p-4">
+          <div className="flex items-center gap-2">
+            <ALargeSmall className="size-4 text-brand-petrol" aria-hidden="true" />
+            <p className="text-sm font-semibold text-brand-ink">Tamanho da fonte ({s.fontScale}%)</p>
           </div>
-          {[
-            ["highContrast", "Alto contraste"],
-            ["invert", "Contraste invertido"],
-            ["grayscale", "Escala de cinza"],
-            ["underline", "Destacar links"],
-            ["readable", "Fonte de alta legibilidade"],
-            ["spacing", "Aumentar espaçamento"],
-            ["pause", "Pausar animações"],
-            ["cursor", "Cursor ampliado"],
-            ["guide", "Guia de leitura"],
-          ].map(([k, l]) => (
-            <label key={k} className="flex items-center justify-between p-3 rounded-lg bg-brand-soft cursor-pointer">
-              <span className="text-brand-ink font-medium">{l}</span>
-              <input type="checkbox" checked={!!s[k as keyof A11yState]} onChange={() => toggle(k as keyof A11yState)} />
-            </label>
-          ))}
-          <button onClick={reset} className="w-full mt-3 px-4 py-3 rounded-full bg-brand-red text-white font-semibold">Restaurar configurações</button>
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <Button variant="outline" onClick={() => setFont(s.fontScale - 10)} disabled={s.fontScale <= 80} aria-label="Diminuir tamanho da fonte" className="h-11 border-brand-petrol/15 bg-background text-brand-ink shadow-sm hover:bg-brand-petrol/8 hover:text-brand-ink">
+              <Minus className="size-4" aria-hidden="true" />
+            </Button>
+            <Button variant="outline" onClick={() => setFont(s.fontScale + 10)} disabled={s.fontScale >= 140} aria-label="Aumentar tamanho da fonte" className="h-11 border-brand-petrol/15 bg-background text-brand-ink shadow-sm hover:bg-brand-petrol/8 hover:text-brand-ink">
+              <Plus className="size-4" aria-hidden="true" />
+            </Button>
+          </div>
         </div>
-      </aside>
-    </div>
+
+        <div className="mt-3 space-y-2">
+          {a11yOptions.map(({ key, label, Icon }) => {
+            const id = `a11y-${key}`;
+            return (
+            <label key={key} htmlFor={id} className="flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border border-brand-petrol/10 bg-brand-soft/45 px-4 py-2.5">
+              <Icon className="size-4 shrink-0 text-brand-petrol" aria-hidden="true" />
+              <span className="min-w-0 flex-1 text-sm font-medium text-brand-ink">{label}</span>
+              <Switch id={id} checked={s[key]} onCheckedChange={() => toggle(key)} aria-label={label} className="data-[state=checked]:bg-brand-red" />
+            </label>
+            );
+          })}
+        </div>
+
+        <Button variant="outline" onClick={reset} className="mt-4 h-10 w-full border-brand-petrol/15 bg-background text-brand-ink hover:bg-brand-petrol/8 hover:text-brand-ink">
+          <RotateCcw className="size-4" aria-hidden="true" />
+          Restaurar configurações
+        </Button>
+      </div>
+    </DialogContent>
   );
 }

@@ -82,6 +82,7 @@ html.a11y-invert { filter: invert(1) hue-rotate(180deg); }
 html.a11y-invert img, html.a11y-invert video { filter: invert(1) hue-rotate(180deg); }
 html.a11y-grayscale { filter: grayscale(1); }
 html.a11y-underline a { text-decoration: underline !important; }
+html.a11y-readable body { font-family: Arial, Verdana, ui-sans-serif, system-ui, sans-serif; }
 html.a11y-spacing * { letter-spacing: 0.03em !important; line-height: 1.75 !important; }
 html.a11y-pause *, html.a11y-pause *::before, html.a11y-pause *::after {
   animation: none !important; transition: none !important;
