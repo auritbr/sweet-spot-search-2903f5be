@@ -52,12 +52,14 @@ function Contato() {
           <div className="text-brand-ink">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Canais de contato</p>
             <h2 className="mt-2 text-2xl font-bold">Estamos por aqui</h2>
-            <div className="mt-7 grid max-w-2xl gap-3">
-              <ContactCard icon={Mail} label="E-mail" value="comunicacaomktmaggu@gmail.com" href="mailto:comunicacaomktmaggu@gmail.com" action="Enviar e-mail" accent="cyan" />
-              <ContactCard icon={Phone} label="Telefone / WhatsApp" value="(82) 99806-7374" href="https://wa.me/5582998067374" action="Conversar no WhatsApp" accent="gold" external />
-              <SocialContactCard />
+            <div className="mt-6 grid max-w-2xl gap-3">
+              <ContactCard icon={Mail} label="E-mail" value="comunicacaomktmaggu@gmail.com" accent="cyan" />
+              <ContactCard icon={Phone} label="Telefone" value="(82) 99806-7374" accent="gold" />
+              <ContactCard icon={MapPin} label="Endereço" value={"Rua Em Projeto A, 33 — Benedito Bentes\nMaceió - AL, 57084-411"} accent="red" />
             </div>
+            <SocialLinksArea />
           </div>
+
 
 
           <div className="relative bg-white text-brand-ink rounded-2xl p-5 md:p-6 shadow-xl w-full lg:max-w-[520px] lg:justify-self-end">
