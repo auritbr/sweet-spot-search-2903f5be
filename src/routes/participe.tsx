@@ -95,15 +95,14 @@ function Participe() {
     <Section id="parcerias" className="relative overflow-hidden bg-background">
       <ArcThick color="#FFB400" className="pointer-events-none absolute -left-12 top-12 w-24 opacity-[0.16]" from={210} to={340} />
       <HatchedCircle size={82} color="#00384C" className="pointer-events-none absolute -right-8 bottom-9 opacity-[0.09]" />
-      <div className="container-x grid items-center gap-9 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14">
-        <div className="relative lg:pl-5">
-          <span className="pointer-events-none absolute -left-1 top-2 hidden h-20 w-1 rounded-full bg-brand-gold lg:block" aria-hidden="true" />
-          <SectionTitle eyebrow="Parcerias" title="Vamos construir juntos?" />
-          <p className="max-w-2xl leading-relaxed text-brand-gray">A Associação Maggu acredita em redes. Instituições públicas e privadas, organizações sociais, coletivos, empresas, artistas, educadores e profissionais podem construir conosco ações, formações, projetos, eventos, campanhas e outras formas de cooperação.</p>
-          <Button asChild className="mt-6 rounded-full bg-brand-petrol px-6 text-primary-foreground hover:bg-brand-red"><Link to="/contato">Propor parceria</Link></Button>
+      <div className="container-x">
+        <div className="mx-auto max-w-3xl text-center">
+          <SectionTitle align="center" eyebrow="Parcerias" title="Vamos construir juntos?" />
+          <p className="mx-auto max-w-2xl leading-relaxed text-brand-gray">A Associação Maggu acredita em redes. Instituições públicas e privadas, organizações sociais, coletivos, empresas, artistas, educadores e profissionais podem construir conosco ações, formações, projetos, eventos, campanhas e outras formas de cooperação.</p>
         </div>
-        <div className="relative grid grid-cols-2 gap-3 rounded-[16px] border border-brand-petrol/8 bg-brand-soft/25 p-3">
+        <div className="relative mx-auto mt-8 grid max-w-4xl grid-cols-2 gap-3 rounded-[16px] border border-brand-petrol/8 bg-brand-soft/35 p-3 md:grid-cols-4">
           <span className="pointer-events-none absolute -right-3 -top-3 size-7 rounded-full border-[5px] border-brand-cyan/20" aria-hidden="true" />
+          <span className="pointer-events-none absolute -left-2 bottom-7 h-10 w-1 rounded-full bg-brand-red" aria-hidden="true" />
           {partnerships.map((item, i) => <div key={item} className={`group relative flex min-h-28 flex-col justify-end overflow-hidden rounded-[11px] border border-brand-petrol/10 p-4 transition hover:-translate-y-0.5 ${i === 0 ? "bg-brand-petrol text-primary-foreground" : i === 3 ? "bg-brand-gold/15 text-brand-ink" : "bg-background/90 text-brand-ink"}`}>
             {i === 0 && <span className="absolute -right-5 -top-5 size-16 rounded-full border-[8px] border-brand-cyan/20" aria-hidden="true" />}
             {i === 1 && <span className="absolute right-4 top-4 size-3 rotate-45 bg-brand-gold" aria-hidden="true" />}
@@ -113,25 +112,26 @@ function Participe() {
             <p className="mt-2 text-base font-bold">{item}</p>
           </div>)}
         </div>
+        <div className="mt-7 text-center"><Button asChild className="rounded-full bg-brand-petrol px-6 text-primary-foreground hover:bg-brand-red"><Link to="/contato">Propor parceria</Link></Button></div>
       </div>
     </Section>
 
-    <Section id="colaboracao" className="overflow-hidden bg-brand-petrol text-primary-foreground">
-      <QuarterCircle corner="tr" color="#08B9E6" className="pointer-events-none absolute -right-7 top-0 w-20 opacity-20" />
-      <ArcThick color="#FFB400" className="pointer-events-none absolute -left-12 bottom-0 w-24 opacity-20" from={205} to={325} />
+    <Section id="colaboracao" className="overflow-hidden bg-brand-soft">
+      <QuarterCircle corner="tr" color="#08B9E6" className="pointer-events-none absolute -right-7 top-0 w-20 opacity-[0.12]" />
+      <ArcThick color="#FFB400" className="pointer-events-none absolute -left-12 bottom-0 w-24 opacity-[0.15]" from={205} to={325} />
       <div className="container-x">
-        <div className="relative grid items-center gap-7 border-b border-primary-foreground/15 pb-8 md:grid-cols-[1fr_auto]">
+        <div className="relative grid items-center gap-7 rounded-[16px] border border-brand-petrol/10 bg-background/80 p-6 shadow-[0_18px_40px_-36px_rgba(0,56,76,0.7)] md:grid-cols-[1fr_auto] md:p-8">
           <span className="pointer-events-none absolute right-0 top-0 hidden size-3 rotate-45 bg-brand-red md:block" aria-hidden="true" />
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[.22em] text-brand-gold">Colaboração</p>
-            <h2 className="mt-3 text-2xl text-primary-foreground md:text-3xl">Conhecimento também pode ser compartilhado.</h2>
-            <p className="mt-4 max-w-3xl leading-relaxed text-primary-foreground/80">Artistas, educadores, voluntários e outros profissionais podem colaborar com experiências, saberes e práticas em diferentes iniciativas da Associação.</p>
+            <p className="text-xs font-semibold uppercase tracking-[.22em] text-brand-red">Colaboração</p>
+            <h2 className="mt-3 text-2xl text-brand-ink md:text-3xl">Conhecimento também pode ser compartilhado.</h2>
+            <p className="mt-4 max-w-3xl leading-relaxed text-brand-gray">Artistas, educadores, voluntários e outros profissionais podem colaborar com experiências, saberes e práticas em diferentes iniciativas da Associação.</p>
           </div>
-          <Button asChild className="rounded-full bg-brand-cyan px-6 text-brand-petrol hover:bg-brand-gold"><Link to="/contato">Quero colaborar</Link></Button>
+          <Button asChild className="rounded-full bg-brand-petrol px-6 text-primary-foreground hover:bg-brand-red"><Link to="/contato">Quero colaborar</Link></Button>
         </div>
-        <div className="relative mt-6 grid items-center gap-5 rounded-[14px] bg-primary-foreground/7 px-5 py-5 backdrop-blur-sm md:grid-cols-[1fr_auto] md:px-6">
+        <div className="relative mt-4 grid items-center gap-5 rounded-[14px] border border-brand-petrol/10 bg-background/60 px-5 py-5 md:grid-cols-[1fr_auto] md:px-6">
           <span className="pointer-events-none absolute left-0 top-4 h-8 w-1 rounded-r-full bg-brand-gold" aria-hidden="true" />
-          <div className="pl-2"><h2 className="text-xl text-primary-foreground">Ainda não sabe qual caminho escolher?</h2><p className="mt-1.5 text-sm text-primary-foreground/70">Fale com a Associação Maggu e conte como gostaria de participar.</p></div>
+          <div className="pl-2"><h2 className="text-xl text-brand-ink">Ainda não sabe qual caminho escolher?</h2><p className="mt-1.5 text-sm text-brand-gray">Fale com a Associação Maggu e conte como gostaria de participar.</p></div>
           <Button asChild className="rounded-full bg-brand-red px-6 text-primary-foreground hover:bg-brand-gold hover:text-brand-petrol"><Link to="/contato">Entre em contato</Link></Button>
         </div>
       </div>
