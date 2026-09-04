@@ -36,6 +36,10 @@ export const Route = createFileRoute("/imprensa")({
 });
 
 const accentBar: Record<string, string> = { cyan: "bg-brand-cyan", gold: "bg-brand-gold", red: "bg-brand-red" };
+const accentHex: Record<string, string> = { cyan: "#08B9E6", gold: "#FFB400", red: "#ED1C24" };
+const factColors = ["#08B9E6", "#FFB400", "#ED1C24", "#00689D", "#3F7E44", "#00384C"];
+const docColors = ["#00689D", "#FD9D24", "#C5192D", "#3F7E44", "#08B9E6", "#00384C"];
+
 
 function Imprensa() {
   return (
