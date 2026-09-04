@@ -261,6 +261,15 @@ function QuemSomos() {
             <Link to="/equipe" className="inline-flex rounded-full bg-brand-petrol px-6 py-2.5 text-sm font-bold text-primary-foreground transition hover:bg-brand-red">Conheça nossa equipe</Link>
             <Link to="/transparencia" className="inline-flex rounded-full border-2 border-brand-petrol px-6 py-2.5 text-sm font-bold text-brand-petrol transition hover:bg-brand-soft">Acesse a Transparência</Link>
           </div>
+
+          <div className="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-3 rounded-2xl border border-brand-petrol/10 bg-brand-soft/50 p-6 text-center sm:flex-row sm:justify-between sm:text-left">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-red">Imprensa</p>
+              <p className="mt-1.5 text-[15px] leading-snug text-brand-ink">Informações institucionais, release, porta-vozes e materiais oficiais para veículos e parceiros.</p>
+            </div>
+            <Link to="/imprensa" className="inline-flex shrink-0 rounded-full bg-brand-petrol px-6 py-2.5 text-sm font-bold text-primary-foreground transition hover:bg-brand-red">Sala de Imprensa</Link>
+          </div>
+
         </div>
       </Section>
 
