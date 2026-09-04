@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Accessibility, Clock3, ExternalLink, Mail, MapPin, Phone, Share2 } from "lucide-react";
+import { ExternalLink, Facebook, Instagram, Mail, MapPin, Phone, Share2, Youtube } from "lucide-react";
 import { useState } from "react";
 import { PageHero } from "@/components/PageHero";
 import { ArcThick, BrushStroke, DiamondsCluster, HatchedCircle, QuarterCircle } from "@/components/Shapes";
@@ -19,6 +19,12 @@ export const Route = createFileRoute("/contato")({
   }),
   component: Contato,
 });
+
+const socialLinks = [
+  { label: "Instagram", href: site.social.instagram, icon: Instagram },
+  { label: "Facebook", href: site.social.facebook, icon: Facebook },
+  { label: "YouTube", href: site.social.youtube, icon: Youtube },
+] as const;
 
 function Contato() {
   const [sent, setSent] = useState(false);
