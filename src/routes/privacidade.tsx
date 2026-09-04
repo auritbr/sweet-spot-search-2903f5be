@@ -1,8 +1,8 @@
 // Conteúdo jurídico fornecido integralmente pela Associação Maggu — não alterar.
 import { createFileRoute } from "@tanstack/react-router";
-import { LegalIntro, LegalToc, LegalSection } from "@/components/Legal";
-import { PageHero } from "@/components/PageHero";
+import { DocIndex, DocSection } from "@/components/Legal";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
+
 
 export const Route = createFileRoute("/privacidade")({
   head: () => ({
@@ -768,9 +768,9 @@ function Privacidade() {
                 <p className="pt-3 font-semibold text-brand-ink">Última atualização: {ultimaAtualizacao}.</p>
               </div>
             </footer>
-          </article>
-        </div>
+        </article>
       </div>
+
 
       <CompactFinalCTA
         variant="privacy"
