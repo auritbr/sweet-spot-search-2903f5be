@@ -29,4 +29,4 @@
 - [x] Harmonizar cards e composições centrais de Participe
 - [x] Refinar introdução, relações, localização e projetos de Território
 - [x] Remover a seção de ações de Território e ajustar o link do hero
-- [ ] Validar as três páginas em desktop e mobile
+- [x] Validar as três páginas em desktop e mobile
