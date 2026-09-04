@@ -49,9 +49,9 @@ function Imprensa() {
         brush="#FFB400"
         decoration="constellation"
       >
-        <HeroButton to="/imprensa" tone="gold">Baixar Kit de Imprensa</HeroButton>
+        <HeroButton to="/contato" tone="gold">Baixar Kit de Imprensa</HeroButton>
         <HeroButton to="/contato" tone="red">Solicitar entrevista</HeroButton>
-        <HeroButton to="/imprensa" tone="petrol">Ver clipping</HeroButton>
+
       </PageHero>
 
       {/* Sobre a Maggu */}
