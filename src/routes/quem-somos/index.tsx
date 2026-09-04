@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { HeroButton, PageHero, Section, SectionTitle } from "@/components/PageHero";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { ArcThick, DiamondsCluster, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
-import culturePointSeal from "@/assets/logo-selo-ponto-de-cultura.png.asset.json";
+import culturePointSeal from "@/assets/ponto-de-cultura.png";
 
 export const Route = createFileRoute("/quem-somos/")({
   head: () => ({
@@ -132,7 +132,7 @@ function QuemSomos() {
               </div>
               <div className="relative mx-auto w-full max-w-40 text-center md:border-l md:border-brand-petrol/15 md:pl-7">
                 <div className="mx-auto aspect-square w-full rounded-full bg-brand-soft/70 p-1.5 shadow-[0_14px_32px_-22px_rgba(0,56,76,0.55)] ring-1 ring-brand-petrol/10">
-                  <img src={culturePointSeal.url} alt="Selo oficial Ponto de Cultura, certificado pelo Ministério da Cultura" className="h-full w-full object-contain" loading="lazy" />
+                  <img src={culturePointSeal} alt="Selo oficial Ponto de Cultura, certificado pelo Ministério da Cultura" className="h-full w-full object-contain" loading="lazy" />
                 </div>
                 <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-petrol">Certificação conquistada em 2025</p>
               </div>

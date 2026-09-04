@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, MessageCircle, Youtube } from "lucide-react";
-import logoAsset from "@/assets/logo-associacao-maggu.png.asset.json";
+import logoAsset from "@/assets/logo-maggu.png";
 import { HatchedCircle, QuarterCircle } from "@/components/Shapes";
 
 const institucional = [
@@ -57,7 +57,7 @@ export function Footer() {
               className="relative block h-[64px] w-32 overflow-hidden sm:h-[72px] sm:w-36"
             >
               <img
-                src={logoAsset.url}
+                src={logoAsset}
                 alt="Associação Sócio Cultural Maggu"
                 className="absolute -top-1/2 left-0 h-auto w-full max-w-none object-contain"
               />

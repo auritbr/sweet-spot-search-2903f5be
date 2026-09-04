@@ -8,7 +8,7 @@ import { EventPreviewPanel } from "@/components/EventPreviewPanel";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { agendaCategoryStyles, eventDayMonth, upcomingEvents, type AgendaEvent } from "@/data/agenda";
 import { HatchedCircle, ArcThick, BrushStroke, DiamondsCluster, QuarterCircle, Triangle } from "@/components/Shapes";
-import culturePointSeal from "@/assets/logo-selo-ponto-de-cultura.png.asset.json";
+import culturePointSeal from "@/assets/ponto-de-cultura.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -274,7 +274,7 @@ function CulturePointSection() {
             <HatchedCircle size={150} color="#FFB400" className="pointer-events-none absolute -right-10 -top-8 opacity-20" />
             <ArcThick color="#08B9E6" className="pointer-events-none absolute -left-6 bottom-6 w-24 opacity-40" from={200} to={330} />
             <div className="relative grid aspect-square w-full max-w-44 place-items-center rounded-full bg-background p-2 shadow-[0_18px_38px_-20px_rgba(0,0,0,0.65)] ring-1 ring-primary-foreground/25 md:max-w-48">
-              <img src={culturePointSeal.url} alt="Selo oficial Ponto de Cultura, certificado pelo Ministério da Cultura" className="h-full w-full object-contain" loading="lazy" />
+              <img src={culturePointSeal} alt="Selo oficial Ponto de Cultura, certificado pelo Ministério da Cultura" className="h-full w-full object-contain" loading="lazy" />
             </div>
           </div>
         </div>

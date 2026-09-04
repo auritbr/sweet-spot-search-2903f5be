@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { site } from "@/data/site";
-import logoAsset from "@/assets/logo-associacao-maggu.png.asset.json";
+import logoAsset from "@/assets/logo-maggu.png";
 
 const nav = [
   { label: "Início", to: "/" },
@@ -49,7 +49,7 @@ export function Header() {
       </a>
       <div className="container-x flex items-center justify-between h-16 md:h-20">
         <Link to="/" aria-label={site.short} className="flex h-12 w-20 shrink-0 items-center justify-center overflow-hidden md:h-14 md:w-24">
-          <img src={logoAsset.url} alt="Associação Maggu" className="h-20 w-20 max-w-none shrink-0 object-contain md:h-24 md:w-24" />
+          <img src={logoAsset} alt="Associação Maggu" className="h-20 w-20 max-w-none shrink-0 object-contain md:h-24 md:w-24" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1" aria-label="Menu principal">
