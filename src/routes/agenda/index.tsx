@@ -85,7 +85,7 @@ function CalendarEvent({ event }: { event: AgendaEvent }) {
         type="button"
         variant="ghost"
         aria-label={`Ver detalhes de ${event.title}`}
-        className={`group relative h-auto min-w-0 w-full whitespace-normal rounded-lg border border-brand-petrol/8 ${style.surface} p-2 text-left shadow-none transition hover:border-brand-petrol/18 hover:shadow-sm`}
+        className={`group relative h-auto min-w-0 w-full whitespace-normal rounded-lg border border-brand-petrol/8 ${style.surface} p-2 text-left shadow-none transition hover:border-brand-petrol/18 hover:bg-background/80 hover:text-brand-ink hover:shadow-sm`}
       >
         <span className={`absolute inset-y-2 left-0 w-0.5 rounded-full bg-current ${style.accentText}`} aria-hidden="true" />
         <span className="block min-w-0 pl-1">

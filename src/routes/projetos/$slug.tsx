@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { PageHero, Section } from "@/components/PageHero";
 import { ArcThick, DiamondsCluster, HatchedCircle, Triangle } from "@/components/Shapes";
@@ -37,8 +37,10 @@ export const Route = createFileRoute("/projetos/$slug")({
 function ProjectDetail() {
   const { project } = Route.useLoaderData();
   const projectIndex = projects.findIndex((item) => item.slug === project.slug);
-  const galleryPool = albums.flatMap((album) => album.photos);
-  const gallery = [project.image, ...Array.from({ length: 4 }, (_, index) => galleryPool[(projectIndex * 3 + index) % galleryPool.length])];
+  const relatedProjectImages = projects.filter((item) => item.slug !== project.slug && item.category === project.category).map((item) => item.image);
+  const albumImages = albums[(projectIndex + albums.length) % albums.length]?.photos ?? [];
+  const galleryPool = [...relatedProjectImages, ...albumImages];
+  const gallery = [project.image, ...Array.from({ length: 4 }, (_, index) => galleryPool[index % galleryPool.length] ?? project.image)];
   const statements = project.description.split(". ").map((item) => item.replace(/\.$/, "")).filter(Boolean);
   const cardTitles = ["A proposta", "Como acontece", "Conexões do projeto"];
   const accentClasses = ["bg-brand-red", "bg-brand-gold", "bg-brand-cyan"];
@@ -46,8 +48,7 @@ function ProjectDetail() {
   return (
     <main className="overflow-hidden bg-background">
       <PageHero title={project.title} eyebrow={project.category} subtitle={project.short} image={project.image} variant="detail" accent="cyan" brush="#FFB400">
-        <Link to="/projetos" className="inline-flex items-center gap-2 text-sm font-semibold text-primary-foreground/85 transition hover:text-brand-gold"><ArrowLeft className="size-4" aria-hidden="true" /> Voltar aos projetos</Link>
-        <div className="mt-4 flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-3">
           {project.ctas.slice(0, 2).map((cta, index) => (
             <Button key={cta.label} asChild size="sm" variant="outline" className={`rounded-full border px-5 font-semibold shadow-sm backdrop-blur-md ${index === 0 ? "border-primary-foreground/20 bg-brand-red/85 text-primary-foreground hover:bg-brand-red hover:text-primary-foreground" : "border-brand-petrol/15 bg-brand-gold/90 text-brand-petrol hover:bg-brand-gold hover:text-brand-petrol"}`}><Link to={cta.to}>{cta.label}</Link></Button>
           ))}
