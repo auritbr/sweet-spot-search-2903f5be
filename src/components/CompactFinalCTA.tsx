@@ -3,11 +3,12 @@ import { Button } from "@/components/ui/button";
 
 type CtaLink = {
   label: string;
-  to?: "/" | "/ecossistema" | "/transparencia" | "/projetos" | "/contato" | "/agenda" | "/quem-somos" | "/equipe" | "/privacidade";
+  to?: "/" | "/ecossistema" | "/transparencia" | "/projetos" | "/contato" | "/agenda" | "/quem-somos" | "/equipe" | "/privacidade" | "/imprensa" | "/ods-maggu-2030";
   href?: string;
 };
 
-type Variant = "home" | "continuity" | "agenda" | "projects" | "ecosystem" | "transparency" | "team" | "privacy" | "terms";
+type Variant = "home" | "continuity" | "agenda" | "projects" | "ecosystem" | "transparency" | "team" | "privacy" | "terms" | "press" | "ods";
+
 
 type CompactFinalCTAProps = {
   title: string;
