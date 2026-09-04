@@ -246,23 +246,31 @@ function OdsMaggu2030() {
 
       {/* Documentos e evidências */}
       <Section id="evidencias" className="overflow-hidden bg-brand-soft">
+        <QuarterCircle corner="tl" color="#00689D" className="pointer-events-none absolute -right-8 bottom-6 hidden w-16 opacity-25 md:block" />
+        <span className="pointer-events-none absolute left-6 top-12 hidden h-10 w-10 border-l border-t border-brand-gold/40 md:block" aria-hidden="true" />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Publicidade" title="Documentos e evidências" text="Materiais que sustentam os compromissos assumidos e permitem acompanhamento público." />
           <ul className="mx-auto max-w-3xl space-y-3">
-            {odsEvidence.map((doc) => (
-              <li key={doc.name} className="flex flex-wrap items-center gap-3 rounded-2xl border border-brand-petrol/10 bg-white/80 px-5 py-4">
-                <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand-petrol text-primary-foreground">
-                  <FileText className="size-4" aria-hidden="true" />
-                </span>
-                <div className="min-w-0 flex-1">
-                  <p className="text-[15px] font-semibold text-brand-ink">{doc.name}</p>
-                  <p className="text-xs text-brand-gray">{doc.category}</p>
-                </div>
-                <a href={doc.url} className="inline-flex shrink-0 items-center gap-2 rounded-full border border-brand-petrol/20 px-4 py-2 text-xs font-semibold text-brand-petrol transition hover:bg-brand-soft">
-                  Visualizar <ArrowUpRight className="size-3.5" aria-hidden="true" />
-                </a>
-              </li>
-            ))}
+            {odsEvidence.map((doc, i) => {
+              const color = evidenceColors[i % evidenceColors.length];
+              return (
+                <li key={doc.name} className="group flex flex-wrap items-center gap-3 rounded-[16px] border border-brand-petrol/8 bg-white/80 px-5 py-4 transition hover:border-brand-petrol/18">
+                  <span
+                    className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl"
+                    style={{ backgroundColor: `${color}1f`, color }}
+                  >
+                    <FileText className="size-4" aria-hidden="true" />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[15px] font-semibold text-brand-ink">{doc.name}</p>
+                    <p className="text-xs" style={{ color }}>{doc.category}</p>
+                  </div>
+                  <a href={doc.url} className="inline-flex shrink-0 items-center gap-2 rounded-full border border-brand-petrol/20 px-4 py-2 text-xs font-semibold text-brand-petrol transition hover:bg-brand-soft">
+                    Visualizar <ArrowUpRight className="size-3.5" aria-hidden="true" />
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </Section>
@@ -273,11 +281,23 @@ function OdsMaggu2030() {
           <SectionTitle align="center" eyebrow="Ecossistema" title="Projetos relacionados" text="Frentes de atuação que dialogam diretamente com os compromissos assumidos." />
           <div className="mx-auto grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {odsRelatedProjects.map((item) => (
-              <Link key={item.title} to="/ecossistema" className="group relative overflow-hidden rounded-2xl border border-brand-petrol/10 bg-brand-soft/45 p-5 transition hover:border-brand-cyan/40">
-                <span className="absolute inset-x-0 top-0 h-1" style={{ backgroundColor: item.accent }} aria-hidden="true" />
-                <p className="mt-1 text-[1rem] font-bold leading-snug text-brand-ink">{item.title}</p>
-                <p className="mt-1.5 text-sm text-brand-gray">{item.text}</p>
-                <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-petrol">Ver no Ecossistema <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span>
+              <Link
+                key={item.title}
+                to="/ecossistema"
+                className="group relative overflow-hidden rounded-[18px] border border-brand-petrol/8 bg-brand-soft/40 p-5 transition duration-300 hover:-translate-y-0.5 hover:border-brand-petrol/18"
+              >
+                <span
+                  className="pointer-events-none absolute -right-7 -top-7 size-20 rounded-full opacity-[0.10] transition-opacity duration-300 group-hover:opacity-[0.18]"
+                  style={{ backgroundColor: item.accent }}
+                  aria-hidden="true"
+                />
+                <span className="relative inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.18em]" style={{ color: item.accent }}>
+                  <span className="size-1.5 rotate-45" style={{ backgroundColor: item.accent }} aria-hidden="true" />
+                  Eixo
+                </span>
+                <p className="relative mt-2.5 text-[1rem] font-bold leading-snug text-brand-ink">{item.title}</p>
+                <p className="relative mt-1.5 text-sm leading-[1.7] text-brand-gray">{item.text}</p>
+                <span className="relative mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-petrol">Ver no Ecossistema <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span>
               </Link>
             ))}
           </div>
@@ -286,6 +306,9 @@ function OdsMaggu2030() {
 
       {/* Conexões internas */}
       <Section className="overflow-hidden bg-brand-soft">
+        <HatchedCircle size={110} color="#3F7E44" className="pointer-events-none absolute -left-12 bottom-2 opacity-[0.14]" />
+        <span className="pointer-events-none absolute right-10 top-8 hidden size-2.5 rotate-45 bg-brand-cyan/50 md:block" aria-hidden="true" />
+        <span className="pointer-events-none absolute right-16 top-14 hidden size-2.5 rotate-45 bg-brand-gold/50 md:block" aria-hidden="true" />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Conexões" title="Áreas relacionadas" text="Os compromissos institucionais dialogam com a transparência, a atuação em rede e a memória pública da Associação." />
           <div className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-3">
@@ -294,7 +317,7 @@ function OdsMaggu2030() {
               { label: "Ecossistema", to: "/ecossistema" as const, text: "Eixos e frentes de atuação integradas." },
               { label: "Impacto & Memória", to: "/galeria" as const, text: "Registros e memória das ações realizadas." },
             ].map((item) => (
-              <Link key={item.label} to={item.to} className="group rounded-2xl border border-brand-petrol/10 bg-white/75 p-5 transition hover:border-brand-cyan/40">
+              <Link key={item.label} to={item.to} className="group rounded-[18px] border border-brand-petrol/8 bg-white/75 p-5 transition hover:-translate-y-0.5 hover:border-brand-petrol/18">
                 <p className="text-[1.05rem] font-bold text-brand-ink">{item.label}</p>
                 <p className="mt-1.5 text-sm text-brand-gray">{item.text}</p>
                 <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-petrol">Acessar <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span>
@@ -303,6 +326,7 @@ function OdsMaggu2030() {
           </div>
         </div>
       </Section>
+
 
       <CompactFinalCTA
         title="Quer acompanhar essa jornada mais de perto?"
