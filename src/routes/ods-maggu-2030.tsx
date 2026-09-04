@@ -50,8 +50,9 @@ function OdsMaggu2030() {
         brush="#08B9E6"
         decoration="crescent"
       >
-        <HeroButton to="/ods-maggu-2030" tone="cyan">Conheça nossos compromissos</HeroButton>
-        <HeroButton to="/ods-maggu-2030" tone="petrol">Ver evidências</HeroButton>
+        <HeroButton to="/transparencia" tone="cyan">Transparência</HeroButton>
+        <HeroButton to="/ecossistema" tone="petrol">Ecossistema</HeroButton>
+
       </PageHero>
 
       {/* Abertura */}
