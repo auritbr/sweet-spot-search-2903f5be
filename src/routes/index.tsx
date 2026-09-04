@@ -307,18 +307,23 @@ function AgendaSection() {
 function MemorySection() {
   const items = albums.slice(0, 3);
   return (
-    <Section className="bg-white overflow-hidden">
-      <div className="container-x grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-center">
-        <div>
+    <Section className="relative bg-white overflow-hidden">
+      <ArcThick color="#FFB400" className="pointer-events-none absolute -left-10 top-16 hidden w-24 opacity-25 md:block" from={200} to={330} />
+      <span className="pointer-events-none absolute right-[6%] top-10 hidden size-3 rotate-45 bg-brand-red/60 md:block" aria-hidden="true" />
+      <DiamondsCluster color="#08B9E6" size={40} className="pointer-events-none absolute bottom-10 left-[4%] hidden opacity-50 lg:block" />
+      <span className="pointer-events-none absolute bottom-16 right-[3%] hidden h-px w-20 bg-brand-petrol/20 md:block" aria-hidden="true" />
+      <div className="container-x relative grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-center">
+        <div className="relative">
           <SectionTitle eyebrow="Memória" title="Memória em movimento" />
           <p className="text-brand-gray" style={{ lineHeight: 1.7, maxWidth: "56ch" }}>
             Nossa história também vive em fotografias, cartazes, vídeos, programas, documentos, bastidores e nas pessoas que fizeram parte de cada processo.
           </p>
           <Link to="/galeria" className="mt-7 inline-flex rounded-full border-2 border-brand-petrol px-6 py-3 text-sm font-bold text-brand-petrol transition hover:bg-brand-soft">Conheça nossa galeria</Link>
         </div>
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+        <div className="relative grid grid-cols-2 gap-4 sm:grid-cols-3">
+          <HatchedCircle size={96} color="#08B9E6" className="pointer-events-none absolute -right-8 -top-8 opacity-25" />
           {items.map((a, idx) => (
-            <div key={a.slug} className={`overflow-hidden rounded-md ${idx === 0 ? "col-span-2 sm:col-span-1 aspect-[4/3] sm:aspect-[3/4]" : "aspect-square"}`}>
+            <div key={a.slug} className={`relative overflow-hidden rounded-md ${idx === 0 ? "col-span-2 sm:col-span-1 aspect-[4/3] sm:aspect-[3/4]" : "aspect-square"}`}>
               <img src={a.cover} alt="Registro fotográfico da trajetória da Associação Maggu" className="h-full w-full object-cover" loading="lazy" />
             </div>
           ))}
@@ -327,6 +332,7 @@ function MemorySection() {
     </Section>
   );
 }
+
 
 function TransparencySection() {
   return (
