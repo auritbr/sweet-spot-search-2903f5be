@@ -184,3 +184,6 @@ html.a11y-pause *, html.a11y-pause *::before, html.a11y-pause *::after {
 }
 
 html, body { overflow-x: hidden; }
+
+/* The shared closing section visually hands off directly to the footer. */
+#main:has([data-final-cta]) + footer { margin-top: 0; }

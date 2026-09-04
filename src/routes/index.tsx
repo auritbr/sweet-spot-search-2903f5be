@@ -5,7 +5,7 @@ import { slides, albums } from "@/data/site";
 import { Section, SectionTitle } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
 import { EventPreviewPanel } from "@/components/EventPreviewPanel";
-import { FinalCampaignCTA } from "@/components/FinalCampaignCTA";
+import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { agendaCategoryStyles, eventDayMonth, upcomingEvents, type AgendaEvent } from "@/data/agenda";
 import { HatchedCircle, ArcThick, BrushStroke, DiamondsCluster, QuarterCircle, Triangle } from "@/components/Shapes";
 
@@ -355,6 +355,6 @@ function TransparencySection() {
 
 function FinalCTA() {
   return (
-    <FinalCampaignCTA eyebrow="Caminhe com a Maggu" title="Há muitas formas de caminhar com a Associação Maggu." text="Conheça nossa trajetória, explore os projetos e acompanhe as atividades que fortalecem cultura, formação e território." primary={{ label: "Conheça a Associação", to: "/quem-somos" }} secondary={{ label: "Ver Agenda", to: "/agenda" }} image="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80" />
+    <CompactFinalCTA title="Há muitas formas de caminhar com a Associação Maggu." text="Conheça nossa trajetória, explore os projetos e acompanhe as atividades que fortalecem cultura, formação e território." primary={{ label: "Conheça a Associação", to: "/quem-somos" }} secondary={{ label: "Ver Agenda", to: "/agenda" }} variant="home" />
   );
 }

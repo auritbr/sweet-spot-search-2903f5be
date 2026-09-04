@@ -1,5 +1,4 @@
 import { Link } from "@tanstack/react-router";
-import { ArcThick, QuarterCircle } from "@/components/Shapes";
 import { Button } from "@/components/ui/button";
 
 type CtaLink = {
@@ -8,7 +7,7 @@ type CtaLink = {
   href?: string;
 };
 
-type Variant = "continuity" | "agenda" | "projects" | "ecosystem" | "transparency" | "team";
+type Variant = "home" | "continuity" | "agenda" | "projects" | "ecosystem" | "transparency" | "team";
 
 type CompactFinalCTAProps = {
   title: string;
@@ -19,6 +18,10 @@ type CompactFinalCTAProps = {
 };
 
 const buttonStyles: Record<Variant, readonly [string, string]> = {
+  home: [
+    "border-brand-petrol/15 bg-brand-gold/90 text-brand-petrol hover:bg-brand-gold",
+    "border-brand-cyan/35 bg-brand-cyan/15 text-primary-foreground hover:bg-brand-cyan/25",
+  ],
   continuity: [
     "border-brand-petrol/15 bg-brand-cyan/85 text-brand-petrol hover:bg-brand-cyan",
     "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
@@ -45,14 +48,27 @@ const buttonStyles: Record<Variant, readonly [string, string]> = {
   ],
 };
 
-const accents: Record<Variant, { corner: "tl" | "tr" | "bl" | "br"; cornerColor: string; arcColor: string; dots: string[] }> = {
-  continuity: { corner: "bl", cornerColor: "#08B9E6", arcColor: "#FFB400", dots: ["#FFB400", "#ED1C24", "#08B9E6"] },
-  agenda: { corner: "tl", cornerColor: "#ED1C24", arcColor: "#08B9E6", dots: ["#08B9E6", "#FFB400", "#ED1C24"] },
-  projects: { corner: "br", cornerColor: "#FFB400", arcColor: "#08B9E6", dots: ["#ED1C24", "#08B9E6", "#FFB400"] },
-  ecosystem: { corner: "tr", cornerColor: "#FFB400", arcColor: "#ED1C24", dots: ["#08B9E6", "#ED1C24", "#FFB400"] },
-  transparency: { corner: "tl", cornerColor: "#FFB400", arcColor: "#08B9E6", dots: ["#ED1C24", "#FFB400", "#08B9E6"] },
-  team: { corner: "bl", cornerColor: "#ED1C24", arcColor: "#FFB400", dots: ["#08B9E6", "#FFB400", "#ED1C24"] },
-};
+function GraphicComposition({ variant }: { variant: Variant }) {
+  if (variant === "ecosystem") {
+    return <><span className="absolute -left-14 top-12 size-48 rounded-full border-[28px] border-brand-gold/15 md:size-64" /><span className="absolute -right-16 bottom-0 size-44 rounded-full bg-brand-red/15 md:size-60" /><span className="absolute bottom-16 right-20 hidden h-px w-36 bg-brand-cyan/35 md:block" /><span className="absolute bottom-[3.8rem] right-[13.2rem] hidden size-3 rounded-full bg-brand-cyan md:block" /><span className="absolute bottom-[3.8rem] right-[8rem] hidden size-3 rounded-full bg-brand-gold md:block" /></>;
+  }
+  if (variant === "agenda") {
+    return <><span className="absolute -left-16 bottom-0 size-52 rounded-full border-[30px] border-brand-cyan/15 md:size-64" /><span className="absolute -right-10 top-10 h-40 w-44 rotate-6 rounded-md border border-primary-foreground/15 bg-primary-foreground/[0.04] md:h-52 md:w-60" /><span className="absolute right-16 top-20 hidden grid-cols-3 gap-3 md:grid">{Array.from({ length: 6 }, (_, index) => <i key={index} className="size-3 rounded-sm bg-brand-gold/65" />)}</span><span className="absolute bottom-10 left-1/3 hidden h-px w-24 bg-brand-red/50 md:block" /></>;
+  }
+  if (variant === "projects") {
+    return <><span className="absolute -left-16 -top-20 size-64 rounded-full border-[38px] border-brand-red/15 md:size-80" /><span className="absolute -bottom-24 -right-20 size-64 rounded-full bg-brand-gold/15 md:size-80" /><span className="absolute right-12 top-12 hidden size-16 rotate-45 border border-brand-cyan/40 md:block" /><span className="absolute bottom-12 left-20 hidden h-10 w-20 diamond-grid text-brand-cyan/15 md:block" /></>;
+  }
+  if (variant === "transparency") {
+    return <><span className="absolute -left-6 top-12 h-48 w-44 -rotate-6 rounded-md border border-primary-foreground/15 bg-primary-foreground/[0.04] md:h-64 md:w-56" /><span className="absolute -right-10 bottom-0 h-52 w-44 rotate-6 rounded-md border border-brand-gold/25 bg-brand-gold/[0.07] md:h-64 md:w-56" /><span className="absolute left-12 top-24 hidden h-px w-28 bg-brand-cyan/50 md:block" /><span className="absolute right-12 bottom-20 hidden h-px w-24 bg-brand-red/50 md:block" /></>;
+  }
+  if (variant === "team") {
+    return <><span className="absolute -left-20 bottom-0 size-64 rounded-full bg-brand-cyan/15 md:size-80" /><span className="absolute -right-24 -top-20 size-64 rounded-full border-[34px] border-brand-gold/15 md:size-80" /><span className="absolute left-20 bottom-16 hidden h-px w-36 bg-primary-foreground/25 md:block" /><span className="absolute bottom-[3.7rem] left-[13.5rem] hidden size-4 rounded-full bg-brand-red md:block" /></>;
+  }
+  if (variant === "home") {
+    return <><span className="absolute -left-20 -top-24 size-72 rounded-full border-[38px] border-brand-cyan/15 md:size-96" /><span className="absolute -right-20 bottom-0 size-60 rounded-full bg-brand-red/15 md:size-80" /><span className="absolute right-20 top-14 hidden size-20 rotate-45 border border-brand-gold/40 md:block" /><span className="absolute bottom-12 left-24 hidden h-px w-32 bg-brand-gold/45 md:block" /></>;
+  }
+  return <><span className="absolute -left-20 bottom-0 size-64 rounded-full border-[34px] border-brand-cyan/15 md:size-80" /><span className="absolute -right-16 -top-20 size-64 rounded-full bg-brand-gold/15 md:size-80" /><span className="absolute right-20 top-16 hidden size-16 rotate-45 border border-brand-red/45 md:block" /><span className="absolute bottom-12 left-24 hidden w-28 border-t border-dashed border-primary-foreground/35 md:block" /></>;
+}
 
 function CtaButton({ item, className }: { item: CtaLink; className: string }) {
   const classes = `w-full justify-center rounded-full border px-6 font-semibold shadow-sm backdrop-blur-md sm:w-auto ${className}`;
@@ -65,28 +81,19 @@ function CtaButton({ item, className }: { item: CtaLink; className: string }) {
 
 export function CompactFinalCTA({ title, text, primary, secondary, variant }: CompactFinalCTAProps) {
   const styles = buttonStyles[variant];
-  const accent = accents[variant];
-  const cornerPos =
-    accent.corner === "tl" ? "left-0 top-0" : accent.corner === "tr" ? "right-0 top-0" : accent.corner === "bl" ? "bottom-0 left-0" : "bottom-0 right-0";
 
   return (
-    <section className="bg-white px-4 pb-2 pt-4 md:pb-3 md:pt-6">
-      <div className="container-x">
-        <div className="relative mx-auto flex min-h-[280px] max-w-5xl items-center justify-center overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-brand-petrol via-brand-petrol to-[#00293a] px-6 py-12 text-center shadow-[0_30px_60px_-45px_rgba(0,56,76,0.85)] md:px-14 md:py-14">
-          <QuarterCircle corner={accent.corner} color={accent.cornerColor} className={`pointer-events-none absolute ${cornerPos} w-24 opacity-30 md:w-36`} />
-          <ArcThick color={accent.arcColor} className="pointer-events-none absolute -right-10 top-8 hidden w-24 opacity-25 md:block" from={195} to={325} />
-          <span className="pointer-events-none absolute right-10 top-9 hidden size-3 rotate-45 border border-primary-foreground/40 md:block" aria-hidden="true" />
-          <span className="pointer-events-none absolute bottom-9 left-10 hidden h-px w-14 bg-primary-foreground/30 md:block" aria-hidden="true" />
-          <div className="pointer-events-none absolute bottom-8 right-10 hidden items-center gap-2 md:flex" aria-hidden="true">
-            {accent.dots.map((color) => (
-              <span key={color} className="size-2 rounded-full" style={{ backgroundColor: color }} />
-            ))}
-          </div>
-
-          <div className="relative mx-auto max-w-2xl">
-            <h2 className="text-[1.6rem] font-bold leading-tight text-primary-foreground md:text-[2.15rem]">{title}</h2>
+    <section data-final-cta className="relative isolate mt-4 overflow-hidden bg-brand-petrol px-4 pt-5 md:mt-6 md:px-6 md:pt-7">
+      <div className="container-x px-0">
+        <div className="relative mx-auto flex min-h-[350px] w-full items-center justify-center overflow-hidden rounded-t-[2rem] border-x border-t border-primary-foreground/10 bg-brand-petrol px-6 py-14 text-center md:min-h-[390px] md:px-16 md:py-16 lg:min-h-[410px]">
+          <div className="pointer-events-none absolute inset-0" aria-hidden="true"><GraphicComposition variant={variant} /></div>
+          <span className="pointer-events-none absolute inset-x-[12%] top-0 h-px bg-primary-foreground/20" aria-hidden="true" />
+          <span className="pointer-events-none absolute bottom-0 left-1/2 h-16 w-[68%] -translate-x-1/2 rounded-t-full bg-primary-foreground/[0.025]" aria-hidden="true" />
+          <div className="relative z-10 mx-auto max-w-2xl">
+            <span className="mx-auto mb-6 block size-3 rotate-45 border border-brand-gold/75 bg-brand-gold/15" aria-hidden="true" />
+            <h2 className="text-[1.65rem] font-bold leading-tight text-primary-foreground md:text-[2.2rem]">{title}</h2>
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-primary-foreground/80 md:text-base">{text}</p>
-            <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <CtaButton item={primary} className={styles[0]} />
               <CtaButton item={secondary} className={styles[1]} />
             </div>
