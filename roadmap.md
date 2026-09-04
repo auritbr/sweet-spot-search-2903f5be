@@ -22,3 +22,6 @@
 - [x] Validar as quatro novas páginas em desktop e mobile
 - [x] Refinar as cinco seções solicitadas da Sala de Imprensa
 - [x] Validar a Sala de Imprensa refinada em desktop e mobile
+- [x] Redesenhar as três seções indicadas da Sala de Imprensa
+- [x] Redesenhar as quatro seções indicadas de Participe
+- [x] Validar Imprensa e Participe em desktop e mobile
