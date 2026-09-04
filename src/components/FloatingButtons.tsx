@@ -55,7 +55,7 @@ export function FloatingButtons() {
 
   return (
     <>
-      <div className="fixed bottom-4 left-3 z-40 flex flex-col gap-2.5 md:bottom-6 md:left-4" style={{ paddingBottom: "env(safe-area-inset-bottom)" }}>
+      <div data-a11y-ui className="fixed bottom-4 left-3 z-40 flex flex-col gap-2.5 md:bottom-6 md:left-4" style={{ paddingBottom: "env(safe-area-inset-bottom)" }}>
         <Dialog open={cookieOpen} onOpenChange={setCookieOpen}>
           <DialogTrigger asChild>
             <Button
