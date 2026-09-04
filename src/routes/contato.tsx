@@ -124,45 +124,38 @@ const contactAccent = {
   petrol: "bg-brand-petrol/10 text-brand-petrol",
 } as const;
 
-function ContactCard({ icon: Icon, label, value, href, action, accent, external = false }: { icon: typeof Mail; label: string; value: string; href: string; action: string; accent: keyof typeof contactAccent; external?: boolean }) {
+function ContactCard({ icon: Icon, label, value, accent }: { icon: typeof Mail; label: string; value: string; accent: keyof typeof contactAccent }) {
   return (
-    <article className="relative overflow-hidden rounded-xl border border-brand-petrol/10 bg-brand-soft/45 p-4 shadow-[0_14px_30px_-28px_rgba(0,56,76,0.5)] md:px-5">
-      <span className="pointer-events-none absolute -right-3 -top-3 size-10 rounded-full border-[7px] border-brand-gold/15" aria-hidden="true" />
-      <div className="relative grid items-center gap-4 sm:grid-cols-[minmax(9.5rem,.75fr)_minmax(0,1.35fr)_auto]">
-        <div className="flex items-center gap-3">
-          <span className={`inline-flex size-10 shrink-0 items-center justify-center rounded-lg ${contactAccent[accent]}`}><Icon className="size-5" aria-hidden="true" /></span>
-          <h3 className="text-sm font-semibold text-brand-ink">{label}</h3>
+    <article className="relative overflow-hidden rounded-xl border border-brand-petrol/10 bg-brand-soft/45 px-4 py-3 shadow-[0_10px_24px_-24px_rgba(0,56,76,0.5)] md:px-5">
+      <span className="pointer-events-none absolute -right-2 -top-2 size-7 rounded-full border-[5px] border-brand-gold/15" aria-hidden="true" />
+      <div className="relative flex items-center gap-3">
+        <span className={`inline-flex size-9 shrink-0 items-center justify-center rounded-lg ${contactAccent[accent]}`}><Icon className="size-[18px]" aria-hidden="true" /></span>
+        <div className="min-w-0">
+          <h3 className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-brand-gray">{label}</h3>
+          <p className="mt-0.5 whitespace-pre-line break-words text-sm font-semibold leading-snug text-brand-ink">{value}</p>
         </div>
-        <p className="min-w-0 break-words text-sm font-semibold leading-snug text-brand-ink">{value}</p>
-        <Button asChild size="sm" className="w-fit rounded-full bg-brand-petrol px-4 font-semibold text-primary-foreground hover:bg-brand-red">
-          <a href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>{action}</a>
-        </Button>
       </div>
     </article>
   );
 }
 
-function SocialContactCard() {
+function SocialLinksArea() {
   return (
-    <article className="relative overflow-visible rounded-xl border border-brand-petrol/10 bg-brand-soft/45 p-4 shadow-[0_14px_30px_-28px_rgba(0,56,76,0.5)] md:px-5">
-      <div className="relative grid items-center gap-4 sm:grid-cols-[minmax(9.5rem,.75fr)_minmax(0,1.35fr)_auto]">
-        <div className="flex items-center gap-3">
-          <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-red/10 text-brand-red"><Share2 className="size-5" aria-hidden="true" /></span>
-          <h3 className="text-sm font-semibold text-brand-ink">Redes sociais</h3>
-        </div>
-        <p className="text-sm leading-relaxed text-brand-gray">Acompanhe a Maggu e compartilhe nossas ações.</p>
-        <div className="flex flex-wrap items-center gap-2.5" aria-label="Redes sociais">
-          {socialLinks.map(({ label, href, icon: Icon }) => (
-            <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} title={label} className="group relative inline-flex size-11 items-center justify-center rounded-lg border border-brand-ink/15 bg-white/55 text-brand-ink shadow-sm backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-brand-red/55 hover:bg-brand-red/10 hover:text-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/50">
-              <Icon className="size-[18px]" aria-hidden="true" />
-              <span className="pointer-events-none absolute -bottom-8 right-0 z-10 whitespace-nowrap rounded bg-brand-ink px-2 py-1 text-[10px] font-medium text-primary-foreground opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">{label}</span>
-            </a>
-          ))}
-        </div>
+    <div className="mt-8 max-w-2xl">
+      <h3 className="flex items-center gap-2 text-sm font-semibold text-brand-ink"><Share2 className="size-4 text-brand-red" aria-hidden="true" /> Redes sociais</h3>
+      <p className="mt-1.5 text-sm leading-relaxed text-brand-gray">Acompanhe a Maggu e compartilhe nossas ações.</p>
+      <div className="mt-4 flex flex-wrap items-center gap-2.5" aria-label="Redes sociais">
+        {socialLinks.map(({ label, href, icon: Icon }) => (
+          <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} title={label} className="group relative inline-flex size-11 items-center justify-center rounded-lg border border-brand-ink/15 bg-white/55 text-brand-ink shadow-sm backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-brand-red/55 hover:bg-brand-red/10 hover:text-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/50">
+            <Icon className="size-[18px]" aria-hidden="true" />
+            <span className="pointer-events-none absolute -bottom-8 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded bg-brand-ink px-2 py-1 text-[10px] font-medium text-primary-foreground opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">{label}</span>
+          </a>
+        ))}
       </div>
-    </article>
+    </div>
   );
 }
+
 
 function Field({ label, name, type = "text" }: { label: string; name: string; type?: string }) {
   return (
