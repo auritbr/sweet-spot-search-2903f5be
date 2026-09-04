@@ -184,18 +184,27 @@ function Imprensa() {
         <HatchedCircle size={120} color="#FFB400" className="pointer-events-none absolute -left-12 bottom-6 opacity-20" />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Marca" title="Identidade institucional" />
-          <div className="mx-auto grid max-w-4xl items-center gap-6 rounded-2xl border border-brand-petrol/10 bg-brand-soft/45 p-6 md:grid-cols-[220px_1fr] md:p-8">
-            <div className="flex items-center justify-center rounded-xl bg-white p-5 ring-1 ring-brand-petrol/10">
+          <div className="mx-auto grid max-w-4xl items-center gap-6 overflow-hidden rounded-[22px] border border-brand-petrol/8 bg-brand-soft/40 p-6 shadow-[0_14px_34px_-30px_rgba(0,56,76,0.5)] ring-1 ring-inset ring-white/70 md:grid-cols-[240px_1fr] md:p-8">
+            <div className="relative flex items-center justify-center rounded-[18px] bg-white p-6 ring-1 ring-brand-petrol/8">
+              <span className="pointer-events-none absolute left-3 top-3 size-5 border-l border-t border-brand-cyan/40" aria-hidden="true" />
+              <span className="pointer-events-none absolute bottom-3 right-3 size-5 border-b border-r border-brand-gold/50" aria-hidden="true" />
               <img src={logoAsset} alt="Associação Maggu" className="h-24 w-auto max-w-full object-contain" />
             </div>
             <div>
               <p className="text-[15px] leading-[1.75] text-brand-gray">
                 Utilize sempre os arquivos oficiais disponibilizados pela Associação. Não recriar, distorcer ou alterar a identidade institucional.
               </p>
-              <ul className="mt-4 space-y-1.5 text-sm text-brand-gray">
-                <li>· Preserve as proporções originais e a área de respiro da marca.</li>
-                <li>· Não aplique efeitos, sombras ou alterações de cor.</li>
-                <li>· Utilize apenas versões oficiais fornecidas no Kit de Imprensa.</li>
+              <ul className="mt-4 space-y-2 text-sm leading-relaxed text-brand-gray">
+                {[
+                  "Preserve as proporções originais e a área de respiro da marca.",
+                  "Não aplique efeitos, sombras ou alterações de cor.",
+                  "Utilize apenas versões oficiais fornecidas no Kit de Imprensa.",
+                ].map((rule) => (
+                  <li key={rule} className="flex gap-2.5">
+                    <span className="mt-[7px] size-1.5 shrink-0 rotate-45 bg-brand-cyan" aria-hidden="true" />
+                    {rule}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -204,14 +213,18 @@ function Imprensa() {
 
       {/* Reconhecimentos */}
       <Section className="overflow-hidden bg-brand-soft">
+        <QuarterCircle corner="tl" color="#FFB400" className="pointer-events-none absolute -right-6 bottom-8 hidden w-14 opacity-30 md:block" />
         <div className="container-x">
-          <SectionTitle align="center" eyebrow="Credenciais" title="Reconhecimentos" text="Reconhecimentos públicos que podem ser citados em matérias e materiais editoriais." />
-          <div className="mx-auto grid max-w-4xl items-center gap-6 rounded-2xl border border-brand-petrol/10 bg-white/75 p-6 md:grid-cols-[180px_1fr] md:p-8">
+          <SectionTitle align="center" eyebrow="Credenciais" title="Um reconhecimento que integra essa trajetória" text="Reconhecimentos públicos que podem ser citados em matérias e materiais editoriais." />
+          <div className="mx-auto grid max-w-4xl items-center gap-6 overflow-hidden rounded-[22px] border border-brand-petrol/8 bg-white/75 p-6 shadow-[0_14px_34px_-30px_rgba(0,56,76,0.5)] ring-1 ring-inset ring-white/70 md:grid-cols-[200px_1fr] md:p-8">
             <div className="flex justify-center">
-              <img src={pontoCulturaAsset} alt="Ponto de Cultura" className="h-32 w-32 object-contain" loading="lazy" />
+              <div className="flex size-40 items-center justify-center rounded-full bg-brand-soft/70 ring-1 ring-brand-petrol/8">
+                <img src={pontoCulturaAsset} alt="Ponto de Cultura" className="h-28 w-28 object-contain" loading="lazy" />
+              </div>
             </div>
             <div>
-              <h3 className="text-[1.2rem] font-bold text-brand-ink">Ponto de Cultura</h3>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-gold">Certificação</p>
+              <h3 className="mt-1.5 text-[1.2rem] font-bold text-brand-ink">Ponto de Cultura</h3>
               <p className="mt-2 text-[15px] leading-[1.75] text-brand-gray">
                 A Associação Maggu é reconhecida como Ponto de Cultura, credencial que reafirma sua atuação continuada no acesso à cultura, na formação e na articulação comunitária no Benedito Bentes. Demais certificados e comprovações institucionais estão reunidos na área de Transparência.
               </p>
@@ -222,6 +235,7 @@ function Imprensa() {
           </div>
         </div>
       </Section>
+
 
       {/* Releases */}
       <Section className="overflow-hidden bg-white">
