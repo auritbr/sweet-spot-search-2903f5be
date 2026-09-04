@@ -101,23 +101,24 @@ function HeroCarousel() {
         <HatchedCircle size={300} color="#08B9E6" className="max-w-[55vw] opacity-25" />
       </div>
 
-      <div className="container-x relative z-10 flex h-full flex-col justify-center pb-10 pt-24 md:pb-12 md:pt-28">
-        <div className="max-w-[760px] animate-fade-up text-primary-foreground" key={i}>
+      <div className="container-x relative z-10 flex h-full flex-col justify-center pb-16 pt-24 md:pb-20 md:pt-28">
+        <div className="w-full max-w-[36rem] animate-fade-up text-primary-foreground lg:max-w-[40rem]" key={i}>
           <p className="mb-3 inline-flex rounded-full border border-primary-foreground/20 bg-background/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-sm backdrop-blur-md">Associação Maggu</p>
-          <h1 style={{ fontSize: "clamp(2.1rem, 4.7vw, 3.6rem)", lineHeight: 1.06, fontWeight: 700, textShadow: "0 4px 24px rgba(0,0,0,.4)" }} className="max-w-3xl text-primary-foreground">
+          <h1 style={{ fontSize: "clamp(1.85rem, 3.8vw, 3rem)", lineHeight: 1.1, fontWeight: 700, textShadow: "0 4px 24px rgba(0,0,0,.4)" }} className="text-balance text-primary-foreground">
             {s.title}
           </h1>
-          <BrushStroke color="#FFB400" className="mt-3 w-28" />
-          <p className="mt-3 max-w-2xl text-[14px] leading-[1.55] text-primary-foreground/90 md:text-[15px] lg:text-[17px]">{s.text}</p>
-          <div className="mt-5 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap">
+          <BrushStroke color="#FFB400" className="mt-3 w-24" />
+          <p className="mt-4 max-w-[34rem] text-[14px] leading-[1.6] text-primary-foreground/90 md:text-[15px]">{s.text}</p>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
             {s.buttons.map((b, k) => (
-              <Link key={k} to={b.to} className={`inline-flex w-auto max-w-full items-center justify-center whitespace-nowrap rounded-full border px-5 py-2.5 text-[13px] shadow-sm backdrop-blur-md transition sm:px-6 sm:py-3 sm:text-sm ${k === 0 ? "border-primary-foreground/20 bg-brand-red/85 text-white hover:bg-brand-red" : "border-primary-foreground/20 bg-background/85 text-brand-ink hover:bg-brand-gold"}`} style={{ fontWeight: 600 }}>
+              <Link key={k} to={b.to} className={`inline-flex items-center justify-center whitespace-nowrap rounded-full border px-5 py-2.5 text-[13px] shadow-sm backdrop-blur-md transition sm:px-6 sm:py-3 sm:text-sm ${k === 0 ? "border-primary-foreground/20 bg-brand-red/85 text-white hover:bg-brand-red" : "border-primary-foreground/20 bg-background/85 text-brand-ink hover:bg-brand-gold"}`} style={{ fontWeight: 600 }}>
                 {b.label}
               </Link>
             ))}
           </div>
         </div>
       </div>
+
 
       <button aria-label="Slide anterior" onClick={() => go(i - 1)} className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-brand-petrol/60 backdrop-blur text-white items-center justify-center hover:bg-brand-petrol">‹</button>
       <button aria-label="Próximo slide" onClick={() => go(i + 1)} className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-brand-petrol/60 backdrop-blur text-white items-center justify-center hover:bg-brand-petrol">›</button>
@@ -152,14 +153,15 @@ function IntroSection() {
             Conheça nossa história
           </Link>
         </div>
-        <div className="relative mx-auto w-full max-w-md">
+        <div className="relative mx-auto w-full max-w-[320px] lg:max-w-[340px]">
           <div className="aspect-[4/5] overflow-hidden rounded-t-[46%] rounded-b-md">
             <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80" alt="Participantes reunidos em atividade cultural" className="h-full w-full object-cover" loading="lazy" />
           </div>
-          <ArcThick color="#00384C" className="absolute -top-6 -left-6 w-28" from={100} to={260} />
-          <HatchedCircle size={96} color="#08B9E6" className="absolute -bottom-6 right-2 opacity-60" />
-          <Triangle color="#FFB400" size={44} className="absolute top-10 -right-2" rotate={20} />
+          <ArcThick color="#00384C" className="absolute -top-5 -left-5 w-20" from={100} to={260} />
+          <HatchedCircle size={78} color="#08B9E6" className="absolute -bottom-5 right-1 opacity-60" />
+          <Triangle color="#FFB400" size={36} className="absolute top-8 -right-2" rotate={20} />
         </div>
+
       </div>
     </Section>
   );
@@ -247,17 +249,28 @@ function ProjectHighlights() {
 function CulturePointSection() {
   return (
     <section aria-labelledby="culture-point-title" className="relative overflow-hidden bg-white py-12 md:py-16">
-      <div className="container-x relative grid items-center gap-8 md:grid-cols-[1fr_auto] md:gap-16 lg:gap-24">
-        <div className="max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Ponto de Cultura</p>
-          <h2 id="culture-point-title" className="mt-3 text-2xl text-brand-ink md:text-3xl">Cultura reconhecida no território.</h2>
-          <p className="mt-4 leading-relaxed text-brand-gray">O Teatro Escola Maggu é certificado como Ponto de Cultura, fortalecendo uma trajetória de atuação cultural construída no Benedito Bentes.</p>
+      <div className="container-x relative">
+        <div className="mx-auto grid max-w-5xl overflow-hidden rounded-2xl border border-brand-petrol/10 bg-brand-soft/45 shadow-[0_18px_40px_-38px_rgba(0,56,76,0.6)] md:grid-cols-[1.35fr_.65fr]">
+          <div className="p-7 md:p-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Ponto de Cultura</p>
+            <h2 id="culture-point-title" className="mt-3 max-w-xl text-brand-ink" style={{ fontSize: "clamp(1.55rem, 2.3vw, 2.15rem)", lineHeight: 1.2, fontWeight: 700 }}>Cultura reconhecida no território.</h2>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-brand-gray md:text-base">O Teatro Escola Maggu é certificado como Ponto de Cultura, fortalecendo uma trajetória de atuação cultural construída no Benedito Bentes.</p>
+            <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-brand-petrol/15 bg-white/70 px-4 py-2 text-xs font-semibold text-brand-petrol">
+              <span className="size-2 rounded-full bg-brand-gold" aria-hidden="true" />
+              Certificação Ponto de Cultura
+            </span>
+          </div>
+          <div className="relative min-h-40 overflow-hidden bg-brand-petrol/95 md:min-h-full" aria-hidden="true">
+            <HatchedCircle size={150} color="#FFB400" className="absolute -right-10 -top-8 opacity-30" />
+            <ArcThick color="#08B9E6" className="absolute -left-6 bottom-6 w-24 opacity-60" from={200} to={330} />
+            <span className="absolute left-1/2 top-1/2 grid size-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-brand-gold/50 bg-brand-gold/15 text-2xl font-bold text-brand-gold">★</span>
+          </div>
         </div>
-        <HatchedCircle size={112} color="#FFB400" className="pointer-events-none hidden opacity-45 md:block" />
       </div>
     </section>
   );
 }
+
 
 function AgendaSection() {
   const events = upcomingEvents(3);
@@ -274,24 +287,31 @@ function AgendaSection() {
           <Link to="/agenda" className="inline-flex w-fit rounded-full bg-brand-petrol px-6 py-3 text-sm font-bold text-white transition hover:bg-brand-red">Ver agenda completa</Link>
         </div>
         {events.length ? (
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {events.map((event) => {
               const { day, month } = eventDayMonth(event.date);
               const style = agendaCategoryStyles[event.category];
               return (
-                <Button key={event.slug} type="button" variant="ghost" onClick={() => setSelectedEvent(event)} aria-label={`Ver detalhes de ${event.title}`} className="group grid h-auto min-h-56 w-full grid-cols-[4rem_minmax(0,1fr)] items-start gap-4 rounded-2xl border border-brand-petrol/10 bg-background/75 p-5 text-left shadow-sm backdrop-blur-sm transition hover:-translate-y-1 hover:border-brand-petrol/20 hover:bg-background hover:shadow-md">
-                  <time dateTime={event.date} className={`border-r border-brand-petrol/10 pr-4 text-center ${style.accentText}`}><span className="block text-3xl font-bold leading-none">{day}</span><span className="mt-1 block text-[11px] font-bold uppercase tracking-[0.12em]">{month}</span></time>
-                  <span className="min-w-0">
+                <Button key={event.slug} type="button" variant="ghost" onClick={() => setSelectedEvent(event)} aria-label={`Ver detalhes de ${event.title}`} className="group relative h-auto w-full flex-col items-stretch overflow-hidden rounded-2xl border border-brand-petrol/10 bg-white/90 p-4 text-left shadow-[0_12px_28px_-26px_rgba(0,56,76,0.5)] transition hover:-translate-y-0.5 hover:border-brand-petrol/20 hover:shadow-[0_16px_32px_-24px_rgba(0,56,76,0.55)]">
+                  <span className={`pointer-events-none absolute -right-6 -top-6 size-16 rounded-full opacity-[0.08] ${style.accentText.replace("text-", "bg-")}`} aria-hidden="true" />
+                  <span className="flex items-center gap-3">
+                    <time dateTime={event.date} className={`flex size-11 shrink-0 flex-col items-center justify-center rounded-xl bg-brand-soft/70 ${style.accentText}`}>
+                      <span className="block text-base font-bold leading-none">{day}</span>
+                      <span className="mt-0.5 block text-[9px] font-bold uppercase tracking-[0.1em]">{month}</span>
+                    </time>
                     <span className={`block text-[10px] font-bold uppercase tracking-[0.12em] ${style.text}`}>{event.category}</span>
-                    <span className="mt-2 block text-lg font-bold leading-snug text-brand-ink transition group-hover:text-brand-red">{event.title}</span>
-                    {event.time && <span className="mt-4 flex items-center gap-2 text-xs text-brand-gray"><Clock3 className="size-3.5" aria-hidden="true" />{event.time}</span>}
-                    {event.location && <span className="mt-2 flex items-start gap-2 text-xs text-brand-gray"><MapPin className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />{event.location}</span>}
-                    {event.status && <span className={`mt-4 inline-flex rounded-full border border-current bg-background/60 px-2.5 py-1 text-[10px] font-semibold ${style.accentText}`}>{event.status === "inscricoes-abertas" ? "Inscrições abertas" : event.status === "ultimas-vagas" ? "Últimas vagas" : event.status === "inscricoes-encerradas" ? "Inscrições encerradas" : "Em breve"}</span>}
                   </span>
+                  <span className="mt-3 block text-[15px] font-bold leading-snug text-brand-ink transition group-hover:text-brand-red">{event.title}</span>
+                  <span className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-brand-gray">
+                    {event.time && <span className="flex items-center gap-1.5"><Clock3 className="size-3" aria-hidden="true" />{event.time}</span>}
+                    {event.location && <span className="flex min-w-0 items-center gap-1.5"><MapPin className="size-3 shrink-0" aria-hidden="true" /><span className="truncate">{event.location}</span></span>}
+                  </span>
+                  {event.status && <span className={`mt-3 inline-flex w-fit rounded-full bg-brand-soft/80 px-2 py-0.5 text-[10px] font-semibold ${style.accentText}`}>{event.status === "inscricoes-abertas" ? "Inscrições abertas" : event.status === "ultimas-vagas" ? "Últimas vagas" : event.status === "inscricoes-encerradas" ? "Inscrições encerradas" : "Em breve"}</span>}
                 </Button>
               );
             })}
           </div>
+
         ) : (
           <div className="max-w-2xl border-t border-brand-petrol/15 pt-6">
             <h3 className="text-xl text-brand-ink">Novas atividades em breve</h3>
@@ -307,18 +327,23 @@ function AgendaSection() {
 function MemorySection() {
   const items = albums.slice(0, 3);
   return (
-    <Section className="bg-white overflow-hidden">
-      <div className="container-x grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-center">
-        <div>
+    <Section className="relative bg-white overflow-hidden">
+      <ArcThick color="#FFB400" className="pointer-events-none absolute -left-10 top-16 hidden w-24 opacity-25 md:block" from={200} to={330} />
+      <span className="pointer-events-none absolute right-[6%] top-10 hidden size-3 rotate-45 bg-brand-red/60 md:block" aria-hidden="true" />
+      <DiamondsCluster color="#08B9E6" size={40} className="pointer-events-none absolute bottom-10 left-[4%] hidden opacity-50 lg:block" />
+      <span className="pointer-events-none absolute bottom-16 right-[3%] hidden h-px w-20 bg-brand-petrol/20 md:block" aria-hidden="true" />
+      <div className="container-x relative grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-center">
+        <div className="relative">
           <SectionTitle eyebrow="Memória" title="Memória em movimento" />
           <p className="text-brand-gray" style={{ lineHeight: 1.7, maxWidth: "56ch" }}>
             Nossa história também vive em fotografias, cartazes, vídeos, programas, documentos, bastidores e nas pessoas que fizeram parte de cada processo.
           </p>
           <Link to="/galeria" className="mt-7 inline-flex rounded-full border-2 border-brand-petrol px-6 py-3 text-sm font-bold text-brand-petrol transition hover:bg-brand-soft">Conheça nossa galeria</Link>
         </div>
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+        <div className="relative grid grid-cols-2 gap-4 sm:grid-cols-3">
+          <HatchedCircle size={96} color="#08B9E6" className="pointer-events-none absolute -right-8 -top-8 opacity-25" />
           {items.map((a, idx) => (
-            <div key={a.slug} className={`overflow-hidden rounded-md ${idx === 0 ? "col-span-2 sm:col-span-1 aspect-[4/3] sm:aspect-[3/4]" : "aspect-square"}`}>
+            <div key={a.slug} className={`relative overflow-hidden rounded-md ${idx === 0 ? "col-span-2 sm:col-span-1 aspect-[4/3] sm:aspect-[3/4]" : "aspect-square"}`}>
               <img src={a.cover} alt="Registro fotográfico da trajetória da Associação Maggu" className="h-full w-full object-cover" loading="lazy" />
             </div>
           ))}
@@ -327,6 +352,7 @@ function MemorySection() {
     </Section>
   );
 }
+
 
 function TransparencySection() {
   return (
