@@ -1,10 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { HeroButton, PageHero, Section } from "@/components/PageHero";
-import { HatchedCircle, ArcThick, BrushStroke, QuarterCircle, Triangle } from "@/components/Shapes";
+import { HatchedCircle, ArcThick, BrushStroke, Triangle } from "@/components/Shapes";
 import { team } from "@/data/site";
-import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/equipe")({
   head: () => ({
