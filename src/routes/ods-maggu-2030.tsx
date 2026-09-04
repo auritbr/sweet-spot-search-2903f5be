@@ -1,8 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, FileText } from "lucide-react";
+import {
+  ArrowUpRight,
+  BarChart3,
+  Compass,
+  FileText,
+  Handshake,
+  Layers,
+  LineChart,
+  RefreshCw,
+  Sprout,
+  Target,
+  Users,
+} from "lucide-react";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { PageHero, HeroButton, Section, SectionTitle } from "@/components/PageHero";
-import { ArcThick, HatchedCircle, QuarterCircle } from "@/components/Shapes";
+import { ArcThick, DottedCurve, HatchedCircle, QuarterCircle } from "@/components/Shapes";
+
 import {
   odsCommission,
   odsCommitments,
