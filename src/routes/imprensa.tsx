@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Download, FileText, Mail, Phone } from "lucide-react";
+import { ArrowUpRight, Download, FileArchive, FileText, Mail, Phone } from "lucide-react";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { PageHero, HeroButton, Section, SectionTitle } from "@/components/PageHero";
 import { ArcThick, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
@@ -321,32 +321,33 @@ function Imprensa() {
         <Triangle color="#ED1C24" size={22} className="pointer-events-none absolute left-8 bottom-10 hidden opacity-60 md:block" rotate={-12} />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Download" title="Kit de Imprensa" text="Conjunto de materiais oficiais reunidos para uso editorial e institucional." />
-          <div className="mx-auto grid max-w-4xl gap-5 md:grid-cols-2">
-            <div className="relative overflow-hidden rounded-[20px] border border-brand-petrol/8 bg-white/80 p-6 shadow-[0_14px_34px_-32px_rgba(0,56,76,0.5)] ring-1 ring-inset ring-white/70">
-              <span className="absolute left-6 top-0 h-[3px] w-12 rounded-b-full bg-brand-cyan" aria-hidden="true" />
-              <span className="pointer-events-none absolute -bottom-10 -right-10 size-28 rounded-full bg-brand-cyan/10" aria-hidden="true" />
-              <p className="relative text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-cyan">O que o kit contém</p>
-              <ul className="relative mt-3 space-y-2 text-sm leading-relaxed text-brand-gray">
+          <div className="mx-auto max-w-5xl overflow-hidden rounded-[20px] border border-brand-petrol/8 bg-white/80 shadow-[0_16px_38px_-32px_rgba(0,56,76,0.6)]">
+            <div className="grid md:grid-cols-[1.25fr_0.75fr]">
+              <div className="p-7 md:p-10">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-cyan">O que o kit contém</p>
+                <ul className="mt-5 grid gap-x-8 gap-y-3 text-sm leading-relaxed text-brand-gray sm:grid-cols-2">
                 {pressKitIncludes.map((item) => (
                   <li key={item} className="flex gap-2.5"><span className="mt-[7px] size-1.5 shrink-0 rotate-45 bg-brand-cyan" aria-hidden="true" />{item}</li>
                 ))}
-              </ul>
+                </ul>
+                <Link to="/contato" className="mt-7 inline-flex items-center gap-2 rounded-full bg-brand-petrol px-7 py-3 text-sm font-bold text-primary-foreground shadow-[0_16px_30px_-22px_rgba(0,56,76,0.9)] transition hover:-translate-y-0.5 hover:bg-brand-red">
+                  <Download className="size-4" aria-hidden="true" /> Baixar Kit de Imprensa
+                </Link>
+              </div>
+              <div className="relative flex min-h-56 items-center justify-center overflow-hidden border-t border-brand-petrol/10 bg-brand-petrol p-10 md:border-l md:border-t-0">
+                <span className="absolute left-10 top-10 h-28 w-20 rotate-[-7deg] rounded-[6px] border border-primary-foreground/30 bg-primary-foreground/8" aria-hidden="true" />
+                <span className="absolute right-10 top-14 h-28 w-20 rotate-[8deg] rounded-[6px] border border-brand-cyan/55 bg-brand-cyan/10" aria-hidden="true" />
+                <span className="relative inline-flex size-20 items-center justify-center rounded-full border border-primary-foreground/20 bg-primary-foreground/10 text-primary-foreground backdrop-blur-sm"><FileArchive className="size-8" aria-hidden="true" /></span>
+              </div>
             </div>
-            <div className="relative overflow-hidden rounded-[20px] border border-brand-red/12 bg-white/80 p-6 shadow-[0_14px_34px_-32px_rgba(0,56,76,0.5)] ring-1 ring-inset ring-white/70">
-              <span className="absolute left-6 top-0 h-[3px] w-12 rounded-b-full bg-brand-red" aria-hidden="true" />
-              <span className="pointer-events-none absolute -bottom-10 -right-10 size-28 rounded-full bg-brand-red/8" aria-hidden="true" />
-              <p className="relative text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-red">O que não entra no kit</p>
-              <ul className="relative mt-3 space-y-2 text-sm leading-relaxed text-brand-gray">
+            <div className="grid gap-3 border-t border-brand-petrol/10 bg-brand-soft/35 px-7 py-5 md:grid-cols-[180px_1fr] md:items-start md:px-10">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-gray/75">O que não entra no kit</p>
+              <ul className="grid gap-x-6 gap-y-1.5 text-xs leading-relaxed text-brand-gray sm:grid-cols-2">
                 {pressKitExcludes.map((item) => (
-                  <li key={item} className="flex gap-2.5"><span className="mt-[7px] size-1.5 shrink-0 rotate-45 bg-brand-red/70" aria-hidden="true" />{item}</li>
+                  <li key={item} className="flex gap-2.5"><span className="mt-[6px] size-1 shrink-0 rounded-full bg-brand-petrol/45" aria-hidden="true" />{item}</li>
                 ))}
               </ul>
             </div>
-          </div>
-          <div className="mt-7 flex justify-center">
-            <Link to="/contato" className="inline-flex items-center gap-2 rounded-full bg-brand-petrol px-7 py-3 text-sm font-bold text-primary-foreground shadow-[0_16px_30px_-22px_rgba(0,56,76,0.9)] transition hover:-translate-y-0.5 hover:bg-brand-red">
-              <Download className="size-4" aria-hidden="true" /> Baixar Kit de Imprensa
-            </Link>
           </div>
         </div>
       </Section>
@@ -356,21 +357,18 @@ function Imprensa() {
         <span className="pointer-events-none absolute left-6 top-10 hidden size-10 border-l border-t border-brand-cyan/35 md:block" aria-hidden="true" />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Fale conosco" title="Contato de imprensa" />
-          <div className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2">
-            <a href="mailto:comunicacaomktmaggu@gmail.com" className="group flex items-center gap-4 rounded-[18px] border border-brand-petrol/8 bg-brand-soft/40 p-5 transition hover:-translate-y-0.5 hover:border-brand-cyan/40">
-              <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-cyan/15 text-brand-petrol"><Mail className="size-5" aria-hidden="true" /></span>
-              <span className="min-w-0">
-                <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-cyan">E-mail</span>
-                <span className="block break-all text-sm text-brand-ink">comunicacaomktmaggu@gmail.com</span>
-              </span>
-            </a>
-            <a href="tel:+5582998067374" className="group flex items-center gap-4 rounded-[18px] border border-brand-petrol/8 bg-brand-soft/40 p-5 transition hover:-translate-y-0.5 hover:border-brand-gold/50">
-              <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-gold/20 text-brand-petrol"><Phone className="size-5" aria-hidden="true" /></span>
-              <span className="min-w-0">
-                <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-gold">Telefone / WhatsApp</span>
-                <span className="block text-sm text-brand-ink">(82) 99806-7374</span>
-              </span>
-            </a>
+          <div className="relative mx-auto max-w-4xl overflow-hidden rounded-[20px] border border-brand-petrol/8 bg-brand-soft/35 p-6 shadow-[0_16px_38px_-34px_rgba(0,56,76,0.6)] md:p-9">
+            <span className="pointer-events-none absolute right-7 top-0 h-[3px] w-12 rounded-b-full bg-brand-cyan" aria-hidden="true" />
+            <div className="grid gap-5 md:grid-cols-2 md:divide-x md:divide-brand-petrol/10">
+              <a href="mailto:comunicacaomktmaggu@gmail.com" className="group grid grid-cols-[44px_minmax(0,1fr)] items-center gap-4 md:pr-7">
+                <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-brand-cyan/20 bg-white/70 text-brand-petrol"><Mail className="size-4.5" aria-hidden="true" /></span>
+                <span className="min-w-0"><span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-cyan">E-mail</span><span className="block break-all text-sm text-brand-ink group-hover:text-brand-petrol">comunicacaomktmaggu@gmail.com</span></span>
+              </a>
+              <a href="tel:+5582998067374" className="group grid grid-cols-[44px_minmax(0,1fr)] items-center gap-4 border-t border-brand-petrol/10 pt-5 md:border-t-0 md:pl-7 md:pt-0">
+                <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-brand-gold/30 bg-white/70 text-brand-petrol"><Phone className="size-4.5" aria-hidden="true" /></span>
+                <span className="min-w-0"><span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-gold">Telefone / WhatsApp</span><span className="block text-sm text-brand-ink group-hover:text-brand-petrol">(82) 99806-7374</span></span>
+              </a>
+            </div>
           </div>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Link to="/contato" className="inline-flex rounded-full bg-brand-red px-6 py-2.5 text-sm font-bold text-primary-foreground transition hover:bg-brand-petrol">Solicitar entrevista</Link>
