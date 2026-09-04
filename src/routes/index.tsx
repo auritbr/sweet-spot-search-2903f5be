@@ -68,7 +68,7 @@ function HeroCarousel() {
 
   return (
     <section
-      className="relative h-[520px] w-full overflow-hidden md:h-[570px] lg:h-[610px]"
+      className="relative min-h-[620px] w-full overflow-hidden md:min-h-0 md:h-[570px] lg:h-[610px]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       aria-roledescription="carrossel"
@@ -102,15 +102,15 @@ function HeroCarousel() {
         <HatchedCircle size={300} color="#08B9E6" className="max-w-[55vw] opacity-25" />
       </div>
 
-      <div className="container-x relative z-10 flex h-full flex-col justify-center pb-20 pt-24 md:pb-24 md:pt-28">
+      <div className="container-x relative z-10 flex min-h-[620px] flex-col justify-center pb-[120px] pt-28 md:h-full md:min-h-0 md:pb-24 md:pt-28">
         <div className="w-full max-w-[36rem] animate-fade-up text-primary-foreground lg:max-w-[40rem]" key={i}>
           <p className="mb-3 inline-flex rounded-full border border-primary-foreground/20 bg-background/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-sm backdrop-blur-md">Associação Maggu</p>
-          <h1 style={{ fontSize: "clamp(1.85rem, 3.8vw, 3rem)", lineHeight: 1.1, fontWeight: 700, textShadow: "0 4px 24px rgba(0,0,0,.4)" }} className="text-balance text-primary-foreground">
+          <h1 style={{ fontSize: "clamp(1.85rem, 7.6vw, 3rem)", lineHeight: 1.1, fontWeight: 700, textShadow: "0 4px 24px rgba(0,0,0,.4)" }} className="text-balance text-primary-foreground">
             {s.title}
           </h1>
-          <BrushStroke color="#FFB400" className="mt-3 w-24" />
-          <p className="mt-4 max-w-[34rem] text-[14px] leading-[1.6] text-primary-foreground/90 md:text-[15px]">{s.text}</p>
-          <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3">
+          <BrushStroke color="#FFB400" className="mt-4 w-24 md:mt-3" />
+          <p className="mt-6 max-w-[34rem] text-[15px] leading-[1.6] text-primary-foreground/90 md:mt-4 md:text-[15px]">{s.text}</p>
+          <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 sm:gap-y-3">
             {s.buttons.map((b, k) => (
               <Link
                 key={k}
@@ -118,8 +118,8 @@ function HeroCarousel() {
                 style={{ fontWeight: 600, lineHeight: 1, fontSize: "15px" }}
                 className={
                   k === 0
-                    ? "inline-flex h-[48px] items-center justify-center whitespace-nowrap rounded-full border border-white/25 bg-brand-red/80 px-6 text-white shadow-[0_8px_24px_-8px_rgba(0,0,0,0.5)] backdrop-blur-md transition duration-200 hover:-translate-y-0.5 hover:border-white/40 hover:bg-brand-red/95 hover:shadow-[0_12px_30px_-8px_rgba(0,0,0,0.55)]"
-                    : "inline-flex h-[48px] items-center justify-center whitespace-nowrap rounded-full border border-white/30 bg-white/10 px-6 text-white backdrop-blur-md transition duration-200 hover:-translate-y-0.5 hover:border-white/45 hover:bg-white/20"
+                    ? "inline-flex h-[48px] max-w-full items-center justify-center whitespace-nowrap rounded-full border border-white/25 bg-brand-red/80 px-6 text-white shadow-[0_8px_24px_-8px_rgba(0,0,0,0.5)] backdrop-blur-md transition duration-200 hover:-translate-y-0.5 hover:border-white/40 hover:bg-brand-red/95 hover:shadow-[0_12px_30px_-8px_rgba(0,0,0,0.55)]"
+                    : "inline-flex h-[48px] max-w-full items-center justify-center whitespace-nowrap rounded-full border border-white/30 bg-white/10 px-6 text-white backdrop-blur-md transition duration-200 hover:-translate-y-0.5 hover:border-white/45 hover:bg-white/20"
                 }
               >
                 {b.label}
