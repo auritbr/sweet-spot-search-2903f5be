@@ -54,9 +54,25 @@ function Territorio() {
     </Section>
 
     <Section className="overflow-hidden bg-background">
-      <ArcThick color="#FFB400" className="pointer-events-none absolute -left-12 top-16 w-20 opacity-[0.14]" from={210} to={335} />
-      <div className="container-x text-center"><SectionTitle align="center" eyebrow="Localização" title="Onde estamos" /><div className="mx-auto flex max-w-2xl items-start justify-center gap-3 text-brand-gray"><MapPin className="mt-0.5 size-5 shrink-0 text-brand-red" /><address className="not-italic leading-relaxed">Rua Em Projeto A, 33 — Benedito Bentes — Maceió/AL — CEP 57084-411</address></div><Button asChild className="mt-5 rounded-full bg-brand-petrol text-primary-foreground hover:bg-brand-red"><a href={`https://www.google.com/maps?q=${mapQuery}`} target="_blank" rel="noreferrer">Abrir no mapa</a></Button>
-        <div className="relative mx-auto mt-8 max-w-4xl"><span className="pointer-events-none absolute -right-3 -top-3 size-8 rounded-full border-[6px] border-brand-cyan/20" aria-hidden="true" /><span className="pointer-events-none absolute -bottom-2 left-8 size-3 rotate-45 bg-brand-gold" aria-hidden="true" /><div className="overflow-hidden rounded-[16px] border border-brand-petrol/10 bg-brand-soft p-1.5 shadow-[0_18px_38px_-32px_rgba(0,56,76,0.65)]"><iframe title="Mapa de referência do Benedito Bentes" src={`https://www.google.com/maps?q=${mapQuery}&output=embed`} loading="lazy" className="block h-[220px] w-full rounded-[11px] border-0 md:h-[260px]" /></div></div>
+      <ArcThick color="#FFB400" className="pointer-events-none absolute -left-12 top-14 w-20 opacity-[0.12]" from={210} to={335} />
+      <HatchedCircle size={84} color="#08B9E6" className="pointer-events-none absolute -right-8 bottom-10 opacity-[0.08]" />
+      <div className="container-x">
+        <div className="relative mx-auto max-w-3xl rounded-[16px] border border-brand-petrol/10 bg-brand-soft/45 p-3 shadow-[0_22px_50px_-42px_rgba(0,56,76,0.75)] sm:p-4">
+          <span className="pointer-events-none absolute -left-2 top-12 h-10 w-1 rounded-full bg-brand-red" aria-hidden="true" />
+          <span className="pointer-events-none absolute -right-2 top-7 size-3 rotate-45 bg-brand-gold" aria-hidden="true" />
+          <div className="grid overflow-hidden rounded-[12px] bg-background lg:grid-cols-[0.8fr_1.2fr]">
+            <div className="relative flex flex-col items-center justify-center px-6 py-8 text-center sm:px-8 lg:items-start lg:text-left">
+              <span className="pointer-events-none absolute right-5 top-5 size-8 rounded-full border-[6px] border-brand-cyan/12" aria-hidden="true" />
+              <SectionTitle eyebrow="Localização" title="Onde estamos" />
+              <div className="flex max-w-md items-start gap-3 text-brand-gray"><MapPin className="mt-0.5 size-5 shrink-0 text-brand-red" /><address className="not-italic leading-relaxed">Rua Em Projeto A, 33 — Benedito Bentes — Maceió/AL — CEP 57084-411</address></div>
+              <Button asChild className="mt-5 rounded-full bg-brand-petrol px-6 text-primary-foreground hover:bg-brand-red"><a href={`https://www.google.com/maps?q=${mapQuery}`} target="_blank" rel="noreferrer">Abrir no mapa</a></Button>
+            </div>
+            <div className="relative min-h-[220px] border-t border-brand-petrol/8 p-1.5 lg:min-h-[300px] lg:border-l lg:border-t-0">
+              <iframe title="Mapa de referência do Benedito Bentes" src={`https://www.google.com/maps?q=${mapQuery}&output=embed`} loading="lazy" className="block h-full min-h-[220px] w-full rounded-[9px] border-0 lg:min-h-[288px]" />
+              <span className="pointer-events-none absolute bottom-4 left-4 h-0.5 w-9 bg-brand-gold" aria-hidden="true" />
+            </div>
+          </div>
+        </div>
       </div>
     </Section>
 

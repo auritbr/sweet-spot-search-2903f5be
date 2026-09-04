@@ -30,3 +30,7 @@
 - [x] Refinar introdução, relações, localização e projetos de Território
 - [x] Remover a seção de ações de Território e ajustar o link do hero
 - [x] Validar as três páginas em desktop e mobile
+- [x] Refinar a localização de Território
+- [x] Reorganizar Parcerias e Colaboração em Participe
+- [x] Redesenhar as seções indicadas de Governança e Integridade
+- [x] Validar Território, Participe e Governança em desktop e mobile
