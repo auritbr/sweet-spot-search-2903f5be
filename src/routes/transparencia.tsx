@@ -170,8 +170,18 @@ function Transparencia() {
               </Link>
             </article>
           </div>
+
+          <div className="mx-auto mt-6 flex max-w-4xl flex-col items-center gap-3 rounded-2xl border border-brand-petrol/10 bg-white/70 p-6 text-center sm:flex-row sm:justify-between sm:text-left">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-cyan">Sustentabilidade</p>
+              <h2 className="mt-2 text-[1.2rem] font-bold leading-snug text-brand-ink">ODS / Maggu 2030</h2>
+              <p className="mt-2 text-sm leading-[1.65] text-brand-gray">Compromissos institucionais, governança, indicadores e evidências ligados aos Objetivos de Desenvolvimento Sustentável.</p>
+            </div>
+            <Link to="/ods-maggu-2030" className="inline-flex shrink-0 rounded-full bg-brand-petrol px-6 py-2.5 text-sm font-bold text-primary-foreground transition hover:bg-brand-red">Acessar subárea</Link>
+          </div>
         </div>
       </section>
+
 
       <CompactFinalCTA
         title="Transparência também se constrói com acesso."

@@ -10,12 +10,16 @@ const institucional = [
   { label: "Transparência", to: "/transparencia" },
   { label: "Projetos", to: "/projetos" },
   { label: "Agenda", to: "/agenda" },
+  { label: "ODS / Maggu 2030", to: "/ods-maggu-2030" },
+
 ];
 
 const navegacao = [
   { label: "Notícias", to: "/noticias" },
   { label: "Galeria", to: "/galeria" },
+  { label: "Sala de Imprensa", to: "/imprensa" },
   { label: "Contato", to: "/contato" },
+
 ];
 
 const legal = [

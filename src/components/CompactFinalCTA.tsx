@@ -3,11 +3,12 @@ import { Button } from "@/components/ui/button";
 
 type CtaLink = {
   label: string;
-  to?: "/" | "/ecossistema" | "/transparencia" | "/projetos" | "/contato" | "/agenda" | "/quem-somos" | "/equipe" | "/privacidade";
+  to?: "/" | "/ecossistema" | "/transparencia" | "/projetos" | "/contato" | "/agenda" | "/quem-somos" | "/equipe" | "/privacidade" | "/imprensa" | "/ods-maggu-2030";
   href?: string;
 };
 
-type Variant = "home" | "continuity" | "agenda" | "projects" | "ecosystem" | "transparency" | "team" | "privacy" | "terms";
+type Variant = "home" | "continuity" | "agenda" | "projects" | "ecosystem" | "transparency" | "team" | "privacy" | "terms" | "press" | "ods";
+
 
 type CompactFinalCTAProps = {
   title: string;
@@ -54,7 +55,16 @@ const buttonStyles: Record<Variant, readonly [string, string]> = {
     "border-brand-petrol/15 bg-brand-gold/90 text-brand-petrol hover:bg-brand-gold",
     "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
   ],
+  press: [
+    "border-brand-petrol/15 bg-brand-gold/90 text-brand-petrol hover:bg-brand-gold",
+    "border-brand-cyan/35 bg-brand-cyan/15 text-primary-foreground hover:bg-brand-cyan/25",
+  ],
+  ods: [
+    "border-brand-petrol/15 bg-brand-cyan/85 text-brand-petrol hover:bg-brand-cyan",
+    "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
+  ],
 };
+
 
 function GraphicComposition({ variant }: { variant: Variant }) {
   if (variant === "privacy") {
@@ -63,7 +73,14 @@ function GraphicComposition({ variant }: { variant: Variant }) {
   if (variant === "terms") {
     return <><span className="absolute -left-12 -top-16 size-56 rotate-12 border-[22px] border-brand-gold/15 md:size-72" /><span className="absolute -bottom-20 -right-16 size-60 rounded-full bg-brand-red/15 md:size-72" /><span className="absolute right-20 top-14 hidden size-14 rotate-45 border border-brand-gold/40 md:block" /></>;
   }
+  if (variant === "press") {
+    return <><span className="absolute -left-14 -top-16 size-56 rounded-full border-[26px] border-brand-gold/15 md:size-72" /><span className="absolute -right-12 bottom-0 h-48 w-48 rotate-6 rounded-md border border-primary-foreground/15 bg-primary-foreground/[0.04] md:h-60 md:w-64" /><span className="absolute right-16 top-16 hidden h-px w-32 bg-brand-cyan/45 md:block" /><span className="absolute bottom-14 left-24 hidden size-12 rotate-45 border border-brand-red/40 md:block" /></>;
+  }
+  if (variant === "ods") {
+    return <><span className="absolute -left-20 bottom-0 size-64 rounded-full border-[32px] border-brand-lime/20 md:size-80" /><span className="absolute -right-16 -top-16 size-56 rounded-full bg-brand-cyan/15 md:size-72" /><span className="absolute right-24 bottom-16 hidden h-px w-32 bg-brand-gold/45 md:block" /><span className="absolute bottom-[3.7rem] right-[14rem] hidden size-3 rounded-full bg-brand-lime md:block" /></>;
+  }
   if (variant === "ecosystem") {
+
     return <><span className="absolute -left-14 top-12 size-48 rounded-full border-[28px] border-brand-gold/15 md:size-64" /><span className="absolute -right-16 bottom-0 size-44 rounded-full bg-brand-red/15 md:size-60" /><span className="absolute bottom-16 right-20 hidden h-px w-36 bg-brand-cyan/35 md:block" /><span className="absolute bottom-[3.8rem] right-[13.2rem] hidden size-3 rounded-full bg-brand-cyan md:block" /><span className="absolute bottom-[3.8rem] right-[8rem] hidden size-3 rounded-full bg-brand-gold md:block" /></>;
   }
   if (variant === "agenda") {
