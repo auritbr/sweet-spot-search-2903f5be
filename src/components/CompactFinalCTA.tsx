@@ -12,7 +12,7 @@ type CompactFinalCTAProps = {
   text: string;
   primary: CtaLink;
   secondary: CtaLink;
-  variant: "continuity" | "agenda" | "projects" | "ecosystem";
+  variant: "continuity" | "agenda" | "projects" | "projectDetail" | "ecosystem";
 };
 
 const buttonStyles = {
@@ -25,6 +25,10 @@ const buttonStyles = {
     "border-primary-foreground/20 bg-brand-red/85 text-primary-foreground hover:bg-brand-red",
   ],
   projects: [
+    "border-brand-petrol/15 bg-brand-cyan/85 text-brand-petrol hover:bg-brand-cyan",
+    "border-primary-foreground/20 bg-brand-gold/90 text-brand-petrol hover:bg-brand-gold",
+  ],
+  projectDetail: [
     "border-brand-petrol/15 bg-brand-cyan/85 text-brand-petrol hover:bg-brand-cyan",
     "border-primary-foreground/20 bg-brand-gold/90 text-brand-petrol hover:bg-brand-gold",
   ],
@@ -68,6 +72,17 @@ function Decorations({ variant }: { variant: CompactFinalCTAProps["variant"] }) 
     );
   }
 
+  if (variant === "projectDetail") {
+    return (
+      <>
+        <ArcThick color="#08B9E6" className="pointer-events-none absolute -left-11 bottom-3 w-24 opacity-25 md:left-7 md:w-32" from={205} to={335} />
+        <span className="pointer-events-none absolute left-9 top-8 size-3 rotate-45 bg-brand-gold md:left-14" aria-hidden="true" />
+        <span className="pointer-events-none absolute right-10 top-9 hidden h-1.5 w-12 rounded-full bg-brand-red/80 md:block" aria-hidden="true" />
+        <HatchedCircle size={76} color="#FFB400" className="pointer-events-none absolute -bottom-8 -right-5 opacity-15 md:right-8" />
+      </>
+    );
+  }
+
   return (
     <>
       <ArcThick color="#FFB400" className="pointer-events-none absolute -right-9 -top-12 w-28 opacity-35 md:right-5 md:w-36" from={190} to={320} />
@@ -78,7 +93,7 @@ function Decorations({ variant }: { variant: CompactFinalCTAProps["variant"] }) 
 }
 
 export function CompactFinalCTA({ title, text, primary, secondary, variant }: CompactFinalCTAProps) {
-  const centered = variant === "agenda" || variant === "projects";
+  const centered = variant === "agenda" || variant === "projects" || variant === "projectDetail";
   const styles = buttonStyles[variant];
 
   return (
