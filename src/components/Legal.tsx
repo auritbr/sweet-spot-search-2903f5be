@@ -102,10 +102,11 @@ export function LegalToc({ items, tone }: { items: TocItem[]; tone: LegalTone })
         <div id={mobileId} hidden={!open} className="border-t border-brand-petrol/10 px-2 py-3">{list}</div>
       </div>
 
-      <div className="hidden border-l border-brand-petrol/10 py-2 lg:block">
+      <div className="hidden border-l border-brand-petrol/10 py-2 lg:block lg:max-h-[calc(100vh-9rem)] lg:overflow-y-auto">
         <p className="mb-3 px-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-gray">Nesta página</p>
         {list}
       </div>
+
     </nav>
   );
 }
