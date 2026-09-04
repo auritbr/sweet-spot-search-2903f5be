@@ -56,11 +56,11 @@ export function PageHero({
   imagePosition?: string;
 }) {
   const height = variant === "detail"
-    ? "h-[350px] md:h-[370px] lg:h-[390px]"
-    : "h-[330px] md:h-[360px] lg:h-[420px]";
+    ? "min-h-[400px] md:min-h-0 md:h-[370px] lg:h-[390px]"
+    : "min-h-[390px] md:min-h-0 md:h-[360px] lg:h-[420px]";
   const contentSpacing = variant === "detail"
-    ? "pb-5 pt-20 md:pb-7 md:pt-24"
-    : "pb-5 pt-20 md:pb-7 md:pt-24";
+    ? "pb-[76px] pt-24 md:pb-7 md:pt-24"
+    : "pb-[76px] pt-24 md:pb-7 md:pt-24";
   const longTitle = title.length > 30;
 
   const decorations = {
@@ -94,15 +94,15 @@ export function PageHero({
             {eyebrow ?? title}
           </p>
 
-          <h1 className={`relative max-w-3xl font-bold leading-[1.08] text-primary-foreground [text-shadow:0_4px_22px_rgb(0_0_0_/_0.32)] ${longTitle ? "text-[30px] md:text-[36px] lg:text-[44px]" : variant === "detail" ? "text-[30px] md:text-[36px] lg:text-[46px]" : "text-[32px] md:text-[40px] lg:text-[50px]"}`}>
+          <h1 className={`relative max-w-3xl font-bold leading-[1.1] text-primary-foreground [overflow-wrap:break-word] [text-shadow:0_4px_22px_rgb(0_0_0_/_0.32)] ${longTitle ? "text-[clamp(1.75rem,7.2vw,2rem)] md:text-[36px] lg:text-[44px]" : variant === "detail" ? "text-[clamp(1.75rem,7.4vw,2rem)] md:text-[36px] lg:text-[46px]" : "text-[clamp(1.85rem,7.8vw,2.15rem)] md:text-[40px] lg:text-[50px]"}`}>
             {split ? <><span className="block">{split.first}</span><span className="block" style={{ color: split.secondColor ?? accentHex[accent] }}>{split.second}</span></> : title}
           </h1>
 
-          <BrushStroke color={brush} className="relative mt-3 w-24 md:w-28" />
+          <BrushStroke color={brush} className="relative mt-4 w-24 md:mt-3 md:w-28" />
 
-          {subtitle && <p className="relative mt-3 max-w-2xl text-[14px] leading-[1.55] text-primary-foreground/90 md:text-[15px] lg:text-[17px]">{subtitle}</p>}
+          {subtitle && <p className="relative mt-6 max-w-2xl text-[15px] leading-[1.55] text-primary-foreground/90 md:mt-3 md:text-[15px] lg:text-[17px]">{subtitle}</p>}
 
-          {children && <div className="relative mt-4">{children}</div>}
+          {children && <div className="relative mt-7 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3 md:mt-4">{children}</div>}
         </div>
       </div>
     </section>
