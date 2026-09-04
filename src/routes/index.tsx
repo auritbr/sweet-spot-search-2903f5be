@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { EventPreviewPanel } from "@/components/EventPreviewPanel";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { agendaCategoryStyles, eventDayMonth, upcomingEvents, type AgendaEvent } from "@/data/agenda";
-import { HatchedCircle, ArcThick, BrushStroke, DiamondsCluster, QuarterCircle, Triangle } from "@/components/Shapes";
+import { HatchedCircle, ArcThick, BrushStroke, DiamondsCluster, QuarterCircle, Triangle, DottedCurve } from "@/components/Shapes";
 import culturePointSeal from "@/assets/ponto-de-cultura.png";
 
 export const Route = createFileRoute("/")({
@@ -33,9 +33,11 @@ function Home() {
       <IntroSection />
       <EcosystemSection />
       <ProjectHighlights />
+      <ImpactoSection />
       <CulturePointSection />
       <AgendaSection />
       <MemorySection />
+      <ParticipeSection />
       <TransparencySection />
       <FinalCTA />
     </>
@@ -269,6 +271,39 @@ function ProjectHighlights() {
   );
 }
 
+function ImpactoSection() {
+  return (
+    <Section className="relative overflow-hidden bg-brand-soft py-14 md:py-20">
+      <ArcThick color="#00384C" className="pointer-events-none absolute -left-10 top-14 hidden w-24 opacity-20 md:block" from={180} to={320} />
+      <span className="pointer-events-none absolute right-[7%] top-12 hidden size-3 rotate-45 bg-brand-gold/70 md:block" aria-hidden="true" />
+      <DottedCurve className="pointer-events-none absolute -right-6 bottom-10 hidden w-40 text-brand-cyan/30 md:block" />
+      <div className="container-x relative grid items-center gap-10 lg:grid-cols-[1.1fr_.9fr] lg:gap-16">
+        <div className="max-w-xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Impacto</p>
+          <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.7rem, 2.6vw, 2.5rem)", lineHeight: 1.18, fontWeight: 700 }}>O que fazemos precisa deixar evidências.</h2>
+          <p className="mt-5 leading-relaxed text-brand-gray" style={{ maxWidth: "52ch" }}>Registramos atividades, resultados, histórias e aprendizados para compreender o alcance de nossas ações e melhorar continuamente. Aqui, números não substituem pessoas: ajudam a contar parte da transformação construída com elas.</p>
+          <Link to="/impacto-memoria" className="group mt-7 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-petrol underline-offset-4 transition hover:underline">
+            Conheça nosso impacto
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-0.5" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+          </Link>
+        </div>
+        <div className="relative mx-auto w-full max-w-[340px]">
+          <div className="relative flex flex-wrap items-center justify-center gap-2.5">
+            {["Histórias", "Registros", "Evidências", "Memória"].map((label, i) => (
+              <span key={label} className={`inline-flex items-center gap-2 rounded-full border border-brand-petrol/12 bg-background/85 px-3.5 py-2 text-xs font-semibold text-brand-petrol shadow-sm backdrop-blur-sm ${i % 2 === 0 ? "" : "bg-brand-petrol/5"}`}>
+                <span className={`size-2 ${i % 3 === 0 ? "rounded-full bg-brand-red" : i % 3 === 1 ? "rotate-45 bg-brand-gold" : "rounded-full bg-brand-cyan"}`} aria-hidden="true" />
+                {label}
+              </span>
+            ))}
+          </div>
+          <HatchedCircle size={70} color="#ED1C24" className="pointer-events-none absolute -left-7 -bottom-6 opacity-30" />
+          <span className="pointer-events-none absolute -right-3 top-0 hidden size-2.5 rounded-full bg-brand-cyan/60 md:block" aria-hidden="true" />
+        </div>
+      </div>
+    </Section>
+  );
+}
+
 function CulturePointSection() {
   return (
     <section aria-labelledby="culture-point-title" className="relative overflow-hidden bg-white py-12 md:py-16">
@@ -378,6 +413,34 @@ function MemorySection() {
   );
 }
 
+function ParticipeSection() {
+  const paths = ["Atividades", "Formação", "Colaboração", "Apoio", "Parcerias"];
+  return (
+    <Section className="relative overflow-hidden bg-white py-14 md:py-20">
+      <ArcThick color="#FFB400" className="pointer-events-none absolute -right-10 top-10 hidden w-24 opacity-25 md:block" from={20} to={150} />
+      <span className="pointer-events-none absolute left-[6%] top-14 hidden size-3 rotate-45 bg-brand-red/60 md:block" aria-hidden="true" />
+      <DottedCurve className="pointer-events-none absolute -left-6 bottom-8 hidden w-40 text-brand-cyan/30 md:block" />
+      <span className="pointer-events-none absolute right-[10%] bottom-12 hidden tracking-[0.4em] text-brand-gold/40 md:block" aria-hidden="true">•••</span>
+      <div className="container-x relative mx-auto max-w-3xl text-center">
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Participe</p>
+        <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.7rem, 2.6vw, 2.5rem)", lineHeight: 1.18, fontWeight: 700 }}>Há muitas formas de fazer parte.</h2>
+        <p className="mx-auto mt-5 leading-relaxed text-brand-gray" style={{ maxWidth: "54ch" }}>Você pode aprender, participar de uma atividade, colaborar com conhecimento, apoiar uma iniciativa ou construir uma parceria conosco.</p>
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5">
+          {paths.map((p, i) => (
+            <span key={p} className="inline-flex items-center gap-2 rounded-full border border-brand-petrol/12 bg-brand-soft/50 px-3.5 py-2 text-xs font-semibold text-brand-petrol">
+              <span className={`size-2 ${i % 2 === 0 ? "rounded-full bg-brand-cyan" : "rotate-45 bg-brand-gold"}`} aria-hidden="true" />
+              {p}
+            </span>
+          ))}
+        </div>
+        <Link to="/participe" className="group mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-petrol underline-offset-4 transition hover:underline">
+          Conheça as formas de participar
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-0.5" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+        </Link>
+      </div>
+    </Section>
+  );
+}
 
 function TransparencySection() {
   return (
