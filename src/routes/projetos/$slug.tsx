@@ -71,7 +71,35 @@ function ProjectDetail() {
         </div>
       </Section>
 
-      <section className="bg-brand-soft/45 py-14 md:py-20" aria-labelledby="project-gallery-title">
+      <section className="relative bg-brand-soft/45 py-14 md:py-20" aria-labelledby="project-aspects-title">
+        <HatchedCircle size={112} color="#08B9E6" className="pointer-events-none absolute -right-12 top-12 opacity-10" />
+        <div className="container-x">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Em perspectiva</p>
+            <h2 id="project-aspects-title" className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.7rem, 2.5vw, 2.4rem)", lineHeight: 1.15, fontWeight: 700 }}>Um projeto, diferentes dimensões</h2>
+          </div>
+          <div className="mx-auto mt-8 grid max-w-5xl gap-4 md:grid-cols-3">
+            {cardTitles.map((title, index) => (
+              <article key={title} className="group relative flex min-h-[168px] overflow-hidden rounded-2xl border border-brand-petrol/10 bg-background/75 p-5 shadow-[0_14px_34px_-32px_rgba(0,56,76,0.6)] ring-1 ring-inset ring-white/55 backdrop-blur-sm md:p-6">
+                <span className={`absolute bottom-0 left-0 top-0 w-1 ${accentClasses[index]}`} aria-hidden="true" />
+                <div className="mr-4 flex shrink-0 flex-col items-center pt-0.5" aria-hidden="true">
+                  <span className={`size-2.5 rotate-45 ${accentClasses[index]}`} />
+                  <span className="mt-2 h-9 w-px bg-brand-petrol/12" />
+                  <span className="mt-2 text-[10px] font-bold tracking-[0.14em] text-brand-gray">0{index + 1}</span>
+                </div>
+                <div className="min-w-0">
+                  <h3 className="text-lg leading-snug text-brand-ink">{title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-brand-gray">{statements[index] ? `${statements[index]}.` : project.short}</p>
+                </div>
+                <span className={`pointer-events-none absolute -bottom-7 -right-7 size-16 rounded-full border opacity-15 ${index === 0 ? "border-brand-red" : index === 1 ? "border-brand-gold" : "border-brand-cyan"}`} aria-hidden="true" />
+              </article>
+            ))}
+          </div>
+          <Button asChild variant="ghost" className="mx-auto mt-8 flex w-fit rounded-full text-brand-petrol hover:bg-brand-soft hover:text-brand-red"><Link to="/projetos">Conheça outras iniciativas <ArrowRight aria-hidden="true" /></Link></Button>
+        </div>
+      </section>
+
+      <section className="bg-background pb-12 pt-14 md:pb-16 md:pt-20" aria-labelledby="project-gallery-title">
         <div className="container-x">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Galeria</p>
@@ -84,27 +112,6 @@ function ProjectDetail() {
               </figure>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="relative bg-background py-14 md:py-20" aria-labelledby="project-aspects-title">
-        <HatchedCircle size={130} color="#08B9E6" className="pointer-events-none absolute -right-14 top-12 opacity-15" />
-        <div className="container-x">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Em perspectiva</p>
-            <h2 id="project-aspects-title" className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.7rem, 2.5vw, 2.4rem)", lineHeight: 1.15, fontWeight: 700 }}>Um projeto, diferentes dimensões</h2>
-          </div>
-          <div className="mx-auto mt-8 grid max-w-5xl gap-4 md:grid-cols-3">
-            {cardTitles.map((title, index) => (
-              <article key={title} className="relative min-h-44 overflow-hidden rounded-xl border border-brand-petrol/10 bg-background/80 p-5 shadow-sm backdrop-blur-sm md:p-6">
-                <span className={`absolute left-0 top-0 h-1 w-full ${accentClasses[index]}`} aria-hidden="true" />
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-gray">0{index + 1}</p>
-                <h3 className="mt-3 text-lg text-brand-ink">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-brand-gray">{statements[index] ? `${statements[index]}.` : project.short}</p>
-              </article>
-            ))}
-          </div>
-          <Button asChild variant="ghost" className="mx-auto mt-8 flex w-fit rounded-full text-brand-petrol hover:bg-brand-soft hover:text-brand-red"><Link to="/projetos">Conheça outras iniciativas <ArrowRight aria-hidden="true" /></Link></Button>
         </div>
       </section>
 
