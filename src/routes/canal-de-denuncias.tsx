@@ -8,10 +8,22 @@
 // Enquanto o fluxo não for aprovado, o formulário permanece desativado (canalDenunciasAtivo = false),
 // sem endpoint e sem envio de dados.
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArcThick, HatchedCircle, Triangle, QuarterCircle } from "@/components/Shapes";
-import { Breadcrumbs } from "@/components/Legal";
+import {
+  AlertTriangle,
+  ArrowRight,
+  Ban,
+  Coins,
+  Mail,
+  MessageSquareWarning,
+  Scale,
+  ScrollText,
+  Shield,
+  ShieldCheck,
+  Users,
+  UserX,
+} from "lucide-react";
 import { PageHero } from "@/components/PageHero";
-import { useState } from "react";
+import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 
 export const Route = createFileRoute("/canal-de-denuncias")({
   head: () => ({
@@ -32,213 +44,213 @@ export const Route = createFileRoute("/canal-de-denuncias")({
 /** Flag de configuração: só ativar após aprovação formal do fluxo operacional. */
 const canalDenunciasAtivo = false;
 
-const categorias = [
-  "discriminação",
-  "preconceito",
-  "violência",
-  "assédio",
-  "intolerância",
-  "violação de direitos",
-  "condutas incompatíveis com normas institucionais",
-  "situações relacionadas à proteção de participantes",
-  "outras questões de ética e integridade",
+const EMAIL = "comunicacaomktmaggu@gmail.com";
+
+const relatos = [
+  { icon: MessageSquareWarning, accent: "#ED1C24", title: "Assédio e condutas inadequadas", text: "Situações de assédio, constrangimento, intimidação ou comportamento incompatível com um ambiente respeitoso." },
+  { icon: UserX, accent: "#FFB400", title: "Discriminação", text: "Relatos envolvendo tratamento discriminatório ou desrespeito relacionado a características pessoais ou sociais." },
+  { icon: Coins, accent: "#08B9E6", title: "Uso indevido de recursos", text: "Situações envolvendo possível uso inadequado de recursos, bens, materiais ou estruturas da Associação." },
+  { icon: Users, accent: "#00384C", title: "Conflitos de interesse", text: "Situações em que interesses pessoais possam interferir de maneira inadequada em decisões institucionais." },
+  { icon: ScrollText, accent: "#ED1C24", title: "Irregularidades", text: "Possíveis descumprimentos de regras, procedimentos, obrigações ou compromissos institucionais." },
+  { icon: AlertTriangle, accent: "#FFB400", title: "Outras situações", text: "Outros fatos que possam comprometer a ética, a integridade ou a confiança nas atividades da Associação." },
 ];
 
-const faq = [
-  {
-    q: "Qual é a diferença entre denúncia e contato geral?",
-    a: "O contato geral é destinado a dúvidas sobre atividades, projetos, inscrições, parcerias, apoio ou atendimento institucional. O Canal de Denúncias é destinado a situações relacionadas a condutas, direitos, normas de proteção, políticas institucionais ou princípios de integridade.",
-  },
-  {
-    q: "Que tipo de situação deve ser encaminhada por este canal?",
-    a: "Situações que possam contrariar o Estatuto, o Código de Ética e Conduta, políticas institucionais, direitos, normas de proteção ou a legislação aplicável.",
-  },
-  {
-    q: "O canal já está disponível para envio?",
-    a: "O formulário eletrônico será disponibilizado após a conclusão do fluxo operacional.",
-  },
-  {
-    q: "Quem poderá acessar os relatos?",
-    a: "O acesso deverá ser restrito às pessoas formalmente designadas para o tratamento dos relatos, conforme procedimento institucional aprovado.",
-  },
-  {
-    q: "É possível enviar um relato de forma anônima?",
-    a: "O procedimento definitivo ainda está em estruturação. A Associação não deve prometer anonimato antes da definição e implementação técnica das regras correspondentes.",
-  },
-  {
-    q: "Como meus dados serão tratados?",
-    a: "Relatos de integridade devem utilizar fluxo próprio, com acesso restrito e regras específicas de tratamento, em coerência com as orientações da página de Privacidade e Proteção de Dados.",
-  },
+const etapas = [
+  { n: "01", title: "Relato", text: "A pessoa encaminha as informações disponíveis sobre a situação." },
+  { n: "02", title: "Recebimento", text: "O relato é recebido e registrado para análise." },
+  { n: "03", title: "Avaliação", text: "As informações são avaliadas com responsabilidade e respeito às pessoas envolvidas." },
+  { n: "04", title: "Encaminhamento", text: "Quando necessário, são adotadas providências compatíveis com a situação relatada." },
 ];
 
-/**
- * Estrutura futura do formulário. Permanece oculta enquanto canalDenunciasAtivo = false.
- * Campos previstos: categoria do relato; descrição; relação com a Associação; local ou
- * atividade relacionada; período aproximado; anexos (se futuramente aprovados);
- * identificação opcional (somente se o fluxo aprovado permitir); canal para retorno
- * (somente se aplicável); ciência sobre tratamento dos dados.
- */
-function FormularioRelato() {
-  if (!canalDenunciasAtivo) return null;
+const principios = [
+  { icon: Shield, title: "Respeito", text: "As pessoas envolvidas devem ser tratadas com dignidade durante todo o processo." },
+  { icon: ShieldCheck, title: "Confidencialidade", text: "As informações serão tratadas com cuidado e acesso limitado conforme a necessidade." },
+  { icon: Scale, title: "Imparcialidade", text: "Os relatos serão analisados sem julgamentos antecipados." },
+  { icon: Ban, title: "Responsabilidade", text: "O canal deve ser utilizado de boa-fé e com informações verdadeiras." },
+];
+
+function Eyebrow({ children, color = "#08B9E6" }: { children: string; color?: string }) {
   return (
-    <form className="rounded-2xl border border-black/10 p-6 space-y-4" aria-label="Formulário de relato">
-      {/* Renderizar o fluxo aprovado quando o canal for ativado. */}
-    </form>
+    <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color }}>
+      <span className="inline-block h-px w-6" style={{ backgroundColor: color }} aria-hidden="true" />
+      {children}
+    </span>
   );
 }
 
 function CanalDenuncias() {
-  const [open, setOpen] = useState<number | null>(0);
-
   return (
     <main id="main">
-      <PageHero title="Canal de Denúncias e Relato Ético" eyebrow="Integridade" subtitle="Um espaço destinado ao encaminhamento responsável de situações que possam contrariar normas, direitos ou princípios institucionais." image="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80" accent="gold" brush="#08B9E6" compact decoration="frame" />
+      <PageHero
+        title="Canal de Denúncias e Relato Ético"
+        eyebrow="Integridade"
+        subtitle="Um espaço seguro para comunicar situações que possam contrariar os princípios, as normas ou a integridade institucional da Associação Maggu."
+        image="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80"
+        accent="cyan"
+        brush="#ED1C24"
+        compact
+        decoration="constellation"
+      />
 
-      <section className="bg-white py-10 md:py-14" aria-labelledby="apresentacao-canal">
-        <div className="container-x max-w-3xl">
-          <h2 id="apresentacao-canal" className="text-brand-ink" style={{ fontSize: "clamp(1.3rem, 1.9vw, 1.7rem)", lineHeight: 1.25, fontWeight: 700 }}>
-            Sobre o canal
+      {/* Apresentação */}
+      <section className="relative overflow-hidden bg-white py-12 md:py-16" aria-labelledby="apresentacao-canal">
+        <span className="pointer-events-none absolute -left-16 top-8 hidden size-44 rounded-full border-[18px] border-brand-cyan/10 md:block" aria-hidden="true" />
+        <span className="pointer-events-none absolute -right-10 bottom-6 hidden size-24 rotate-45 border border-brand-gold/35 md:block" aria-hidden="true" />
+        <div className="container-x relative max-w-3xl text-center">
+          <Eyebrow>Canal institucional</Eyebrow>
+          <h2 id="apresentacao-canal" className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.4rem, 2.1vw, 1.9rem)", lineHeight: 1.25, fontWeight: 700 }}>
+            Um espaço para escutar com responsabilidade.
           </h2>
-          <div className="mt-4 space-y-4 text-brand-gray" style={{ lineHeight: 1.7 }}>
-            <p>
-              Este canal é destinado ao relato de situações que possam contrariar o Estatuto, o Código de Ética e Conduta, políticas institucionais, direitos, normas de proteção ou a legislação aplicável.
-            </p>
-            <p>
-              A Associação Maggu repudia práticas de discriminação, preconceito, violência, intolerância religiosa, racismo, machismo, sexismo, LGBTQIA+fobia e outras condutas incompatíveis com seus princípios.
-            </p>
-            <p>
-              Os relatos devem ser tratados com responsabilidade, confidencialidade e acesso restrito às pessoas designadas para recebimento e encaminhamento, conforme o procedimento institucional aprovado.
-            </p>
+          <div className="mx-auto mt-5 max-w-2xl space-y-4 text-brand-gray" style={{ lineHeight: 1.75 }}>
+            <p>A Associação Maggu valoriza relações baseadas em respeito, ética, responsabilidade e transparência.</p>
+            <p>Este canal existe para que situações relacionadas à integridade institucional possam ser comunicadas de forma responsável, permitindo análise adequada e adoção das providências cabíveis.</p>
           </div>
         </div>
       </section>
 
-      <section className="bg-brand-soft/60 py-10 md:py-14" aria-labelledby="onde-encaminhar">
-        <div className="container-x max-w-4xl">
-          <h2 id="onde-encaminhar" className="text-brand-ink" style={{ fontSize: "clamp(1.3rem, 1.9vw, 1.7rem)", lineHeight: 1.25, fontWeight: 700 }}>
-            Onde encaminhar cada assunto
-          </h2>
-          <div className="mt-6 grid gap-5 md:grid-cols-2">
-            <div className="rounded-2xl bg-white border border-black/10 p-6 md:p-7">
-              <span className="inline-block w-10 h-1.5 rounded-full" style={{ backgroundColor: "#08B9E6" }} aria-hidden="true" />
-              <h3 className="mt-4 text-brand-ink" style={{ fontSize: "1.15rem", fontWeight: 700 }}>Precisa falar com a Associação?</h3>
-              <p className="mt-3 text-brand-gray text-sm" style={{ lineHeight: 1.7 }}>
-                Dúvidas sobre atividades, projetos, inscrições, parcerias, apoio ou atendimento institucional devem ser encaminhadas pelo contato geral.
-              </p>
-              <Link to="/contato" className="mt-5 inline-flex items-center px-5 py-2.5 rounded-full text-white text-sm hover:opacity-90" style={{ backgroundColor: "#ED1C24", fontWeight: 600 }}>
-                Ir para Contato
-              </Link>
-            </div>
-            <div className="rounded-2xl bg-white border border-black/10 p-6 md:p-7">
-              <span className="inline-block w-10 h-1.5 rounded-full" style={{ backgroundColor: "#FFB400" }} aria-hidden="true" />
-              <h3 className="mt-4 text-brand-ink" style={{ fontSize: "1.15rem", fontWeight: 700 }}>Precisa relatar uma situação de integridade?</h3>
-              <p className="mt-3 text-brand-gray text-sm" style={{ lineHeight: 1.7 }}>
-                O Canal de Denúncias é destinado a situações relacionadas a condutas, direitos, normas de proteção, políticas institucionais ou princípios de integridade.
-              </p>
-            </div>
+      {/* O que pode ser relatado */}
+      <section className="relative overflow-hidden bg-brand-soft/55 py-12 md:py-16" aria-labelledby="o-que-relatar">
+        <span className="pointer-events-none absolute -right-20 -top-16 hidden size-56 rounded-full bg-brand-cyan/10 md:block" aria-hidden="true" />
+        <div className="container-x relative max-w-5xl">
+          <div className="text-center">
+            <Eyebrow color="#ED1C24">O que relatar</Eyebrow>
+            <h2 id="o-que-relatar" className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.35rem, 2vw, 1.8rem)", lineHeight: 1.25, fontWeight: 700 }}>
+              Situações que podem ser encaminhadas pelo canal
+            </h2>
+          </div>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {relatos.map(({ icon: Icon, accent, title, text }) => (
+              <article key={title} className="relative overflow-hidden rounded-[18px] border border-brand-petrol/8 bg-white/70 p-5 shadow-[0_1px_2px_rgba(0,56,76,0.05)] backdrop-blur-md">
+                <span className="pointer-events-none absolute -right-6 -top-6 size-16 rounded-full" style={{ backgroundColor: `${accent}14` }} aria-hidden="true" />
+                <span className="pointer-events-none absolute bottom-3 right-4 size-2.5 rotate-45" style={{ backgroundColor: `${accent}40` }} aria-hidden="true" />
+                <span className="relative flex size-9 items-center justify-center rounded-full" style={{ backgroundColor: `${accent}14`, color: accent }} aria-hidden="true">
+                  <Icon className="size-[18px]" strokeWidth={2} />
+                </span>
+                <h3 className="relative mt-3 text-brand-ink" style={{ fontSize: "1rem", fontWeight: 700, lineHeight: 1.3 }}>{title}</h3>
+                <p className="relative mt-2 text-[13.5px] text-brand-gray" style={{ lineHeight: 1.65 }}>{text}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-10 md:py-14" aria-labelledby="o-que-relatar">
-        <div className="container-x max-w-3xl">
-          <h2 id="o-que-relatar" className="text-brand-ink" style={{ fontSize: "clamp(1.3rem, 1.9vw, 1.7rem)", lineHeight: 1.25, fontWeight: 700 }}>
-            O que pode ser relatado
-          </h2>
-          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-            {categorias.map((c) => (
-              <li key={c} className="flex items-start gap-3 rounded-xl border border-black/10 px-4 py-3 text-sm text-brand-ink">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00384C" strokeWidth="2.5" className="mt-0.5 shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" /></svg>
-                <span className="capitalize">{c}</span>
+      {/* Como funciona */}
+      <section className="relative overflow-hidden bg-white py-12 md:py-16" aria-labelledby="como-funciona">
+        <span className="pointer-events-none absolute -left-14 bottom-4 hidden size-40 rounded-full border border-brand-red/15 md:block" aria-hidden="true" />
+        <div className="container-x relative max-w-5xl">
+          <div className="text-center">
+            <Eyebrow color="#FFB400">Como funciona</Eyebrow>
+            <h2 id="como-funciona" className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.35rem, 2vw, 1.8rem)", lineHeight: 1.25, fontWeight: 700 }}>
+              Do relato à análise
+            </h2>
+          </div>
+          <ol className="relative mt-9 grid gap-6 md:grid-cols-4 md:gap-5">
+            <span className="pointer-events-none absolute left-0 right-0 top-4 hidden h-px bg-brand-petrol/12 md:block" aria-hidden="true" />
+            {etapas.map(({ n, title, text }) => (
+              <li key={n} className="relative pl-10 md:pl-0">
+                <span className="absolute left-0 top-0 flex size-8 items-center justify-center rounded-full border border-brand-cyan/35 bg-white text-[11px] font-semibold text-brand-petrol md:static md:mb-3 md:flex" aria-hidden="true">{n}</span>
+                <h3 className="text-brand-ink md:mt-0" style={{ fontSize: "1rem", fontWeight: 700 }}>{title}</h3>
+                <p className="mt-1.5 text-[13.5px] text-brand-gray" style={{ lineHeight: 1.65 }}>{text}</p>
               </li>
             ))}
-          </ul>
+          </ol>
         </div>
       </section>
 
-      <section className="bg-brand-soft/60 py-10 md:py-14" aria-labelledby="como-funciona">
-        <div className="container-x max-w-3xl">
-          <h2 id="como-funciona" className="text-brand-ink" style={{ fontSize: "clamp(1.3rem, 1.9vw, 1.7rem)", lineHeight: 1.25, fontWeight: 700 }}>
-            Como o canal funciona
+      {/* Princípios */}
+      <section className="relative overflow-hidden bg-brand-petrol/[0.04] py-12 md:py-16" aria-labelledby="principios-canal">
+        <span className="pointer-events-none absolute -right-16 top-10 hidden size-40 rounded-full border-[16px] border-brand-gold/10 md:block" aria-hidden="true" />
+        <div className="container-x relative max-w-5xl">
+          <div className="text-center">
+            <Eyebrow color="#00384C">Compromissos</Eyebrow>
+            <h2 id="principios-canal" className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.35rem, 2vw, 1.8rem)", lineHeight: 1.25, fontWeight: 700 }}>
+              Como os relatos devem ser tratados
+            </h2>
+          </div>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {principios.map(({ icon: Icon, title, text }) => (
+              <div key={title} className="border-l-2 border-brand-cyan/35 pl-4">
+                <Icon className="size-[18px] text-brand-petrol" aria-hidden="true" />
+                <h3 className="mt-2 text-brand-ink" style={{ fontSize: "0.98rem", fontWeight: 700 }}>{title}</h3>
+                <p className="mt-1.5 text-[13.5px] text-brand-gray" style={{ lineHeight: 1.65 }}>{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Uso responsável */}
+      <section className="relative overflow-hidden bg-brand-soft/55 py-12 md:py-16" aria-labelledby="uso-responsavel">
+        <span className="pointer-events-none absolute -left-12 top-1/2 hidden size-32 -translate-y-1/2 rotate-12 border border-brand-red/20 md:block" aria-hidden="true" />
+        <div className="container-x relative max-w-3xl">
+          <Eyebrow color="#ED1C24">Uso responsável</Eyebrow>
+          <h2 id="uso-responsavel" className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.25rem, 1.9vw, 1.65rem)", lineHeight: 1.3, fontWeight: 700 }}>
+            O canal não deve ser utilizado para acusações deliberadamente falsas.
           </h2>
-          <p className="mt-4 text-brand-gray" style={{ lineHeight: 1.7 }}>
-            A Associação está estruturando os procedimentos necessários para recebimento, análise, proteção das informações e encaminhamento adequado dos relatos.
+          <div className="mt-4 space-y-3 text-brand-gray" style={{ lineHeight: 1.75 }}>
+            <p>Relatos de boa-fé são importantes para fortalecer a integridade institucional.</p>
+            <p>O canal não deve ser utilizado para ameaças, perseguições, acusações sabidamente falsas, assédio ou qualquer outra forma de utilização abusiva contra terceiros.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Encaminhamento e canal de integridade */}
+      <section className="relative overflow-hidden bg-white py-12 md:py-16" aria-labelledby="envie-relato">
+        <div className="container-x relative max-w-3xl">
+          <h2 id="envie-relato" className="text-brand-ink" style={{ fontSize: "clamp(1.25rem, 1.9vw, 1.65rem)", lineHeight: 1.3, fontWeight: 700 }}>
+            Envie seu relato
+          </h2>
+          <p className="mt-3 text-brand-gray" style={{ lineHeight: 1.75 }}>
+            Forneça as informações que considerar necessárias para que a situação possa ser compreendida e analisada.
           </p>
 
           {!canalDenunciasAtivo && (
-            <div role="note" className="mt-6 rounded-2xl bg-white border-l-4 p-5 md:p-6" style={{ borderColor: "#FFB400" }}>
-              <p className="text-brand-ink" style={{ fontWeight: 700 }}>Canal em estruturação</p>
-              <p className="mt-2 text-sm text-brand-gray" style={{ lineHeight: 1.7 }}>
-                O formulário eletrônico será disponibilizado após a definição e aprovação do fluxo operacional, das responsabilidades, das regras de confidencialidade e das medidas de proteção de dados.
-              </p>
-            </div>
+            <p className="mt-3 text-[13.5px] text-brand-gray" style={{ lineHeight: 1.7 }}>
+              O formulário eletrônico será disponibilizado após a definição e a aprovação do fluxo operacional, das responsabilidades, das regras de confidencialidade e das medidas de proteção de dados. Até lá, os relatos podem ser encaminhados pelo canal institucional abaixo.
+            </p>
           )}
 
-          <FormularioRelato />
-        </div>
-      </section>
-
-      <section className="bg-white py-10 md:py-14" aria-labelledby="privacidade-canal">
-        <div className="container-x max-w-3xl">
-          <h2 id="privacidade-canal" className="text-brand-ink" style={{ fontSize: "clamp(1.3rem, 1.9vw, 1.7rem)", lineHeight: 1.25, fontWeight: 700 }}>
-            Privacidade e proteção das informações
-          </h2>
-          <p className="mt-4 text-brand-gray" style={{ lineHeight: 1.7 }}>
-            Relatos relacionados à integridade podem envolver informações sensíveis. Por isso, o Canal de Denúncias deve utilizar fluxo próprio, com acesso restrito e regras específicas de tratamento.
-          </p>
-          <Link to="/privacidade" className="mt-5 inline-flex items-center px-5 py-2.5 rounded-full border border-brand-ink/20 text-brand-ink text-sm hover:bg-brand-soft" style={{ fontWeight: 600 }}>
-            Consulte Privacidade e Proteção de Dados
-          </Link>
-        </div>
-      </section>
-
-      <section className="bg-brand-soft/60 py-10 md:py-14" aria-labelledby="faq-canal">
-        <div className="container-x max-w-3xl">
-          <h2 id="faq-canal" className="text-brand-ink" style={{ fontSize: "clamp(1.3rem, 1.9vw, 1.7rem)", lineHeight: 1.25, fontWeight: 700 }}>
-            Perguntas frequentes
-          </h2>
-          <div className="mt-6 space-y-3">
-            {faq.map((f, i) => {
-              const isOpen = open === i;
-              return (
-                <div key={f.q} className="rounded-2xl bg-white border border-black/10 overflow-hidden">
-                  <h3>
-                    <button
-                      type="button"
-                      onClick={() => setOpen(isOpen ? null : i)}
-                      aria-expanded={isOpen}
-                      aria-controls={`faq-panel-${i}`}
-                      id={`faq-btn-${i}`}
-                      className="w-full flex items-center gap-4 px-5 py-4 text-left hover:bg-brand-soft/60 transition"
-                    >
-                      <span className="flex-1 text-brand-ink text-sm md:text-base" style={{ fontWeight: 600 }}>{f.q}</span>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-brand-ink shrink-0 motion-safe:transition-transform" style={{ transform: isOpen ? "rotate(180deg)" : "none" }} aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
-                    </button>
-                  </h3>
-                  <div id={`faq-panel-${i}`} role="region" aria-labelledby={`faq-btn-${i}`} hidden={!isOpen} className="px-5 pb-5 text-sm text-brand-gray" style={{ lineHeight: 1.7 }}>
-                    {f.a}
-                  </div>
-                </div>
-              );
-            })}
+          <div className="mt-6 flex flex-col gap-4 rounded-[18px] border border-brand-petrol/10 bg-brand-soft/45 p-5 backdrop-blur-md sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
+              <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-brand-petrol">Canal de Integridade</p>
+              <p className="mt-1 truncate text-brand-ink" style={{ fontWeight: 600 }}>{EMAIL}</p>
+            </div>
+            <a
+              href={`mailto:${EMAIL}`}
+              className="inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full border border-brand-petrol/15 bg-brand-petrol px-5 py-2.5 text-[14px] font-semibold text-white shadow-sm transition hover:bg-brand-petrol/90"
+            >
+              <Mail className="size-4" aria-hidden="true" />
+              Enviar e-mail
+            </a>
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-12 md:py-16" aria-labelledby="cta-canal">
-        <div className="container-x max-w-3xl relative">
-          <Triangle color="#08B9E6" size={30} className="absolute right-0 -top-2 hidden md:block" rotate={18} />
-          <h2 id="cta-canal" className="text-brand-ink" style={{ fontSize: "clamp(1.25rem, 1.8vw, 1.6rem)", lineHeight: 1.3, fontWeight: 700 }}>
-            Para outros assuntos, utilize nossos canais institucionais.
+      {/* Privacidade */}
+      <section className="relative overflow-hidden bg-white pb-14 md:pb-20" aria-labelledby="privacidade-canal">
+        <span className="pointer-events-none absolute right-6 top-0 hidden size-20 rounded-full bg-brand-cyan/10 md:block" aria-hidden="true" />
+        <div className="container-x relative max-w-3xl">
+          <Eyebrow>Privacidade</Eyebrow>
+          <h2 id="privacidade-canal" className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.2rem, 1.8vw, 1.55rem)", lineHeight: 1.3, fontWeight: 700 }}>
+            Proteção das informações também faz parte do processo.
           </h2>
-          <p className="mt-3 text-brand-gray" style={{ lineHeight: 1.7 }}>
-            Informações sobre atividades, projetos, parcerias, apoio ou atendimento geral devem ser encaminhadas pela página de Contato.
+          <p className="mt-3 text-brand-gray" style={{ lineHeight: 1.75 }}>
+            Os dados pessoais eventualmente tratados por meio deste canal seguem as regras e os princípios previstos na Política de Privacidade e Proteção de Dados Pessoais da Associação Maggu.
           </p>
-          <Link to="/contato" className="mt-5 inline-flex items-center px-6 py-3 rounded-full text-white text-sm hover:opacity-90" style={{ backgroundColor: "#00384C", fontWeight: 600 }}>
-            Fale com a Associação
+          <Link to="/privacidade" className="mt-4 inline-flex items-center gap-2 text-[14px] font-semibold text-brand-petrol hover:text-brand-red">
+            Conheça a Política de Privacidade
+            <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
         </div>
       </section>
+
+      <CompactFinalCTA
+        title="Integridade também se constrói com diálogo e responsabilidade."
+        text="Conheça nossos canais institucionais ou fale com a Associação Maggu."
+        primary={{ label: "Ver Transparência", to: "/transparencia" }}
+        secondary={{ label: "Entre em contato", to: "/contato" }}
+        variant="privacy"
+      />
     </main>
   );
 }

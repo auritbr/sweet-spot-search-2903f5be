@@ -231,7 +231,7 @@ function A11yPanel() {
 
   const reset = () => setS(defaultA11y);
   const toggle = (k: keyof A11yState) => setS({ ...s, [k]: !s[k] } as A11yState);
-  const setFont = (v: number) => setS({ ...s, fontScale: Math.min(140, Math.max(80, v)) });
+  const setFont = (v: number) => setS({ ...s, fontScale: Math.min(130, Math.max(90, v)) });
 
   return (
     <DialogContent className="flex max-h-[80dvh] w-[calc(100%-2rem)] max-w-[390px] flex-col gap-0 overflow-hidden rounded-xl border-brand-petrol/10 bg-background p-0 shadow-2xl sm:max-h-[70dvh] [&>button.absolute]:hidden">
@@ -253,12 +253,13 @@ function A11yPanel() {
             <p className="text-[14px] font-semibold text-brand-ink">Tamanho da fonte ({s.fontScale}%)</p>
           </div>
           <div className="mt-2.5 grid grid-cols-2 gap-2">
-            <Button variant="outline" onClick={() => setFont(s.fontScale - 10)} disabled={s.fontScale <= 80} aria-label="Diminuir tamanho da fonte" className="h-10 border-brand-petrol/15 bg-background text-brand-ink shadow-sm hover:bg-brand-petrol/8 hover:text-brand-ink">
+            <Button variant="outline" onClick={() => setFont(s.fontScale - 10)} disabled={s.fontScale <= 90} aria-label="Diminuir tamanho da fonte" className="h-10 border-brand-petrol/15 bg-background text-brand-ink shadow-sm hover:bg-brand-petrol/8 hover:text-brand-ink">
               <Minus className="size-4" aria-hidden="true" />
             </Button>
-            <Button variant="outline" onClick={() => setFont(s.fontScale + 10)} disabled={s.fontScale >= 140} aria-label="Aumentar tamanho da fonte" className="h-10 border-brand-petrol/15 bg-background text-brand-ink shadow-sm hover:bg-brand-petrol/8 hover:text-brand-ink">
+            <Button variant="outline" onClick={() => setFont(s.fontScale + 10)} disabled={s.fontScale >= 130} aria-label="Aumentar tamanho da fonte" className="h-10 border-brand-petrol/15 bg-background text-brand-ink shadow-sm hover:bg-brand-petrol/8 hover:text-brand-ink">
               <Plus className="size-4" aria-hidden="true" />
             </Button>
+
           </div>
         </div>
 
