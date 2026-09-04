@@ -158,3 +158,48 @@ export function LegalContact({ tone }: { tone: LegalTone }) {
     </aside>
   );
 }
+
+/* ---------- Estilo "documento institucional" (usado na Política de Privacidade) ---------- */
+
+export function DocSection({ id, title, number, children }: { id: string; title: string; number: number; tone?: LegalTone; children: ReactNode }) {
+  return (
+    <section id={id} className="scroll-mt-28 mt-10 first:mt-0 md:mt-12">
+      <h2 className="text-[1.2rem] font-semibold leading-snug text-brand-ink md:text-[1.4rem]">
+        {number}. {title}
+      </h2>
+      <div className="mt-3 space-y-3.5 text-[0.98rem] leading-[1.72] text-brand-gray md:text-base [&_a:not([class])]:font-medium [&_a:not([class])]:text-brand-ink [&_a:not([class])]:underline [&_a:not([class])]:underline-offset-4 [&_h3]:mt-6 [&_h3]:text-[1.05rem] [&_h3]:font-semibold [&_h3]:text-brand-ink md:[&_h3]:text-[1.15rem] [&_li]:pl-1 [&_strong]:font-semibold [&_strong]:text-brand-ink [&_ul]:list-disc [&_ul]:space-y-1.5 [&_ul]:pl-6">
+        {children}
+      </div>
+    </section>
+  );
+}
+
+export function DocIndex({ items }: { items: TocItem[] }) {
+  const [open, setOpen] = useState(false);
+  const id = useId();
+  return (
+    <div className="mt-5">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-controls={id}
+        className="inline-flex items-center gap-2 rounded-md border border-brand-petrol/15 bg-brand-soft/60 px-3 py-1.5 text-[13px] font-medium text-brand-ink backdrop-blur transition-colors hover:bg-brand-soft"
+      >
+        Ver índice
+        <ChevronDown className={`size-3.5 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden="true" />
+      </button>
+      <div id={id} hidden={!open} className="mt-4 text-left">
+        <ol className="grid gap-x-8 gap-y-1.5 sm:grid-cols-2">
+          {items.map((i, n) => (
+            <li key={i.id} className="text-[13px] leading-snug text-brand-gray">
+              <a href={`#${i.id}`} onClick={() => setOpen(false)} className="hover:text-brand-ink hover:underline underline-offset-4">
+                <span className="tabular-nums text-brand-gray/70">{n + 1}.</span> {i.label}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  );
+}

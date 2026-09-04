@@ -1,8 +1,8 @@
 // Conteúdo jurídico fornecido integralmente pela Associação Maggu — não alterar.
 import { createFileRoute } from "@tanstack/react-router";
-import { LegalIntro, LegalToc, LegalSection } from "@/components/Legal";
-import { PageHero } from "@/components/PageHero";
+import { DocIndex, DocSection } from "@/components/Legal";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
+
 
 export const Route = createFileRoute("/privacidade")({
   head: () => ({
@@ -68,44 +68,41 @@ function List({ items }: { items: string[] }) {
 
 function Privacidade() {
   return (
-    <main id="main">
-      <PageHero
-        title="Política de Privacidade e Proteção de Dados Pessoais"
-        eyebrow="Privacidade"
-        subtitle="Entenda como a Associação Maggu trata, protege e utiliza dados pessoais em suas atividades, projetos e canais institucionais."
-        image="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80"
-        accent="cyan"
-        brush="#FFB400"
-        compact
-        decoration="ribbon"
-      />
+    <main id="main" className="bg-brand-soft/60">
+      <section className="relative overflow-hidden border-b border-brand-petrol/10 bg-background py-10 md:py-12">
+        <div className="container-x relative">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-cyan">Privacidade</p>
+          <h1 className="mt-3 text-[1.7rem] font-bold leading-[1.15] text-brand-ink md:text-[2.2rem]">Política de Privacidade</h1>
+          <p className="mt-3 max-w-2xl text-[0.98rem] leading-relaxed text-brand-gray">Proteção de dados pessoais e transparência institucional.</p>
+        </div>
+        <span className="pointer-events-none absolute -right-10 top-1/2 hidden size-28 -translate-y-1/2 rounded-full border-[10px] border-brand-cyan/10 md:block" aria-hidden="true" />
+      </section>
 
-      <LegalIntro
-        tone="privacy"
-        eyebrow="Transparência e dados"
-        title="Privacidade também faz parte da nossa responsabilidade institucional."
-        text="A Associação Maggu busca tratar informações pessoais com responsabilidade, clareza e respeito. Nesta página estão reunidas as orientações relacionadas à coleta, utilização, proteção, compartilhamento e demais formas de tratamento de dados pessoais."
-        updated={ultimaAtualizacao}
-      />
+      <div className="px-4 py-8 md:px-6 md:py-12">
+        <article className="mx-auto max-w-[1000px] rounded-md bg-background px-5 py-8 shadow-[0_1px_3px_rgba(0,56,76,0.06),0_10px_30px_-18px_rgba(0,56,76,0.25)] md:px-14 md:py-14">
+          <header className="border-b border-brand-petrol/12 pb-7 text-center">
+            <h2 className="text-[1.35rem] font-bold uppercase leading-[1.25] tracking-[0.01em] text-brand-ink md:text-[1.85rem]">
+              Política de Privacidade e Proteção de Dados Pessoais
+            </h2>
+            <div className="mt-4 space-y-1 text-sm leading-relaxed text-brand-gray">
+              <p className="font-semibold text-brand-ink">Associação Sócio Cultural Maggu – Associação Maggu</p>
+              <p>CNPJ nº 61.841.454/0001-80</p>
+              <p className="pt-2">Última atualização: {ultimaAtualizacao}</p>
+            </div>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+              <button
+                type="button"
+                onClick={() => window.print()}
+                className="inline-flex items-center gap-2 rounded-md border border-brand-petrol/15 bg-brand-soft/60 px-3 py-1.5 text-[13px] font-medium text-brand-ink backdrop-blur transition-colors hover:bg-brand-soft"
+              >
+                Baixar em PDF
+              </button>
+            </div>
+            <DocIndex items={toc} />
+          </header>
 
-      <div className="bg-background py-10 md:py-14">
-        <div className="container-x grid gap-10 lg:grid-cols-[260px_minmax(0,880px)] lg:justify-center lg:gap-14">
-          <LegalToc items={toc} tone="privacy" />
 
-          <article className="min-w-0 max-w-[880px]">
-            <header className="border-b border-brand-petrol/12 pb-8">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-cyan">Documento institucional</p>
-              <h2 className="mt-3 text-[1.5rem] font-bold leading-[1.2] text-brand-ink md:text-[1.9rem]">
-                Política de Privacidade e Proteção de Dados Pessoais
-              </h2>
-              <div className="mt-4 space-y-1 text-sm leading-relaxed text-brand-gray">
-                <p className="font-semibold text-brand-ink">Associação Sócio Cultural Maggu – Associação Maggu</p>
-                <p>CNPJ nº 61.841.454/0001-80</p>
-                <p>Última atualização: {ultimaAtualizacao}</p>
-              </div>
-            </header>
-
-            <LegalSection id="sec-1" number={1} tone="privacy" title="Apresentação">
+            <DocSection id="sec-1" number={1} tone="privacy" title="Apresentação">
               <p>
                 A <strong>Associação Sócio Cultural Maggu</strong>, nome público <strong>Associação Maggu</strong>, pessoa jurídica de direito privado, sem fins lucrativos, inscrita no CNPJ sob o nº <strong>61.841.454/0001-80</strong>, com sede na <strong>Rua Em Projeto A, 33 — Benedito Bentes — Maceió/AL — CEP 57084-411</strong>, reconhece a importância da privacidade e da proteção dos dados pessoais das pessoas que se relacionam com suas atividades, projetos, ações, serviços, canais digitais e iniciativas institucionais.
               </p>
@@ -124,9 +121,9 @@ function Privacidade() {
               <p>
                 A proteção de dados pessoais integra o compromisso institucional da Associação Maggu com a ética, a transparência, o respeito às pessoas e a condução responsável de suas atividades culturais, sociais, formativas e comunitárias.
               </p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-2" number={2} tone="privacy" title="A quem esta Política se aplica">
+            <DocSection id="sec-2" number={2} tone="privacy" title="A quem esta Política se aplica">
               <p>
                 Esta Política se aplica às pessoas físicas cujos dados pessoais sejam tratados pela Associação Maggu em razão de relacionamento institucional ou utilização de seus canais e atividades.
               </p>
@@ -152,13 +149,13 @@ function Privacidade() {
                 "candidatos a oportunidades divulgadas pela Associação;",
                 "demais pessoas que mantenham algum tipo de relacionamento com a Associação Maggu.",
               ]} />
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-3" number={3} tone="privacy" title="Quem é responsável pelo tratamento dos dados">
+            <DocSection id="sec-3" number={3} tone="privacy" title="Quem é responsável pelo tratamento dos dados">
               <p>
                 Para os tratamentos de dados pessoais em que define as respectivas finalidades e os meios utilizados, a controladora dos dados é:
               </p>
-              <dl className="grid gap-3 border-l-2 border-brand-cyan bg-brand-soft/50 px-5 py-5 text-[0.95rem] sm:grid-cols-[minmax(0,190px)_minmax(0,1fr)] sm:gap-x-6 sm:gap-y-2.5">
+              <dl className="grid gap-3 rounded border border-brand-petrol/12 bg-brand-soft/40 px-5 py-5 text-[0.95rem] sm:grid-cols-[minmax(0,190px)_minmax(0,1fr)] sm:gap-x-6 sm:gap-y-2.5">
                 <dt className="font-semibold text-brand-ink">Razão social:</dt>
                 <dd className="break-words">Associação Sócio Cultural Maggu</dd>
                 <dt className="font-semibold text-brand-ink">Nome público:</dt>
@@ -175,9 +172,9 @@ function Privacidade() {
                 <dd className="break-all">comunicacaomktmaggu@gmail.com</dd>
               </dl>
               <p>Solicitações relacionadas à privacidade e à proteção de dados pessoais poderão ser encaminhadas para os canais indicados nesta Política.</p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-4" number={4} tone="privacy" title="Princípios adotados pela Associação Maggu">
+            <DocSection id="sec-4" number={4} tone="privacy" title="Princípios adotados pela Associação Maggu">
               <p>
                 A Associação Maggu busca realizar o tratamento de dados pessoais de acordo com os princípios estabelecidos pela LGPD, incluindo:
               </p>
@@ -191,9 +188,9 @@ function Privacidade() {
               <p><strong>Prevenção:</strong> são adotadas medidas para prevenir danos decorrentes do tratamento de dados pessoais.</p>
               <p><strong>Não discriminação:</strong> os dados pessoais não serão utilizados para fins discriminatórios ilícitos ou abusivos.</p>
               <p><strong>Responsabilização e prestação de contas:</strong> a Associação busca adotar procedimentos capazes de demonstrar o cumprimento das normas de proteção de dados pessoais.</p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-5" number={5} tone="privacy" title="Quais dados pessoais poderão ser coletados">
+            <DocSection id="sec-5" number={5} tone="privacy" title="Quais dados pessoais poderão ser coletados">
               <p>Os dados tratados variam conforme a relação mantida pelo titular com a Associação Maggu e a atividade realizada.</p>
 
               <h3>5.1. Dados de identificação</h3>
@@ -304,10 +301,10 @@ function Privacidade() {
                 "informações obtidas por meio de cookies e tecnologias semelhantes, quando utilizadas.",
               ]} />
               <p>Esses dados podem ser necessários para funcionamento, segurança, prevenção de fraudes, diagnóstico de falhas e aprimoramento dos ambientes digitais.</p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-6" number={6} tone="privacy" title="Dados pessoais sensíveis">
-              <div className="border-l-2 border-brand-cyan bg-brand-cyan/5 px-5 py-5 space-y-5 md:px-6">
+            <DocSection id="sec-6" number={6} tone="privacy" title="Dados pessoais sensíveis">
+              <div className="space-y-5 border-l-2 border-brand-petrol/20 pl-5">
                 <p>
                   Em determinadas atividades, especialmente aquelas relacionadas a projetos sociais, culturais, educativos, ações afirmativas, acessibilidade ou cumprimento de requisitos de editais e políticas públicas, poderá ser necessário tratar informações consideradas <strong>dados pessoais sensíveis</strong> pela LGPD.
                 </p>
@@ -324,9 +321,9 @@ function Privacidade() {
                 </p>
                 <p>A Associação não utilizará dados pessoais sensíveis para promover discriminação ilícita ou abusiva.</p>
               </div>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-7" number={7} tone="privacy" title="Como os dados podem ser coletados">
+            <DocSection id="sec-7" number={7} tone="privacy" title="Como os dados podem ser coletados">
               <p>Os dados pessoais poderão chegar à Associação Maggu de diferentes formas, incluindo:</p>
               <List items={[
                 "preenchimento de formulários físicos ou digitais;",
@@ -342,9 +339,9 @@ function Privacidade() {
                 "órgãos públicos, quando necessário à execução de projetos, parcerias ou obrigações legais;",
                 "fontes públicas legitimamente acessíveis, observada a legislação.",
               ]} />
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-8" number={8} tone="privacy" title="Para quais finalidades os dados pessoais poderão ser utilizados">
+            <DocSection id="sec-8" number={8} tone="privacy" title="Para quais finalidades os dados pessoais poderão ser utilizados">
               <p>A Associação Maggu poderá utilizar dados pessoais, conforme cada situação, para:</p>
               <List items={[
                 "responder solicitações e contatos;",
@@ -375,9 +372,9 @@ function Privacidade() {
                 "exercer direitos em processos judiciais, administrativos ou arbitrais;",
                 "realizar outras finalidades compatíveis com o relacionamento estabelecido e permitidas pela legislação.",
               ]} />
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-9" number={9} tone="privacy" title="Bases legais utilizadas para o tratamento">
+            <DocSection id="sec-9" number={9} tone="privacy" title="Bases legais utilizadas para o tratamento">
               <p>A Associação Maggu não depende exclusivamente do consentimento para tratar dados pessoais.</p>
               <p>Conforme a natureza de cada atividade, o tratamento poderá ocorrer com fundamento em uma ou mais hipóteses previstas na LGPD, incluindo:</p>
               <List items={[
@@ -394,10 +391,10 @@ function Privacidade() {
               <p>
                 Quando o consentimento for utilizado como fundamento jurídico, ele deverá estar relacionado a finalidades determinadas e poderá ser revogado pelo titular nos termos da legislação, sem prejuízo da validade dos tratamentos realizados anteriormente à revogação.
               </p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-10" number={10} tone="privacy" title="Crianças e adolescentes">
-              <div className="border-l-2 border-brand-petrol/40 bg-brand-soft/50 px-5 py-5 space-y-5 md:px-6">
+            <DocSection id="sec-10" number={10} tone="privacy" title="Crianças e adolescentes">
+              <div className="space-y-5 border-l-2 border-brand-petrol/20 pl-5">
                 <p>A Associação Maggu reconhece que crianças e adolescentes merecem proteção especial no tratamento de seus dados pessoais.</p>
                 <p>
                   Sempre que houver tratamento de dados de crianças ou adolescentes, a Associação observará o <strong>melhor interesse da criança e do adolescente</strong>, bem como as disposições da LGPD, do Estatuto da Criança e do Adolescente e demais normas aplicáveis.
@@ -417,9 +414,9 @@ function Privacidade() {
                   A Associação também buscará apresentar informações relacionadas ao tratamento desses dados de maneira adequada, clara e acessível aos participantes e seus responsáveis.
                 </p>
               </div>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-11" number={11} tone="privacy" title="Fotografias, vídeos, voz e divulgação institucional">
+            <DocSection id="sec-11" number={11} tone="privacy" title="Fotografias, vídeos, voz e divulgação institucional">
               <p>
                 Em razão da natureza cultural, artística, educativa, social e comunitária das atividades desenvolvidas pela Associação Maggu, poderão ser realizados registros fotográficos, audiovisuais ou sonoros de projetos, apresentações, oficinas, eventos e outras ações.
               </p>
@@ -442,9 +439,9 @@ function Privacidade() {
               ]} />
               <p>A utilização deverá respeitar a dignidade, a imagem, a honra, a privacidade e os demais direitos dos titulares.</p>
               <p>No caso de crianças e adolescentes, serão observadas as proteções específicas previstas na legislação.</p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-12" number={12} tone="privacy" title="Compartilhamento de dados pessoais">
+            <DocSection id="sec-12" number={12} tone="privacy" title="Compartilhamento de dados pessoais">
               <p>A Associação Maggu poderá compartilhar dados pessoais quando isso for necessário para a realização de suas atividades ou para cumprimento de obrigações.</p>
               <p>O compartilhamento poderá ocorrer, conforme a finalidade, com:</p>
               <List items={[
@@ -466,9 +463,9 @@ function Privacidade() {
               ]} />
               <p>A Associação buscará limitar o compartilhamento às informações necessárias para a finalidade correspondente.</p>
               <p>Dados pessoais não serão vendidos ou comercializados pela Associação Maggu.</p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-13" number={13} tone="privacy" title="Prestadores de serviços e plataformas de terceiros">
+            <DocSection id="sec-13" number={13} tone="privacy" title="Prestadores de serviços e plataformas de terceiros">
               <p>Para realizar suas atividades, a Associação poderá utilizar serviços disponibilizados por terceiros, incluindo plataformas de:</p>
               <List items={[
                 "hospedagem de sites;",
@@ -488,17 +485,17 @@ function Privacidade() {
               <p>
                 A Associação buscará contratar fornecedores que apresentem níveis adequados de segurança e proteção de dados, considerando a natureza do serviço prestado.
               </p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-14" number={14} tone="privacy" title="Transferência internacional de dados">
+            <DocSection id="sec-14" number={14} tone="privacy" title="Transferência internacional de dados">
               <p>Alguns fornecedores de tecnologia eventualmente utilizados pela Associação poderão manter infraestrutura, servidores ou operações fora do Brasil.</p>
               <p>
                 Quando houver transferência internacional de dados pessoais, ela deverá ocorrer de acordo com as hipóteses e mecanismos permitidos pela legislação brasileira e pelas regulamentações aplicáveis.
               </p>
               <p>A Associação buscará adotar as salvaguardas necessárias para assegurar nível adequado de proteção aos dados pessoais envolvidos.</p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-15" number={15} tone="privacy" title="Cookies e tecnologias semelhantes">
+            <DocSection id="sec-15" number={15} tone="privacy" title="Cookies e tecnologias semelhantes">
               <p>Cookies são pequenos arquivos ou identificadores armazenados no dispositivo do usuário durante a navegação em determinados sites.</p>
               <p>O site da Associação Maggu poderá utilizar cookies e tecnologias semelhantes para finalidades como:</p>
               <List items={[
@@ -519,24 +516,24 @@ function Privacidade() {
               <p>
                 O usuário também poderá controlar ou excluir cookies por meio das configurações de seu navegador, observando que a desativação de determinados cookies poderá afetar algumas funcionalidades.
               </p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-16" number={16} tone="privacy" title="Links e serviços de terceiros">
+            <DocSection id="sec-16" number={16} tone="privacy" title="Links e serviços de terceiros">
               <p>O site da Associação Maggu poderá conter links para sites, redes sociais, plataformas ou serviços administrados por terceiros.</p>
               <p>Ao acessar esses ambientes, o usuário estará sujeito às respectivas políticas, termos e práticas de privacidade.</p>
               <p>A Associação Maggu não controla as práticas independentes de tratamento realizadas por terceiros em seus próprios ambientes digitais.</p>
               <p>Recomenda-se que o usuário consulte as políticas de privacidade dos respectivos serviços antes de fornecer dados pessoais.</p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-17" number={17} tone="privacy" title="Redes sociais">
+            <DocSection id="sec-17" number={17} tone="privacy" title="Redes sociais">
               <p>
                 A Associação Maggu poderá manter perfis institucionais em redes sociais e utilizar essas plataformas para divulgação de projetos, atividades, eventos e informações.
               </p>
               <p>Interações realizadas diretamente nesses ambientes também podem resultar em tratamento de dados pelas empresas responsáveis pelas próprias plataformas.</p>
               <p>Cada plataforma possui regras, termos e políticas de privacidade próprios, que devem ser consultados pelo usuário.</p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-18" number={18} tone="privacy" title="Por quanto tempo os dados são armazenados">
+            <DocSection id="sec-18" number={18} tone="privacy" title="Por quanto tempo os dados são armazenados">
               <p>Os dados pessoais serão mantidos pelo período necessário ao cumprimento das finalidades que justificaram sua coleta e tratamento.</p>
               <p>Os prazos poderão variar de acordo com:</p>
               <List items={[
@@ -553,9 +550,9 @@ function Privacidade() {
                 "outras hipóteses de conservação autorizadas pela legislação.",
               ]} />
               <p>Após o encerramento da finalidade, os dados serão eliminados, anonimizados ou mantidos apenas nas hipóteses permitidas pela legislação.</p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-19" number={19} tone="privacy" title="Segurança dos dados pessoais">
+            <DocSection id="sec-19" number={19} tone="privacy" title="Segurança dos dados pessoais">
               <p>
                 A Associação Maggu busca adotar medidas técnicas, administrativas e organizacionais adequadas à natureza dos dados tratados e à realidade de suas atividades, visando proteger as informações pessoais contra:
               </p>
@@ -583,9 +580,9 @@ function Privacidade() {
               <p>
                 Nenhum sistema é absolutamente imune a riscos. Por essa razão, as medidas de segurança são avaliadas e aprimoradas conforme a necessidade, os riscos identificados e a evolução tecnológica.
               </p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-20" number={20} tone="privacy" title="Incidentes de segurança">
+            <DocSection id="sec-20" number={20} tone="privacy" title="Incidentes de segurança">
               <p>
                 Caso ocorra incidente de segurança envolvendo dados pessoais, a Associação Maggu adotará medidas para avaliar a natureza, a extensão e as possíveis consequências do ocorrido.
               </p>
@@ -593,9 +590,9 @@ function Privacidade() {
                 Quando exigido pela legislação e pelas regulamentações aplicáveis, serão realizadas as comunicações pertinentes à Autoridade Nacional de Proteção de Dados e aos titulares afetados.
               </p>
               <p>Também poderão ser adotadas medidas destinadas a conter o incidente, reduzir possíveis impactos e evitar recorrências.</p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-21" number={21} tone="privacy" title="Direitos dos titulares de dados pessoais">
+            <DocSection id="sec-21" number={21} tone="privacy" title="Direitos dos titulares de dados pessoais">
               <p>Nos termos da LGPD e observados os requisitos aplicáveis a cada situação, o titular poderá solicitar:</p>
               <List items={[
                 "confirmação da existência de tratamento;",
@@ -615,20 +612,20 @@ function Privacidade() {
               <p>
                 Por exemplo, uma solicitação de exclusão poderá não resultar na eliminação imediata de determinada informação quando sua conservação for necessária para cumprimento de obrigação legal, prestação de contas ou exercício regular de direitos.
               </p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-22" number={22} tone="privacy" title="Como exercer seus direitos">
+            <DocSection id="sec-22" number={22} tone="privacy" title="Como exercer seus direitos">
               <p>O titular ou seu representante legal poderá apresentar solicitações relacionadas aos seus dados pessoais por meio dos seguintes canais:</p>
               <div className="grid gap-3 sm:grid-cols-2">
-                <div className="border-l-2 border-brand-cyan bg-brand-soft/50 px-4 py-4">
+                <div className="rounded border border-brand-petrol/12 bg-brand-soft/40 px-4 py-3">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gray">E-mail</p>
-                  <a href="mailto:comunicacaomktmaggu@gmail.com" className="mt-1 block break-all text-sm font-semibold text-brand-ink underline decoration-brand-cyan underline-offset-4">
+                  <a href="mailto:comunicacaomktmaggu@gmail.com" className="mt-1 block break-all text-sm font-semibold text-brand-ink underline underline-offset-4">
                     comunicacaomktmaggu@gmail.com
                   </a>
                 </div>
-                <div className="border-l-2 border-brand-cyan bg-brand-soft/50 px-4 py-4">
+                <div className="rounded border border-brand-petrol/12 bg-brand-soft/40 px-4 py-3">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gray">Telefone</p>
-                  <a href="tel:+5582998067374" className="mt-1 block text-sm font-semibold text-brand-ink underline decoration-brand-cyan underline-offset-4">
+                  <a href="tel:+5582998067374" className="mt-1 block text-sm font-semibold text-brand-ink underline underline-offset-4">
                     (82) 99806-7374
                   </a>
                 </div>
@@ -637,9 +634,9 @@ function Privacidade() {
                 Para proteger os próprios titulares e impedir acesso indevido a informações pessoais, a Associação poderá solicitar informações adicionais estritamente necessárias para confirmar a identidade da pessoa que realizou a solicitação ou seus poderes de representação.
               </p>
               <p>As solicitações serão analisadas e respondidas nos termos e prazos previstos na legislação aplicável.</p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-23" number={23} tone="privacy" title="Comunicações institucionais">
+            <DocSection id="sec-23" number={23} tone="privacy" title="Comunicações institucionais">
               <p>Quando houver fundamento jurídico adequado, a Associação Maggu poderá utilizar informações de contato para enviar comunicações relacionadas a:</p>
               <List items={[
                 "projetos;",
@@ -655,17 +652,17 @@ function Privacidade() {
               <p>
                 Comunicações indispensáveis à execução de uma atividade, projeto, inscrição, contrato ou obrigação legal poderão permanecer necessárias enquanto existir a relação correspondente.
               </p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-24" number={24} tone="privacy" title="Atualização e correção dos dados">
+            <DocSection id="sec-24" number={24} tone="privacy" title="Atualização e correção dos dados">
               <p>A qualidade dos dados pessoais é importante para que os registros institucionais permaneçam adequados e corretos.</p>
               <p>O titular poderá solicitar a atualização ou correção de suas informações utilizando os canais indicados nesta Política.</p>
               <p>
                 A Associação também poderá solicitar periodicamente a atualização de determinados dados quando isso for necessário para continuidade de projetos, cumprimento de obrigações ou manutenção de registros.
               </p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-25" number={25} tone="privacy" title="Responsabilidades dos usuários e titulares">
+            <DocSection id="sec-25" number={25} tone="privacy" title="Responsabilidades dos usuários e titulares">
               <p>Ao fornecer seus dados pessoais à Associação Maggu, espera-se que o titular:</p>
               <List items={[
                 "forneça informações verdadeiras e atualizadas;",
@@ -676,9 +673,9 @@ function Privacidade() {
               <p>
                 Quando uma pessoa fornecer dados de terceiros na qualidade de responsável legal, representante, contratante ou outra condição legítima, deverá observar as obrigações aplicáveis a esse compartilhamento.
               </p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-26" number={26} tone="privacy" title="Dados disponibilizados publicamente pelo próprio titular">
+            <DocSection id="sec-26" number={26} tone="privacy" title="Dados disponibilizados publicamente pelo próprio titular">
               <p>
                 Informações publicadas espontaneamente por usuários em comentários, redes sociais, páginas públicas ou outros ambientes acessíveis ao público poderão tornar-se visíveis para terceiros.
               </p>
@@ -686,9 +683,9 @@ function Privacidade() {
               <p>
                 A existência de dados publicamente acessíveis não elimina a necessidade de observância da legislação para eventual tratamento posterior dessas informações pela Associação.
               </p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-27" number={27} tone="privacy" title="Prestação de contas, editais e projetos financiados">
+            <DocSection id="sec-27" number={27} tone="privacy" title="Prestação de contas, editais e projetos financiados">
               <p>
                 A execução de projetos culturais, sociais, educativos ou comunitários poderá exigir que determinados dados sejam registrados e posteriormente apresentados a órgãos públicos, financiadores, parceiros ou instituições responsáveis pelo acompanhamento da iniciativa.
               </p>
@@ -706,9 +703,9 @@ function Privacidade() {
               <p>
                 Sempre que possível, a Associação buscará limitar o compartilhamento ao conjunto de informações necessário ao atendimento da obrigação correspondente.
               </p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-28" number={28} tone="privacy" title="Compromisso com a privacidade">
+            <DocSection id="sec-28" number={28} tone="privacy" title="Compromisso com a privacidade">
               <p>A Associação Maggu compreende que a proteção de dados pessoais não se limita ao atendimento de uma obrigação legal.</p>
               <p>
                 Privacidade, transparência e segurança fazem parte do compromisso da Associação com as pessoas e comunidades que participam, constroem e tornam possíveis suas ações.
@@ -716,9 +713,9 @@ function Privacidade() {
               <p>
                 Por isso, os dados pessoais devem ser utilizados de maneira responsável, proporcional às finalidades pretendidas e compatível com a confiança estabelecida entre a Associação e seus diferentes públicos.
               </p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-29" number={29} tone="privacy" title="Alterações desta Política de Privacidade">
+            <DocSection id="sec-29" number={29} tone="privacy" title="Alterações desta Política de Privacidade">
               <p>Esta Política poderá ser atualizada periodicamente para refletir:</p>
               <List items={[
                 "alterações legislativas ou regulatórias;",
@@ -731,20 +728,20 @@ function Privacidade() {
               ]} />
               <p>A versão vigente será disponibilizada nos canais institucionais da Associação, com indicação da data de sua última atualização.</p>
               <p>Quando uma alteração exigir nova manifestação de consentimento ou comunicação específica ao titular, a Associação adotará as providências cabíveis.</p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-30" number={30} tone="privacy" title="Legislação e autoridade competente">
+            <DocSection id="sec-30" number={30} tone="privacy" title="Legislação e autoridade competente">
               <p>
                 Esta Política será interpretada de acordo com a legislação da República Federativa do Brasil, especialmente a Lei nº 13.709/2018 — Lei Geral de Proteção de Dados Pessoais.
               </p>
               <p>
                 O titular também poderá recorrer à <strong>Autoridade Nacional de Proteção de Dados — ANPD</strong>, observadas as condições e procedimentos previstos na legislação e na regulamentação aplicável.
               </p>
-            </LegalSection>
+            </DocSection>
 
-            <LegalSection id="sec-31" number={31} tone="privacy" title="Canal de Privacidade">
+            <DocSection id="sec-31" number={31} tone="privacy" title="Canal de Privacidade">
               <p>Dúvidas, solicitações ou pedidos relacionados ao tratamento de dados pessoais poderão ser encaminhados à Associação Maggu pelos seguintes canais:</p>
-              <dl className="grid gap-3 border-l-2 border-brand-cyan bg-brand-soft/50 px-5 py-5 text-[0.95rem] sm:grid-cols-[minmax(0,150px)_minmax(0,1fr)] sm:gap-x-6 sm:gap-y-2.5">
+              <dl className="grid gap-3 rounded border border-brand-petrol/12 bg-brand-soft/40 px-5 py-5 text-[0.95rem] sm:grid-cols-[minmax(0,150px)_minmax(0,1fr)] sm:gap-x-6 sm:gap-y-2.5">
                 <dt className="font-semibold text-brand-ink sm:col-span-2">ASSOCIAÇÃO SÓCIO CULTURAL MAGGU</dt>
                 <dt className="font-semibold text-brand-ink">CNPJ:</dt>
                 <dd className="break-words">61.841.454/0001-80</dd>
@@ -757,23 +754,19 @@ function Privacidade() {
                 <dt className="font-semibold text-brand-ink">E-mail:</dt>
                 <dd className="break-all">comunicacaomktmaggu@gmail.com</dd>
               </dl>
-            </LegalSection>
+            </DocSection>
 
             <footer className="mt-10 border-t border-brand-petrol/12 pt-8">
-              <div className="mb-5 flex items-center gap-3" aria-hidden="true">
-                <span className="size-1.5 rotate-45 bg-brand-cyan" />
-                <span className="h-px w-16 bg-brand-petrol/15" />
-              </div>
-              <div className="space-y-1 text-sm leading-relaxed text-brand-gray">
+                            <div className="space-y-1 text-sm leading-relaxed text-brand-gray">
                 <p className="font-semibold text-brand-ink">Associação Sócio Cultural Maggu</p>
                 <p className="font-semibold text-brand-ink">Associação Maggu</p>
                 <p className="font-semibold text-brand-ink">CNPJ nº 61.841.454/0001-80</p>
                 <p className="pt-3 font-semibold text-brand-ink">Última atualização: {ultimaAtualizacao}.</p>
               </div>
             </footer>
-          </article>
-        </div>
+        </article>
       </div>
+
 
       <CompactFinalCTA
         variant="privacy"
