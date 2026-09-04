@@ -179,6 +179,14 @@ function Transparencia() {
             </div>
             <Link to="/ods-maggu-2030" className="inline-flex shrink-0 rounded-full bg-brand-petrol px-6 py-2.5 text-sm font-bold text-primary-foreground transition hover:bg-brand-red">Acessar subárea</Link>
           </div>
+          <div className="mx-auto mt-4 flex max-w-4xl flex-col items-center gap-3 rounded-2xl border border-brand-petrol/10 bg-brand-soft/60 p-6 text-center sm:flex-row sm:justify-between sm:text-left">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Governança</p>
+              <h2 className="mt-2 text-[1.2rem] font-bold leading-snug text-brand-ink">Governança e Integridade</h2>
+              <p className="mt-2 text-sm leading-[1.65] text-brand-gray">Conheça a estrutura, os princípios e os mecanismos que orientam a gestão responsável da Associação.</p>
+            </div>
+            <Link to="/transparencia/governanca-integridade" className="inline-flex shrink-0 rounded-full bg-brand-petrol px-6 py-2.5 text-sm font-bold text-primary-foreground transition hover:bg-brand-red">Conhecer governança</Link>
+          </div>
         </div>
       </section>
 

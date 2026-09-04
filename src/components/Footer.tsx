@@ -11,6 +11,9 @@ const institucional = [
   { label: "Projetos", to: "/projetos" },
   { label: "Agenda", to: "/agenda" },
   { label: "ODS / Maggu 2030", to: "/ods-maggu-2030" },
+  { label: "Território", to: "/quem-somos/territorio" },
+  { label: "Impacto & Memória", to: "/impacto-memoria" },
+  { label: "Participe", to: "/participe" },
 
 ];
 
@@ -19,6 +22,7 @@ const navegacao = [
   { label: "Galeria", to: "/galeria" },
   { label: "Sala de Imprensa", to: "/imprensa" },
   { label: "Contato", to: "/contato" },
+  { label: "Governança e Integridade", to: "/transparencia/governanca-integridade" },
 
 ];
 
@@ -83,7 +87,7 @@ export function Footer() {
               {navegacao.map((item) => (
                 <li key={item.to}><Link to={item.to} className="transition hover:text-brand-gold">{item.label}</Link></li>
               ))}
-              <li><Link to="/contato" className="transition hover:text-brand-gold">Apoie</Link></li>
+              <li><Link to="/participe" className="transition hover:text-brand-gold">Apoie</Link></li>
             </ul>
           </div>
 

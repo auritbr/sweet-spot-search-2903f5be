@@ -15,6 +15,7 @@ import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as ParticipeRouteImport } from './routes/participe'
 import { Route as OdsMaggu2030RouteImport } from './routes/ods-maggu-2030'
 import { Route as ImprensaRouteImport } from './routes/imprensa'
+import { Route as ImpactoMemoriaRouteImport } from './routes/impacto-memoria'
 import { Route as EquipeRouteImport } from './routes/equipe'
 import { Route as EcossistemaRouteImport } from './routes/ecossistema'
 import { Route as ContatoRouteImport } from './routes/contato'
@@ -61,6 +62,11 @@ const OdsMaggu2030Route = OdsMaggu2030RouteImport.update({
 const ImprensaRoute = ImprensaRouteImport.update({
   id: '/imprensa',
   path: '/imprensa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactoMemoriaRoute = ImpactoMemoriaRouteImport.update({
+  id: '/impacto-memoria',
+  path: '/impacto-memoria',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EquipeRoute = EquipeRouteImport.update({
@@ -156,6 +162,7 @@ export interface FileRoutesByFullPath {
   '/contato': typeof ContatoRoute
   '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
+  '/impacto-memoria': typeof ImpactoMemoriaRoute
   '/imprensa': typeof ImprensaRoute
   '/ods-maggu-2030': typeof OdsMaggu2030Route
   '/participe': typeof ParticipeRoute
@@ -181,6 +188,7 @@ export interface FileRoutesByTo {
   '/contato': typeof ContatoRoute
   '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
+  '/impacto-memoria': typeof ImpactoMemoriaRoute
   '/imprensa': typeof ImprensaRoute
   '/ods-maggu-2030': typeof OdsMaggu2030Route
   '/participe': typeof ParticipeRoute
@@ -206,6 +214,7 @@ export interface FileRoutesById {
   '/contato': typeof ContatoRoute
   '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
+  '/impacto-memoria': typeof ImpactoMemoriaRoute
   '/imprensa': typeof ImprensaRoute
   '/ods-maggu-2030': typeof OdsMaggu2030Route
   '/participe': typeof ParticipeRoute
@@ -233,6 +242,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/ecossistema'
     | '/equipe'
+    | '/impacto-memoria'
     | '/imprensa'
     | '/ods-maggu-2030'
     | '/participe'
@@ -258,6 +268,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/ecossistema'
     | '/equipe'
+    | '/impacto-memoria'
     | '/imprensa'
     | '/ods-maggu-2030'
     | '/participe'
@@ -282,6 +293,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/ecossistema'
     | '/equipe'
+    | '/impacto-memoria'
     | '/imprensa'
     | '/ods-maggu-2030'
     | '/participe'
@@ -308,6 +320,7 @@ export interface RootRouteChildren {
   ContatoRoute: typeof ContatoRoute
   EcossistemaRoute: typeof EcossistemaRoute
   EquipeRoute: typeof EquipeRoute
+  ImpactoMemoriaRoute: typeof ImpactoMemoriaRoute
   ImprensaRoute: typeof ImprensaRoute
   OdsMaggu2030Route: typeof OdsMaggu2030Route
   ParticipeRoute: typeof ParticipeRoute
@@ -368,6 +381,13 @@ declare module '@tanstack/react-router' {
       path: '/imprensa'
       fullPath: '/imprensa'
       preLoaderRoute: typeof ImprensaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impacto-memoria': {
+      id: '/impacto-memoria'
+      path: '/impacto-memoria'
+      fullPath: '/impacto-memoria'
+      preLoaderRoute: typeof ImpactoMemoriaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/equipe': {
@@ -513,6 +533,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContatoRoute: ContatoRoute,
   EcossistemaRoute: EcossistemaRoute,
   EquipeRoute: EquipeRoute,
+  ImpactoMemoriaRoute: ImpactoMemoriaRoute,
   ImprensaRoute: ImprensaRoute,
   OdsMaggu2030Route: OdsMaggu2030Route,
   ParticipeRoute: ParticipeRoute,
