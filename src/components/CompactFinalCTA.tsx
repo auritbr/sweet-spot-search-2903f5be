@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 type CtaLink = {
   label: string;
-  to?: "/" | "/ecossistema" | "/transparencia" | "/projetos" | "/contato" | "/agenda" | "/quem-somos" | "/equipe";
+  to?: "/" | "/ecossistema" | "/transparencia" | "/projetos" | "/contato" | "/agenda" | "/quem-somos" | "/equipe" | "/privacidade";
   href?: string;
 };
 
