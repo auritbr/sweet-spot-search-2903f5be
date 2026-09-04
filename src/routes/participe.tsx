@@ -120,19 +120,21 @@ function Participe() {
       <QuarterCircle corner="tr" color="#08B9E6" className="pointer-events-none absolute -right-7 top-0 w-20 opacity-[0.12]" />
       <ArcThick color="#FFB400" className="pointer-events-none absolute -left-12 bottom-0 w-24 opacity-[0.15]" from={205} to={325} />
       <div className="container-x">
-        <div className="relative grid items-center gap-7 rounded-[16px] border border-brand-petrol/10 bg-background/80 p-6 shadow-[0_18px_40px_-36px_rgba(0,56,76,0.7)] md:grid-cols-[1fr_auto] md:p-8">
-          <span className="pointer-events-none absolute right-0 top-0 hidden size-3 rotate-45 bg-brand-red md:block" aria-hidden="true" />
+        <div className="relative mx-auto grid max-w-4xl items-center gap-5 overflow-hidden rounded-[14px] border border-brand-petrol/10 bg-background/85 px-5 py-5 shadow-sm sm:px-6 md:grid-cols-[1fr_auto]">
+          <span className="pointer-events-none absolute -right-5 -top-5 size-14 rounded-full border-[8px] border-brand-cyan/10" aria-hidden="true" />
+          <span className="pointer-events-none absolute left-0 top-5 h-9 w-1 rounded-r-full bg-brand-red" aria-hidden="true" />
           <div>
             <p className="text-xs font-semibold uppercase tracking-[.22em] text-brand-red">Colaboração</p>
-            <h2 className="mt-3 text-2xl text-brand-ink md:text-3xl">Conhecimento também pode ser compartilhado.</h2>
-            <p className="mt-4 max-w-3xl leading-relaxed text-brand-gray">Artistas, educadores, voluntários e outros profissionais podem colaborar com experiências, saberes e práticas em diferentes iniciativas da Associação.</p>
+            <h2 className="mt-2 text-xl text-brand-ink md:text-2xl">Conhecimento também pode ser compartilhado.</h2>
+            <p className="mt-2.5 max-w-2xl text-sm leading-relaxed text-brand-gray">Artistas, educadores, voluntários e outros profissionais podem colaborar com experiências, saberes e práticas em diferentes iniciativas da Associação.</p>
           </div>
-          <Button asChild className="rounded-full bg-brand-petrol px-6 text-primary-foreground hover:bg-brand-red"><Link to="/contato">Quero colaborar</Link></Button>
+          <Button asChild size="sm" className="rounded-full bg-brand-petrol px-5 text-primary-foreground hover:bg-brand-red"><Link to="/contato">Quero colaborar</Link></Button>
         </div>
-        <div className="relative mt-4 grid items-center gap-5 rounded-[14px] border border-brand-petrol/10 bg-background/60 px-5 py-5 md:grid-cols-[1fr_auto] md:px-6">
-          <span className="pointer-events-none absolute left-0 top-4 h-8 w-1 rounded-r-full bg-brand-gold" aria-hidden="true" />
-          <div className="pl-2"><h2 className="text-xl text-brand-ink">Ainda não sabe qual caminho escolher?</h2><p className="mt-1.5 text-sm text-brand-gray">Fale com a Associação Maggu e conte como gostaria de participar.</p></div>
-          <Button asChild className="rounded-full bg-brand-red px-6 text-primary-foreground hover:bg-brand-gold hover:text-brand-petrol"><Link to="/contato">Entre em contato</Link></Button>
+        <div className="relative mx-auto mt-3 grid max-w-3xl items-center gap-4 overflow-hidden rounded-[12px] border border-brand-petrol/10 bg-background/65 px-5 py-4 md:grid-cols-[1fr_auto]">
+          <span className="pointer-events-none absolute left-0 top-4 h-7 w-1 rounded-r-full bg-brand-gold" aria-hidden="true" />
+          <span className="pointer-events-none absolute right-5 top-0 size-2 rotate-45 bg-brand-cyan" aria-hidden="true" />
+          <div className="pl-1"><h2 className="text-lg text-brand-ink">Ainda não sabe qual caminho escolher?</h2><p className="mt-1 text-sm text-brand-gray">Fale com a Associação Maggu e conte como gostaria de participar.</p></div>
+          <Button asChild size="sm" className="rounded-full bg-brand-red px-5 text-primary-foreground hover:bg-brand-gold hover:text-brand-petrol"><Link to="/contato">Entre em contato</Link></Button>
         </div>
       </div>
     </Section>
