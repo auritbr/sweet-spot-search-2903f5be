@@ -48,17 +48,18 @@ function Participe() {
       <ArcThick color="#FFB400" className="pointer-events-none absolute -left-14 bottom-16 w-24 opacity-[0.13]" from={210} to={335} />
       <div className="container-x">
         <SectionTitle align="center" eyebrow="Escolha como participar" title="Encontre a forma que combina com você." />
-        <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-2 lg:grid-cols-6">
+        <div className="mx-auto grid max-w-5xl gap-3 md:grid-cols-2 lg:grid-cols-6">
           {paths.map((item, i) => {
             const Icon = item.icon;
-            const linkClasses = "mt-5 inline-flex w-fit items-center gap-2 text-sm font-semibold text-brand-petrol transition group-hover:gap-3";
-            return <article key={item.title} className={`group relative flex min-h-60 flex-col overflow-hidden rounded-[16px] border border-brand-petrol/10 bg-brand-soft/35 p-5 shadow-[0_16px_34px_-32px_rgba(0,56,76,0.65)] transition duration-300 hover:-translate-y-1 hover:bg-background ${i < 3 ? "lg:col-span-2" : i === 3 ? "lg:col-span-3 lg:ml-12" : "lg:col-span-3 lg:mr-12"}`}>
-              {i % 3 === 0 && <span className={`absolute left-0 top-5 h-14 w-1 rounded-r-full ${item.accent}`} aria-hidden="true" />}
+            const linkClasses = "mt-4 inline-flex w-fit items-center gap-2 text-xs font-semibold text-brand-petrol transition group-hover:gap-3";
+            return <article key={item.title} className={`group relative flex min-h-48 flex-col overflow-hidden rounded-[12px] border border-brand-petrol/10 bg-brand-soft/35 p-4 shadow-[0_14px_30px_-30px_rgba(0,56,76,0.65)] transition duration-300 hover:-translate-y-1 hover:border-brand-cyan/30 hover:bg-background ${i < 3 ? "lg:col-span-2" : i === 3 ? "lg:col-span-3 lg:ml-16" : "lg:col-span-3 lg:mr-16"}`}>
+              <span className={`absolute inset-x-0 top-0 h-0.5 ${item.accent}`} aria-hidden="true" />
+              {i % 3 === 0 && <span className={`absolute left-0 top-7 h-8 w-0.5 rounded-r-full ${item.accent}`} aria-hidden="true" />}
               {i % 3 === 1 && <span className={`absolute right-0 top-0 size-14 rounded-bl-full ${item.soft}`} aria-hidden="true" />}
               {i % 3 === 2 && <span className={`absolute right-5 top-5 size-3 rotate-45 ${item.accent}`} aria-hidden="true" />}
-              <span className={`inline-flex size-11 items-center justify-center rounded-full ${item.soft} text-brand-petrol`}><Icon className="size-5" aria-hidden="true" /></span>
-              <h2 className="mt-5 text-xl font-bold text-brand-ink">{item.title}</h2>
-              <p className="mt-2.5 flex-1 text-sm leading-[1.65] text-brand-gray">{item.text}</p>
+              <span className={`inline-flex size-9 items-center justify-center rounded-full ${item.soft} text-brand-petrol`}><Icon className="size-4" aria-hidden="true" /></span>
+              <h2 className="mt-3.5 text-lg font-bold text-brand-ink">{item.title}</h2>
+              <p className="mt-2 flex-1 text-[13px] leading-[1.55] text-brand-gray">{item.text}</p>
               {"href" in item
                 ? <a href={item.href} className={linkClasses}>{item.cta}<ArrowRight className="size-4" aria-hidden="true" /></a>
                 : <Link to={item.to} className={linkClasses}>{item.cta}<ArrowRight className="size-4" aria-hidden="true" /></Link>}
@@ -80,8 +81,9 @@ function Participe() {
             <p>O apoio pode acontecer por meio de contribuição financeira, doação de materiais ou equipamentos, livros, prestação de serviços, parceria institucional ou patrocínio, conforme cada iniciativa.</p>
           </div>
         </div>
-        <ul className="grid grid-cols-2 gap-3">
-          {support.map(({ label, icon: Icon, accent, iconColor }, i) => <li key={label} className={`group relative flex min-h-28 flex-col justify-between overflow-hidden rounded-[14px] border border-brand-petrol/10 bg-background/80 p-4 shadow-[0_12px_26px_-26px_rgba(0,56,76,0.6)] transition hover:-translate-y-0.5 ${i === 0 || i === 5 ? "sm:translate-y-3" : ""}`}>
+        <ul className="grid auto-rows-fr grid-cols-2 gap-3">
+          {support.map(({ label, icon: Icon, accent, iconColor }, i) => <li key={label} className="group relative flex min-h-28 flex-col justify-between overflow-hidden rounded-[12px] border border-brand-petrol/10 bg-background/85 p-4 shadow-[0_12px_26px_-26px_rgba(0,56,76,0.6)] transition hover:-translate-y-0.5 hover:border-brand-cyan/30">
+            <span className={`absolute inset-x-0 top-0 h-0.5 ${accent}`} aria-hidden="true" />
             {i % 2 === 0 ? <span className={`absolute -right-4 -top-4 size-12 rounded-full ${accent}`} aria-hidden="true" /> : <span className={`absolute right-4 top-4 size-2 rotate-45 ${accent}`} aria-hidden="true" />}
             <span className={`inline-flex size-9 items-center justify-center rounded-full ${accent} ${iconColor}`}><Icon className="size-4" aria-hidden="true" /></span>
             <p className="relative mt-4 max-w-[13rem] text-sm font-semibold leading-snug text-brand-ink">{label}</p>
@@ -93,15 +95,16 @@ function Participe() {
     <Section id="parcerias" className="relative overflow-hidden bg-background">
       <ArcThick color="#FFB400" className="pointer-events-none absolute -left-12 top-12 w-24 opacity-[0.16]" from={210} to={340} />
       <HatchedCircle size={82} color="#00384C" className="pointer-events-none absolute -right-8 bottom-9 opacity-[0.09]" />
-      <div className="container-x grid items-center gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-14">
-        <div>
+      <div className="container-x grid items-center gap-9 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14">
+        <div className="relative lg:pl-5">
+          <span className="pointer-events-none absolute -left-1 top-2 hidden h-20 w-1 rounded-full bg-brand-gold lg:block" aria-hidden="true" />
           <SectionTitle eyebrow="Parcerias" title="Vamos construir juntos?" />
           <p className="max-w-2xl leading-relaxed text-brand-gray">A Associação Maggu acredita em redes. Instituições públicas e privadas, organizações sociais, coletivos, empresas, artistas, educadores e profissionais podem construir conosco ações, formações, projetos, eventos, campanhas e outras formas de cooperação.</p>
           <Button asChild className="mt-6 rounded-full bg-brand-petrol px-6 text-primary-foreground hover:bg-brand-red"><Link to="/contato">Propor parceria</Link></Button>
         </div>
-        <div className="relative grid grid-cols-2 gap-3">
-          <span className="pointer-events-none absolute -left-3 top-1/2 hidden h-px w-6 bg-brand-cyan/45 lg:block" aria-hidden="true" />
-          {partnerships.map((item, i) => <div key={item} className={`group relative flex min-h-32 flex-col justify-end overflow-hidden rounded-[15px] border border-brand-petrol/10 p-4 transition hover:-translate-y-0.5 ${i === 0 ? "bg-brand-petrol text-primary-foreground" : "bg-brand-soft/55 text-brand-ink"} ${i === 1 || i === 2 ? "translate-y-3" : ""}`}>
+        <div className="relative grid grid-cols-2 gap-3 rounded-[16px] border border-brand-petrol/8 bg-brand-soft/25 p-3">
+          <span className="pointer-events-none absolute -right-3 -top-3 size-7 rounded-full border-[5px] border-brand-cyan/20" aria-hidden="true" />
+          {partnerships.map((item, i) => <div key={item} className={`group relative flex min-h-28 flex-col justify-end overflow-hidden rounded-[11px] border border-brand-petrol/10 p-4 transition hover:-translate-y-0.5 ${i === 0 ? "bg-brand-petrol text-primary-foreground" : i === 3 ? "bg-brand-gold/15 text-brand-ink" : "bg-background/90 text-brand-ink"}`}>
             {i === 0 && <span className="absolute -right-5 -top-5 size-16 rounded-full border-[8px] border-brand-cyan/20" aria-hidden="true" />}
             {i === 1 && <span className="absolute right-4 top-4 size-3 rotate-45 bg-brand-gold" aria-hidden="true" />}
             {i === 2 && <span className="absolute right-0 top-0 size-10 rounded-bl-full bg-brand-cyan/12" aria-hidden="true" />}
