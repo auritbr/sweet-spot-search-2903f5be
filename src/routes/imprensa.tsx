@@ -315,28 +315,33 @@ function Imprensa() {
       {/* Kit de imprensa */}
       <Section id="kit" className="overflow-hidden bg-brand-soft">
         <QuarterCircle corner="tr" color="#08B9E6" className="pointer-events-none absolute -right-6 top-8 w-16 opacity-40" />
+        <Triangle color="#ED1C24" size={22} className="pointer-events-none absolute left-8 bottom-10 hidden opacity-60 md:block" rotate={-12} />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Download" title="Kit de Imprensa" text="Conjunto de materiais oficiais reunidos para uso editorial e institucional." />
           <div className="mx-auto grid max-w-4xl gap-5 md:grid-cols-2">
-            <div className="rounded-2xl border border-brand-petrol/10 bg-white/80 p-6">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-cyan">O que o kit contém</p>
-              <ul className="mt-3 space-y-2 text-sm leading-relaxed text-brand-gray">
+            <div className="relative overflow-hidden rounded-[20px] border border-brand-petrol/8 bg-white/80 p-6 shadow-[0_14px_34px_-32px_rgba(0,56,76,0.5)] ring-1 ring-inset ring-white/70">
+              <span className="absolute left-6 top-0 h-[3px] w-12 rounded-b-full bg-brand-cyan" aria-hidden="true" />
+              <span className="pointer-events-none absolute -bottom-10 -right-10 size-28 rounded-full bg-brand-cyan/10" aria-hidden="true" />
+              <p className="relative text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-cyan">O que o kit contém</p>
+              <ul className="relative mt-3 space-y-2 text-sm leading-relaxed text-brand-gray">
                 {pressKitIncludes.map((item) => (
-                  <li key={item} className="flex gap-2"><span className="mt-2 size-1.5 shrink-0 rotate-45 bg-brand-cyan" aria-hidden="true" />{item}</li>
+                  <li key={item} className="flex gap-2.5"><span className="mt-[7px] size-1.5 shrink-0 rotate-45 bg-brand-cyan" aria-hidden="true" />{item}</li>
                 ))}
               </ul>
             </div>
-            <div className="rounded-2xl border border-brand-red/15 bg-white/80 p-6">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-red">O que não entra no kit</p>
-              <ul className="mt-3 space-y-2 text-sm leading-relaxed text-brand-gray">
+            <div className="relative overflow-hidden rounded-[20px] border border-brand-red/12 bg-white/80 p-6 shadow-[0_14px_34px_-32px_rgba(0,56,76,0.5)] ring-1 ring-inset ring-white/70">
+              <span className="absolute left-6 top-0 h-[3px] w-12 rounded-b-full bg-brand-red" aria-hidden="true" />
+              <span className="pointer-events-none absolute -bottom-10 -right-10 size-28 rounded-full bg-brand-red/8" aria-hidden="true" />
+              <p className="relative text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-red">O que não entra no kit</p>
+              <ul className="relative mt-3 space-y-2 text-sm leading-relaxed text-brand-gray">
                 {pressKitExcludes.map((item) => (
-                  <li key={item} className="flex gap-2"><span className="mt-2 size-1.5 shrink-0 rotate-45 bg-brand-red/70" aria-hidden="true" />{item}</li>
+                  <li key={item} className="flex gap-2.5"><span className="mt-[7px] size-1.5 shrink-0 rotate-45 bg-brand-red/70" aria-hidden="true" />{item}</li>
                 ))}
               </ul>
             </div>
           </div>
           <div className="mt-7 flex justify-center">
-            <Link to="/contato" className="inline-flex items-center gap-2 rounded-full bg-brand-petrol px-7 py-3 text-sm font-bold text-primary-foreground transition hover:bg-brand-red">
+            <Link to="/contato" className="inline-flex items-center gap-2 rounded-full bg-brand-petrol px-7 py-3 text-sm font-bold text-primary-foreground shadow-[0_16px_30px_-22px_rgba(0,56,76,0.9)] transition hover:-translate-y-0.5 hover:bg-brand-red">
               <Download className="size-4" aria-hidden="true" /> Baixar Kit de Imprensa
             </Link>
           </div>
@@ -345,20 +350,21 @@ function Imprensa() {
 
       {/* Contato de imprensa */}
       <Section className="overflow-hidden bg-white">
+        <span className="pointer-events-none absolute left-6 top-10 hidden size-10 border-l border-t border-brand-cyan/35 md:block" aria-hidden="true" />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Fale conosco" title="Contato de imprensa" />
           <div className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2">
-            <a href="mailto:comunicacaomktmaggu@gmail.com" className="group flex items-center gap-4 rounded-2xl border border-brand-petrol/10 bg-brand-soft/45 p-5 transition hover:border-brand-cyan/40">
+            <a href="mailto:comunicacaomktmaggu@gmail.com" className="group flex items-center gap-4 rounded-[18px] border border-brand-petrol/8 bg-brand-soft/40 p-5 transition hover:-translate-y-0.5 hover:border-brand-cyan/40">
               <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-cyan/15 text-brand-petrol"><Mail className="size-5" aria-hidden="true" /></span>
               <span className="min-w-0">
-                <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-red">E-mail</span>
+                <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-cyan">E-mail</span>
                 <span className="block break-all text-sm text-brand-ink">comunicacaomktmaggu@gmail.com</span>
               </span>
             </a>
-            <a href="tel:+5582998067374" className="group flex items-center gap-4 rounded-2xl border border-brand-petrol/10 bg-brand-soft/45 p-5 transition hover:border-brand-gold/50">
+            <a href="tel:+5582998067374" className="group flex items-center gap-4 rounded-[18px] border border-brand-petrol/8 bg-brand-soft/40 p-5 transition hover:-translate-y-0.5 hover:border-brand-gold/50">
               <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-gold/20 text-brand-petrol"><Phone className="size-5" aria-hidden="true" /></span>
               <span className="min-w-0">
-                <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-red">Telefone / WhatsApp</span>
+                <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-gold">Telefone / WhatsApp</span>
                 <span className="block text-sm text-brand-ink">(82) 99806-7374</span>
               </span>
             </a>
@@ -369,6 +375,7 @@ function Imprensa() {
           </div>
         </div>
       </Section>
+
 
       {/* Conexões internas */}
       <Section className="overflow-hidden bg-brand-soft">
