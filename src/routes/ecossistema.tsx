@@ -239,7 +239,7 @@ function Ecossistema() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-brand-cyan/5 py-12 md:py-16">
+      <section className="relative overflow-hidden bg-brand-soft py-12 md:py-16">
         <ArcThick color="#FFB400" className="pointer-events-none absolute -left-10 top-10 w-20 opacity-25 md:w-24" from={210} to={340} />
         <span className="pointer-events-none absolute right-8 top-14 hidden size-2 rotate-45 bg-brand-red md:block" aria-hidden="true" />
         <div className="container-x relative">

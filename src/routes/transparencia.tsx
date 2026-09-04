@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { ArcThick, HatchedCircle, BrushStroke, QuarterCircle, Triangle } from "@/components/Shapes";
+import { ArcThick, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
 import { documents } from "@/data/site";
 import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
@@ -130,40 +130,41 @@ function Transparencia() {
             <p className="mx-auto mt-4 max-w-[42rem] text-[15px] leading-[1.75] text-brand-gray md:text-base">Além do acervo institucional, a Associação Maggu também disponibiliza orientações e canais voltados à privacidade, à proteção de dados e ao encaminhamento responsável de situações relacionadas à integridade institucional.</p>
           </div>
 
-          <div className="mx-auto mt-9 grid max-w-[52rem] gap-6 md:mt-11 md:grid-cols-2 md:gap-8">
+          <div className="mx-auto mt-9 grid max-w-[56rem] gap-5 md:mt-11 md:grid-cols-2 md:gap-6">
             {/* Card 1 — Privacidade */}
-            <article className="relative flex min-h-[260px] flex-col justify-between overflow-hidden rounded-3xl bg-brand-soft p-7 md:p-8">
-              <ArcThick color="#00384C" className="pointer-events-none absolute -left-20 -top-16 w-48 opacity-15" from={200} to={340} />
-              <HatchedCircle size={108} color="#08B9E6" className="pointer-events-none absolute -right-7 -top-9 opacity-25" />
-              <QuarterCircle color="#FFB400" size={78} corner="br" className="pointer-events-none absolute bottom-0 right-0 opacity-40" />
-              <span className="pointer-events-none absolute left-4 bottom-4 size-3.5 rotate-45 border-2 border-brand-red" aria-hidden="true" />
-              <span className="pointer-events-none absolute right-9 top-4 h-px w-14 bg-brand-petrol/25" aria-hidden="true" />
-              <span className="pointer-events-none absolute right-7 bottom-20 h-1.5 w-9 rounded-full bg-brand-red/70" aria-hidden="true" />
-              <div className="relative z-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Privacidade</p>
-                 <h2 className="mt-2.5 text-brand-ink" style={{ fontSize: "clamp(1.4rem, 2.2vw, 1.9rem)", lineHeight: 1.15, fontWeight: 700 }}>Privacidade e Proteção de Dados</h2>
-                 <p className="mt-3 max-w-md text-sm text-brand-gray" style={{ lineHeight: 1.65 }}>Orientações sobre o tratamento de dados pessoais nos canais digitais da Associação.</p>
+            <article className="group relative flex min-h-[240px] flex-col justify-between overflow-hidden rounded-2xl border border-brand-petrol/10 bg-brand-soft/45 p-6 shadow-[0_16px_36px_-32px_rgba(0,56,76,0.55)] ring-1 ring-inset ring-white/60 backdrop-blur-sm md:p-7">
+              <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-brand-cyan/45" aria-hidden="true" />
+              <div className="pointer-events-none absolute right-5 top-5 h-16 w-20" aria-hidden="true">
+                <span className="absolute right-0 top-0 size-11 rounded-full border border-brand-cyan/35" />
+                <span className="absolute right-5 top-5 size-8 rounded-full border border-brand-petrol/20" />
+                <span className="absolute bottom-0 left-0 h-px w-12 bg-brand-cyan/55" />
+                <span className="absolute bottom-[-0.2rem] left-11 size-2 rotate-45 bg-brand-petrol/65" />
               </div>
-               <Link to="/privacidade" className="group relative z-10 mt-6 inline-flex w-fit items-center gap-2 text-sm font-semibold text-brand-red transition-colors hover:text-brand-petrol">
+              <div className="relative z-10 max-w-[19rem] pr-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-cyan">Privacidade</p>
+                <h2 className="mt-2.5 text-[1.35rem] font-bold leading-[1.18] text-brand-ink md:text-[1.55rem]">Privacidade e Proteção de Dados</h2>
+                <p className="mt-3 text-sm leading-[1.65] text-brand-gray">Orientações sobre o tratamento de dados pessoais nos canais digitais da Associação.</p>
+              </div>
+              <Link to="/privacidade" className="relative z-10 mt-6 inline-flex w-fit items-center gap-2 border-b border-brand-cyan/35 pb-1 text-sm font-semibold text-brand-petrol transition-colors hover:text-brand-cyan">
                 Acessar página <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
               </Link>
             </article>
 
             {/* Card 2 — Integridade */}
-            <article className="relative flex min-h-[260px] flex-col justify-between overflow-hidden rounded-3xl bg-brand-soft p-7 md:p-8">
-              <QuarterCircle color="#00384C" size={60} corner="tr" className="pointer-events-none absolute right-0 top-0 opacity-10" />
-              <span className="pointer-events-none absolute -right-5 -bottom-5 size-20 rounded-full border-2 border-brand-cyan/40" aria-hidden="true" />
-              <span className="pointer-events-none absolute -right-1 -bottom-1 size-14 rounded-full border border-brand-gold/60" aria-hidden="true" />
-              <Triangle color="#ED1C24" size={34} className="pointer-events-none absolute top-3 right-20 opacity-70" rotate={18} />
-              <BrushStroke color="#FFB400" width={100} className="pointer-events-none absolute bottom-1 left-7 opacity-50" />
-              <span className="pointer-events-none absolute left-10 bottom-[74px] h-px w-16 bg-brand-petrol/25" aria-hidden="true" />
-              <span className="pointer-events-none absolute bottom-3 right-20 size-3.5 rotate-45 border-2 border-brand-petrol/40" aria-hidden="true" />
-              <div className="relative z-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Integridade</p>
-                 <h2 className="mt-2.5 text-brand-ink" style={{ fontSize: "clamp(1.4rem, 2.2vw, 1.9rem)", lineHeight: 1.15, fontWeight: 700 }}>Canal de Denúncias e Relato Ético</h2>
-                 <p className="mt-3 max-w-md text-sm text-brand-gray" style={{ lineHeight: 1.65 }}>Orientações para o encaminhamento responsável de situações relacionadas à integridade institucional.</p>
+            <article className="group relative flex min-h-[240px] flex-col justify-between overflow-hidden rounded-2xl border border-brand-petrol/10 bg-brand-soft/45 p-6 shadow-[0_16px_36px_-32px_rgba(0,56,76,0.55)] ring-1 ring-inset ring-white/60 backdrop-blur-sm md:p-7">
+              <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-brand-red/35" aria-hidden="true" />
+              <div className="pointer-events-none absolute right-5 top-5 h-16 w-20" aria-hidden="true">
+                <span className="absolute right-1 top-1 size-9 rotate-45 border border-brand-red/30" />
+                <span className="absolute right-8 top-7 h-px w-11 bg-brand-gold/75" />
+                <span className="absolute bottom-0 right-0 size-3 rounded-full bg-brand-red/70" />
+                <span className="absolute bottom-2 left-1 size-2 rotate-45 border border-brand-petrol/35" />
               </div>
-               <Link to="/canal-de-denuncias" className="group relative z-10 mt-6 inline-flex w-fit items-center gap-2 text-sm font-semibold text-brand-red transition-colors hover:text-brand-petrol">
+              <div className="relative z-10 max-w-[20rem] pr-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Integridade</p>
+                <h2 className="mt-2.5 text-[1.35rem] font-bold leading-[1.18] text-brand-ink md:text-[1.55rem]">Canal de Denúncias e Relato Ético</h2>
+                <p className="mt-3 text-sm leading-[1.65] text-brand-gray">Orientações para o encaminhamento responsável de situações relacionadas à integridade institucional.</p>
+              </div>
+              <Link to="/canal-de-denuncias" className="relative z-10 mt-6 inline-flex w-fit items-center gap-2 border-b border-brand-red/30 pb-1 text-sm font-semibold text-brand-petrol transition-colors hover:text-brand-red">
                 Acessar página <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
               </Link>
             </article>
