@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { ArcThick, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
 import { documents } from "@/data/site";
+import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
 
