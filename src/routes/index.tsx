@@ -68,7 +68,7 @@ function HeroCarousel() {
 
   return (
     <section
-      className="relative min-h-[600px] w-full overflow-hidden md:min-h-0 md:h-[570px] lg:h-[610px]"
+      className="relative min-h-[620px] w-full overflow-hidden md:min-h-0 md:h-[570px] lg:h-[610px]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       aria-roledescription="carrossel"
@@ -102,7 +102,7 @@ function HeroCarousel() {
         <HatchedCircle size={300} color="#08B9E6" className="max-w-[55vw] opacity-25" />
       </div>
 
-      <div className="container-x relative z-10 flex min-h-[600px] flex-col justify-center pb-[104px] pt-28 md:h-full md:min-h-0 md:pb-24 md:pt-28">
+      <div className="container-x relative z-10 flex min-h-[620px] flex-col justify-center pb-[120px] pt-28 md:h-full md:min-h-0 md:pb-24 md:pt-28">
         <div className="w-full max-w-[36rem] animate-fade-up text-primary-foreground lg:max-w-[40rem]" key={i}>
           <p className="mb-3 inline-flex rounded-full border border-primary-foreground/20 bg-background/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-sm backdrop-blur-md">Associação Maggu</p>
           <h1 style={{ fontSize: "clamp(1.85rem, 7.6vw, 3rem)", lineHeight: 1.1, fontWeight: 700, textShadow: "0 4px 24px rgba(0,0,0,.4)" }} className="text-balance text-primary-foreground">
