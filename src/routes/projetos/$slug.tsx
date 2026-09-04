@@ -44,24 +44,9 @@ function ProjectDetail() {
   const statements = project.description.split(". ").map((item) => item.replace(/\.$/, "")).filter(Boolean);
   const cardTitles = ["A proposta", "Como acontece", "Conexões do projeto"];
   const perspectiveStyles = [
-    {
-      panel: "bg-brand-petrol text-primary-foreground",
-      marker: "bg-brand-gold text-brand-petrol",
-      text: "text-primary-foreground/78",
-      accent: "bg-brand-cyan",
-    },
-    {
-      panel: "bg-brand-gold text-brand-petrol",
-      marker: "bg-brand-red text-primary-foreground",
-      text: "text-brand-petrol/75",
-      accent: "bg-brand-red",
-    },
-    {
-      panel: "bg-brand-cyan text-brand-petrol",
-      marker: "bg-brand-petrol text-primary-foreground",
-      text: "text-brand-petrol/75",
-      accent: "bg-brand-gold",
-    },
+    { accent: "bg-brand-cyan", marker: "bg-brand-cyan/18 text-brand-petrol", shape: "border-brand-cyan/35" },
+    { accent: "bg-brand-gold", marker: "bg-brand-gold/20 text-brand-petrol", shape: "border-brand-gold/45" },
+    { accent: "bg-brand-red", marker: "bg-brand-red/10 text-brand-red", shape: "border-brand-red/25" },
   ] as const;
 
   return (
@@ -90,8 +75,8 @@ function ProjectDetail() {
         </div>
       </Section>
 
-      <section className="relative bg-brand-soft/45 py-14 md:py-20" aria-labelledby="project-aspects-title">
-        <HatchedCircle size={112} color="#08B9E6" className="pointer-events-none absolute -right-12 top-12 opacity-10" />
+       <section className="relative overflow-hidden bg-brand-soft/45 py-14 md:py-20" aria-labelledby="project-aspects-title">
+         <HatchedCircle size={112} color="#08B9E6" className="pointer-events-none absolute -right-12 top-12 opacity-10" />
         <div className="container-x">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Em perspectiva</p>
@@ -99,17 +84,17 @@ function ProjectDetail() {
           </div>
            <div className="mx-auto mt-9 grid max-w-5xl gap-4 md:grid-cols-3 md:gap-5">
             {cardTitles.map((title, index) => (
-               <article key={title} className={`group relative flex min-h-[190px] flex-col justify-between overflow-hidden rounded-xl p-5 shadow-[0_16px_32px_-26px_rgba(0,56,76,0.65)] ring-1 ring-inset ring-primary-foreground/20 transition-transform duration-300 hover:-translate-y-1 md:p-6 ${perspectiveStyles[index].panel}`}>
-                 <span className={`pointer-events-none absolute inset-x-0 top-0 h-1.5 ${perspectiveStyles[index].accent}`} aria-hidden="true" />
-                 <span className="pointer-events-none absolute -right-8 -top-8 size-24 rounded-full border-[12px] border-current opacity-10" aria-hidden="true" />
+               <article key={title} className="group relative flex min-h-[210px] flex-col overflow-hidden rounded-xl border border-brand-petrol/10 bg-white/85 p-5 shadow-[0_18px_38px_-34px_rgba(0,56,76,0.45)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-brand-petrol/15 hover:shadow-[0_22px_42px_-32px_rgba(0,56,76,0.5)] md:p-6">
+                  <span className={`pointer-events-none absolute inset-x-0 top-0 h-1 ${perspectiveStyles[index].accent}`} aria-hidden="true" />
+                  <span className={`pointer-events-none absolute -right-7 -top-7 size-20 rounded-full border-[10px] opacity-40 ${perspectiveStyles[index].shape}`} aria-hidden="true" />
                  <div className="relative flex items-center justify-between">
-                   <span className={`inline-flex size-8 items-center justify-center rounded-sm text-[10px] font-bold tracking-[0.12em] ${perspectiveStyles[index].marker}`}>0{index + 1}</span>
-                   <span className={`size-3 rotate-45 ${perspectiveStyles[index].accent}`} aria-hidden="true" />
+                    <span className={`inline-flex size-8 items-center justify-center rounded-md text-[10px] font-bold ${perspectiveStyles[index].marker}`}>0{index + 1}</span>
+                    <span className={`mr-2 size-2.5 rotate-45 ${perspectiveStyles[index].accent}`} aria-hidden="true" />
                  </div>
                  <div className="relative mt-6">
-                   <h3 className="text-lg leading-snug text-inherit">{title}</h3>
+                    <h3 className="text-lg leading-snug text-brand-ink">{title}</h3>
                    <span className={`mt-3 block h-px w-10 ${perspectiveStyles[index].accent}`} aria-hidden="true" />
-                   <p className={`mt-3 text-sm leading-relaxed ${perspectiveStyles[index].text}`}>{statements[index] ? `${statements[index]}.` : project.short}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-brand-gray">{statements[index] ? `${statements[index]}.` : project.short}</p>
                  </div>
               </article>
             ))}
@@ -121,15 +106,17 @@ function ProjectDetail() {
        <section className="relative overflow-hidden bg-background pb-12 pt-14 md:pb-16 md:pt-20" aria-labelledby="project-gallery-title">
          <ArcThick color="#08B9E6" className="pointer-events-none absolute -left-10 top-20 hidden w-24 opacity-20 md:block" from={205} to={335} />
          <HatchedCircle size={94} color="#FFB400" className="pointer-events-none absolute -right-8 bottom-10 opacity-15" />
-         <span className="pointer-events-none absolute right-[9%] top-16 hidden size-3 rotate-45 bg-brand-red/75 md:block" aria-hidden="true" />
+          <span className="pointer-events-none absolute right-[9%] top-16 hidden size-3 rotate-45 bg-brand-red/75 md:block" aria-hidden="true" />
+          <span className="pointer-events-none absolute bottom-16 left-[7%] hidden h-px w-16 bg-brand-gold md:block" aria-hidden="true" />
+          <span className="pointer-events-none absolute bottom-14 left-[calc(7%+4rem)] hidden size-2 rounded-full bg-brand-red/70 md:block" aria-hidden="true" />
          <div className="container-x relative">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Galeria</p>
             <h2 id="project-gallery-title" className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.7rem, 2.5vw, 2.4rem)", lineHeight: 1.15, fontWeight: 700 }}>Imagens que aproximam da experiência</h2>
           </div>
-           <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-6 md:gap-4">
+            <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
             {gallery.map((image, index) => (
-               <figure key={`${image}-${index}`} className={`aspect-[4/3] overflow-hidden rounded-xl bg-brand-soft ${index < 2 ? "col-span-2 md:col-span-3" : "col-span-2"}`}>
+               <figure key={`${image}-${index}`} className="aspect-[4/3] overflow-hidden rounded-xl bg-brand-soft shadow-[0_14px_30px_-28px_rgba(0,56,76,0.55)]">
                 <img src={image} alt={`${project.name} — registro ${index + 1}`} className="h-full w-full object-cover transition duration-500 hover:scale-[1.025]" loading={index === 0 ? "eager" : "lazy"} />
               </figure>
             ))}
@@ -140,9 +127,9 @@ function ProjectDetail() {
       <CompactFinalCTA
         title={`${project.name} faz parte de uma atuação que continua em movimento.`}
         text="Acompanhe a programação da Maggu ou entre em contato para saber mais sobre esta iniciativa."
-        primary={{ label: "Ver Agenda", to: "/agenda" }}
+        primary={{ label: "Conheça os Projetos", to: "/projetos" }}
         secondary={{ label: "Entre em Contato", to: "/contato" }}
-         variant="projectDetail"
+         variant="projects"
       />
     </main>
   );
