@@ -5,7 +5,7 @@ import { DiamondsCluster, Triangle } from "@/components/Shapes";
 import { Button } from "@/components/ui/button";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { PageHero } from "@/components/PageHero";
-import { EventPreviewPanel } from "@/components/EventPreviewPanel";
+import { AgendaEventPopover } from "@/components/AgendaEventPopover";
 import {
   agendaCategories,
   agendaCategoryStyles,
@@ -77,37 +77,26 @@ function dateKey(date: Date) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 }
 
-function CalendarEvent({ event, onSelect }: { event: AgendaEvent; onSelect: (event: AgendaEvent) => void }) {
+function CalendarEvent({ event }: { event: AgendaEvent }) {
   const style = agendaCategoryStyles[event.category];
   return (
-    <Button
-      type="button"
-      variant="ghost"
-      onClick={() => onSelect(event)}
-      aria-label={`Ver detalhes de ${event.title}`}
-      className={`group relative block rounded-2xl border border-brand-petrol/8 ${style.surface} p-3.5 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-brand-petrol/15 hover:shadow-md`}
-    >
-      <div className="flex items-center gap-2">
-        <span className={`size-1.5 shrink-0 rounded-full bg-current ${style.accentText}`} aria-hidden="true" />
-        <p className={`text-[9px] font-bold uppercase tracking-[0.08em] ${style.text}`}>{event.category}</p>
-      </div>
-      <h3 className="mt-2 text-sm leading-snug text-brand-ink transition-colors group-hover:text-brand-red">{event.title}</h3>
-      {event.time && (
-        <p className="mt-2.5 flex items-center gap-1.5 text-[11px] font-semibold text-brand-gray">
-          <Clock3 aria-hidden="true" className="size-3" /> {event.time}
-        </p>
-      )}
-      {event.location && (
-        <p className="mt-1 flex items-start gap-1.5 text-[11px] leading-snug text-brand-gray">
-          <MapPin aria-hidden="true" className="mt-0.5 size-3 shrink-0" /> {event.location}
-        </p>
-      )}
-      {event.status && (
-        <span className="mt-2.5 inline-flex rounded-full border border-brand-petrol/8 bg-background/70 px-2.5 py-1 text-[9px] font-semibold text-brand-petrol">
-          {agendaStatusLabels[event.status]}
+    <AgendaEventPopover event={event}>
+      <Button
+        type="button"
+        variant="ghost"
+        aria-label={`Ver detalhes de ${event.title}`}
+        className={`group relative h-auto min-w-0 w-full whitespace-normal rounded-lg border border-brand-petrol/8 ${style.surface} p-2 text-left shadow-none transition hover:border-brand-petrol/18 hover:bg-background/80 hover:text-brand-ink hover:shadow-sm`}
+      >
+        <span className={`absolute inset-y-2 left-0 w-0.5 rounded-full bg-current ${style.accentText}`} aria-hidden="true" />
+        <span className="block min-w-0 pl-1">
+          <span className={`block truncate text-[8px] font-bold uppercase tracking-[0.06em] ${style.text}`}>{event.category}</span>
+          <span className="mt-1 block line-clamp-2 text-[11px] font-semibold leading-[1.25] text-brand-ink transition-colors group-hover:text-brand-red">{event.title}</span>
+          {event.time && <span className="mt-1.5 flex min-w-0 items-center gap-1 text-[9px] font-medium text-brand-gray"><Clock3 aria-hidden="true" className="size-2.5" /><span className="truncate">{event.time}</span></span>}
+          {event.location && <span className="mt-1 flex min-w-0 items-center gap-1 text-[9px] text-brand-gray md:hidden xl:flex"><MapPin aria-hidden="true" className="size-2.5" /><span className="truncate">{event.location}</span></span>}
+          {event.status && <span className="sr-only">{agendaStatusLabels[event.status]}</span>}
         </span>
-      )}
-    </Button>
+      </Button>
+    </AgendaEventPopover>
   );
 }
 
@@ -115,7 +104,6 @@ function Agenda() {
   const [category, setCategory] = useState<"Todos" | AgendaCategory>("Todos");
   const [view, setView] = useState<CalendarView>("semana");
   const [cursor, setCursor] = useState(() => atStartOfDay(new Date()));
-  const [selectedEvent, setSelectedEvent] = useState<AgendaEvent | null>(null);
 
   const filteredEvents = useMemo(
     () => sortByDate(agendaEvents).filter((event) => category === "Todos" || event.category === category),
@@ -227,7 +215,7 @@ function Agenda() {
             </div>
           </div>
 
-          <section aria-labelledby="calendar-title" className="mx-auto mt-5 max-w-7xl overflow-hidden rounded-2xl border border-brand-petrol/8 bg-background shadow-sm">
+          <section aria-labelledby="calendar-title" className="mx-auto mt-5 max-w-7xl overflow-hidden rounded-xl border border-brand-petrol/10 bg-background shadow-sm">
             <div className="grid grid-cols-1 items-center gap-3 border-b border-brand-petrol/8 px-4 py-4 sm:grid-cols-[minmax(0,1fr)_auto] md:px-6">
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-brand-red">{view === "mes" ? "Calendário mensal" : "Calendário semanal"}</p>
@@ -246,8 +234,8 @@ function Agenda() {
               </div>
             </div>
 
-            <div className="hidden grid-cols-7 border-b border-brand-petrol/8 bg-brand-soft/30 md:grid">
-              {weekdays.map((day) => <div key={day} className="px-2 py-3 text-center text-[9px] font-semibold uppercase tracking-[0.12em] text-brand-gray">{day}</div>)}
+            <div className="hidden grid-cols-7 border-b border-brand-petrol/8 bg-brand-soft/25 md:grid">
+              {weekdays.map((day) => <div key={day} className="min-w-0 border-r border-brand-petrol/8 px-1.5 py-2.5 text-center text-[9px] font-semibold uppercase tracking-[0.08em] text-brand-gray last:border-r-0">{day}</div>)}
             </div>
 
             <div className="grid md:grid-cols-7">
@@ -256,15 +244,15 @@ function Agenda() {
                 const isToday = sameDay(day, new Date());
                 const outsideMonth = view === "mes" && day.getMonth() !== cursor.getMonth();
                 return (
-                  <article key={dateKey(day)} className={`min-h-32 border-b border-brand-petrol/8 p-3 transition-colors last:border-b-0 md:min-h-48 md:border-b-0 md:border-r md:last:border-r-0 ${outsideMonth ? "bg-brand-soft/20" : "bg-background hover:bg-brand-soft/10"}`}>
-                    <div className="mb-3 flex items-center justify-between md:justify-end">
+                  <article key={dateKey(day)} className={`min-w-0 border-b border-brand-petrol/8 p-3 transition-colors last:border-b-0 md:min-h-44 md:border-b-0 md:border-r md:p-2 md:last:border-r-0 ${outsideMonth ? "bg-brand-soft/20" : "bg-background hover:bg-brand-soft/10"}`}>
+                    <div className="mb-2.5 flex items-center justify-between md:justify-end">
                       <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-brand-gray md:hidden">{weekdays[day.getDay()]}</p>
                       <time dateTime={dateKey(day)} className={`flex size-8 items-center justify-center rounded-full text-sm font-bold ${isToday ? "bg-brand-red text-primary-foreground" : outsideMonth ? "text-brand-gray/50" : "text-brand-petrol"}`}>
                         {day.getDate()}
                       </time>
                     </div>
-                    <div className="space-y-2">
-                      {dayEvents.map((event) => <CalendarEvent key={event.slug} event={event} onSelect={setSelectedEvent} />)}
+                    <div className="grid min-w-0 gap-1.5">
+                      {dayEvents.map((event) => <CalendarEvent key={event.slug} event={event} />)}
                     </div>
                   </article>
                 );
@@ -289,7 +277,6 @@ function Agenda() {
         secondary={{ label: "Entre em Contato", to: "/contato" }}
         variant="agenda"
       />
-      <EventPreviewPanel event={selectedEvent} onOpenChange={(open) => { if (!open) setSelectedEvent(null); }} />
     </>
   );
 }
