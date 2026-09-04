@@ -44,12 +44,19 @@ export const Route = createFileRoute("/ods-maggu-2030")({
   component: OdsMaggu2030,
 });
 
-const accentDot: Record<string, string> = {
-  cyan: "bg-brand-cyan",
-  gold: "bg-brand-gold",
-  red: "bg-brand-red",
-  petrol: "bg-brand-petrol",
+const accentHex: Record<string, string> = {
+  cyan: "#08B9E6",
+  gold: "#FFB400",
+  red: "#ED1C24",
+  petrol: "#00384C",
 };
+
+const commissionIcons = [Compass, Layers, Target, RefreshCw];
+const journeyColors = ["#08B9E6", "#00689D", "#FD9D24", "#C5192D", "#3F7E44", "#00384C"];
+const indicatorIcons = [Sprout, Layers, Users, Handshake, FileText];
+const indicatorColors = ["#3F7E44", "#08B9E6", "#FD9D24", "#00689D", "#C5192D"];
+const evidenceColors = ["#00689D", "#FD9D24", "#C5192D", "#3F7E44", "#08B9E6", "#00384C"];
+
 
 function OdsMaggu2030() {
   return (
