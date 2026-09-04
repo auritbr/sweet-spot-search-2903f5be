@@ -1,100 +1,94 @@
 import { Link } from "@tanstack/react-router";
-import { ArcThick, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
+import { ArcThick, QuarterCircle } from "@/components/Shapes";
 import { Button } from "@/components/ui/button";
 
 type CtaLink = {
   label: string;
-  to: "/ecossistema" | "/transparencia" | "/projetos" | "/contato" | "/agenda";
+  to?: "/ecossistema" | "/transparencia" | "/projetos" | "/contato" | "/agenda" | "/quem-somos" | "/equipe";
+  href?: string;
 };
+
+type Variant = "continuity" | "agenda" | "projects" | "ecosystem" | "transparency" | "team";
 
 type CompactFinalCTAProps = {
   title: string;
   text: string;
   primary: CtaLink;
   secondary: CtaLink;
-  variant: "continuity" | "agenda" | "projects" | "ecosystem";
+  variant: Variant;
 };
 
-const buttonStyles = {
+const buttonStyles: Record<Variant, readonly [string, string]> = {
   continuity: [
     "border-brand-petrol/15 bg-brand-cyan/85 text-brand-petrol hover:bg-brand-cyan",
-    "border-primary-foreground/20 bg-brand-red/85 text-primary-foreground hover:bg-brand-red",
+    "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
   ],
   agenda: [
     "border-brand-petrol/15 bg-brand-gold/90 text-brand-petrol hover:bg-brand-gold",
-    "border-primary-foreground/20 bg-brand-red/85 text-primary-foreground hover:bg-brand-red",
+    "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
   ],
   projects: [
     "border-brand-petrol/15 bg-brand-cyan/85 text-brand-petrol hover:bg-brand-cyan",
-    "border-primary-foreground/20 bg-brand-gold/90 text-brand-petrol hover:bg-brand-gold",
+    "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
   ],
   ecosystem: [
     "border-brand-petrol/15 bg-brand-gold/90 text-brand-petrol hover:bg-brand-gold",
-    "border-primary-foreground/20 bg-brand-cyan/85 text-brand-petrol hover:bg-brand-cyan",
+    "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
   ],
-} as const;
+  transparency: [
+    "border-brand-petrol/15 bg-brand-gold/90 text-brand-petrol hover:bg-brand-gold",
+    "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
+  ],
+  team: [
+    "border-brand-petrol/15 bg-brand-cyan/85 text-brand-petrol hover:bg-brand-cyan",
+    "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
+  ],
+};
 
-function Decorations({ variant }: { variant: CompactFinalCTAProps["variant"] }) {
-  if (variant === "continuity") {
-    return (
-      <>
-        <ArcThick color="#08B9E6" className="pointer-events-none absolute -left-10 -top-12 w-28 opacity-25 md:left-5 md:w-36" from={195} to={325} />
-        <span className="pointer-events-none absolute right-9 top-8 size-3 rotate-45 bg-brand-gold md:right-14" aria-hidden="true" />
-        <span className="pointer-events-none absolute bottom-8 right-12 hidden h-1.5 w-12 rounded-full bg-brand-red/85 md:block" aria-hidden="true" />
-      </>
-    );
-  }
+const accents: Record<Variant, { corner: "tl" | "tr" | "bl" | "br"; cornerColor: string; arcColor: string; dots: string[] }> = {
+  continuity: { corner: "bl", cornerColor: "#08B9E6", arcColor: "#FFB400", dots: ["#FFB400", "#ED1C24", "#08B9E6"] },
+  agenda: { corner: "tl", cornerColor: "#ED1C24", arcColor: "#08B9E6", dots: ["#08B9E6", "#FFB400", "#ED1C24"] },
+  projects: { corner: "br", cornerColor: "#FFB400", arcColor: "#08B9E6", dots: ["#ED1C24", "#08B9E6", "#FFB400"] },
+  ecosystem: { corner: "tr", cornerColor: "#FFB400", arcColor: "#ED1C24", dots: ["#08B9E6", "#ED1C24", "#FFB400"] },
+  transparency: { corner: "tl", cornerColor: "#FFB400", arcColor: "#08B9E6", dots: ["#ED1C24", "#FFB400", "#08B9E6"] },
+  team: { corner: "bl", cornerColor: "#ED1C24", arcColor: "#FFB400", dots: ["#08B9E6", "#FFB400", "#ED1C24"] },
+};
 
-  if (variant === "agenda") {
-    return (
-      <>
-        <QuarterCircle corner="tl" color="#ED1C24" className="pointer-events-none absolute left-0 top-0 w-16 opacity-75 md:w-24" />
-        <div className="pointer-events-none absolute bottom-8 right-9 hidden items-center gap-2 md:flex" aria-hidden="true">
-          <span className="size-2 rounded-full bg-brand-cyan" />
-          <span className="size-2 rounded-full bg-brand-gold" />
-          <span className="size-2 rounded-full bg-brand-red" />
-        </div>
-      </>
-    );
-  }
-
-  if (variant === "projects") {
-    return (
-      <>
-        <Triangle color="#FFB400" size={40} className="pointer-events-none absolute left-7 top-7 opacity-85 md:left-12" rotate={16} />
-        <HatchedCircle size={92} color="#08B9E6" className="pointer-events-none absolute -bottom-10 -right-8 opacity-20 md:right-5" />
-        <span className="pointer-events-none absolute right-10 top-9 hidden h-px w-14 bg-brand-red/80 md:block" aria-hidden="true" />
-      </>
-    );
-  }
-
+function CtaButton({ item, className }: { item: CtaLink; className: string }) {
+  const classes = `w-full justify-center rounded-full border px-6 font-semibold shadow-sm backdrop-blur-md sm:w-auto ${className}`;
   return (
-    <>
-      <ArcThick color="#FFB400" className="pointer-events-none absolute -right-9 -top-12 w-28 opacity-35 md:right-5 md:w-36" from={190} to={320} />
-      <span className="pointer-events-none absolute bottom-8 left-8 size-3 rotate-45 border-2 border-brand-cyan md:left-12" aria-hidden="true" />
-      <span className="pointer-events-none absolute left-14 top-9 hidden size-3 rounded-full bg-brand-red md:block" aria-hidden="true" />
-    </>
+    <Button asChild size="sm" className={classes}>
+      {item.to ? <Link to={item.to}>{item.label}</Link> : <a href={item.href}>{item.label}</a>}
+    </Button>
   );
 }
 
 export function CompactFinalCTA({ title, text, primary, secondary, variant }: CompactFinalCTAProps) {
-  const centered = variant === "agenda" || variant === "projects";
   const styles = buttonStyles[variant];
+  const accent = accents[variant];
+  const cornerPos =
+    accent.corner === "tl" ? "left-0 top-0" : accent.corner === "tr" ? "right-0 top-0" : accent.corner === "bl" ? "bottom-0 left-0" : "bottom-0 right-0";
 
   return (
-    <section className="-mb-16 bg-white px-4 pb-4 pt-2 md:pb-6 md:pt-4">
+    <section className="bg-white px-4 pb-2 pt-4 md:pb-3 md:pt-6">
       <div className="container-x">
-        <div className={`relative mx-auto flex min-h-[300px] max-w-5xl items-center overflow-hidden rounded-2xl bg-brand-petrol px-6 py-10 md:px-12 ${centered ? "justify-center text-center" : ""}`}>
-          <Decorations variant={variant} />
-          <div className={`relative max-w-3xl ${centered ? "mx-auto" : ""}`}>
-            <h2 className="text-[1.65rem] font-bold leading-tight text-primary-foreground md:text-[2.15rem]">{title}</h2>
-            <p className={`mt-4 max-w-2xl text-sm leading-relaxed text-primary-foreground/80 md:text-base ${centered ? "mx-auto" : ""}`}>{text}</p>
-            <div className={`mt-6 flex flex-col gap-3 sm:flex-row ${centered ? "items-center justify-center" : "items-start"}`}>
-              {[primary, secondary].map((item, index) => (
-                <Button key={item.label} asChild size="sm" className={`rounded-full border px-5 font-semibold shadow-sm backdrop-blur-md ${styles[index]}`}>
-                  <Link to={item.to}>{item.label}</Link>
-                </Button>
-              ))}
+        <div className="relative mx-auto flex min-h-[280px] max-w-5xl items-center justify-center overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-brand-petrol via-brand-petrol to-[#00293a] px-6 py-12 text-center shadow-[0_30px_60px_-45px_rgba(0,56,76,0.85)] md:px-14 md:py-14">
+          <QuarterCircle corner={accent.corner} color={accent.cornerColor} className={`pointer-events-none absolute ${cornerPos} w-24 opacity-30 md:w-36`} />
+          <ArcThick color={accent.arcColor} className="pointer-events-none absolute -right-10 top-8 hidden w-24 opacity-25 md:block" from={195} to={325} />
+          <span className="pointer-events-none absolute right-10 top-9 hidden size-3 rotate-45 border border-primary-foreground/40 md:block" aria-hidden="true" />
+          <span className="pointer-events-none absolute bottom-9 left-10 hidden h-px w-14 bg-primary-foreground/30 md:block" aria-hidden="true" />
+          <div className="pointer-events-none absolute bottom-8 right-10 hidden items-center gap-2 md:flex" aria-hidden="true">
+            {accent.dots.map((color) => (
+              <span key={color} className="size-2 rounded-full" style={{ backgroundColor: color }} />
+            ))}
+          </div>
+
+          <div className="relative mx-auto max-w-2xl">
+            <h2 className="text-[1.6rem] font-bold leading-tight text-primary-foreground md:text-[2.15rem]">{title}</h2>
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-primary-foreground/80 md:text-base">{text}</p>
+            <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <CtaButton item={primary} className={styles[0]} />
+              <CtaButton item={secondary} className={styles[1]} />
             </div>
           </div>
         </div>

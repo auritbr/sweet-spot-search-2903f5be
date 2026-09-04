@@ -1,9 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { HeroButton, PageHero, Section } from "@/components/PageHero";
-import { HatchedCircle, ArcThick, BrushStroke, QuarterCircle, Triangle } from "@/components/Shapes";
+import { HatchedCircle, ArcThick, BrushStroke, Triangle } from "@/components/Shapes";
 import { team } from "@/data/site";
-import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/equipe")({
   head: () => ({
@@ -145,28 +145,14 @@ function Equipe() {
         </div>
       </Section>
 
-      <section className="-mb-16 bg-white px-4 pb-4 pt-2 md:pb-6 md:pt-4">
-        <div className="container-x">
-          <div className="relative mx-auto flex min-h-[300px] max-w-5xl items-center overflow-hidden rounded-2xl bg-brand-petrol px-6 py-10 md:px-12">
-            <ArcThick color="#08B9E6" className="pointer-events-none absolute -right-10 -top-12 w-28 opacity-25 md:right-5 md:w-36" from={190} to={320} />
-            <Triangle color="#FFB400" size={38} className="pointer-events-none absolute bottom-7 right-8 opacity-85 md:right-14" rotate={18} />
-            <span className="pointer-events-none absolute left-7 top-7 size-3 rotate-45 bg-brand-red md:left-10" aria-hidden="true" />
-            <div className="relative max-w-3xl">
-              <h2 className="text-[1.65rem] font-bold leading-tight text-primary-foreground md:text-[2.15rem]">Um trabalho coletivo que continua em movimento.</h2>
-              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-primary-foreground/80 md:text-base">Conheça melhor a Associação, acompanhe nossos projetos ou entre em contato para saber mais sobre a atuação da Maggu.</p>
-              <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row">
-                <Button asChild size="sm" className="rounded-full border border-brand-petrol/15 bg-brand-cyan/85 px-5 font-semibold text-brand-petrol shadow-sm backdrop-blur-md hover:bg-brand-cyan">
-                  <Link to="/quem-somos">Conheça a Associação</Link>
-                </Button>
-                <Button asChild size="sm" className="rounded-full border border-primary-foreground/20 bg-brand-red/85 px-5 font-semibold text-primary-foreground shadow-sm backdrop-blur-md hover:bg-brand-red">
-                  <Link to="/contato">Entre em Contato</Link>
-                </Button>
-              </div>
-            </div>
-            <QuarterCircle corner="br" color="#FFB400" className="pointer-events-none absolute bottom-0 right-0 hidden w-16 opacity-30 md:block" />
-          </div>
-        </div>
-      </section>
+      <CompactFinalCTA
+        title="Um trabalho coletivo que continua em movimento."
+        text="Conheça melhor a Associação, acompanhe nossos projetos ou entre em contato para saber mais sobre a atuação da Maggu."
+        primary={{ label: "Conheça a Associação", to: "/quem-somos" }}
+        secondary={{ label: "Entre em Contato", to: "/contato" }}
+        variant="team"
+      />
+
     </>
   );
 }

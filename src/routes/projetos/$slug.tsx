@@ -84,8 +84,8 @@ function ProjectDetail() {
           </div>
            <div className="mx-auto mt-9 grid max-w-5xl gap-4 md:grid-cols-3 md:gap-5">
             {cardTitles.map((title, index) => (
-               <article key={title} className="group relative flex min-h-[210px] flex-col overflow-hidden rounded-xl border border-brand-petrol/10 bg-white/85 p-5 shadow-[0_18px_38px_-34px_rgba(0,56,76,0.45)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-brand-petrol/15 hover:shadow-[0_22px_42px_-32px_rgba(0,56,76,0.5)] md:p-6">
-                  <span className={`pointer-events-none absolute inset-x-0 top-0 h-1 ${perspectiveStyles[index].accent}`} aria-hidden="true" />
+               <article key={title} className="group relative flex min-h-[210px] flex-col overflow-hidden rounded-xl border border-brand-petrol/10 bg-white/85 p-5 pl-6 shadow-[0_18px_38px_-34px_rgba(0,56,76,0.45)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-brand-petrol/15 hover:shadow-[0_22px_42px_-32px_rgba(0,56,76,0.5)] md:p-6 md:pl-7">
+                  <span className={`pointer-events-none absolute bottom-6 left-0 top-6 w-[3px] rounded-full ${perspectiveStyles[index].accent}`} aria-hidden="true" />
                   <span className={`pointer-events-none absolute -right-7 -top-7 size-20 rounded-full border-[10px] opacity-40 ${perspectiveStyles[index].shape}`} aria-hidden="true" />
                  <div className="relative flex items-center justify-between">
                     <span className={`inline-flex size-8 items-center justify-center rounded-md text-[10px] font-bold ${perspectiveStyles[index].marker}`}>0{index + 1}</span>
@@ -98,6 +98,7 @@ function ProjectDetail() {
                  </div>
               </article>
             ))}
+
           </div>
           <Button asChild variant="ghost" className="mx-auto mt-8 flex w-fit rounded-full text-brand-petrol hover:bg-brand-soft hover:text-brand-red"><Link to="/projetos">Conheça outras iniciativas <ArrowRight aria-hidden="true" /></Link></Button>
         </div>

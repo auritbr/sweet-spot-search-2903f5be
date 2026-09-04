@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { ArcThick, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
 import { documents } from "@/data/site";
+import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
 
@@ -172,27 +173,14 @@ function Transparencia() {
         </div>
       </section>
 
-      <section className="-mb-16 bg-white px-4 pb-4 pt-2 md:pb-6 md:pt-4">
-        <div className="container-x">
-          <div className="relative mx-auto flex min-h-[300px] max-w-5xl items-center justify-center overflow-hidden rounded-2xl bg-brand-petrol px-6 py-10 text-center md:px-12">
-            <QuarterCircle corner="tl" color="#FFB400" className="pointer-events-none absolute left-0 top-0 w-16 opacity-90 md:w-24" />
-            <HatchedCircle size={96} color="#08B9E6" className="pointer-events-none absolute -bottom-10 -right-8 opacity-20 md:right-5" />
-            <span className="pointer-events-none absolute bottom-7 left-8 size-3 rotate-45 bg-brand-red md:left-12" aria-hidden="true" />
-            <div className="relative max-w-3xl">
-              <h2 className="text-[1.65rem] font-bold leading-tight text-primary-foreground md:text-[2.15rem]">Transparência também se constrói com acesso.</h2>
-              <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-primary-foreground/80 md:text-base">Consulte documentos, conheça nossas políticas institucionais e acompanhe informações que ajudam a tornar pública a atuação da Associação Maggu.</p>
-              <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Button asChild size="sm" className="rounded-full border border-brand-petrol/15 bg-brand-gold/90 px-5 font-semibold text-brand-petrol shadow-sm backdrop-blur-md hover:bg-brand-gold">
-                  <a href="#acervo">Acessar o Acervo</a>
-                </Button>
-                <Button asChild size="sm" className="rounded-full border border-primary-foreground/20 bg-brand-red/85 px-5 font-semibold text-primary-foreground shadow-sm backdrop-blur-md hover:bg-brand-red">
-                  <Link to="/contato">Entre em Contato</Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CompactFinalCTA
+        title="Transparência também se constrói com acesso."
+        text="Consulte documentos, conheça nossas políticas institucionais e acompanhe informações que ajudam a tornar pública a atuação da Associação Maggu."
+        primary={{ label: "Acessar o Acervo", href: "#acervo" }}
+        secondary={{ label: "Entre em Contato", to: "/contato" }}
+        variant="transparency"
+      />
+
     </>
 
   );
