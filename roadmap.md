@@ -21,4 +21,4 @@
 - [x] Integrar as novas páginas à navegação e às conexões institucionais
 - [x] Validar as quatro novas páginas em desktop e mobile
 - [x] Refinar as cinco seções solicitadas da Sala de Imprensa
-- [ ] Validar a Sala de Imprensa refinada em desktop e mobile
+- [x] Validar a Sala de Imprensa refinada em desktop e mobile
