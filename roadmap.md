@@ -13,5 +13,5 @@
 - [x] Validar os três ajustes em desktop e mobile
 - [x] Restaurar o hero e refinar a folha documental da Política de Privacidade
 - [x] Validar as 31 seções e a página de Privacidade em desktop e mobile
-- [ ] Corrigir o índice e redesenhar os controles de cookies e acessibilidade
-- [ ] Validar os modais de cookies e acessibilidade em desktop e mobile
+- [x] Corrigir o índice e redesenhar os controles de cookies e acessibilidade
+- [x] Validar os modais de cookies e acessibilidade em desktop e mobile
