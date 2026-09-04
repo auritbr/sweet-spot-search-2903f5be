@@ -101,23 +101,24 @@ function HeroCarousel() {
         <HatchedCircle size={300} color="#08B9E6" className="max-w-[55vw] opacity-25" />
       </div>
 
-      <div className="container-x relative z-10 flex h-full flex-col justify-center pb-10 pt-24 md:pb-12 md:pt-28">
-        <div className="max-w-[760px] animate-fade-up text-primary-foreground" key={i}>
+      <div className="container-x relative z-10 flex h-full flex-col justify-center pb-16 pt-24 md:pb-20 md:pt-28">
+        <div className="w-full max-w-[36rem] animate-fade-up text-primary-foreground lg:max-w-[40rem]" key={i}>
           <p className="mb-3 inline-flex rounded-full border border-primary-foreground/20 bg-background/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-sm backdrop-blur-md">Associação Maggu</p>
-          <h1 style={{ fontSize: "clamp(2.1rem, 4.7vw, 3.6rem)", lineHeight: 1.06, fontWeight: 700, textShadow: "0 4px 24px rgba(0,0,0,.4)" }} className="max-w-3xl text-primary-foreground">
+          <h1 style={{ fontSize: "clamp(1.85rem, 3.8vw, 3rem)", lineHeight: 1.1, fontWeight: 700, textShadow: "0 4px 24px rgba(0,0,0,.4)" }} className="text-balance text-primary-foreground">
             {s.title}
           </h1>
-          <BrushStroke color="#FFB400" className="mt-3 w-28" />
-          <p className="mt-3 max-w-2xl text-[14px] leading-[1.55] text-primary-foreground/90 md:text-[15px] lg:text-[17px]">{s.text}</p>
-          <div className="mt-5 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap">
+          <BrushStroke color="#FFB400" className="mt-3 w-24" />
+          <p className="mt-4 max-w-[34rem] text-[14px] leading-[1.6] text-primary-foreground/90 md:text-[15px]">{s.text}</p>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
             {s.buttons.map((b, k) => (
-              <Link key={k} to={b.to} className={`inline-flex w-auto max-w-full items-center justify-center whitespace-nowrap rounded-full border px-5 py-2.5 text-[13px] shadow-sm backdrop-blur-md transition sm:px-6 sm:py-3 sm:text-sm ${k === 0 ? "border-primary-foreground/20 bg-brand-red/85 text-white hover:bg-brand-red" : "border-primary-foreground/20 bg-background/85 text-brand-ink hover:bg-brand-gold"}`} style={{ fontWeight: 600 }}>
+              <Link key={k} to={b.to} className={`inline-flex items-center justify-center whitespace-nowrap rounded-full border px-5 py-2.5 text-[13px] shadow-sm backdrop-blur-md transition sm:px-6 sm:py-3 sm:text-sm ${k === 0 ? "border-primary-foreground/20 bg-brand-red/85 text-white hover:bg-brand-red" : "border-primary-foreground/20 bg-background/85 text-brand-ink hover:bg-brand-gold"}`} style={{ fontWeight: 600 }}>
                 {b.label}
               </Link>
             ))}
           </div>
         </div>
       </div>
+
 
       <button aria-label="Slide anterior" onClick={() => go(i - 1)} className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-brand-petrol/60 backdrop-blur text-white items-center justify-center hover:bg-brand-petrol">‹</button>
       <button aria-label="Próximo slide" onClick={() => go(i + 1)} className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-brand-petrol/60 backdrop-blur text-white items-center justify-center hover:bg-brand-petrol">›</button>
