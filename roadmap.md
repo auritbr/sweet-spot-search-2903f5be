@@ -25,3 +25,8 @@
 - [x] Redesenhar as três seções indicadas da Sala de Imprensa
 - [x] Redesenhar as quatro seções indicadas de Participe
 - [x] Validar Imprensa e Participe em desktop e mobile
+- [ ] Refinar Identidade e Contato em Sala de Imprensa
+- [ ] Harmonizar cards e composições centrais de Participe
+- [ ] Refinar introdução, relações, localização e projetos de Território
+- [ ] Remover a seção de ações de Território e ajustar o link do hero
+- [ ] Validar as três páginas em desktop e mobile
