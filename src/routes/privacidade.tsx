@@ -155,7 +155,7 @@ function Privacidade() {
               <p>
                 Para os tratamentos de dados pessoais em que define as respectivas finalidades e os meios utilizados, a controladora dos dados é:
               </p>
-              <dl className="grid gap-3 border-l-2 border-brand-cyan bg-brand-soft/50 px-5 py-5 text-[0.95rem] sm:grid-cols-[minmax(0,190px)_minmax(0,1fr)] sm:gap-x-6 sm:gap-y-2.5">
+              <dl className="grid gap-3 rounded border border-brand-petrol/12 bg-brand-soft/40 px-5 py-5 text-[0.95rem] sm:grid-cols-[minmax(0,190px)_minmax(0,1fr)] sm:gap-x-6 sm:gap-y-2.5">
                 <dt className="font-semibold text-brand-ink">Razão social:</dt>
                 <dd className="break-words">Associação Sócio Cultural Maggu</dd>
                 <dt className="font-semibold text-brand-ink">Nome público:</dt>
@@ -304,7 +304,7 @@ function Privacidade() {
             </DocSection>
 
             <DocSection id="sec-6" number={6} tone="privacy" title="Dados pessoais sensíveis">
-              <div className="border-l-2 border-brand-cyan bg-brand-cyan/5 px-5 py-5 space-y-5 md:px-6">
+              <div className="space-y-5 border-l-2 border-brand-petrol/20 pl-5">
                 <p>
                   Em determinadas atividades, especialmente aquelas relacionadas a projetos sociais, culturais, educativos, ações afirmativas, acessibilidade ou cumprimento de requisitos de editais e políticas públicas, poderá ser necessário tratar informações consideradas <strong>dados pessoais sensíveis</strong> pela LGPD.
                 </p>
@@ -394,7 +394,7 @@ function Privacidade() {
             </DocSection>
 
             <DocSection id="sec-10" number={10} tone="privacy" title="Crianças e adolescentes">
-              <div className="border-l-2 border-brand-petrol/40 bg-brand-soft/50 px-5 py-5 space-y-5 md:px-6">
+              <div className="space-y-5 border-l-2 border-brand-petrol/20 pl-5">
                 <p>A Associação Maggu reconhece que crianças e adolescentes merecem proteção especial no tratamento de seus dados pessoais.</p>
                 <p>
                   Sempre que houver tratamento de dados de crianças ou adolescentes, a Associação observará o <strong>melhor interesse da criança e do adolescente</strong>, bem como as disposições da LGPD, do Estatuto da Criança e do Adolescente e demais normas aplicáveis.
@@ -617,15 +617,15 @@ function Privacidade() {
             <DocSection id="sec-22" number={22} tone="privacy" title="Como exercer seus direitos">
               <p>O titular ou seu representante legal poderá apresentar solicitações relacionadas aos seus dados pessoais por meio dos seguintes canais:</p>
               <div className="grid gap-3 sm:grid-cols-2">
-                <div className="border-l-2 border-brand-cyan bg-brand-soft/50 px-4 py-4">
+                <div className="rounded border border-brand-petrol/12 bg-brand-soft/40 px-4 py-3">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gray">E-mail</p>
-                  <a href="mailto:comunicacaomktmaggu@gmail.com" className="mt-1 block break-all text-sm font-semibold text-brand-ink underline decoration-brand-cyan underline-offset-4">
+                  <a href="mailto:comunicacaomktmaggu@gmail.com" className="mt-1 block break-all text-sm font-semibold text-brand-ink underline underline-offset-4">
                     comunicacaomktmaggu@gmail.com
                   </a>
                 </div>
-                <div className="border-l-2 border-brand-cyan bg-brand-soft/50 px-4 py-4">
+                <div className="rounded border border-brand-petrol/12 bg-brand-soft/40 px-4 py-3">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gray">Telefone</p>
-                  <a href="tel:+5582998067374" className="mt-1 block text-sm font-semibold text-brand-ink underline decoration-brand-cyan underline-offset-4">
+                  <a href="tel:+5582998067374" className="mt-1 block text-sm font-semibold text-brand-ink underline underline-offset-4">
                     (82) 99806-7374
                   </a>
                 </div>
@@ -741,7 +741,7 @@ function Privacidade() {
 
             <DocSection id="sec-31" number={31} tone="privacy" title="Canal de Privacidade">
               <p>Dúvidas, solicitações ou pedidos relacionados ao tratamento de dados pessoais poderão ser encaminhados à Associação Maggu pelos seguintes canais:</p>
-              <dl className="grid gap-3 border-l-2 border-brand-cyan bg-brand-soft/50 px-5 py-5 text-[0.95rem] sm:grid-cols-[minmax(0,150px)_minmax(0,1fr)] sm:gap-x-6 sm:gap-y-2.5">
+              <dl className="grid gap-3 rounded border border-brand-petrol/12 bg-brand-soft/40 px-5 py-5 text-[0.95rem] sm:grid-cols-[minmax(0,150px)_minmax(0,1fr)] sm:gap-x-6 sm:gap-y-2.5">
                 <dt className="font-semibold text-brand-ink sm:col-span-2">ASSOCIAÇÃO SÓCIO CULTURAL MAGGU</dt>
                 <dt className="font-semibold text-brand-ink">CNPJ:</dt>
                 <dd className="break-words">61.841.454/0001-80</dd>
@@ -757,11 +757,7 @@ function Privacidade() {
             </DocSection>
 
             <footer className="mt-10 border-t border-brand-petrol/12 pt-8">
-              <div className="mb-5 flex items-center gap-3" aria-hidden="true">
-                <span className="size-1.5 rotate-45 bg-brand-cyan" />
-                <span className="h-px w-16 bg-brand-petrol/15" />
-              </div>
-              <div className="space-y-1 text-sm leading-relaxed text-brand-gray">
+                            <div className="space-y-1 text-sm leading-relaxed text-brand-gray">
                 <p className="font-semibold text-brand-ink">Associação Sócio Cultural Maggu</p>
                 <p className="font-semibold text-brand-ink">Associação Maggu</p>
                 <p className="font-semibold text-brand-ink">CNPJ nº 61.841.454/0001-80</p>
