@@ -17,3 +17,6 @@
 - [x] Validar os modais de cookies e acessibilidade em desktop e mobile
 - [x] Refinar as seções indicadas de ODS / Maggu 2030 e Sala de Imprensa
 - [x] Validar os refinamentos de ODS e Imprensa em desktop e mobile
+- [x] Criar as páginas Território, Governança e Integridade, Participe e Impacto & Memória
+- [x] Integrar as novas páginas à navegação e às conexões institucionais
+- [x] Validar as quatro novas páginas em desktop e mobile

@@ -9,6 +9,7 @@ const nav = [
     label: "Quem Somos", to: "/quem-somos",
     children: [
       { label: "Quem Somos", to: "/quem-somos" },
+      { label: "Território", to: "/quem-somos/territorio" },
       { label: "Equipe", to: "/equipe" },
       { label: "Transparência", to: "/transparencia" },
     ],
@@ -16,6 +17,8 @@ const nav = [
   { label: "Ecossistema", to: "/ecossistema" },
   { label: "Projetos", to: "/projetos" },
   { label: "Agenda", to: "/agenda" },
+  { label: "Impacto & Memória", to: "/impacto-memoria" },
+  { label: "Participe", to: "/participe" },
   { label: "Notícias", to: "/noticias" },
   { label: "Galeria", to: "/galeria" },
   { label: "Contato", to: "/contato" },
@@ -78,7 +81,7 @@ export function Header() {
               )}
             </div>
           ))}
-          <Link to="/contato" className="ml-2 inline-flex items-center px-5 py-2 rounded-full bg-brand-red text-white text-sm hover:bg-brand-red/90 transition" style={{ fontWeight: 600 }}>
+          <Link to="/participe" className="ml-2 inline-flex items-center px-5 py-2 rounded-full bg-brand-red text-white text-sm hover:bg-brand-red/90 transition" style={{ fontWeight: 600 }}>
             Apoie
           </Link>
         </nav>
@@ -119,7 +122,7 @@ export function Header() {
                 )}
               </div>
             ))}
-            <Link to="/contato" className="block text-center mt-3 px-5 py-3 rounded-full bg-brand-red text-white font-semibold uppercase tracking-wider text-sm">
+            <Link to="/participe" className="block text-center mt-3 px-5 py-3 rounded-full bg-brand-red text-white font-semibold uppercase tracking-wider text-sm">
               Apoie
             </Link>
           </div>

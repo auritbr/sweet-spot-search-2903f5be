@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 type CtaLink = {
   label: string;
-  to?: "/" | "/ecossistema" | "/transparencia" | "/projetos" | "/contato" | "/agenda" | "/quem-somos" | "/equipe" | "/privacidade" | "/imprensa" | "/ods-maggu-2030";
+  to?: "/" | "/ecossistema" | "/transparencia" | "/projetos" | "/contato" | "/agenda" | "/quem-somos" | "/quem-somos/territorio" | "/equipe" | "/privacidade" | "/imprensa" | "/ods-maggu-2030" | "/canal-de-denuncias" | "/participe" | "/impacto-memoria";
   href?: string;
 };
 

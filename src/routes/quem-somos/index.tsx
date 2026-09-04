@@ -151,6 +151,7 @@ function QuemSomos() {
             <span className="mt-5 block h-px w-16 bg-brand-petrol/25" aria-hidden="true" />
             <p className="mt-5 leading-relaxed text-brand-gray">O Benedito Bentes não é apenas o endereço da Associação. É território de relações, memórias, desafios, saberes e potências que ajudam a explicar por que e para quem o Ecossistema Maggu existe.</p>
             <p className="mt-4 leading-relaxed text-brand-gray">É parte da identidade da Maggu e do modo como a organização pensa cultura, acesso, memória, formação e participação.</p>
+            <Link to="/quem-somos/territorio" className="mt-6 inline-flex items-center rounded-full bg-brand-petrol px-6 py-2.5 text-sm font-bold text-primary-foreground transition hover:bg-brand-red">Conheça o território</Link>
           </div>
           <div className="relative w-full">
             <div className="relative h-[220px] overflow-hidden rounded-tl-[2.5rem] rounded-br-[2.5rem] border border-brand-petrol/10 md:h-[280px] lg:h-[320px]">
