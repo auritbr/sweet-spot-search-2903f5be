@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { EventPreviewPanel } from "@/components/EventPreviewPanel";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { agendaCategoryStyles, eventDayMonth, upcomingEvents, type AgendaEvent } from "@/data/agenda";
-import { HatchedCircle, ArcThick, BrushStroke, DiamondsCluster, QuarterCircle, Triangle } from "@/components/Shapes";
+import { HatchedCircle, ArcThick, BrushStroke, DiamondsCluster, QuarterCircle, Triangle, DottedCurve } from "@/components/Shapes";
 import culturePointSeal from "@/assets/ponto-de-cultura.png";
 
 export const Route = createFileRoute("/")({
