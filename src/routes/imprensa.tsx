@@ -365,7 +365,7 @@ function Imprensa() {
         <span className="pointer-events-none absolute left-7 top-11 hidden size-10 border-l border-t border-brand-cyan/30 md:block" aria-hidden="true" />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Fale conosco" title="Contato de imprensa" />
-          <div className="mx-auto grid max-w-[900px] overflow-hidden rounded-[18px] border border-brand-petrol/10 bg-brand-soft/30 shadow-[0_18px_42px_-36px_rgba(0,56,76,0.65)] md:grid-cols-[0.85fr_1.15fr]">
+          <div className="mx-auto grid max-w-[900px] overflow-hidden rounded-[18px] border border-brand-petrol/10 bg-brand-soft/30 shadow-[0_18px_42px_-36px_rgba(0,56,76,0.65)] md:grid-cols-[0.72fr_1.28fr]">
             <div className="relative flex min-h-48 flex-col justify-end overflow-hidden bg-brand-petrol p-6 text-primary-foreground md:p-7">
               <span className="absolute -left-7 -top-7 size-24 rounded-full border-[11px] border-brand-cyan/20" aria-hidden="true" />
               <span className="absolute right-7 top-8 size-3 rotate-45 bg-brand-gold" aria-hidden="true" />
@@ -380,7 +380,7 @@ function Imprensa() {
               <a href="mailto:comunicacaomktmaggu@gmail.com" className="group relative flex min-h-32 flex-col justify-between overflow-hidden rounded-[12px] border border-brand-petrol/10 bg-white/85 p-4 transition hover:-translate-y-0.5 hover:border-brand-cyan/35">
                 <span className="pointer-events-none absolute right-0 top-0 size-8 rounded-bl-full bg-brand-cyan/10" aria-hidden="true" />
                 <span className="inline-flex size-9 items-center justify-center rounded-full bg-brand-cyan/10 text-brand-petrol"><Mail className="size-4" aria-hidden="true" /></span>
-                <span className="mt-4 min-w-0"><span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-cyan">E-mail</span><span className="mt-1 block whitespace-nowrap text-[clamp(10px,2.65vw,12px)] leading-snug text-brand-ink group-hover:text-brand-petrol sm:text-[11px] lg:text-xs">comunicacaomktmaggu@gmail.com</span></span>
+                <span className="mt-4 min-w-0"><span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-cyan">E-mail</span><span className="mt-1 block whitespace-nowrap text-[clamp(10px,2.65vw,12px)] leading-snug text-brand-ink group-hover:text-brand-petrol sm:text-[11px]">comunicacaomktmaggu@gmail.com</span></span>
               </a>
               <a href="tel:+5582998067374" className="group relative flex min-h-32 flex-col justify-between overflow-hidden rounded-[12px] border border-brand-petrol/10 bg-white/85 p-4 transition hover:-translate-y-0.5 hover:border-brand-gold/45">
                 <span className="pointer-events-none absolute right-4 top-4 size-2 rotate-45 bg-brand-gold" aria-hidden="true" />
