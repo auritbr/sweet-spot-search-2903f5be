@@ -63,21 +63,31 @@ function ImpactoMemoria(){return <>
 
   <Section className="relative overflow-hidden bg-background">
    <ArcThick color="#FFB400" className="pointer-events-none absolute -right-10 top-8 w-20 opacity-[0.1]" from={25} to={150} />
-   <div className="container-x"><div className="mx-auto max-w-4xl text-center"><SectionTitle align="center" eyebrow="Histórias" title="Nem todo impacto cabe em um número." text="Esta área está preparada para histórias e relatos relacionados às iniciativas, publicados somente após validação institucional."/>
-    <article className="relative mx-auto mt-5 max-w-4xl overflow-hidden rounded-[16px] border border-brand-petrol/8 bg-brand-soft/55 px-5 py-6 text-left shadow-[0_16px_34px_-32px_rgba(0,56,76,0.65)] sm:px-7">
-     <span className="absolute -bottom-5 -right-5 size-14 rounded-full bg-brand-cyan/10" aria-hidden="true"/><Quote className="size-6 text-brand-red/65" aria-hidden="true"/><p className="mt-3 inline-flex rounded-full border border-brand-red/15 bg-background/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-red">Conteúdo ilustrativo e fictício</p><blockquote className="mt-4 text-base leading-relaxed text-brand-ink sm:text-lg">Uma adolescente chegou à oficina de teatro observando tudo em silêncio. Aos poucos, encontrou nas cenas um jeito de falar, criar vínculos e dividir ideias com o grupo. A família percebeu que aquele encontro semanal também havia se tornado um espaço de convivência e confiança.</blockquote>
+   <span className="pointer-events-none absolute left-[6%] bottom-10 hidden size-2.5 rotate-45 bg-brand-cyan/50 md:block" aria-hidden="true" />
+   <span className="pointer-events-none absolute left-[9%] top-12 hidden tracking-[0.4em] text-brand-red/20 md:block" aria-hidden="true">•••</span>
+   <div className="container-x"><div className="mx-auto max-w-3xl text-center"><SectionTitle align="center" eyebrow="Histórias" title="Nem todo impacto cabe em um número." text="Esta área está preparada para histórias e relatos relacionados às iniciativas, publicados somente após validação institucional."/>
+    <article className="mx-auto mt-4 max-w-[860px] rounded-[16px] border border-brand-petrol/10 bg-background px-6 py-7 text-left shadow-[0_10px_24px_-24px_rgba(0,56,76,0.5)] sm:px-8">
+     <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-red">Conteúdo ilustrativo e fictício</p>
+     <p className="mt-3 text-[17px] leading-relaxed text-brand-ink sm:text-[18px]">Uma adolescente chegou à oficina de teatro observando tudo em silêncio. Aos poucos, encontrou nas cenas um jeito de falar, criar vínculos e dividir ideias com o grupo. A família percebeu que aquele encontro semanal também havia se tornado um espaço de convivência e confiança.</p>
+     <p className="mt-4 text-xs leading-relaxed text-brand-gray/80">Relato fictício criado exclusivamente para demonstrar como futuras histórias poderão ser apresentadas nesta seção.</p>
     </article>
    </div></div>
   </Section>
 
   <Section id="evidencias" className="relative overflow-hidden bg-brand-soft">
-   <Triangle color="#FFB400" size={24} className="pointer-events-none absolute right-[8%] top-9 opacity-30" rotate={22}/>
-   <div className="container-x"><div className="mx-auto grid max-w-4xl items-center gap-5 md:grid-cols-[auto_1fr_auto]">
-    <span className="inline-flex size-10 items-center justify-center rounded-full bg-brand-cyan/10"><FileCheck2 className="size-5 text-brand-petrol" aria-hidden="true"/></span>
-    <div><SectionTitle eyebrow="Evidências" title="Documentos que ajudam a comprovar trajetórias e resultados." text="O Banco de Evidências reúne certificados, declarações, registros, matérias, relatórios, programas, publicações e outros documentos comprobatórios."/></div>
-    <Link to="/transparencia" className="group inline-flex items-center gap-1.5 text-sm font-semibold text-brand-petrol underline-offset-4 transition hover:underline">Acessar Transparência <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true"/></Link>
-   </div></div>
+   <Triangle color="#FFB400" size={20} className="pointer-events-none absolute right-[8%] top-8 opacity-25" rotate={22}/>
+   <div className="container-x">
+    <div className="mx-auto flex max-w-[1000px] flex-col gap-4 rounded-[16px] border border-brand-petrol/10 bg-background/80 px-6 py-6 md:flex-row md:items-center md:justify-between md:gap-8 md:px-8">
+     <div className="max-w-[640px]">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-red">Evidências</p>
+      <h2 className="mt-2 text-[20px] font-bold leading-snug text-brand-ink sm:text-[22px]">Documentos que ajudam a comprovar trajetórias e resultados.</h2>
+      <p className="mt-2 text-sm leading-relaxed text-brand-gray">O Banco de Evidências reúne certificados, declarações, registros, matérias, relatórios, programas, publicações e outros documentos comprobatórios.</p>
+     </div>
+     <Link to="/transparencia" className="group inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-brand-petrol underline-offset-4 transition hover:underline">Acessar Transparência <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true"/></Link>
+    </div>
+   </div>
   </Section>
+
 
   <CompactFinalCTA title="Uma trajetória se fortalece quando pode ser conhecida, lembrada e compartilhada." text="Explore as iniciativas da Maggu, conheça o território onde essa história acontece e consulte os documentos que ajudam a registrar sua continuidade." primary={{label:"Ecossistema",to:"/ecossistema"}} secondary={{label:"Território",to:"/quem-somos/territorio"}} tertiary={{label:"Transparência",to:"/transparencia"}} variant="impact"/>
  </>}
