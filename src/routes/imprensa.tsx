@@ -239,33 +239,39 @@ function Imprensa() {
 
       {/* Releases */}
       <Section className="overflow-hidden bg-white">
+        <span className="pointer-events-none absolute right-8 top-10 hidden size-16 rounded-full border border-brand-red/20 md:block" aria-hidden="true" />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Conteúdo" title="Releases" text="Materiais sobre projetos, eventos, resultados e pautas institucionais." />
-          <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-3">
+          <ul className="mx-auto max-w-3xl divide-y divide-brand-petrol/10 overflow-hidden rounded-[20px] border border-brand-petrol/8 bg-brand-soft/35">
             {releases.map((item) => (
-              <article key={item.title} className="flex flex-col rounded-2xl border border-brand-petrol/10 bg-brand-soft/45 p-5 shadow-[0_14px_32px_-30px_rgba(0,56,76,0.6)]">
-                <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em]">
-                  <span className="text-brand-red">{item.category}</span>
+              <li key={item.title} className="group px-5 py-5 transition hover:bg-white/60 md:px-7 md:py-6">
+                <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em]">
+                  <span className="inline-flex items-center gap-1.5 text-brand-red">
+                    <span className="size-1.5 rotate-45 bg-brand-red" aria-hidden="true" />
+                    {item.category}
+                  </span>
                   <span className="text-brand-gray/70">{item.date}</span>
                 </div>
-                <h3 className="mt-2.5 text-[1.05rem] font-bold leading-snug text-brand-ink">{item.title}</h3>
-                <p className="mt-2 flex-1 text-sm leading-[1.7] text-brand-gray">{item.summary}</p>
-                <Link to="/contato" className="mt-4 inline-flex w-fit items-center gap-2 border-b border-brand-cyan/40 pb-1 text-sm font-semibold text-brand-petrol transition hover:text-brand-cyan">
-                  Ler release <ArrowUpRight className="size-4" aria-hidden="true" />
+                <h3 className="mt-2 text-[1.05rem] font-bold leading-snug text-brand-ink md:text-[1.15rem]">{item.title}</h3>
+                <p className="mt-2 text-sm leading-[1.7] text-brand-gray">{item.summary}</p>
+                <Link to="/contato" className="mt-3 inline-flex w-fit items-center gap-2 border-b border-brand-cyan/40 pb-1 text-sm font-semibold text-brand-petrol transition hover:text-brand-cyan">
+                  Ler release <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                 </Link>
-              </article>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </Section>
 
       {/* Clipping */}
       <Section id="clipping" className="overflow-hidden bg-brand-soft">
+        <HatchedCircle size={110} color="#08B9E6" className="pointer-events-none absolute -left-12 top-8 opacity-[0.14]" />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Na mídia" title="Clipping" text="Matérias, entrevistas e reportagens selecionadas sobre a Associação Maggu e suas iniciativas." />
-          <ul className="mx-auto max-w-3xl divide-y divide-brand-petrol/10 overflow-hidden rounded-2xl border border-brand-petrol/10 bg-white/75">
+          <ul className="mx-auto max-w-3xl divide-y divide-brand-petrol/10 overflow-hidden rounded-[20px] border border-brand-petrol/8 bg-white/75 shadow-[0_14px_34px_-32px_rgba(0,56,76,0.5)]">
             {clipping.map((item) => (
-              <li key={item.title} className="flex flex-wrap items-center gap-3 px-5 py-4">
+              <li key={item.title} className="flex flex-wrap items-center gap-3 px-5 py-4 transition hover:bg-brand-soft/40">
+                <span className="hidden h-9 w-[3px] shrink-0 rounded-full bg-brand-cyan/50 sm:block" aria-hidden="true" />
                 <div className="min-w-0 flex-1">
                   <p className="text-[15px] font-semibold leading-snug text-brand-ink">{item.title}</p>
                   <p className="mt-1 text-xs text-brand-gray">{item.outlet} · {item.date}</p>
@@ -284,20 +290,24 @@ function Imprensa() {
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Materiais" title="Documentos de apoio" text="Materiais públicos disponíveis para consulta e download." />
           <ul className="mx-auto max-w-3xl space-y-3">
-            {pressDocs.map((doc) => (
-              <li key={doc.name} className="flex flex-wrap items-center gap-3 rounded-2xl border border-brand-petrol/10 bg-brand-soft/45 px-5 py-4">
-                <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand-petrol text-primary-foreground">
-                  <FileText className="size-4" aria-hidden="true" />
-                </span>
-                <div className="min-w-0 flex-1">
-                  <p className="text-[15px] font-semibold text-brand-ink">{doc.name}</p>
-                  <p className="text-xs text-brand-gray">{doc.format}</p>
-                </div>
-                <a href={doc.url} className="inline-flex shrink-0 items-center gap-2 rounded-full bg-brand-petrol px-4 py-2 text-xs font-semibold text-primary-foreground transition hover:bg-brand-red">
-                  <Download className="size-3.5" aria-hidden="true" /> Acessar
-                </a>
-              </li>
-            ))}
+            {pressDocs.map((doc, i) => {
+              const color = docColors[i % docColors.length];
+              return (
+                <li key={doc.name} className="flex flex-wrap items-center gap-3 rounded-[16px] border border-brand-petrol/8 bg-brand-soft/40 px-5 py-4 transition hover:border-brand-petrol/18">
+                  <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl" style={{ backgroundColor: `${color}1f`, color }}>
+                    <FileText className="size-4" aria-hidden="true" />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[15px] font-semibold text-brand-ink">{doc.name}</p>
+                    <p className="text-xs" style={{ color }}>{doc.format}</p>
+                  </div>
+                  <a href={doc.url} className="inline-flex shrink-0 items-center gap-2 rounded-full bg-brand-petrol px-4 py-2 text-xs font-semibold text-primary-foreground transition hover:bg-brand-red">
+                    <Download className="size-3.5" aria-hidden="true" /> Acessar
+                  </a>
+                </li>
+              );
+            })}
+
           </ul>
         </div>
       </Section>
