@@ -11,3 +11,5 @@
 - [x] Aplicar o selo oficial de Ponto de Cultura na Home e em Quem Somos
 - [x] Centralizar a conclusão institucional de Ecossistema
 - [x] Validar os três ajustes em desktop e mobile
+- [x] Restaurar o hero e refinar a folha documental da Política de Privacidade
+- [x] Validar as 31 seções e a página de Privacidade em desktop e mobile

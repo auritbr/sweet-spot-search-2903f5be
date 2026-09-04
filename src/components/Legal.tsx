@@ -163,11 +163,12 @@ export function LegalContact({ tone }: { tone: LegalTone }) {
 
 export function DocSection({ id, title, number, children }: { id: string; title: string; number: number; tone?: LegalTone; children: ReactNode }) {
   return (
-    <section id={id} className="scroll-mt-28 mt-10 first:mt-0 md:mt-12">
-      <h2 className="text-[1.2rem] font-semibold leading-snug text-brand-ink md:text-[1.4rem]">
+    <section id={id} className="mt-8 scroll-mt-28 first:mt-0 md:mt-9">
+      <h2 className="text-[17px] font-semibold leading-snug text-brand-ink md:text-[18px]">
         {number}. {title}
       </h2>
-      <div className="mt-3 space-y-3.5 text-[0.98rem] leading-[1.72] text-brand-gray md:text-base [&_a:not([class])]:font-medium [&_a:not([class])]:text-brand-ink [&_a:not([class])]:underline [&_a:not([class])]:underline-offset-4 [&_h3]:mt-6 [&_h3]:text-[1.05rem] [&_h3]:font-semibold [&_h3]:text-brand-ink md:[&_h3]:text-[1.15rem] [&_li]:pl-1 [&_strong]:font-semibold [&_strong]:text-brand-ink [&_ul]:list-disc [&_ul]:space-y-1.5 [&_ul]:pl-6">
+      <span className="mt-2 block h-0.5 w-10 bg-brand-cyan" aria-hidden="true" />
+      <div className="mt-3 space-y-3 text-[12px] leading-[1.7] text-brand-gray [&_a:not([class])]:font-medium [&_a:not([class])]:text-brand-ink [&_a:not([class])]:underline [&_a:not([class])]:underline-offset-4 [&_h3]:mt-5 [&_h3]:text-[14px] [&_h3]:font-semibold [&_h3]:leading-snug [&_h3]:text-brand-ink md:[&_h3]:text-[15px] [&_li]:pl-0.5 [&_strong]:font-semibold [&_strong]:text-brand-ink [&_ul]:list-disc [&_ul]:space-y-1.5 [&_ul]:pl-5">
         {children}
       </div>
     </section>
@@ -179,20 +180,22 @@ export function DocIndex({ items }: { items: TocItem[] }) {
   const id = useId();
   return (
     <div className="mt-5">
-      <button
+      <Button
         type="button"
+        variant="outline"
+        size="sm"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls={id}
-        className="inline-flex items-center gap-2 rounded-md border border-brand-petrol/15 bg-brand-soft/60 px-3 py-1.5 text-[13px] font-medium text-brand-ink backdrop-blur transition-colors hover:bg-brand-soft"
+        className="h-8 border-brand-petrol/15 bg-background/75 px-3 text-[12px] text-brand-ink shadow-none backdrop-blur-sm hover:bg-brand-soft/70"
       >
-        Ver índice
+        Índice do documento
         <ChevronDown className={`size-3.5 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden="true" />
-      </button>
-      <div id={id} hidden={!open} className="mt-4 text-left">
+      </Button>
+      <div id={id} hidden={!open} className="mt-4 border-t border-brand-petrol/10 pt-4 text-left">
         <ol className="grid gap-x-8 gap-y-1.5 sm:grid-cols-2">
           {items.map((i, n) => (
-            <li key={i.id} className="text-[13px] leading-snug text-brand-gray">
+            <li key={i.id} className="text-[12px] leading-snug text-brand-gray">
               <a href={`#${i.id}`} onClick={() => setOpen(false)} className="hover:text-brand-ink hover:underline underline-offset-4">
                 <span className="tabular-nums text-brand-gray/70">{n + 1}.</span> {i.label}
               </a>

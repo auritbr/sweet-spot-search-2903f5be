@@ -2,7 +2,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DocIndex, DocSection } from "@/components/Legal";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
-
+import { PageHero } from "@/components/PageHero";
 
 export const Route = createFileRoute("/privacidade")({
   head: () => ({
@@ -68,35 +68,33 @@ function List({ items }: { items: string[] }) {
 
 function Privacidade() {
   return (
-    <main id="main" className="bg-brand-soft/60">
-      <section className="relative overflow-hidden border-b border-brand-petrol/10 bg-background py-10 md:py-12">
-        <div className="container-x relative">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-cyan">Privacidade</p>
-          <h1 className="mt-3 text-[1.7rem] font-bold leading-[1.15] text-brand-ink md:text-[2.2rem]">Política de Privacidade</h1>
-          <p className="mt-3 max-w-2xl text-[0.98rem] leading-relaxed text-brand-gray">Proteção de dados pessoais e transparência institucional.</p>
-        </div>
-        <span className="pointer-events-none absolute -right-10 top-1/2 hidden size-28 -translate-y-1/2 rounded-full border-[10px] border-brand-cyan/10 md:block" aria-hidden="true" />
-      </section>
+    <main id="main" className="bg-brand-soft/40">
+      <PageHero
+        title="Política de Privacidade"
+        eyebrow="Privacidade"
+        subtitle="Entenda como as informações pessoais são tratadas nos canais digitais da Associação Sócio Cultural Maggu."
+        image="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80"
+        accent="cyan"
+        brush="#FFB400"
+        compact
+        decoration="ribbon"
+      />
 
-      <div className="px-4 py-8 md:px-6 md:py-12">
-        <article className="mx-auto max-w-[1000px] rounded-md bg-background px-5 py-8 shadow-[0_1px_3px_rgba(0,56,76,0.06),0_10px_30px_-18px_rgba(0,56,76,0.25)] md:px-14 md:py-14">
-          <header className="border-b border-brand-petrol/12 pb-7 text-center">
-            <h2 className="text-[1.35rem] font-bold uppercase leading-[1.25] tracking-[0.01em] text-brand-ink md:text-[1.85rem]">
+      <div className="px-3 py-8 sm:px-4 md:py-12">
+        <article className="relative mx-auto max-w-[1040px] overflow-hidden rounded-lg border border-brand-petrol/10 bg-background px-5 py-8 shadow-sm md:px-14 md:py-12 lg:px-20">
+          <div className="absolute inset-x-0 top-0 flex h-1" aria-hidden="true">
+            <span className="w-12 bg-brand-cyan" />
+            <span className="w-7 bg-brand-gold" />
+            <span className="w-4 bg-brand-red" />
+          </div>
+          <header className="border-b border-brand-petrol/12 pb-7 text-center md:pb-8">
+            <h2 className="mx-auto max-w-3xl text-[24px] font-bold uppercase leading-[1.2] text-brand-ink md:text-[27px]">
               Política de Privacidade e Proteção de Dados Pessoais
             </h2>
-            <div className="mt-4 space-y-1 text-sm leading-relaxed text-brand-gray">
+            <div className="mt-4 space-y-0.5 text-[12px] leading-[1.7] text-brand-gray">
               <p className="font-semibold text-brand-ink">Associação Sócio Cultural Maggu – Associação Maggu</p>
               <p>CNPJ nº 61.841.454/0001-80</p>
               <p className="pt-2">Última atualização: {ultimaAtualizacao}</p>
-            </div>
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-              <button
-                type="button"
-                onClick={() => window.print()}
-                className="inline-flex items-center gap-2 rounded-md border border-brand-petrol/15 bg-brand-soft/60 px-3 py-1.5 text-[13px] font-medium text-brand-ink backdrop-blur transition-colors hover:bg-brand-soft"
-              >
-                Baixar em PDF
-              </button>
             </div>
             <DocIndex items={toc} />
           </header>
@@ -155,7 +153,7 @@ function Privacidade() {
               <p>
                 Para os tratamentos de dados pessoais em que define as respectivas finalidades e os meios utilizados, a controladora dos dados é:
               </p>
-              <dl className="grid gap-3 rounded border border-brand-petrol/12 bg-brand-soft/40 px-5 py-5 text-[0.95rem] sm:grid-cols-[minmax(0,190px)_minmax(0,1fr)] sm:gap-x-6 sm:gap-y-2.5">
+              <dl className="grid gap-2 border-y border-brand-petrol/10 py-4 text-[12px] leading-[1.7] sm:grid-cols-[minmax(0,170px)_minmax(0,1fr)] sm:gap-x-6">
                 <dt className="font-semibold text-brand-ink">Razão social:</dt>
                 <dd className="break-words">Associação Sócio Cultural Maggu</dd>
                 <dt className="font-semibold text-brand-ink">Nome público:</dt>
@@ -304,7 +302,7 @@ function Privacidade() {
             </DocSection>
 
             <DocSection id="sec-6" number={6} tone="privacy" title="Dados pessoais sensíveis">
-              <div className="space-y-5 border-l-2 border-brand-petrol/20 pl-5">
+              <div className="space-y-3 border-l-2 border-brand-petrol/15 pl-4">
                 <p>
                   Em determinadas atividades, especialmente aquelas relacionadas a projetos sociais, culturais, educativos, ações afirmativas, acessibilidade ou cumprimento de requisitos de editais e políticas públicas, poderá ser necessário tratar informações consideradas <strong>dados pessoais sensíveis</strong> pela LGPD.
                 </p>
@@ -394,7 +392,7 @@ function Privacidade() {
             </DocSection>
 
             <DocSection id="sec-10" number={10} tone="privacy" title="Crianças e adolescentes">
-              <div className="space-y-5 border-l-2 border-brand-petrol/20 pl-5">
+              <div className="space-y-3 border-l-2 border-brand-petrol/15 pl-4">
                 <p>A Associação Maggu reconhece que crianças e adolescentes merecem proteção especial no tratamento de seus dados pessoais.</p>
                 <p>
                   Sempre que houver tratamento de dados de crianças ou adolescentes, a Associação observará o <strong>melhor interesse da criança e do adolescente</strong>, bem como as disposições da LGPD, do Estatuto da Criança e do Adolescente e demais normas aplicáveis.
@@ -616,16 +614,16 @@ function Privacidade() {
 
             <DocSection id="sec-22" number={22} tone="privacy" title="Como exercer seus direitos">
               <p>O titular ou seu representante legal poderá apresentar solicitações relacionadas aos seus dados pessoais por meio dos seguintes canais:</p>
-              <div className="grid gap-3 sm:grid-cols-2">
-                <div className="rounded border border-brand-petrol/12 bg-brand-soft/40 px-4 py-3">
+              <div className="grid gap-4 border-y border-brand-petrol/10 py-4 sm:grid-cols-2">
+                <div>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gray">E-mail</p>
-                  <a href="mailto:comunicacaomktmaggu@gmail.com" className="mt-1 block break-all text-sm font-semibold text-brand-ink underline underline-offset-4">
+                  <a href="mailto:comunicacaomktmaggu@gmail.com" className="mt-1 block break-all text-[12px] font-semibold text-brand-ink underline underline-offset-4">
                     comunicacaomktmaggu@gmail.com
                   </a>
                 </div>
-                <div className="rounded border border-brand-petrol/12 bg-brand-soft/40 px-4 py-3">
+                <div>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gray">Telefone</p>
-                  <a href="tel:+5582998067374" className="mt-1 block text-sm font-semibold text-brand-ink underline underline-offset-4">
+                  <a href="tel:+5582998067374" className="mt-1 block text-[12px] font-semibold text-brand-ink underline underline-offset-4">
                     (82) 99806-7374
                   </a>
                 </div>
@@ -741,7 +739,7 @@ function Privacidade() {
 
             <DocSection id="sec-31" number={31} tone="privacy" title="Canal de Privacidade">
               <p>Dúvidas, solicitações ou pedidos relacionados ao tratamento de dados pessoais poderão ser encaminhados à Associação Maggu pelos seguintes canais:</p>
-              <dl className="grid gap-3 rounded border border-brand-petrol/12 bg-brand-soft/40 px-5 py-5 text-[0.95rem] sm:grid-cols-[minmax(0,150px)_minmax(0,1fr)] sm:gap-x-6 sm:gap-y-2.5">
+              <dl className="grid gap-2 rounded-md border border-brand-petrol/12 bg-brand-soft/35 px-4 py-4 text-[12px] leading-[1.7] sm:grid-cols-[minmax(0,140px)_minmax(0,1fr)] sm:gap-x-6 md:px-5">
                 <dt className="font-semibold text-brand-ink sm:col-span-2">ASSOCIAÇÃO SÓCIO CULTURAL MAGGU</dt>
                 <dt className="font-semibold text-brand-ink">CNPJ:</dt>
                 <dd className="break-words">61.841.454/0001-80</dd>
@@ -756,8 +754,8 @@ function Privacidade() {
               </dl>
             </DocSection>
 
-            <footer className="mt-10 border-t border-brand-petrol/12 pt-8">
-                            <div className="space-y-1 text-sm leading-relaxed text-brand-gray">
+            <footer className="mt-9 border-t border-brand-petrol/12 pt-6">
+              <div className="space-y-0.5 text-[12px] leading-[1.7] text-brand-gray">
                 <p className="font-semibold text-brand-ink">Associação Sócio Cultural Maggu</p>
                 <p className="font-semibold text-brand-ink">Associação Maggu</p>
                 <p className="font-semibold text-brand-ink">CNPJ nº 61.841.454/0001-80</p>
