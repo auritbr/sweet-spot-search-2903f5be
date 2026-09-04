@@ -55,7 +55,16 @@ const buttonStyles: Record<Variant, readonly [string, string]> = {
     "border-brand-petrol/15 bg-brand-gold/90 text-brand-petrol hover:bg-brand-gold",
     "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
   ],
+  press: [
+    "border-brand-petrol/15 bg-brand-gold/90 text-brand-petrol hover:bg-brand-gold",
+    "border-brand-cyan/35 bg-brand-cyan/15 text-primary-foreground hover:bg-brand-cyan/25",
+  ],
+  ods: [
+    "border-brand-petrol/15 bg-brand-cyan/85 text-brand-petrol hover:bg-brand-cyan",
+    "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
+  ],
 };
+
 
 function GraphicComposition({ variant }: { variant: Variant }) {
   if (variant === "privacy") {
