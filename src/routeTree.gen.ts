@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TransparenciaRouteImport } from './routes/transparencia'
 import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
+import { Route as ParticipeRouteImport } from './routes/participe'
 import { Route as OdsMaggu2030RouteImport } from './routes/ods-maggu-2030'
 import { Route as ImprensaRouteImport } from './routes/imprensa'
 import { Route as EquipeRouteImport } from './routes/equipe'
@@ -25,6 +26,7 @@ import { Route as ProjetosIndexRouteImport } from './routes/projetos/index'
 import { Route as NoticiasIndexRouteImport } from './routes/noticias/index'
 import { Route as GaleriaIndexRouteImport } from './routes/galeria/index'
 import { Route as AgendaIndexRouteImport } from './routes/agenda/index'
+import { Route as TransparenciaGovernancaIntegridadeRouteImport } from './routes/transparencia/governanca-integridade'
 import { Route as QuemSomosTerritorioRouteImport } from './routes/quem-somos/territorio'
 import { Route as ProjetosSlugRouteImport } from './routes/projetos/$slug'
 import { Route as NoticiasSlugRouteImport } from './routes/noticias/$slug'
@@ -44,6 +46,11 @@ const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
 const PrivacidadeRoute = PrivacidadeRouteImport.update({
   id: '/privacidade',
   path: '/privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParticipeRoute = ParticipeRouteImport.update({
+  id: '/participe',
+  path: '/participe',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OdsMaggu2030Route = OdsMaggu2030RouteImport.update({
@@ -111,6 +118,12 @@ const AgendaIndexRoute = AgendaIndexRouteImport.update({
   path: '/agenda/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TransparenciaGovernancaIntegridadeRoute =
+  TransparenciaGovernancaIntegridadeRouteImport.update({
+    id: '/governanca-integridade',
+    path: '/governanca-integridade',
+    getParentRoute: () => TransparenciaRoute,
+  } as any)
 const QuemSomosTerritorioRoute = QuemSomosTerritorioRouteImport.update({
   id: '/quem-somos/territorio',
   path: '/quem-somos/territorio',
@@ -145,6 +158,7 @@ export interface FileRoutesByFullPath {
   '/equipe': typeof EquipeRoute
   '/imprensa': typeof ImprensaRoute
   '/ods-maggu-2030': typeof OdsMaggu2030Route
+  '/participe': typeof ParticipeRoute
   '/privacidade': typeof PrivacidadeRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/transparencia': typeof TransparenciaRouteWithChildren
@@ -153,6 +167,7 @@ export interface FileRoutesByFullPath {
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/projetos/$slug': typeof ProjetosSlugRoute
   '/quem-somos/territorio': typeof QuemSomosTerritorioRoute
+  '/transparencia/governanca-integridade': typeof TransparenciaGovernancaIntegridadeRoute
   '/agenda/': typeof AgendaIndexRoute
   '/galeria/': typeof GaleriaIndexRoute
   '/noticias/': typeof NoticiasIndexRoute
@@ -168,6 +183,7 @@ export interface FileRoutesByTo {
   '/equipe': typeof EquipeRoute
   '/imprensa': typeof ImprensaRoute
   '/ods-maggu-2030': typeof OdsMaggu2030Route
+  '/participe': typeof ParticipeRoute
   '/privacidade': typeof PrivacidadeRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/agenda/$slug': typeof AgendaSlugRoute
@@ -175,6 +191,7 @@ export interface FileRoutesByTo {
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/projetos/$slug': typeof ProjetosSlugRoute
   '/quem-somos/territorio': typeof QuemSomosTerritorioRoute
+  '/transparencia/governanca-integridade': typeof TransparenciaGovernancaIntegridadeRoute
   '/agenda': typeof AgendaIndexRoute
   '/galeria': typeof GaleriaIndexRoute
   '/noticias': typeof NoticiasIndexRoute
@@ -191,6 +208,7 @@ export interface FileRoutesById {
   '/equipe': typeof EquipeRoute
   '/imprensa': typeof ImprensaRoute
   '/ods-maggu-2030': typeof OdsMaggu2030Route
+  '/participe': typeof ParticipeRoute
   '/privacidade': typeof PrivacidadeRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/transparencia': typeof TransparenciaRouteWithChildren
@@ -199,6 +217,7 @@ export interface FileRoutesById {
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/projetos/$slug': typeof ProjetosSlugRoute
   '/quem-somos/territorio': typeof QuemSomosTerritorioRoute
+  '/transparencia/governanca-integridade': typeof TransparenciaGovernancaIntegridadeRoute
   '/agenda/': typeof AgendaIndexRoute
   '/galeria/': typeof GaleriaIndexRoute
   '/noticias/': typeof NoticiasIndexRoute
@@ -216,6 +235,7 @@ export interface FileRouteTypes {
     | '/equipe'
     | '/imprensa'
     | '/ods-maggu-2030'
+    | '/participe'
     | '/privacidade'
     | '/termos-de-uso'
     | '/transparencia'
@@ -224,6 +244,7 @@ export interface FileRouteTypes {
     | '/noticias/$slug'
     | '/projetos/$slug'
     | '/quem-somos/territorio'
+    | '/transparencia/governanca-integridade'
     | '/agenda/'
     | '/galeria/'
     | '/noticias/'
@@ -239,6 +260,7 @@ export interface FileRouteTypes {
     | '/equipe'
     | '/imprensa'
     | '/ods-maggu-2030'
+    | '/participe'
     | '/privacidade'
     | '/termos-de-uso'
     | '/agenda/$slug'
@@ -246,6 +268,7 @@ export interface FileRouteTypes {
     | '/noticias/$slug'
     | '/projetos/$slug'
     | '/quem-somos/territorio'
+    | '/transparencia/governanca-integridade'
     | '/agenda'
     | '/galeria'
     | '/noticias'
@@ -261,6 +284,7 @@ export interface FileRouteTypes {
     | '/equipe'
     | '/imprensa'
     | '/ods-maggu-2030'
+    | '/participe'
     | '/privacidade'
     | '/termos-de-uso'
     | '/transparencia'
@@ -269,6 +293,7 @@ export interface FileRouteTypes {
     | '/noticias/$slug'
     | '/projetos/$slug'
     | '/quem-somos/territorio'
+    | '/transparencia/governanca-integridade'
     | '/agenda/'
     | '/galeria/'
     | '/noticias/'
@@ -285,6 +310,7 @@ export interface RootRouteChildren {
   EquipeRoute: typeof EquipeRoute
   ImprensaRoute: typeof ImprensaRoute
   OdsMaggu2030Route: typeof OdsMaggu2030Route
+  ParticipeRoute: typeof ParticipeRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
   TermosDeUsoRoute: typeof TermosDeUsoRoute
   TransparenciaRoute: typeof TransparenciaRouteWithChildren
@@ -321,6 +347,13 @@ declare module '@tanstack/react-router' {
       path: '/privacidade'
       fullPath: '/privacidade'
       preLoaderRoute: typeof PrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/participe': {
+      id: '/participe'
+      path: '/participe'
+      fullPath: '/participe'
+      preLoaderRoute: typeof ParticipeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ods-maggu-2030': {
@@ -414,6 +447,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AgendaIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/transparencia/governanca-integridade': {
+      id: '/transparencia/governanca-integridade'
+      path: '/governanca-integridade'
+      fullPath: '/transparencia/governanca-integridade'
+      preLoaderRoute: typeof TransparenciaGovernancaIntegridadeRouteImport
+      parentRoute: typeof TransparenciaRoute
+    }
     '/quem-somos/territorio': {
       id: '/quem-somos/territorio'
       path: '/quem-somos/territorio'
@@ -453,10 +493,13 @@ declare module '@tanstack/react-router' {
 }
 
 interface TransparenciaRouteChildren {
+  TransparenciaGovernancaIntegridadeRoute: typeof TransparenciaGovernancaIntegridadeRoute
   TransparenciaIndexRoute: typeof TransparenciaIndexRoute
 }
 
 const TransparenciaRouteChildren: TransparenciaRouteChildren = {
+  TransparenciaGovernancaIntegridadeRoute:
+    TransparenciaGovernancaIntegridadeRoute,
   TransparenciaIndexRoute: TransparenciaIndexRoute,
 }
 
@@ -472,6 +515,7 @@ const rootRouteChildren: RootRouteChildren = {
   EquipeRoute: EquipeRoute,
   ImprensaRoute: ImprensaRoute,
   OdsMaggu2030Route: OdsMaggu2030Route,
+  ParticipeRoute: ParticipeRoute,
   PrivacidadeRoute: PrivacidadeRoute,
   TermosDeUsoRoute: TermosDeUsoRoute,
   TransparenciaRoute: TransparenciaRouteWithChildren,
