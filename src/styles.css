@@ -76,17 +76,57 @@
   --ring: #08B9E6;
 }
 
-/* Accessibility helpers */
-html.a11y-highcontrast { filter: contrast(1.35); }
-html.a11y-invert { filter: invert(1) hue-rotate(180deg); }
-html.a11y-invert img, html.a11y-invert video { filter: invert(1) hue-rotate(180deg); }
-html.a11y-grayscale { filter: grayscale(1); }
-html.a11y-underline a { text-decoration: underline !important; }
-html.a11y-readable body { font-family: Arial, Verdana, ui-sans-serif, system-ui, sans-serif; }
-html.a11y-spacing * { letter-spacing: 0.03em !important; line-height: 1.75 !important; }
+/* Accessibility helpers — each option acts only on its own responsibility */
+
+/* Alto contraste: reforço controlado de texto, bordas e links (sem filtros globais) */
+html.a11y-highcontrast {
+  --brand-gray: #2C2C2C;
+  --muted-foreground: #2C2C2C;
+  --foreground: #001E29;
+  --brand-ink: #001E29;
+  --border: #9AA3A7;
+  --input: #9AA3A7;
+}
+html.a11y-highcontrast :is(p, li, span, dd, dt, label, figcaption) { color: inherit; }
+html.a11y-highcontrast .text-brand-gray,
+html.a11y-highcontrast .text-muted-foreground { color: #2C2C2C !important; }
+html.a11y-highcontrast :is(h1, h2, h3, h4, h5, h6) { color: #001E29; }
+html.a11y-highcontrast :is(section, article, aside) :is(a):not([class*="rounded-full"]):not([role="button"]) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+html.a11y-highcontrast :is(input, textarea, select) { border-color: #6B7478; }
+
+/* Escala de cinza: aplicada ao conteúdo, preservando modais e controles de acessibilidade */
+html.a11y-grayscale body > *:not(:has([role="dialog"])):not(:has([data-a11y-ui])) {
+  filter: grayscale(1);
+}
+
+/* Destacar links textuais (não afeta botões, cards ou ícones) */
+html.a11y-underline a:not([class*="rounded-full"]):not([role="button"]):not(:has(> svg:only-child)) {
+  text-decoration: underline !important;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* Fonte para leitura facilitada (fontes já disponíveis no sistema) */
+html.a11y-readable body,
+html.a11y-readable :is(h1, h2, h3, h4, h5, h6, p, li, a, button, input, textarea, select) {
+  font-family: Verdana, Tahoma, Arial, ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Espaçamento de texto moderado, restrito a blocos de leitura */
+html.a11y-spacing :is(p, li, dd, blockquote) {
+  letter-spacing: 0.02em;
+  word-spacing: 0.06em;
+  line-height: 1.85;
+}
+html.a11y-spacing :is(h1, h2, h3, h4) { line-height: 1.35; }
+
 html.a11y-pause *, html.a11y-pause *::before, html.a11y-pause *::after {
   animation: none !important; transition: none !important;
 }
+
 
 @layer base {
   * { border-color: var(--color-border); }
