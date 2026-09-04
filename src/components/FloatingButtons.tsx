@@ -109,25 +109,25 @@ function CookieDialog({ prefs, setPrefs, save }: { prefs: CookiePrefs; setPrefs:
   const marketingId = useId();
 
   return (
-    <DialogContent className="flex max-h-[80dvh] w-[calc(100%-1.5rem)] max-w-[640px] flex-col gap-0 overflow-hidden rounded-xl border-brand-petrol/10 bg-background p-0 shadow-2xl [&>button.absolute]:hidden">
-      <div className="flex shrink-0 items-center gap-3 border-b border-brand-petrol/10 px-5 py-4 sm:px-6">
-        <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-brand-petrol/8 text-brand-petrol" aria-hidden="true">
-          <Cookie className="size-5" strokeWidth={2} />
+    <DialogContent className="flex max-h-[80dvh] w-[calc(100%-1.5rem)] max-w-[470px] flex-col gap-0 overflow-hidden rounded-xl border-brand-petrol/10 bg-background p-0 shadow-2xl sm:max-h-[70dvh] [&>button.absolute]:hidden">
+      <div className="flex shrink-0 items-center gap-2.5 border-b border-brand-petrol/10 px-4 py-2.5 sm:px-5">
+        <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-petrol/8 text-brand-petrol" aria-hidden="true">
+          <Cookie className="size-[21px]" strokeWidth={2} />
         </span>
-        <DialogTitle className="flex-1 text-lg font-semibold text-brand-ink sm:text-xl">Preferências de Cookies</DialogTitle>
+        <DialogTitle className="flex-1 text-[18px] font-semibold leading-tight text-brand-ink">Preferências de Cookies</DialogTitle>
         <DialogClose asChild>
-          <Button variant="ghost" size="icon" className="size-11 shrink-0 rounded-full text-brand-ink hover:bg-brand-petrol/8 hover:text-brand-ink" aria-label="Fechar preferências de cookies">
-            <X className="size-5" aria-hidden="true" />
+          <Button variant="ghost" size="icon" className="size-9 shrink-0 rounded-full text-brand-ink hover:bg-brand-petrol/8 hover:text-brand-ink" aria-label="Fechar preferências de cookies">
+            <X className="size-[18px]" aria-hidden="true" />
           </Button>
         </DialogClose>
       </div>
 
-      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-5 sm:px-6">
-        <DialogDescription className="max-w-xl text-sm leading-relaxed text-brand-gray">
+      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-3.5 sm:px-5">
+        <DialogDescription className="text-[14px] leading-[1.5] text-brand-gray">
           Usamos cookies para melhorar sua experiência e entender como o site é utilizado. Você pode aceitar todos os cookies, rejeitar os opcionais ou salvar suas preferências.
         </DialogDescription>
 
-        <div className="mt-5 space-y-3">
+        <div className="mt-3 space-y-2">
           <PreferenceRow
             title="Cookies necessários"
             description="Essenciais para o funcionamento do site. Não podem ser desativados."
@@ -148,11 +148,12 @@ function CookieDialog({ prefs, setPrefs, save }: { prefs: CookiePrefs; setPrefs:
         </div>
       </div>
 
-      <div className="grid shrink-0 gap-2 border-t border-brand-petrol/10 bg-brand-soft/55 px-5 py-4 sm:grid-cols-3 sm:px-6">
-        <Button variant="outline" onClick={() => save(defaultPrefs)} className="h-10 border-brand-petrol/15 bg-background text-xs text-brand-ink hover:bg-brand-petrol/8 hover:text-brand-ink sm:px-3">Rejeitar opcionais</Button>
-        <Button variant="outline" onClick={() => save(prefs)} className="h-10 border-brand-petrol/20 bg-background/75 text-xs text-brand-ink shadow-sm backdrop-blur-md hover:bg-brand-petrol/8 hover:text-brand-ink sm:px-3">Salvar preferências</Button>
-        <Button onClick={() => save({ necessary: true, preferences: true, analytics: true, marketing: true })} className="h-10 bg-brand-red text-xs text-primary-foreground hover:bg-brand-red/90 sm:px-3">Aceitar todos</Button>
+      <div className="grid shrink-0 gap-2 border-t border-brand-petrol/10 bg-brand-soft/55 px-4 py-3 sm:grid-cols-3 sm:px-5">
+        <Button variant="outline" onClick={() => save(defaultPrefs)} className="h-10 border-brand-petrol/15 bg-background px-3 text-[13px] text-brand-ink hover:bg-brand-petrol/8 hover:text-brand-ink">Rejeitar opcionais</Button>
+        <Button variant="outline" onClick={() => save(prefs)} className="h-10 border-brand-petrol/20 bg-background/75 px-3 text-[13px] text-brand-ink shadow-sm backdrop-blur-md hover:bg-brand-petrol/8 hover:text-brand-ink">Salvar preferências</Button>
+        <Button onClick={() => save({ necessary: true, preferences: true, analytics: true, marketing: true })} className="h-10 bg-brand-red px-3 text-[13px] text-primary-foreground hover:bg-brand-red/90">Aceitar todos</Button>
       </div>
+
     </DialogContent>
   );
 }
@@ -161,13 +162,14 @@ function PreferenceRow({ title, description, control, htmlFor }: { title: string
   const content = (
     <>
       <span className="min-w-0 flex-1">
-        <span className="block text-sm font-semibold text-brand-ink">{title}</span>
-        <span className="mt-1 block text-xs leading-relaxed text-brand-gray">{description}</span>
+        <span className="block text-[15px] font-semibold leading-snug text-brand-ink">{title}</span>
+        <span className="mt-0.5 block text-[13px] leading-snug text-brand-gray">{description}</span>
       </span>
       <span className="shrink-0 self-center">{control}</span>
     </>
   );
-  return htmlFor ? <label htmlFor={htmlFor} className="flex cursor-pointer items-start gap-4 rounded-lg border border-brand-petrol/10 bg-brand-soft/45 p-4">{content}</label> : <div className="flex items-start gap-4 rounded-lg border border-brand-petrol/10 bg-brand-soft/45 p-4">{content}</div>;
+  return htmlFor ? <label htmlFor={htmlFor} className="flex cursor-pointer items-start gap-3 rounded-xl border border-brand-petrol/10 bg-brand-soft/45 px-4 py-3">{content}</label> : <div className="flex items-start gap-3 rounded-xl border border-brand-petrol/10 bg-brand-soft/45 px-4 py-3">{content}</div>;
+
 }
 
 type A11yState = {
@@ -232,52 +234,53 @@ function A11yPanel() {
   const setFont = (v: number) => setS({ ...s, fontScale: Math.min(140, Math.max(80, v)) });
 
   return (
-    <DialogContent className="flex max-h-[80dvh] w-[calc(100%-1.5rem)] max-w-[480px] flex-col gap-0 overflow-hidden rounded-xl border-brand-petrol/10 bg-background p-0 shadow-2xl [&>button.absolute]:hidden">
-      <div className="flex shrink-0 items-center gap-3 bg-brand-petrol px-5 py-3.5 text-primary-foreground sm:px-6">
-        <Accessibility className="size-5 shrink-0" strokeWidth={2} aria-hidden="true" />
-        <DialogTitle className="flex-1 text-lg font-semibold text-primary-foreground">Acessibilidade</DialogTitle>
+    <DialogContent className="flex max-h-[80dvh] w-[calc(100%-2rem)] max-w-[390px] flex-col gap-0 overflow-hidden rounded-xl border-brand-petrol/10 bg-background p-0 shadow-2xl sm:max-h-[70dvh] [&>button.absolute]:hidden">
+      <div className="flex shrink-0 items-center gap-2.5 bg-brand-petrol px-4 py-2.5 text-primary-foreground sm:px-5">
+        <Accessibility className="size-[21px] shrink-0" strokeWidth={2} aria-hidden="true" />
+        <DialogTitle className="flex-1 text-[18px] font-semibold leading-tight text-primary-foreground">Acessibilidade</DialogTitle>
         <DialogDescription className="sr-only">Ajuste a apresentação visual e a legibilidade do site.</DialogDescription>
         <DialogClose asChild>
-          <Button variant="ghost" size="icon" className="size-11 shrink-0 rounded-full text-primary-foreground hover:bg-background/10 hover:text-primary-foreground" aria-label="Fechar acessibilidade">
-            <X className="size-5" aria-hidden="true" />
+          <Button variant="ghost" size="icon" className="size-9 shrink-0 rounded-full text-primary-foreground hover:bg-background/10 hover:text-primary-foreground" aria-label="Fechar acessibilidade">
+            <X className="size-[18px]" aria-hidden="true" />
           </Button>
         </DialogClose>
       </div>
 
-      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-5 sm:px-6">
-        <div className="rounded-lg border border-brand-petrol/10 bg-brand-soft/45 p-4">
+      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-3.5 sm:px-5">
+        <div className="rounded-xl border border-brand-petrol/10 bg-brand-soft/45 px-4 py-3">
           <div className="flex items-center gap-2">
-            <ALargeSmall className="size-4 text-brand-petrol" aria-hidden="true" />
-            <p className="text-sm font-semibold text-brand-ink">Tamanho da fonte ({s.fontScale}%)</p>
+            <ALargeSmall className="size-[18px] text-brand-petrol" aria-hidden="true" />
+            <p className="text-[14px] font-semibold text-brand-ink">Tamanho da fonte ({s.fontScale}%)</p>
           </div>
-          <div className="mt-3 grid grid-cols-2 gap-2">
-            <Button variant="outline" onClick={() => setFont(s.fontScale - 10)} disabled={s.fontScale <= 80} aria-label="Diminuir tamanho da fonte" className="h-11 border-brand-petrol/15 bg-background text-brand-ink shadow-sm hover:bg-brand-petrol/8 hover:text-brand-ink">
+          <div className="mt-2.5 grid grid-cols-2 gap-2">
+            <Button variant="outline" onClick={() => setFont(s.fontScale - 10)} disabled={s.fontScale <= 80} aria-label="Diminuir tamanho da fonte" className="h-10 border-brand-petrol/15 bg-background text-brand-ink shadow-sm hover:bg-brand-petrol/8 hover:text-brand-ink">
               <Minus className="size-4" aria-hidden="true" />
             </Button>
-            <Button variant="outline" onClick={() => setFont(s.fontScale + 10)} disabled={s.fontScale >= 140} aria-label="Aumentar tamanho da fonte" className="h-11 border-brand-petrol/15 bg-background text-brand-ink shadow-sm hover:bg-brand-petrol/8 hover:text-brand-ink">
+            <Button variant="outline" onClick={() => setFont(s.fontScale + 10)} disabled={s.fontScale >= 140} aria-label="Aumentar tamanho da fonte" className="h-10 border-brand-petrol/15 bg-background text-brand-ink shadow-sm hover:bg-brand-petrol/8 hover:text-brand-ink">
               <Plus className="size-4" aria-hidden="true" />
             </Button>
           </div>
         </div>
 
-        <div className="mt-3 space-y-2">
+        <div className="mt-2.5 space-y-2">
           {a11yOptions.map(({ key, label, Icon }) => {
             const id = `a11y-${key}`;
             return (
-            <label key={key} htmlFor={id} className="flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border border-brand-petrol/10 bg-brand-soft/45 px-4 py-2.5">
-              <Icon className="size-4 shrink-0 text-brand-petrol" aria-hidden="true" />
-              <span className="min-w-0 flex-1 text-sm font-medium text-brand-ink">{label}</span>
-              <Switch id={id} checked={s[key]} onCheckedChange={() => toggle(key)} aria-label={label} className="data-[state=checked]:bg-brand-red" />
+            <label key={key} htmlFor={id} className="flex min-h-[54px] cursor-pointer items-center gap-2.5 rounded-xl border border-brand-petrol/10 bg-brand-soft/45 px-4 py-2.5">
+              <Icon className="size-[18px] shrink-0 text-brand-petrol" aria-hidden="true" />
+              <span className="min-w-0 flex-1 text-[14px] font-medium text-brand-ink">{label}</span>
+              <Switch id={id} checked={s[key]} onCheckedChange={() => toggle(key)} aria-label={label} className="scale-90 data-[state=checked]:bg-brand-red" />
             </label>
             );
           })}
         </div>
 
-        <Button variant="outline" onClick={reset} className="mt-4 h-10 w-full border-brand-petrol/15 bg-background text-brand-ink hover:bg-brand-petrol/8 hover:text-brand-ink">
+        <Button variant="outline" onClick={reset} className="mt-3 h-10 w-full border-brand-petrol/15 bg-background text-[13px] text-brand-ink hover:bg-brand-petrol/8 hover:text-brand-ink">
           <RotateCcw className="size-4" aria-hidden="true" />
           Restaurar configurações
         </Button>
       </div>
+
     </DialogContent>
   );
 }
