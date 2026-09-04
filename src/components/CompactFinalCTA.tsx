@@ -7,7 +7,7 @@ type CtaLink = {
   href?: string;
 };
 
-type Variant = "home" | "continuity" | "agenda" | "projects" | "ecosystem" | "transparency" | "team" | "privacy" | "terms" | "press" | "ods";
+type Variant = "home" | "continuity" | "impact" | "agenda" | "projects" | "ecosystem" | "transparency" | "team" | "privacy" | "terms" | "press" | "ods";
 
 
 type CompactFinalCTAProps = {
@@ -15,6 +15,7 @@ type CompactFinalCTAProps = {
   text: string;
   primary: CtaLink;
   secondary: CtaLink;
+  tertiary?: CtaLink;
   variant: Variant;
 };
 
@@ -25,6 +26,10 @@ const buttonStyles: Record<Variant, readonly [string, string]> = {
   ],
   continuity: [
     "border-brand-petrol/15 bg-brand-cyan/85 text-brand-petrol hover:bg-brand-cyan",
+    "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
+  ],
+  impact: [
+    "border-brand-petrol/15 bg-brand-gold/90 text-brand-petrol hover:bg-brand-gold",
     "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
   ],
   agenda: [
@@ -67,6 +72,9 @@ const buttonStyles: Record<Variant, readonly [string, string]> = {
 
 
 function GraphicComposition({ variant }: { variant: Variant }) {
+  if (variant === "impact") {
+    return <><span className="absolute -left-16 bottom-0 size-52 rounded-full border-[28px] border-brand-cyan/15 md:size-64" /><span className="absolute -right-16 -top-20 size-60 rounded-full bg-brand-gold/15 md:size-72" /><span className="absolute right-[15%] top-12 hidden size-12 rotate-45 border border-brand-red/35 md:block" /><span className="absolute bottom-12 left-[23%] hidden grid-cols-3 gap-2 md:grid">{Array.from({ length: 6 }, (_, index) => <i key={index} className="size-1.5 rounded-full bg-brand-cyan/55" />)}</span></>;
+  }
   if (variant === "privacy") {
     return <><span className="absolute -left-16 bottom-0 size-56 rounded-full border-[28px] border-brand-cyan/15 md:size-72" /><span className="absolute -right-10 top-10 h-40 w-44 rotate-6 rounded-md border border-primary-foreground/15 md:h-52 md:w-60" /><span className="absolute right-20 top-20 hidden h-px w-28 bg-brand-cyan/50 md:block" /></>;
   }
@@ -110,7 +118,7 @@ function CtaButton({ item, className }: { item: CtaLink; className: string }) {
   );
 }
 
-export function CompactFinalCTA({ title, text, primary, secondary, variant }: CompactFinalCTAProps) {
+export function CompactFinalCTA({ title, text, primary, secondary, tertiary, variant }: CompactFinalCTAProps) {
   const styles = buttonStyles[variant];
   const isLegal = variant === "privacy" || variant === "terms";
 
@@ -128,6 +136,7 @@ export function CompactFinalCTA({ title, text, primary, secondary, variant }: Co
             <div className="mt-6 flex flex-col items-center justify-center gap-2.5 sm:flex-row">
               <CtaButton item={primary} className={styles[0]} />
               <CtaButton item={secondary} className={styles[1]} />
+              {tertiary && <CtaButton item={tertiary} className={styles[1]} />}
             </div>
 
           </div>

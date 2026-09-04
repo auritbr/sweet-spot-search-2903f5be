@@ -38,3 +38,7 @@
 - [x] Refinar narrativa, trajetória e direcionamentos de Impacto & Memória
 - [x] Compactar os dois chamamentos finais de Participe
 - [x] Validar Território, Impacto & Memória e Participe em desktop e mobile
+- [x] Converter “Propor parceria” em link simples
+- [x] Refinar as seções indicadas de Impacto & Memória
+- [x] Integrar Ecossistema, Território e Transparência ao CTA final
+- [x] Validar Participe e Impacto & Memória em desktop e mobile

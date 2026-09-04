@@ -112,7 +112,11 @@ function Participe() {
             <p className="mt-2 text-base font-bold">{item}</p>
           </div>)}
         </div>
-        <div className="mt-7 text-center"><Button asChild className="rounded-full bg-brand-petrol px-6 text-primary-foreground hover:bg-brand-red"><Link to="/contato">Propor parceria</Link></Button></div>
+        <div className="mt-7 text-center">
+          <a href="https://associacao-maggu.vercel.app/contato" className="group inline-flex items-center gap-1.5 text-sm font-semibold text-brand-petrol underline-offset-4 transition hover:underline">
+            Propor parceria <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+          </a>
+        </div>
       </div>
     </Section>
 
