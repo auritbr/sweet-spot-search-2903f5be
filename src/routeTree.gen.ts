@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TransparenciaRouteImport } from './routes/transparencia'
 import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
+import { Route as OdsMaggu2030RouteImport } from './routes/ods-maggu-2030'
 import { Route as ImprensaRouteImport } from './routes/imprensa'
 import { Route as EquipeRouteImport } from './routes/equipe'
 import { Route as EcossistemaRouteImport } from './routes/ecossistema'
@@ -41,6 +42,11 @@ const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
 const PrivacidadeRoute = PrivacidadeRouteImport.update({
   id: '/privacidade',
   path: '/privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OdsMaggu2030Route = OdsMaggu2030RouteImport.update({
+  id: '/ods-maggu-2030',
+  path: '/ods-maggu-2030',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ImprensaRoute = ImprensaRouteImport.update({
@@ -126,6 +132,7 @@ export interface FileRoutesByFullPath {
   '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
   '/imprensa': typeof ImprensaRoute
+  '/ods-maggu-2030': typeof OdsMaggu2030Route
   '/privacidade': typeof PrivacidadeRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/transparencia': typeof TransparenciaRoute
@@ -146,6 +153,7 @@ export interface FileRoutesByTo {
   '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
   '/imprensa': typeof ImprensaRoute
+  '/ods-maggu-2030': typeof OdsMaggu2030Route
   '/privacidade': typeof PrivacidadeRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/transparencia': typeof TransparenciaRoute
@@ -167,6 +175,7 @@ export interface FileRoutesById {
   '/ecossistema': typeof EcossistemaRoute
   '/equipe': typeof EquipeRoute
   '/imprensa': typeof ImprensaRoute
+  '/ods-maggu-2030': typeof OdsMaggu2030Route
   '/privacidade': typeof PrivacidadeRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/transparencia': typeof TransparenciaRoute
@@ -189,6 +198,7 @@ export interface FileRouteTypes {
     | '/ecossistema'
     | '/equipe'
     | '/imprensa'
+    | '/ods-maggu-2030'
     | '/privacidade'
     | '/termos-de-uso'
     | '/transparencia'
@@ -209,6 +219,7 @@ export interface FileRouteTypes {
     | '/ecossistema'
     | '/equipe'
     | '/imprensa'
+    | '/ods-maggu-2030'
     | '/privacidade'
     | '/termos-de-uso'
     | '/transparencia'
@@ -229,6 +240,7 @@ export interface FileRouteTypes {
     | '/ecossistema'
     | '/equipe'
     | '/imprensa'
+    | '/ods-maggu-2030'
     | '/privacidade'
     | '/termos-de-uso'
     | '/transparencia'
@@ -250,6 +262,7 @@ export interface RootRouteChildren {
   EcossistemaRoute: typeof EcossistemaRoute
   EquipeRoute: typeof EquipeRoute
   ImprensaRoute: typeof ImprensaRoute
+  OdsMaggu2030Route: typeof OdsMaggu2030Route
   PrivacidadeRoute: typeof PrivacidadeRoute
   TermosDeUsoRoute: typeof TermosDeUsoRoute
   TransparenciaRoute: typeof TransparenciaRoute
@@ -285,6 +298,13 @@ declare module '@tanstack/react-router' {
       path: '/privacidade'
       fullPath: '/privacidade'
       preLoaderRoute: typeof PrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ods-maggu-2030': {
+      id: '/ods-maggu-2030'
+      path: '/ods-maggu-2030'
+      fullPath: '/ods-maggu-2030'
+      preLoaderRoute: typeof OdsMaggu2030RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/imprensa': {
@@ -402,6 +422,7 @@ const rootRouteChildren: RootRouteChildren = {
   EcossistemaRoute: EcossistemaRoute,
   EquipeRoute: EquipeRoute,
   ImprensaRoute: ImprensaRoute,
+  OdsMaggu2030Route: OdsMaggu2030Route,
   PrivacidadeRoute: PrivacidadeRoute,
   TermosDeUsoRoute: TermosDeUsoRoute,
   TransparenciaRoute: TransparenciaRoute,
