@@ -7,3 +7,7 @@
 - [x] Validar Home e Contato em desktop e mobile
 - [x] Validar páginas afetadas em desktop e mobile
 - [x] Validar o redesign editorial de Privacidade e Termos em desktop e mobile
+- [x] Corrigir o hover dos eventos em destaque na Home
+- [x] Aplicar o selo oficial de Ponto de Cultura na Home e em Quem Somos
+- [x] Centralizar a conclusão institucional de Ecossistema
+- [x] Validar os três ajustes em desktop e mobile
