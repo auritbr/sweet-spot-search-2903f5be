@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { HeroButton, PageHero, Section, SectionTitle } from "@/components/PageHero";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { ArcThick, DiamondsCluster, HatchedCircle, QuarterCircle, Triangle } from "@/components/Shapes";
+import culturePointSeal from "@/assets/logo-selo-ponto-de-cultura.png.asset.json";
 
 export const Route = createFileRoute("/quem-somos/")({
   head: () => ({
@@ -123,15 +124,17 @@ function QuemSomos() {
             <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-brand-petrol/15" aria-hidden="true" />
             <Triangle color="#08B9E6" size={22} className="pointer-events-none absolute -right-1 top-6 opacity-50" rotate={18} />
             <QuarterCircle corner="bl" color="#FFB400" className="pointer-events-none absolute -bottom-3 -left-3 w-14 opacity-40" />
-            <div className="relative grid items-center gap-6 md:grid-cols-[1fr_auto]">
+            <div className="relative grid items-center gap-7 md:grid-cols-[minmax(0,1fr)_11rem] md:gap-9">
               <div>
                 <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-brand-red">Ponto de Cultura</p>
                 <h2 id="ponto-cultura-title" className="mt-2 text-xl leading-snug text-brand-ink md:text-2xl">Um reconhecimento que integra essa trajetória.</h2>
                 <p className="mt-3 text-sm leading-relaxed text-brand-gray">Em 2025, o Teatro Escola Maggu foi certificado como Ponto de Cultura, fortalecendo institucionalmente uma atuação cultural construída no território.</p>
               </div>
-              <div className="relative text-left md:min-w-40 md:border-l md:border-brand-petrol/15 md:pl-8 md:text-center" aria-label="Certificação como Ponto de Cultura em 2025">
-                <span className="block text-4xl font-bold leading-none text-brand-petrol md:text-5xl">2025</span>
-                <span className="mt-2 block text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-red">Ponto de Cultura</span>
+              <div className="relative mx-auto w-full max-w-40 text-center md:border-l md:border-brand-petrol/15 md:pl-7">
+                <div className="mx-auto aspect-square w-full rounded-full bg-brand-soft/70 p-1.5 shadow-[0_14px_32px_-22px_rgba(0,56,76,0.55)] ring-1 ring-brand-petrol/10">
+                  <img src={culturePointSeal.url} alt="Selo oficial Ponto de Cultura, certificado pelo Ministério da Cultura" className="h-full w-full object-contain" loading="lazy" />
+                </div>
+                <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-petrol">Certificação conquistada em 2025</p>
               </div>
             </div>
           </div>

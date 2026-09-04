@@ -8,6 +8,7 @@ import { EventPreviewPanel } from "@/components/EventPreviewPanel";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { agendaCategoryStyles, eventDayMonth, upcomingEvents, type AgendaEvent } from "@/data/agenda";
 import { HatchedCircle, ArcThick, BrushStroke, DiamondsCluster, QuarterCircle, Triangle } from "@/components/Shapes";
+import culturePointSeal from "@/assets/logo-selo-ponto-de-cultura.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -260,10 +261,12 @@ function CulturePointSection() {
               Certificação Ponto de Cultura
             </span>
           </div>
-          <div className="relative min-h-40 overflow-hidden bg-brand-petrol/95 md:min-h-full" aria-hidden="true">
-            <HatchedCircle size={150} color="#FFB400" className="absolute -right-10 -top-8 opacity-30" />
-            <ArcThick color="#08B9E6" className="absolute -left-6 bottom-6 w-24 opacity-60" from={200} to={330} />
-            <span className="absolute left-1/2 top-1/2 grid size-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-brand-gold/50 bg-brand-gold/15 text-2xl font-bold text-brand-gold">★</span>
+          <div className="relative grid min-h-56 place-items-center overflow-hidden bg-brand-petrol/95 px-7 py-8 md:min-h-full">
+            <HatchedCircle size={150} color="#FFB400" className="pointer-events-none absolute -right-10 -top-8 opacity-20" />
+            <ArcThick color="#08B9E6" className="pointer-events-none absolute -left-6 bottom-6 w-24 opacity-40" from={200} to={330} />
+            <div className="relative grid aspect-square w-full max-w-44 place-items-center rounded-full bg-background p-2 shadow-[0_18px_38px_-20px_rgba(0,0,0,0.65)] ring-1 ring-primary-foreground/25 md:max-w-48">
+              <img src={culturePointSeal.url} alt="Selo oficial Ponto de Cultura, certificado pelo Ministério da Cultura" className="h-full w-full object-contain" loading="lazy" />
+            </div>
           </div>
         </div>
       </div>
@@ -292,7 +295,7 @@ function AgendaSection() {
               const { day, month } = eventDayMonth(event.date);
               const style = agendaCategoryStyles[event.category];
               return (
-                <Button key={event.slug} type="button" variant="ghost" onClick={() => setSelectedEvent(event)} aria-label={`Ver detalhes de ${event.title}`} className="group relative h-auto w-full flex-col items-stretch overflow-hidden rounded-2xl border border-brand-petrol/10 bg-white/90 p-4 text-left shadow-[0_12px_28px_-26px_rgba(0,56,76,0.5)] transition hover:-translate-y-0.5 hover:border-brand-petrol/20 hover:shadow-[0_16px_32px_-24px_rgba(0,56,76,0.55)]">
+                <Button key={event.slug} type="button" variant="ghost" onClick={() => setSelectedEvent(event)} aria-label={`Ver detalhes de ${event.title}`} className="group relative h-auto w-full flex-col items-stretch overflow-hidden rounded-2xl border border-brand-petrol/10 bg-white/90 p-4 text-left shadow-[0_12px_28px_-26px_rgba(0,56,76,0.5)] transition duration-300 hover:!-translate-y-0.5 hover:!border-brand-petrol/25 hover:!bg-brand-soft/35 hover:!text-brand-ink hover:!shadow-[0_18px_34px_-24px_rgba(0,56,76,0.5)]">
                   <span className={`pointer-events-none absolute -right-6 -top-6 size-16 rounded-full opacity-[0.08] ${style.accentText.replace("text-", "bg-")}`} aria-hidden="true" />
                   <span className="flex items-center gap-3">
                     <time dateTime={event.date} className={`flex size-11 shrink-0 flex-col items-center justify-center rounded-xl bg-brand-soft/70 ${style.accentText}`}>
@@ -301,7 +304,7 @@ function AgendaSection() {
                     </time>
                     <span className={`block text-[10px] font-bold uppercase tracking-[0.12em] ${style.text}`}>{event.category}</span>
                   </span>
-                  <span className="mt-3 block text-[15px] font-bold leading-snug text-brand-ink transition group-hover:text-brand-red">{event.title}</span>
+                  <span className="mt-3 block text-[15px] font-bold leading-snug text-brand-ink">{event.title}</span>
                   <span className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-brand-gray">
                     {event.time && <span className="flex items-center gap-1.5"><Clock3 className="size-3" aria-hidden="true" />{event.time}</span>}
                     {event.location && <span className="flex min-w-0 items-center gap-1.5"><MapPin className="size-3 shrink-0" aria-hidden="true" /><span className="truncate">{event.location}</span></span>}

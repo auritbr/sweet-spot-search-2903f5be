@@ -280,15 +280,15 @@ function Ecossistema() {
         <Triangle color="#FFB400" size={34} className="pointer-events-none absolute left-[8%] top-14 hidden opacity-45 md:block" rotate={18} />
         <HatchedCircle size={92} color="#08B9E6" className="pointer-events-none absolute -right-8 bottom-8 opacity-15" />
         <div className="container-x">
-          <div className="relative mx-auto max-w-3xl text-center">
-            <span className="mx-auto mb-5 block h-px w-12 bg-brand-red" aria-hidden="true" />
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Uma atuação integrada</p>
-            <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.7rem, 2.5vw, 2.35rem)", lineHeight: 1.16, fontWeight: 700 }}>Organizar não significa separar.</h2>
-            <div className="mx-auto mt-6 grid max-w-2xl gap-4 text-left text-sm leading-relaxed text-brand-gray md:grid-cols-2 md:gap-8 md:text-[15px]">
-              <p>Os eixos tornam mais fácil compreender a diversidade da Maggu, enquanto as conexões entre eles preservam aquilo que caracteriza sua atuação: diferentes linguagens, públicos e experiências compartilhando um mesmo território.</p>
-              <p>É assim que teatro pode dialogar com memória, audiovisual pode se tornar formação, esporte pode fortalecer convivência e sustentabilidade pode se transformar em processo criativo.</p>
-            </div>
-            <p className="mx-auto mt-7 max-w-xl border-t border-brand-petrol/10 pt-5 text-base font-semibold leading-relaxed text-brand-ink">O território é o ponto de encontro entre essas diferentes formas de atuar.</p>
+           <div className="relative mx-auto max-w-3xl text-center">
+             <span className="mx-auto mb-5 block h-px w-12 bg-brand-red" aria-hidden="true" />
+             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Uma atuação integrada</p>
+             <h2 className="mt-3 text-brand-ink" style={{ fontSize: "clamp(1.7rem, 2.5vw, 2.35rem)", lineHeight: 1.16, fontWeight: 700 }}>Organizar não significa separar.</h2>
+             <div className="mx-auto mt-6 max-w-[44rem] space-y-4 text-center text-sm leading-[1.75] text-brand-gray md:text-[15px]">
+               <p>Os eixos tornam mais fácil compreender a diversidade da Maggu, enquanto as conexões entre eles preservam aquilo que caracteriza sua atuação: diferentes linguagens, públicos e experiências compartilhando um mesmo território.</p>
+               <p>É assim que teatro pode dialogar com memória, audiovisual pode se tornar formação, esporte pode fortalecer convivência e sustentabilidade pode se transformar em processo criativo.</p>
+             </div>
+             <p className="mx-auto mt-7 max-w-xl border-t border-brand-petrol/10 pt-5 text-center text-base font-semibold leading-relaxed text-brand-ink">O território é o ponto de encontro entre essas diferentes formas de atuar.</p>
           </div>
         </div>
       </Section>
