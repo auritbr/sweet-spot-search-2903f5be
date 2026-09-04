@@ -75,7 +75,7 @@ function Contato() {
                   <label htmlFor="msg" className="block text-xs font-semibold mb-1.5">Mensagem</label>
                   <textarea id="msg" name="msg" required rows={4} className="w-full rounded-lg border border-black/10 px-3 py-2 text-sm bg-brand-soft focus:bg-white outline-none focus:border-brand-red" />
                 </div>
-                <button type="submit" className="mt-1 justify-self-start px-6 py-2.5 rounded-full bg-brand-gold text-brand-ink font-bold uppercase tracking-wider text-xs hover:bg-brand-red hover:text-white transition">Enviar mensagem</button>
+                <Button type="submit" size="sm" className="mt-1 justify-self-start rounded-full bg-brand-gold px-6 text-xs font-bold uppercase tracking-wider text-brand-ink hover:bg-brand-red hover:text-primary-foreground">Enviar mensagem</Button>
               </form>
             )}
             <HatchedCircle size={90} color="#08B9E6" className="absolute -top-6 -right-4 opacity-60 -z-0" />
