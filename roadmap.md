@@ -34,3 +34,7 @@
 - [x] Reorganizar Parcerias e Colaboração em Participe
 - [x] Redesenhar as seções indicadas de Governança e Integridade
 - [x] Validar Território, Participe e Governança em desktop e mobile
+- [x] Reduzir a escala da localização em Território
+- [x] Refinar narrativa, trajetória e direcionamentos de Impacto & Memória
+- [x] Compactar os dois chamamentos finais de Participe
+- [x] Validar Território, Impacto & Memória e Participe em desktop e mobile
