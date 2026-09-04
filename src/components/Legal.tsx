@@ -187,7 +187,7 @@ export function DocIndex({ items }: { items: TocItem[] }) {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls={id}
-        className="h-8 border-brand-petrol/15 bg-background/75 px-3 text-[12px] text-brand-ink shadow-none backdrop-blur-sm hover:bg-brand-soft/70"
+        className="h-8 border-brand-petrol/15 bg-background/80 px-3 text-[12px] text-brand-ink shadow-sm backdrop-blur-md transition-[background-color,border-color,box-shadow,transform] hover:-translate-y-px hover:border-brand-petrol/30 hover:bg-brand-petrol/8 hover:text-brand-ink hover:shadow-md active:translate-y-0 active:bg-brand-petrol/12 active:text-brand-ink focus-visible:text-brand-ink"
       >
         Índice do documento
         <ChevronDown className={`size-3.5 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden="true" />
