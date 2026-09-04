@@ -133,6 +133,15 @@ function HeroCarousel() {
       <button aria-label="Slide anterior" onClick={() => go(i - 1)} className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-brand-petrol/60 backdrop-blur text-white items-center justify-center hover:bg-brand-petrol">‹</button>
       <button aria-label="Próximo slide" onClick={() => go(i + 1)} className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-brand-petrol/60 backdrop-blur text-white items-center justify-center hover:bg-brand-petrol">›</button>
 
+      {/* Controles discretos em liquid glass para o mobile — flanqueiam o indicador inferior, sem cobrir título/descrição/botões */}
+      <button aria-label="Slide anterior" onClick={() => go(i - 1)} className="md:hidden absolute bottom-5 left-4 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-white/20 text-white shadow-md backdrop-blur-md transition active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-cyan">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+      </button>
+      <button aria-label="Próximo slide" onClick={() => go(i + 1)} className="md:hidden absolute bottom-5 right-4 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-white/20 text-white shadow-md backdrop-blur-md transition active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-cyan">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+      </button>
+
+
       <div className="absolute bottom-6 inset-x-0 z-30 flex justify-center gap-2">
         {slides.map((_, idx) => (
           <button key={idx} onClick={() => go(idx)} aria-label={`Slide ${idx + 1}`}
