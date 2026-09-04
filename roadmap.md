@@ -10,4 +10,4 @@
 - [x] Corrigir o hover dos eventos em destaque na Home
 - [x] Aplicar o selo oficial de Ponto de Cultura na Home e em Quem Somos
 - [x] Centralizar a conclusão institucional de Ecossistema
-- [ ] Validar os três ajustes em desktop e mobile
+- [x] Validar os três ajustes em desktop e mobile
