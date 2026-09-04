@@ -1,8 +1,9 @@
 // Conteúdo institucional sujeito à validação final da Associação Maggu.
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArcThick, HatchedCircle, Triangle, QuarterCircle } from "@/components/Shapes";
-import { Breadcrumbs, LegalToc, LegalSection } from "@/components/Legal";
+import { LegalContact, LegalIntro, LegalToc, LegalSection } from "@/components/Legal";
 import { PageHero } from "@/components/PageHero";
+import { CompactFinalCTA } from "@/components/CompactFinalCTA";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/privacidade")({
   head: () => ({
@@ -41,14 +42,16 @@ function Privacidade() {
 
   return (
     <main id="main">
-      <PageHero title="Privacidade e proteção de dados" eyebrow="Privacidade" subtitle="A Associação Maggu busca tratar dados pessoais com responsabilidade, segurança e respeito aos direitos das pessoas." image="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80" accent="cyan" brush="#FFB400" compact decoration="ribbon" />
+      <PageHero title="Política de Privacidade" eyebrow="Privacidade" subtitle="Entenda como as informações pessoais são tratadas nos canais digitais da Associação Sócio Cultural Maggu." image="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80" accent="cyan" brush="#FFB400" compact decoration="ribbon" />
 
-      <div className="bg-white py-10 md:py-14">
-        <div className="container-x grid gap-8 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12">
-          <LegalToc items={toc} />
+      <LegalIntro tone="privacy" eyebrow="Transparência e dados" title="Privacidade também faz parte da nossa responsabilidade institucional." text="A Associação Maggu busca tratar informações pessoais com responsabilidade, clareza e respeito. Nesta página estão reunidas as orientações relacionadas à coleta, utilização e proteção de dados nos canais digitais da organização." updated={ultimaAtualizacao} />
 
-          <div className="max-w-2xl">
-            <LegalSection id="sobre" title="Sobre esta página">
+      <div className="bg-background py-10 md:py-14">
+        <div className="container-x grid gap-10 lg:grid-cols-[220px_minmax(0,880px)] lg:justify-center lg:gap-14">
+          <LegalToc items={toc} tone="privacy" />
+
+          <article className="min-w-0 max-w-[880px]">
+            <LegalSection id="sobre" title="Sobre esta página" number={1} tone="privacy">
               <p>
                 A Associação Maggu utiliza canais digitais para divulgar suas iniciativas, receber mensagens, organizar atividades e estabelecer comunicação com diferentes públicos.
               </p>
@@ -57,37 +60,34 @@ function Privacidade() {
               </p>
             </LegalSection>
 
-            <LegalSection id="dados" title="Quais informações podem ser coletadas?">
+            <LegalSection id="dados" title="Quais informações podem ser coletadas?" number={2} tone="privacy">
               <p>As informações coletadas dependem do modo como cada pessoa utiliza o site.</p>
-              <div className="grid gap-4 sm:grid-cols-2 not-prose">
-                <div className="rounded-2xl border border-black/10 p-5">
-                  <span className="inline-block w-8 h-1.5 rounded-full" style={{ backgroundColor: "#ED1C24" }} aria-hidden="true" />
-                  <h3 className="mt-3 text-brand-ink text-base" style={{ fontWeight: 600 }}>Dados de contato</h3>
-                  <ul className="mt-2 space-y-1 text-sm list-disc pl-5">
+              <div className="space-y-7 border-l border-brand-cyan/30 pl-5 md:pl-7">
+                <div>
+                  <h3>Dados de contato</h3>
+                  <ul className="mt-2">
                     <li>nome;</li>
                     <li>e-mail;</li>
                     <li>telefone;</li>
                     <li>outras informações fornecidas voluntariamente em formulários.</li>
                   </ul>
                 </div>
-                <div className="rounded-2xl border border-black/10 p-5">
-                  <span className="inline-block w-8 h-1.5 rounded-full" style={{ backgroundColor: "#FFB400" }} aria-hidden="true" />
-                  <h3 className="mt-3 text-brand-ink text-base" style={{ fontWeight: 600 }}>Dados relacionados à participação</h3>
-                  <p className="mt-2 text-sm">
+                <div>
+                  <h3>Dados relacionados à participação</h3>
+                  <p className="mt-2">
                     Informações necessárias para inscrições em cursos, oficinas, eventos ou outras atividades, quando esses formulários existirem.
                   </p>
                 </div>
-                <div className="rounded-2xl border border-black/10 p-5 sm:col-span-2">
-                  <span className="inline-block w-8 h-1.5 rounded-full" style={{ backgroundColor: "#08B9E6" }} aria-hidden="true" />
-                  <h3 className="mt-3 text-brand-ink text-base" style={{ fontWeight: 600 }}>Dados de navegação</h3>
-                  <p className="mt-2 text-sm">
+                <div>
+                  <h3>Dados de navegação</h3>
+                  <p className="mt-2">
                     Informações técnicas relacionadas ao funcionamento do site e aos cookies efetivamente utilizados.
                   </p>
                 </div>
               </div>
             </LegalSection>
 
-            <LegalSection id="uso" title="Como os dados podem ser utilizados">
+            <LegalSection id="uso" title="Como os dados podem ser utilizados" number={3} tone="privacy">
               <p>Dependendo do serviço utilizado, as finalidades podem incluir:</p>
               <ul className="space-y-2 list-disc pl-5">
                 <li>responder solicitações enviadas pelos canais institucionais;</li>
@@ -99,7 +99,7 @@ function Privacidade() {
               </ul>
             </LegalSection>
 
-            <LegalSection id="formularios" title="Formulários e comunicações">
+            <LegalSection id="formularios" title="Formulários e comunicações" number={4} tone="privacy">
               <p>
                 Os formulários do site devem solicitar apenas as informações necessárias para a finalidade apresentada. Antes do envio, o usuário deve ter acesso às informações relevantes sobre o uso dos dados e, quando necessário, às opções de consentimento correspondentes.
               </p>
@@ -112,47 +112,47 @@ function Privacidade() {
               </div>
             </LegalSection>
 
-            <LegalSection id="cookies" title="Cookies e preferências">
+            <LegalSection id="cookies" title="Cookies e preferências" number={5} tone="privacy">
               <p>
                 O site pode utilizar cookies necessários para seu funcionamento e, quando efetivamente configurados, outras categorias relacionadas a preferências, medição de uso ou serviços externos.
               </p>
-              <dl className="space-y-3">
-                <div className="rounded-xl bg-brand-soft/60 p-4">
-                  <dt className="text-brand-ink text-sm" style={{ fontWeight: 600 }}>Cookies necessários</dt>
-                  <dd className="text-sm mt-1">Permitem funções essenciais do site e não podem ser desativados quando indispensáveis ao funcionamento.</dd>
+              <dl className="divide-y divide-brand-petrol/10 border-y border-brand-petrol/10">
+                <div className="py-4">
+                  <dt className="text-sm font-semibold text-brand-ink">Cookies necessários</dt>
+                  <dd className="mt-1 text-sm">Permitem funções essenciais do site e não podem ser desativados quando indispensáveis ao funcionamento.</dd>
                 </div>
-                <div className="rounded-xl bg-brand-soft/60 p-4">
-                  <dt className="text-brand-ink text-sm" style={{ fontWeight: 600 }}>Cookies de preferências</dt>
+                <div className="py-4">
+                  <dt className="text-sm font-semibold text-brand-ink">Cookies de preferências</dt>
                   <dd className="text-sm mt-1">Podem guardar escolhas feitas pelo usuário para melhorar sua experiência.</dd>
                 </div>
-                <div className="rounded-xl bg-brand-soft/60 p-4">
-                  <dt className="text-brand-ink text-sm" style={{ fontWeight: 600 }}>Cookies analíticos</dt>
+                <div className="py-4">
+                  <dt className="text-sm font-semibold text-brand-ink">Cookies analíticos</dt>
                   <dd className="text-sm mt-1">Podem ser utilizados para compreender como o site é utilizado, quando esse recurso estiver configurado.</dd>
                 </div>
-                <div className="rounded-xl bg-brand-soft/60 p-4">
-                  <dt className="text-brand-ink text-sm" style={{ fontWeight: 600 }}>Cookies de terceiros</dt>
+                <div className="py-4">
+                  <dt className="text-sm font-semibold text-brand-ink">Cookies de terceiros</dt>
                   <dd className="text-sm mt-1">Podem existir quando o site utilizar serviços externos que dependam dessa tecnologia.</dd>
                 </div>
               </dl>
-              <button type="button" onClick={openCookies} className="inline-flex items-center px-5 py-2.5 rounded-full text-white text-sm hover:opacity-90" style={{ backgroundColor: "#00384C", fontWeight: 600 }}>
+              <Button type="button" onClick={openCookies} size="sm" className="rounded-full bg-brand-petrol px-5 text-primary-foreground hover:bg-brand-petrol/90">
                 Gerenciar preferências de cookies
-              </button>
+              </Button>
             </LegalSection>
 
-            <LegalSection id="compartilhamento" title="Compartilhamento de informações">
+            <LegalSection id="compartilhamento" title="Compartilhamento de informações" number={6} tone="privacy">
               <p>A Associação não deve disponibilizar dados pessoais de forma incompatível com a finalidade informada ao titular.</p>
               <p>
                 Quando algum serviço técnico necessário ao funcionamento dos canais digitais envolver terceiros, o tratamento deverá observar as condições aplicáveis ao serviço e as práticas de proteção de dados adotadas pela Associação.
               </p>
             </LegalSection>
 
-            <LegalSection id="seguranca" title="Segurança">
+            <LegalSection id="seguranca" title="Segurança" number={7} tone="privacy">
               <p>
                 A Associação busca adotar medidas compatíveis com sua operação para proteger informações contra acesso, alteração, divulgação ou uso inadequado.
               </p>
             </LegalSection>
 
-            <LegalSection id="direitos" title="Direitos relacionados aos dados pessoais">
+            <LegalSection id="direitos" title="Direitos relacionados aos dados pessoais" number={8} tone="privacy">
               <p>
                 De acordo com a legislação aplicável, titulares de dados pessoais podem solicitar informações e exercer direitos relacionados ao tratamento de seus dados.
               </p>
@@ -167,7 +167,7 @@ function Privacidade() {
               <Link to="/contato" className="inline-flex items-center px-5 py-2.5 rounded-full text-white text-sm hover:opacity-90" style={{ backgroundColor: "#ED1C24", fontWeight: 600 }}>Entrar em contato</Link>
             </LegalSection>
 
-            <LegalSection id="atualizacoes" title="Atualizações desta página">
+            <LegalSection id="atualizacoes" title="Atualizações desta página" number={9} tone="privacy">
               <p>
                 Esta política poderá ser atualizada à medida que os serviços digitais, formulários e práticas institucionais da Associação forem definidos ou modificados.
               </p>
@@ -176,7 +176,7 @@ function Privacidade() {
               </p>
             </LegalSection>
 
-            <LegalSection id="contato" title="Contato">
+            <LegalSection id="contato" title="Contato" number={10} tone="privacy">
               <p>
                 Dúvidas ou solicitações relacionadas a dados pessoais podem ser encaminhadas pelos canais institucionais disponíveis na página de Contato.
               </p>
@@ -184,11 +184,12 @@ function Privacidade() {
                 <Link to="/contato" className="inline-flex items-center px-5 py-2.5 rounded-full text-white text-sm hover:opacity-90" style={{ backgroundColor: "#00384C", fontWeight: 600 }}>Ir para Contato</Link>
                 <Link to="/termos-de-uso" className="inline-flex items-center px-5 py-2.5 rounded-full border border-brand-ink/20 text-brand-ink text-sm hover:bg-brand-soft" style={{ fontWeight: 600 }}>Termos de Uso</Link>
               </div>
-              <Triangle color="#FFB400" size={34} className="mt-6" rotate={12} />
             </LegalSection>
-          </div>
+            <LegalContact tone="privacy" />
+          </article>
         </div>
       </div>
+      <CompactFinalCTA variant="privacy" title="Transparência também se constrói com informação clara." text="Conheça os documentos institucionais da Associação Maggu ou fale com a nossa equipe." primary={{ label: "Ver Transparência", to: "/transparencia" }} secondary={{ label: "Entre em contato", to: "/contato" }} />
     </main>
   );
 }

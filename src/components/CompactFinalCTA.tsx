@@ -7,7 +7,7 @@ type CtaLink = {
   href?: string;
 };
 
-type Variant = "home" | "continuity" | "agenda" | "projects" | "ecosystem" | "transparency" | "team";
+type Variant = "home" | "continuity" | "agenda" | "projects" | "ecosystem" | "transparency" | "team" | "privacy" | "terms";
 
 type CompactFinalCTAProps = {
   title: string;
@@ -46,9 +46,23 @@ const buttonStyles: Record<Variant, readonly [string, string]> = {
     "border-brand-petrol/15 bg-brand-cyan/85 text-brand-petrol hover:bg-brand-cyan",
     "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
   ],
+  privacy: [
+    "border-brand-petrol/15 bg-brand-cyan/85 text-brand-petrol hover:bg-brand-cyan",
+    "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
+  ],
+  terms: [
+    "border-brand-petrol/15 bg-brand-gold/90 text-brand-petrol hover:bg-brand-gold",
+    "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
+  ],
 };
 
 function GraphicComposition({ variant }: { variant: Variant }) {
+  if (variant === "privacy") {
+    return <><span className="absolute -left-16 bottom-0 size-56 rounded-full border-[28px] border-brand-cyan/15 md:size-72" /><span className="absolute -right-10 top-10 h-40 w-44 rotate-6 rounded-md border border-primary-foreground/15 md:h-52 md:w-60" /><span className="absolute right-20 top-20 hidden h-px w-28 bg-brand-cyan/50 md:block" /></>;
+  }
+  if (variant === "terms") {
+    return <><span className="absolute -left-12 -top-16 size-56 rotate-12 border-[22px] border-brand-gold/15 md:size-72" /><span className="absolute -bottom-20 -right-16 size-60 rounded-full bg-brand-red/15 md:size-72" /><span className="absolute right-20 top-14 hidden size-14 rotate-45 border border-brand-gold/40 md:block" /></>;
+  }
   if (variant === "ecosystem") {
     return <><span className="absolute -left-14 top-12 size-48 rounded-full border-[28px] border-brand-gold/15 md:size-64" /><span className="absolute -right-16 bottom-0 size-44 rounded-full bg-brand-red/15 md:size-60" /><span className="absolute bottom-16 right-20 hidden h-px w-36 bg-brand-cyan/35 md:block" /><span className="absolute bottom-[3.8rem] right-[13.2rem] hidden size-3 rounded-full bg-brand-cyan md:block" /><span className="absolute bottom-[3.8rem] right-[8rem] hidden size-3 rounded-full bg-brand-gold md:block" /></>;
   }

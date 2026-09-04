@@ -6,3 +6,4 @@
 - [x] Integrar visualmente os CTAs ao footer sem alterar sua estrutura interna
 - [x] Validar Home e Contato em desktop e mobile
 - [ ] Validar páginas afetadas em desktop e mobile
+- [ ] Validar o redesign editorial de Privacidade e Termos em desktop e mobile
