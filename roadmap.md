@@ -15,3 +15,5 @@
 - [x] Validar as 31 seções e a página de Privacidade em desktop e mobile
 - [x] Corrigir o índice e redesenhar os controles de cookies e acessibilidade
 - [x] Validar os modais de cookies e acessibilidade em desktop e mobile
+- [ ] Refinar as seções indicadas de ODS / Maggu 2030 e Sala de Imprensa
+- [ ] Validar os refinamentos de ODS e Imprensa em desktop e mobile
