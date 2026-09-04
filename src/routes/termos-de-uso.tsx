@@ -1,8 +1,8 @@
 // Conteúdo institucional sujeito à validação final da Associação Maggu.
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArcThick, DiamondsCluster, Triangle, HatchedCircle } from "@/components/Shapes";
-import { Breadcrumbs, LegalToc, LegalSection } from "@/components/Legal";
+import { LegalContact, LegalIntro, LegalToc, LegalSection } from "@/components/Legal";
 import { PageHero } from "@/components/PageHero";
+import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 
 export const Route = createFileRoute("/termos-de-uso")({
   head: () => ({
@@ -39,27 +39,29 @@ const toc = [
 function TermosDeUso() {
   return (
     <main id="main">
-      <PageHero title="Termos de Uso" eyebrow="Legal" subtitle="Estas orientações apresentam condições gerais para utilização do site institucional da Associação Maggu e de seus conteúdos digitais." image="https://images.unsplash.com/photo-1526243741027-444d633d7365?auto=format&fit=crop&w=1920&q=80" accent="gold" brush="#08B9E6" compact decoration="constellation" />
+      <PageHero title="Termos de Uso" eyebrow="Legal" subtitle="Conheça as condições de acesso e utilização dos canais digitais da Associação Sócio Cultural Maggu." image="https://images.unsplash.com/photo-1526243741027-444d633d7365?auto=format&fit=crop&w=1920&q=80" accent="gold" brush="#08B9E6" compact decoration="constellation" />
 
-      <div className="bg-white py-10 md:py-14">
-        <div className="container-x grid gap-8 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12">
-          <LegalToc items={toc} accent="#ED1C24" />
+      <LegalIntro tone="terms" eyebrow="Acesso e utilização" title="Informações claras para uma relação transparente." text="Os Termos de Uso apresentam as condições aplicáveis ao acesso e à utilização deste site e de seus conteúdos, contribuindo para uma navegação mais clara e responsável." updated={ultimaAtualizacao} />
 
-          <div className="max-w-2xl">
-            <LegalSection id="sobre-o-site" title="Sobre este site">
+      <div className="bg-background py-10 md:py-14">
+        <div className="container-x grid gap-10 lg:grid-cols-[220px_minmax(0,880px)] lg:justify-center lg:gap-14">
+          <LegalToc items={toc} tone="terms" />
+
+          <article className="min-w-0 max-w-[880px]">
+            <LegalSection id="sobre-o-site" title="Sobre este site" number={1} tone="terms">
               <p>
                 O site da Associação Maggu é um canal institucional destinado à apresentação de sua atuação, iniciativas, projetos, atividades, conteúdos, documentos públicos e formas de contato.
               </p>
             </LegalSection>
 
-            <LegalSection id="uso-do-conteudo" title="Uso das informações">
+            <LegalSection id="uso-do-conteudo" title="Uso das informações" number={2} tone="terms">
               <p>As informações disponíveis neste site possuem finalidade institucional, informativa e cultural.</p>
               <p>
                 A reprodução de conteúdos, fotografias, documentos, marcas e materiais deve observar autoria, créditos, direitos aplicáveis e eventuais orientações específicas apresentadas junto ao conteúdo.
               </p>
             </LegalSection>
 
-            <LegalSection id="informacoes" title="Atualização das informações">
+            <LegalSection id="informacoes" title="Atualização das informações" number={3} tone="terms">
               <p>
                 A Associação busca manter as informações institucionais atualizadas. Conteúdos relacionados a atividades, inscrições, horários, vagas, projetos e outras informações dinâmicas podem ser modificados ao longo do tempo.
               </p>
@@ -68,19 +70,19 @@ function TermosDeUso() {
               </p>
             </LegalSection>
 
-            <LegalSection id="links" title="Links e serviços externos">
+            <LegalSection id="links" title="Links e serviços externos" number={4} tone="terms">
               <p>
                 O site pode disponibilizar links para plataformas, redes sociais, mapas, serviços de inscrição ou outros ambientes externos. Ao acessar esses serviços, o usuário passa a utilizar ambientes com regras e políticas próprias.
               </p>
             </LegalSection>
 
-            <LegalSection id="propriedade" title="Marcas, imagens e conteúdos">
+            <LegalSection id="propriedade" title="Marcas, imagens e conteúdos" number={5} tone="terms">
               <p>
                 Logos, marcas institucionais, fotografias, textos, vídeos, produções artísticas e demais conteúdos presentes no site podem estar protegidos por direitos autorais, direitos de imagem, direitos de marca ou outras regras aplicáveis.
               </p>
             </LegalSection>
 
-            <LegalSection id="formularios" title="Formulários e interações">
+            <LegalSection id="formularios" title="Formulários e interações" number={6} tone="terms">
               <p>
                 Ao utilizar formulários do site, o usuário deve fornecer informações verdadeiras e relacionadas à finalidade apresentada.
               </p>
@@ -92,11 +94,11 @@ function TermosDeUso() {
               </Link>
             </LegalSection>
 
-            <LegalSection id="disponibilidade" title="Funcionamento do site">
+            <LegalSection id="disponibilidade" title="Funcionamento do site" number={7} tone="terms">
               <p>A Associação pode realizar atualizações, ajustes ou manutenções em suas páginas e recursos digitais.</p>
             </LegalSection>
 
-            <LegalSection id="privacidade" title="Privacidade">
+            <LegalSection id="privacidade" title="Privacidade" number={8} tone="terms">
               <p>
                 O tratamento de dados pessoais relacionados ao uso do site é apresentado na página de Privacidade e Proteção de Dados.
               </p>
@@ -105,21 +107,22 @@ function TermosDeUso() {
               </Link>
             </LegalSection>
 
-            <LegalSection id="alteracoes" title="Atualizações destes Termos">
+            <LegalSection id="alteracoes" title="Atualizações destes Termos" number={9} tone="terms">
               <p>
                 Estas orientações podem ser atualizadas quando houver mudanças no site, em seus serviços ou nas práticas institucionais relacionadas à sua utilização.
               </p>
               <p className="text-sm">Última atualização: {ultimaAtualizacao ?? "a definir pela Associação."}</p>
             </LegalSection>
 
-            <LegalSection id="contato" title="Contato">
+            <LegalSection id="contato" title="Contato" number={10} tone="terms">
               <p>Dúvidas sobre estas orientações podem ser encaminhadas pelos canais institucionais.</p>
               <Link to="/contato" className="inline-flex items-center px-5 py-2.5 rounded-full text-white text-sm hover:opacity-90" style={{ backgroundColor: "#ED1C24", fontWeight: 600 }}>Ir para Contato</Link>
-              <Triangle color="#08B9E6" size={34} className="mt-6" rotate={-15} />
             </LegalSection>
-          </div>
+            <LegalContact tone="terms" />
+          </article>
         </div>
       </div>
+      <CompactFinalCTA variant="terms" title="Conhecer as condições de uso também faz parte de uma navegação responsável." text="Continue conhecendo a Associação Maggu ou fale com a nossa equipe." primary={{ label: "Voltar ao início", to: "/" }} secondary={{ label: "Entre em contato", to: "/contato" }} />
     </main>
   );
 }

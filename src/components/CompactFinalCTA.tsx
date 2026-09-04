@@ -3,11 +3,11 @@ import { Button } from "@/components/ui/button";
 
 type CtaLink = {
   label: string;
-  to?: "/ecossistema" | "/transparencia" | "/projetos" | "/contato" | "/agenda" | "/quem-somos" | "/equipe";
+  to?: "/" | "/ecossistema" | "/transparencia" | "/projetos" | "/contato" | "/agenda" | "/quem-somos" | "/equipe";
   href?: string;
 };
 
-type Variant = "home" | "continuity" | "agenda" | "projects" | "ecosystem" | "transparency" | "team";
+type Variant = "home" | "continuity" | "agenda" | "projects" | "ecosystem" | "transparency" | "team" | "privacy" | "terms";
 
 type CompactFinalCTAProps = {
   title: string;
@@ -46,9 +46,23 @@ const buttonStyles: Record<Variant, readonly [string, string]> = {
     "border-brand-petrol/15 bg-brand-cyan/85 text-brand-petrol hover:bg-brand-cyan",
     "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
   ],
+  privacy: [
+    "border-brand-petrol/15 bg-brand-cyan/85 text-brand-petrol hover:bg-brand-cyan",
+    "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
+  ],
+  terms: [
+    "border-brand-petrol/15 bg-brand-gold/90 text-brand-petrol hover:bg-brand-gold",
+    "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20",
+  ],
 };
 
 function GraphicComposition({ variant }: { variant: Variant }) {
+  if (variant === "privacy") {
+    return <><span className="absolute -left-16 bottom-0 size-56 rounded-full border-[28px] border-brand-cyan/15 md:size-72" /><span className="absolute -right-10 top-10 h-40 w-44 rotate-6 rounded-md border border-primary-foreground/15 md:h-52 md:w-60" /><span className="absolute right-20 top-20 hidden h-px w-28 bg-brand-cyan/50 md:block" /></>;
+  }
+  if (variant === "terms") {
+    return <><span className="absolute -left-12 -top-16 size-56 rotate-12 border-[22px] border-brand-gold/15 md:size-72" /><span className="absolute -bottom-20 -right-16 size-60 rounded-full bg-brand-red/15 md:size-72" /><span className="absolute right-20 top-14 hidden size-14 rotate-45 border border-brand-gold/40 md:block" /></>;
+  }
   if (variant === "ecosystem") {
     return <><span className="absolute -left-14 top-12 size-48 rounded-full border-[28px] border-brand-gold/15 md:size-64" /><span className="absolute -right-16 bottom-0 size-44 rounded-full bg-brand-red/15 md:size-60" /><span className="absolute bottom-16 right-20 hidden h-px w-36 bg-brand-cyan/35 md:block" /><span className="absolute bottom-[3.8rem] right-[13.2rem] hidden size-3 rounded-full bg-brand-cyan md:block" /><span className="absolute bottom-[3.8rem] right-[8rem] hidden size-3 rounded-full bg-brand-gold md:block" /></>;
   }
@@ -81,6 +95,7 @@ function CtaButton({ item, className }: { item: CtaLink; className: string }) {
 
 export function CompactFinalCTA({ title, text, primary, secondary, variant }: CompactFinalCTAProps) {
   const styles = buttonStyles[variant];
+  const isLegal = variant === "privacy" || variant === "terms";
 
   return (
     <section data-final-cta className="relative isolate mt-4 overflow-hidden bg-brand-petrol px-4 pt-5 md:mt-6 md:px-6 md:pt-7">
@@ -91,7 +106,7 @@ export function CompactFinalCTA({ title, text, primary, secondary, variant }: Co
           <span className="pointer-events-none absolute bottom-0 left-1/2 h-12 w-[68%] -translate-x-1/2 rounded-t-full bg-primary-foreground/[0.025]" aria-hidden="true" />
           <div className="relative z-10 mx-auto max-w-2xl">
             <span className="mx-auto mb-4 block size-3 rotate-45 border border-brand-gold/75 bg-brand-gold/15" aria-hidden="true" />
-            <h2 className="text-[1.45rem] font-bold leading-tight text-primary-foreground md:text-[1.9rem]">{title}</h2>
+            <h2 className={`mx-auto text-[1.45rem] font-bold leading-tight text-primary-foreground md:text-[1.9rem] ${isLegal ? "max-w-[17rem] sm:max-w-2xl" : ""}`}>{title}</h2>
             <p className="mx-auto mt-3 max-w-xl text-[0.85rem] leading-relaxed text-primary-foreground/80 md:text-[0.95rem]">{text}</p>
             <div className="mt-6 flex flex-col items-center justify-center gap-2.5 sm:flex-row">
               <CtaButton item={primary} className={styles[0]} />
