@@ -19,11 +19,13 @@ import { Route as EcossistemaRouteImport } from './routes/ecossistema'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as CanalDeDenunciasRouteImport } from './routes/canal-de-denuncias'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TransparenciaIndexRouteImport } from './routes/transparencia/index'
 import { Route as QuemSomosIndexRouteImport } from './routes/quem-somos/index'
 import { Route as ProjetosIndexRouteImport } from './routes/projetos/index'
 import { Route as NoticiasIndexRouteImport } from './routes/noticias/index'
 import { Route as GaleriaIndexRouteImport } from './routes/galeria/index'
 import { Route as AgendaIndexRouteImport } from './routes/agenda/index'
+import { Route as QuemSomosTerritorioRouteImport } from './routes/quem-somos/territorio'
 import { Route as ProjetosSlugRouteImport } from './routes/projetos/$slug'
 import { Route as NoticiasSlugRouteImport } from './routes/noticias/$slug'
 import { Route as GaleriaSlugRouteImport } from './routes/galeria/$slug'
@@ -79,6 +81,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TransparenciaIndexRoute = TransparenciaIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TransparenciaRoute,
+} as any)
 const QuemSomosIndexRoute = QuemSomosIndexRouteImport.update({
   id: '/quem-somos/',
   path: '/quem-somos/',
@@ -102,6 +109,11 @@ const GaleriaIndexRoute = GaleriaIndexRouteImport.update({
 const AgendaIndexRoute = AgendaIndexRouteImport.update({
   id: '/agenda/',
   path: '/agenda/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuemSomosTerritorioRoute = QuemSomosTerritorioRouteImport.update({
+  id: '/quem-somos/territorio',
+  path: '/quem-somos/territorio',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjetosSlugRoute = ProjetosSlugRouteImport.update({
@@ -135,16 +147,18 @@ export interface FileRoutesByFullPath {
   '/ods-maggu-2030': typeof OdsMaggu2030Route
   '/privacidade': typeof PrivacidadeRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
-  '/transparencia': typeof TransparenciaRoute
+  '/transparencia': typeof TransparenciaRouteWithChildren
   '/agenda/$slug': typeof AgendaSlugRoute
   '/galeria/$slug': typeof GaleriaSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/projetos/$slug': typeof ProjetosSlugRoute
+  '/quem-somos/territorio': typeof QuemSomosTerritorioRoute
   '/agenda/': typeof AgendaIndexRoute
   '/galeria/': typeof GaleriaIndexRoute
   '/noticias/': typeof NoticiasIndexRoute
   '/projetos/': typeof ProjetosIndexRoute
   '/quem-somos/': typeof QuemSomosIndexRoute
+  '/transparencia/': typeof TransparenciaIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -156,16 +170,17 @@ export interface FileRoutesByTo {
   '/ods-maggu-2030': typeof OdsMaggu2030Route
   '/privacidade': typeof PrivacidadeRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
-  '/transparencia': typeof TransparenciaRoute
   '/agenda/$slug': typeof AgendaSlugRoute
   '/galeria/$slug': typeof GaleriaSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/projetos/$slug': typeof ProjetosSlugRoute
+  '/quem-somos/territorio': typeof QuemSomosTerritorioRoute
   '/agenda': typeof AgendaIndexRoute
   '/galeria': typeof GaleriaIndexRoute
   '/noticias': typeof NoticiasIndexRoute
   '/projetos': typeof ProjetosIndexRoute
   '/quem-somos': typeof QuemSomosIndexRoute
+  '/transparencia': typeof TransparenciaIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -178,16 +193,18 @@ export interface FileRoutesById {
   '/ods-maggu-2030': typeof OdsMaggu2030Route
   '/privacidade': typeof PrivacidadeRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
-  '/transparencia': typeof TransparenciaRoute
+  '/transparencia': typeof TransparenciaRouteWithChildren
   '/agenda/$slug': typeof AgendaSlugRoute
   '/galeria/$slug': typeof GaleriaSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/projetos/$slug': typeof ProjetosSlugRoute
+  '/quem-somos/territorio': typeof QuemSomosTerritorioRoute
   '/agenda/': typeof AgendaIndexRoute
   '/galeria/': typeof GaleriaIndexRoute
   '/noticias/': typeof NoticiasIndexRoute
   '/projetos/': typeof ProjetosIndexRoute
   '/quem-somos/': typeof QuemSomosIndexRoute
+  '/transparencia/': typeof TransparenciaIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -206,11 +223,13 @@ export interface FileRouteTypes {
     | '/galeria/$slug'
     | '/noticias/$slug'
     | '/projetos/$slug'
+    | '/quem-somos/territorio'
     | '/agenda/'
     | '/galeria/'
     | '/noticias/'
     | '/projetos/'
     | '/quem-somos/'
+    | '/transparencia/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -222,16 +241,17 @@ export interface FileRouteTypes {
     | '/ods-maggu-2030'
     | '/privacidade'
     | '/termos-de-uso'
-    | '/transparencia'
     | '/agenda/$slug'
     | '/galeria/$slug'
     | '/noticias/$slug'
     | '/projetos/$slug'
+    | '/quem-somos/territorio'
     | '/agenda'
     | '/galeria'
     | '/noticias'
     | '/projetos'
     | '/quem-somos'
+    | '/transparencia'
   id:
     | '__root__'
     | '/'
@@ -248,11 +268,13 @@ export interface FileRouteTypes {
     | '/galeria/$slug'
     | '/noticias/$slug'
     | '/projetos/$slug'
+    | '/quem-somos/territorio'
     | '/agenda/'
     | '/galeria/'
     | '/noticias/'
     | '/projetos/'
     | '/quem-somos/'
+    | '/transparencia/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -265,11 +287,12 @@ export interface RootRouteChildren {
   OdsMaggu2030Route: typeof OdsMaggu2030Route
   PrivacidadeRoute: typeof PrivacidadeRoute
   TermosDeUsoRoute: typeof TermosDeUsoRoute
-  TransparenciaRoute: typeof TransparenciaRoute
+  TransparenciaRoute: typeof TransparenciaRouteWithChildren
   AgendaSlugRoute: typeof AgendaSlugRoute
   GaleriaSlugRoute: typeof GaleriaSlugRoute
   NoticiasSlugRoute: typeof NoticiasSlugRoute
   ProjetosSlugRoute: typeof ProjetosSlugRoute
+  QuemSomosTerritorioRoute: typeof QuemSomosTerritorioRoute
   AgendaIndexRoute: typeof AgendaIndexRoute
   GaleriaIndexRoute: typeof GaleriaIndexRoute
   NoticiasIndexRoute: typeof NoticiasIndexRoute
@@ -349,6 +372,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/transparencia/': {
+      id: '/transparencia/'
+      path: '/'
+      fullPath: '/transparencia/'
+      preLoaderRoute: typeof TransparenciaIndexRouteImport
+      parentRoute: typeof TransparenciaRoute
+    }
     '/quem-somos/': {
       id: '/quem-somos/'
       path: '/quem-somos'
@@ -384,6 +414,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AgendaIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/quem-somos/territorio': {
+      id: '/quem-somos/territorio'
+      path: '/quem-somos/territorio'
+      fullPath: '/quem-somos/territorio'
+      preLoaderRoute: typeof QuemSomosTerritorioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projetos/$slug': {
       id: '/projetos/$slug'
       path: '/projetos/$slug'
@@ -415,6 +452,18 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface TransparenciaRouteChildren {
+  TransparenciaIndexRoute: typeof TransparenciaIndexRoute
+}
+
+const TransparenciaRouteChildren: TransparenciaRouteChildren = {
+  TransparenciaIndexRoute: TransparenciaIndexRoute,
+}
+
+const TransparenciaRouteWithChildren = TransparenciaRoute._addFileChildren(
+  TransparenciaRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CanalDeDenunciasRoute: CanalDeDenunciasRoute,
@@ -425,11 +474,12 @@ const rootRouteChildren: RootRouteChildren = {
   OdsMaggu2030Route: OdsMaggu2030Route,
   PrivacidadeRoute: PrivacidadeRoute,
   TermosDeUsoRoute: TermosDeUsoRoute,
-  TransparenciaRoute: TransparenciaRoute,
+  TransparenciaRoute: TransparenciaRouteWithChildren,
   AgendaSlugRoute: AgendaSlugRoute,
   GaleriaSlugRoute: GaleriaSlugRoute,
   NoticiasSlugRoute: NoticiasSlugRoute,
   ProjetosSlugRoute: ProjetosSlugRoute,
+  QuemSomosTerritorioRoute: QuemSomosTerritorioRoute,
   AgendaIndexRoute: AgendaIndexRoute,
   GaleriaIndexRoute: GaleriaIndexRoute,
   NoticiasIndexRoute: NoticiasIndexRoute,
