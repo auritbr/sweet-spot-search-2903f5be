@@ -86,16 +86,28 @@ function Imprensa() {
       {/* Maggu em resumo */}
       <Section className="overflow-hidden bg-brand-soft">
         <ArcThick color="#00384C" className="pointer-events-none absolute -left-10 top-8 w-20 opacity-25 md:left-4 md:w-24" from={210} to={330} />
+        <span className="pointer-events-none absolute right-8 bottom-10 hidden size-20 rounded-full border border-brand-cyan/25 md:block" aria-hidden="true" />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Ficha rápida" title="Maggu em resumo" text="Dados institucionais para consulta e citação." />
           <div className="mx-auto grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {pressFacts.map((fact) => (
-              <div key={fact.label} className="relative overflow-hidden rounded-2xl border border-brand-petrol/10 bg-white/70 p-5 shadow-[0_14px_32px_-30px_rgba(0,56,76,0.6)] ring-1 ring-inset ring-white/60 backdrop-blur-sm">
-                <span className="absolute inset-x-0 top-0 h-px bg-brand-cyan/40" aria-hidden="true" />
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-red">{fact.label}</p>
-                <p className="mt-2 text-[15px] leading-snug text-brand-ink">{fact.value}</p>
-              </div>
-            ))}
+            {pressFacts.map((fact, i) => {
+              const color = factColors[i % factColors.length];
+              return (
+                <div
+                  key={fact.label}
+                  className="group relative overflow-hidden rounded-[18px] border border-brand-petrol/8 bg-white/70 p-5 pl-6 shadow-[0_10px_28px_-26px_rgba(0,56,76,0.55)] ring-1 ring-inset ring-white/70 backdrop-blur-sm transition duration-300 hover:-translate-y-0.5"
+                >
+                  <span className="absolute left-0 top-5 bottom-5 w-[3px] rounded-r-full" style={{ backgroundColor: color }} aria-hidden="true" />
+                  <span
+                    className="pointer-events-none absolute -right-7 -top-7 size-20 rounded-full opacity-[0.08] transition-opacity duration-300 group-hover:opacity-[0.15]"
+                    style={{ backgroundColor: color }}
+                    aria-hidden="true"
+                  />
+                  <p className="relative text-[11px] font-semibold uppercase tracking-[0.2em]" style={{ color }}>{fact.label}</p>
+                  <p className="relative mt-2 text-[15px] leading-snug text-brand-ink">{fact.value}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </Section>
@@ -103,26 +115,47 @@ function Imprensa() {
       {/* Porta-vozes */}
       <Section className="overflow-hidden bg-white">
         <Triangle color="#FFB400" size={28} className="pointer-events-none absolute right-6 top-10 hidden opacity-80 md:block" rotate={14} />
+        <span className="pointer-events-none absolute left-6 bottom-12 hidden size-2.5 rotate-45 bg-brand-cyan/50 md:block" aria-hidden="true" />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Entrevistas" title="Porta-vozes" text="Representantes institucionais disponíveis para entrevistas, com temas autorizados." />
           <div className="mx-auto grid max-w-5xl gap-5 md:grid-cols-2">
-            {spokespeople.map((person) => (
-              <article key={person.name} className="relative flex flex-col overflow-hidden rounded-2xl border border-brand-petrol/10 bg-brand-soft/45 p-6 shadow-[0_16px_36px_-32px_rgba(0,56,76,0.55)] ring-1 ring-inset ring-white/60 md:p-7">
-                <span className={`absolute inset-x-0 top-0 h-px ${accentBar[person.accent]}/60`} aria-hidden="true" />
-                <h3 className="text-[1.25rem] font-bold leading-tight text-brand-ink md:text-[1.4rem]">{person.name}</h3>
-                <p className="mt-1.5 text-sm font-semibold text-brand-red">{person.role}</p>
-                <p className="mt-3 text-sm leading-[1.7] text-brand-gray">{person.bio}</p>
-                <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-petrol/70">Pode falar sobre</p>
-                <ul className="mt-2.5 flex flex-wrap gap-2">
-                  {person.topics.map((topic) => (
-                    <li key={topic} className="rounded-full border border-brand-petrol/12 bg-white/80 px-3 py-1 text-xs text-brand-gray">{topic}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+            {spokespeople.map((person) => {
+              const color = accentHex[person.accent] ?? "#08B9E6";
+              return (
+                <article
+                  key={person.name}
+                  className="group relative flex flex-col overflow-hidden rounded-[20px] border border-brand-petrol/8 bg-brand-soft/40 p-6 shadow-[0_14px_34px_-30px_rgba(0,56,76,0.55)] ring-1 ring-inset ring-white/70 transition duration-300 hover:-translate-y-0.5 md:p-7"
+                >
+                  <span className={`absolute left-6 top-0 h-[3px] w-12 rounded-b-full ${accentBar[person.accent]}`} aria-hidden="true" />
+                  <span
+                    className="pointer-events-none absolute -bottom-10 -right-10 size-28 rounded-full opacity-[0.08] transition-opacity duration-300 group-hover:opacity-[0.14]"
+                    style={{ backgroundColor: color }}
+                    aria-hidden="true"
+                  />
+                  <span
+                    className="relative inline-flex size-11 items-center justify-center rounded-full text-[15px] font-bold"
+                    style={{ backgroundColor: `${color}1f`, color }}
+                    aria-hidden="true"
+                  >
+                    {person.name.charAt(0)}
+                  </span>
+                  <h3 className="relative mt-4 text-[1.2rem] font-bold leading-tight text-brand-ink md:text-[1.35rem]">{person.name}</h3>
+                  <p className="relative mt-1.5 text-sm font-semibold" style={{ color }}>{person.role}</p>
+                  <p className="relative mt-3 text-sm leading-[1.7] text-brand-gray">{person.bio}</p>
+                  <span className="relative mt-5 block h-px w-full bg-brand-petrol/10" aria-hidden="true" />
+                  <p className="relative mt-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-petrol/70">Pode falar sobre</p>
+                  <ul className="relative mt-2.5 flex flex-wrap gap-2">
+                    {person.topics.map((topic) => (
+                      <li key={topic} className="rounded-full border border-brand-petrol/10 bg-white/80 px-3 py-1 text-xs text-brand-gray">{topic}</li>
+                    ))}
+                  </ul>
+                </article>
+              );
+            })}
           </div>
         </div>
       </Section>
+
 
       {/* Fotos oficiais */}
       <Section className="overflow-hidden bg-brand-soft">
