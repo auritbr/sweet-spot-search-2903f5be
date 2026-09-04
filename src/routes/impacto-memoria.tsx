@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CalendarCheck2, FileCheck2, FolderKanban, History, MapPinned, Quote, Users } from "lucide-react";
+import { ArrowRight, CalendarCheck2, FolderKanban, History, MapPinned, Users } from "lucide-react";
 import { CompactFinalCTA } from "@/components/CompactFinalCTA";
 import { HeroButton, PageHero, Section, SectionTitle } from "@/components/PageHero";
 import { ArcThick, HatchedCircle, Triangle } from "@/components/Shapes";
