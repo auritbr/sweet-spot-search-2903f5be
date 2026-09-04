@@ -17,7 +17,9 @@ const institucional = [
 const navegacao = [
   { label: "Notícias", to: "/noticias" },
   { label: "Galeria", to: "/galeria" },
+  { label: "Sala de Imprensa", to: "/imprensa" },
   { label: "Contato", to: "/contato" },
+
 ];
 
 const legal = [
