@@ -183,26 +183,27 @@ function Imprensa() {
         <HatchedCircle size={76} color="#FFB400" className="pointer-events-none absolute -right-8 bottom-8 opacity-[0.12]" />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Marca" title="Identidade institucional" />
-          <div className="mx-auto grid max-w-[900px] overflow-hidden rounded-[18px] border border-brand-petrol/10 bg-brand-soft/25 shadow-[0_20px_48px_-40px_rgba(0,56,76,0.7)] md:grid-cols-[minmax(260px,0.85fr)_1.15fr]">
-            <div className="relative flex min-h-52 items-center justify-center overflow-hidden bg-brand-petrol px-8 py-8 md:min-h-60">
-              <span className="pointer-events-none absolute -left-8 -top-9 size-24 rounded-full border-[11px] border-brand-cyan/20" aria-hidden="true" />
-              <span className="pointer-events-none absolute -bottom-8 right-7 size-20 rounded-t-full border-x-[9px] border-t-[9px] border-brand-gold/20" aria-hidden="true" />
+          <div className="mx-auto grid max-w-[860px] overflow-hidden rounded-[16px] border border-brand-petrol/10 bg-brand-soft/30 shadow-[0_18px_42px_-36px_rgba(0,56,76,0.65)] md:grid-cols-[300px_1fr]">
+            <div className="relative flex min-h-48 items-center justify-center overflow-hidden bg-brand-petrol px-7 py-7 md:min-h-56">
+              <span className="pointer-events-none absolute -left-8 -top-9 size-24 rounded-full border-[10px] border-brand-cyan/20" aria-hidden="true" />
+              <span className="pointer-events-none absolute -bottom-8 right-7 size-20 rounded-t-full border-x-[8px] border-t-[8px] border-brand-gold/20" aria-hidden="true" />
               <span className="pointer-events-none absolute right-7 top-7 size-2.5 rotate-45 bg-brand-gold" aria-hidden="true" />
-              <span className="pointer-events-none absolute bottom-8 left-7 h-px w-10 bg-primary-foreground/35" aria-hidden="true" />
-              <img src={logoAsset} alt="Associação Maggu" className="relative h-32 w-auto max-w-full object-contain md:h-36" />
+              <span className="pointer-events-none absolute bottom-7 left-7 h-px w-11 bg-primary-foreground/35" aria-hidden="true" />
+              <img src={logoAsset} alt="Associação Maggu" className="relative h-36 w-auto max-w-[90%] object-contain md:h-40" />
             </div>
-            <div className="relative flex flex-col justify-center p-6 md:p-8">
-              <span className="pointer-events-none absolute right-6 top-5 tracking-[0.35em] text-brand-cyan/35" aria-hidden="true">••••</span>
-              <p className="max-w-xl pr-10 text-[15px] leading-[1.75] text-brand-gray">
+            <div className="relative flex flex-col justify-center p-5 md:p-6">
+              <span className="pointer-events-none absolute right-5 top-4 tracking-[0.32em] text-brand-cyan/35" aria-hidden="true">••••</span>
+              <p className="max-w-xl pr-8 text-sm leading-[1.7] text-brand-gray">
                 Utilize sempre os arquivos oficiais disponibilizados pela Associação. Não recriar, distorcer ou alterar a identidade institucional.
               </p>
-              <ul className="mt-5 grid gap-2.5 border-t border-brand-petrol/10 pt-5 text-[13px] leading-relaxed text-brand-gray">
+              <ul className="mt-4 grid gap-2 border-t border-brand-petrol/10 pt-4 text-xs leading-relaxed text-brand-ink sm:grid-cols-3 md:grid-cols-1">
                 {[
                   "Preserve as proporções originais e a área de respiro da marca.",
                   "Não aplique efeitos, sombras ou alterações de cor.",
                   "Utilize apenas versões oficiais fornecidas no Kit de Imprensa.",
                 ].map((rule) => (
-                  <li key={rule} className="grid grid-cols-[22px_1fr] items-start gap-2.5 rounded-lg bg-white/75 px-3 py-2.5">
+                  <li key={rule} className="relative grid grid-cols-[20px_1fr] items-start gap-2 overflow-hidden rounded-[8px] border border-brand-petrol/8 bg-white/80 px-3 py-2.5">
+                    <span className="absolute right-0 top-0 size-5 rounded-bl-full bg-brand-gold/10" aria-hidden="true" />
                     <span className="mt-0.5 inline-flex size-5 items-center justify-center rounded-full bg-brand-cyan/10 text-[10px] font-bold text-brand-petrol" aria-hidden="true">✓</span>
                     <span>{rule}</span>
                   </li>
@@ -364,7 +365,7 @@ function Imprensa() {
         <span className="pointer-events-none absolute left-7 top-11 hidden size-10 border-l border-t border-brand-cyan/30 md:block" aria-hidden="true" />
         <div className="container-x">
           <SectionTitle align="center" eyebrow="Fale conosco" title="Contato de imprensa" />
-          <div className="mx-auto grid max-w-[900px] overflow-hidden rounded-[18px] border border-brand-petrol/10 bg-brand-soft/30 shadow-[0_18px_42px_-36px_rgba(0,56,76,0.65)] md:grid-cols-[0.85fr_1.15fr]">
+          <div className="mx-auto grid max-w-[900px] overflow-hidden rounded-[18px] border border-brand-petrol/10 bg-brand-soft/30 shadow-[0_18px_42px_-36px_rgba(0,56,76,0.65)] md:grid-cols-[0.72fr_1.28fr]">
             <div className="relative flex min-h-48 flex-col justify-end overflow-hidden bg-brand-petrol p-6 text-primary-foreground md:p-7">
               <span className="absolute -left-7 -top-7 size-24 rounded-full border-[11px] border-brand-cyan/20" aria-hidden="true" />
               <span className="absolute right-7 top-8 size-3 rotate-45 bg-brand-gold" aria-hidden="true" />
@@ -379,7 +380,7 @@ function Imprensa() {
               <a href="mailto:comunicacaomktmaggu@gmail.com" className="group relative flex min-h-32 flex-col justify-between overflow-hidden rounded-[12px] border border-brand-petrol/10 bg-white/85 p-4 transition hover:-translate-y-0.5 hover:border-brand-cyan/35">
                 <span className="pointer-events-none absolute right-0 top-0 size-8 rounded-bl-full bg-brand-cyan/10" aria-hidden="true" />
                 <span className="inline-flex size-9 items-center justify-center rounded-full bg-brand-cyan/10 text-brand-petrol"><Mail className="size-4" aria-hidden="true" /></span>
-                <span className="mt-4 min-w-0"><span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-cyan">E-mail</span><span className="mt-1 block break-all text-[13px] leading-snug text-brand-ink group-hover:text-brand-petrol">comunicacaomktmaggu@gmail.com</span></span>
+                <span className="mt-4 min-w-0"><span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-cyan">E-mail</span><span className="mt-1 block whitespace-nowrap text-[clamp(10px,2.65vw,12px)] leading-snug text-brand-ink group-hover:text-brand-petrol sm:text-[11px]">comunicacaomktmaggu@gmail.com</span></span>
               </a>
               <a href="tel:+5582998067374" className="group relative flex min-h-32 flex-col justify-between overflow-hidden rounded-[12px] border border-brand-petrol/10 bg-white/85 p-4 transition hover:-translate-y-0.5 hover:border-brand-gold/45">
                 <span className="pointer-events-none absolute right-4 top-4 size-2 rotate-45 bg-brand-gold" aria-hidden="true" />
