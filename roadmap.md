@@ -19,4 +19,4 @@
 - [x] Validar os refinamentos de ODS e Imprensa em desktop e mobile
 - [x] Criar as páginas Território, Governança e Integridade, Participe e Impacto & Memória
 - [x] Integrar as novas páginas à navegação e às conexões institucionais
-- [ ] Validar as quatro novas páginas em desktop e mobile
+- [x] Validar as quatro novas páginas em desktop e mobile
