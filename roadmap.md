@@ -1,8 +1,7 @@
 # Roadmap
 
-- [x] Igualar o CTA final dos projetos ao padrão aprovado
-- [x] Redesenhar “Em perspectiva” com cards claros e leves
-- [x] Uniformizar e decorar discretamente a galeria dos projetos
-- [x] Redesenhar “Canais de contato”
-- [x] Refinar visualmente “Onde estamos”
-- [x] Validar projetos e Contato em desktop e mobile
+- [ ] Empilhar e refinar os três canais principais de Contato
+- [ ] Recriar o CTA compartilhado como seção gráfica de fechamento
+- [ ] Aplicar o CTA compartilhado à Home
+- [ ] Integrar visualmente os CTAs ao footer sem alterar sua estrutura interna
+- [ ] Validar páginas afetadas em desktop e mobile
