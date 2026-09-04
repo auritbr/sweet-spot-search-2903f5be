@@ -248,12 +248,11 @@ function Ecossistema() {
             <h2 className="mt-3 text-[1.75rem] leading-tight text-brand-ink md:text-[2.15rem]">Os eixos se conectam na prática.</h2>
             <p className="mx-auto mt-4 max-w-xl leading-relaxed text-brand-gray">Uma mesma iniciativa pode reunir diferentes dimensões da atuação da Maggu.</p>
           </div>
-          <div className="relative mx-auto mt-8 max-w-4xl rounded-xl border border-brand-petrol/8 bg-background/65 p-3 shadow-sm backdrop-blur-sm sm:p-4 md:p-5">
-            <svg className="pointer-events-none absolute inset-0 hidden h-full w-full md:block" viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M17 18 H50 H83 M17 42 H50 H83 M17 18 L50 42 M50 18 V42 M83 18 L50 42" stroke="#00384C" strokeOpacity="0.14" strokeWidth="0.3" fill="none" />
-              <circle cx="50" cy="30" r="1" fill="#FFB400" fillOpacity="0.8" />
-            </svg>
-            <ul className="relative grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-3 md:gap-4">
+          <div className="relative mx-auto mt-9 max-w-3xl">
+            <span className="pointer-events-none absolute left-6 right-6 top-[38px] hidden h-px bg-gradient-to-r from-transparent via-brand-petrol/18 to-transparent md:block" aria-hidden="true" />
+            <span className="pointer-events-none absolute bottom-[38px] left-6 right-6 hidden h-px bg-gradient-to-r from-transparent via-brand-petrol/18 to-transparent md:block" aria-hidden="true" />
+            <span className="pointer-events-none absolute left-1/2 top-[38px] hidden h-[calc(100%-76px)] w-px -translate-x-1/2 bg-gradient-to-b from-brand-petrol/18 via-brand-gold/40 to-brand-petrol/18 md:block" aria-hidden="true" />
+            <ul className="relative grid grid-cols-2 gap-x-4 gap-y-3 sm:gap-x-6 md:grid-cols-3">
               {[
                 ["Formação", "#ED1C24"],
                 ["Criação", "#FFB400"],
@@ -264,15 +263,15 @@ function Ecossistema() {
               ].map(([item, color]) => (
                 <li
                   key={item}
-                  className="group relative flex min-h-[60px] items-center justify-center overflow-hidden rounded-lg border border-brand-petrol/10 bg-background/85 px-3 py-3.5 text-center shadow-sm backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:border-brand-petrol/20 hover:shadow-md"
+                  className="group relative flex items-center justify-center gap-2 rounded-full border border-brand-petrol/10 bg-background/90 px-3 py-2 text-center shadow-[0_6px_18px_-16px_rgba(0,56,76,0.6)] transition duration-300 hover:-translate-y-0.5 hover:border-brand-petrol/20"
                 >
-                  <span className="absolute right-4 top-4 size-2.5 rotate-45 opacity-80" style={{ backgroundColor: color }} aria-hidden="true" />
-                   <span className="absolute -right-6 -top-6 size-14 rounded-full border opacity-20" style={{ borderColor: color }} aria-hidden="true" />
-                  <p className="relative text-sm font-semibold text-brand-ink md:text-base">{item}</p>
+                  <span className="size-1.5 shrink-0 rounded-full" style={{ backgroundColor: color }} aria-hidden="true" />
+                  <p className="text-[13px] font-semibold text-brand-ink">{item}</p>
                 </li>
               ))}
             </ul>
           </div>
+
         </div>
       </section>
 
