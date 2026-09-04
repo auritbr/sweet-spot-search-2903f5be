@@ -52,11 +52,12 @@ function Contato() {
           <div className="text-brand-ink">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">Canais de contato</p>
             <h2 className="mt-2 text-2xl font-bold">Estamos por aqui</h2>
-            <div className="mt-6 grid max-w-2xl gap-3">
+            <div className="mt-6 grid max-w-md gap-2.5">
               <ContactCard icon={Mail} label="E-mail" value="comunicacaomktmaggu@gmail.com" accent="cyan" />
               <ContactCard icon={Phone} label="Telefone" value="(82) 99806-7374" accent="gold" />
               <ContactCard icon={MapPin} label="Endereço" value={"Rua Em Projeto A, 33 — Benedito Bentes\nMaceió - AL, 57084-411"} accent="red" />
             </div>
+
             <SocialLinksArea />
           </div>
 
@@ -126,16 +127,17 @@ const contactAccent = {
 
 function ContactCard({ icon: Icon, label, value, accent }: { icon: typeof Mail; label: string; value: string; accent: keyof typeof contactAccent }) {
   return (
-    <article className="relative overflow-hidden rounded-xl border border-brand-petrol/10 bg-brand-soft/45 px-4 py-3 shadow-[0_10px_24px_-24px_rgba(0,56,76,0.5)] md:px-5">
-      <span className="pointer-events-none absolute -right-2 -top-2 size-7 rounded-full border-[5px] border-brand-gold/15" aria-hidden="true" />
+    <article className="relative overflow-hidden rounded-xl border border-brand-petrol/10 bg-brand-soft/40 px-3.5 py-3 shadow-[0_8px_20px_-20px_rgba(0,56,76,0.5)]">
+      <span className="pointer-events-none absolute -right-2 -top-2 size-6 rounded-full border-[4px] border-brand-gold/15" aria-hidden="true" />
       <div className="relative flex items-center gap-3">
-        <span className={`inline-flex size-9 shrink-0 items-center justify-center rounded-lg ${contactAccent[accent]}`}><Icon className="size-[18px]" aria-hidden="true" /></span>
+        <span className={`inline-flex size-8 shrink-0 items-center justify-center rounded-lg ${contactAccent[accent]}`}><Icon className="size-4" aria-hidden="true" /></span>
         <div className="min-w-0">
-          <h3 className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-brand-gray">{label}</h3>
-          <p className="mt-0.5 whitespace-pre-line break-words text-sm font-semibold leading-snug text-brand-ink">{value}</p>
+          <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-brand-gray">{label}</h3>
+          <p className="mt-0.5 whitespace-pre-line break-words text-[13px] font-semibold leading-snug text-brand-ink">{value}</p>
         </div>
       </div>
     </article>
+
   );
 }
 
