@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ExternalLink, Facebook, Instagram, Mail, MessageCircle, Phone, Share2, Youtube } from "lucide-react";
+import { ExternalLink, Facebook, Instagram, Mail, MapPin, MessageCircle, Phone, Share2, Youtube } from "lucide-react";
 import { useState } from "react";
 import { PageHero } from "@/components/PageHero";
 import { ArcThick, BrushStroke, DiamondsCluster, HatchedCircle, QuarterCircle } from "@/components/Shapes";
