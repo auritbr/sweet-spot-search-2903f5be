@@ -85,18 +85,19 @@ export function CompactFinalCTA({ title, text, primary, secondary, variant }: Co
   return (
     <section data-final-cta className="relative isolate mt-4 overflow-hidden bg-brand-petrol px-4 pt-5 md:mt-6 md:px-6 md:pt-7">
       <div className="container-x px-0">
-        <div className="relative mx-auto flex min-h-[350px] w-full items-center justify-center overflow-hidden rounded-t-[2rem] border-x border-t border-primary-foreground/10 bg-brand-petrol px-6 py-14 text-center md:min-h-[390px] md:px-16 md:py-16 lg:min-h-[410px]">
-          <div className="pointer-events-none absolute inset-0" aria-hidden="true"><GraphicComposition variant={variant} /></div>
+        <div className="relative mx-auto flex min-h-[250px] w-full items-center justify-center overflow-hidden rounded-t-[2rem] border-x border-t border-primary-foreground/10 bg-brand-petrol px-6 py-9 text-center md:min-h-[280px] md:px-14 md:py-11 lg:min-h-[295px]">
+          <div className="pointer-events-none absolute inset-0 scale-90" aria-hidden="true"><GraphicComposition variant={variant} /></div>
           <span className="pointer-events-none absolute inset-x-[12%] top-0 h-px bg-primary-foreground/20" aria-hidden="true" />
-          <span className="pointer-events-none absolute bottom-0 left-1/2 h-16 w-[68%] -translate-x-1/2 rounded-t-full bg-primary-foreground/[0.025]" aria-hidden="true" />
+          <span className="pointer-events-none absolute bottom-0 left-1/2 h-12 w-[68%] -translate-x-1/2 rounded-t-full bg-primary-foreground/[0.025]" aria-hidden="true" />
           <div className="relative z-10 mx-auto max-w-2xl">
-            <span className="mx-auto mb-6 block size-3 rotate-45 border border-brand-gold/75 bg-brand-gold/15" aria-hidden="true" />
-            <h2 className="text-[1.65rem] font-bold leading-tight text-primary-foreground md:text-[2.2rem]">{title}</h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-primary-foreground/80 md:text-base">{text}</p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <span className="mx-auto mb-4 block size-3 rotate-45 border border-brand-gold/75 bg-brand-gold/15" aria-hidden="true" />
+            <h2 className="text-[1.45rem] font-bold leading-tight text-primary-foreground md:text-[1.9rem]">{title}</h2>
+            <p className="mx-auto mt-3 max-w-xl text-[0.85rem] leading-relaxed text-primary-foreground/80 md:text-[0.95rem]">{text}</p>
+            <div className="mt-6 flex flex-col items-center justify-center gap-2.5 sm:flex-row">
               <CtaButton item={primary} className={styles[0]} />
               <CtaButton item={secondary} className={styles[1]} />
             </div>
+
           </div>
         </div>
       </div>
